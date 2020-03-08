@@ -1,0 +1,80 @@
+#!/bin/sh
+HAPDIR=/usr/local/addons/hap-homematic
+CONFIG_URL=/addons/hap-homematic/index.html
+CONFIG_DIR=/usr/local/etc/config
+PIDFILE=/var/run/hap-homematic.pid
+STARTRC=/etc/init.d/S51hap-homematic
+VER=0.0.1
+PSPID=`ps -o pid,comm,args | awk '{if ($2=="node" && $4 ~ /hap-homematic/){print $1}}'`
+
+case "$1" in
+  ""|start)
+	#run postinstall if necessary
+#	$HAPDIR/etc/postinstall.sh
+
+	if [ "$PSPID" = "" ]
+	then
+	  node $HAPDIR/index.js >>/var/log/hap-homematic.log &
+	  logger -t homematic -p user.info "started hap-homematic"
+	fi
+	;;
+
+  stop)
+  	if [ "$PSPID" != "" ]
+  	then
+	  kill -TERM $PSPID 2>/dev/null
+	  sleep 1
+	  kill -0 $PSPID 2>/dev/null
+	  if [ $? -eq 0 ]
+	  then
+	    sleep 10
+	    kill -KILL $PSPID 2>/dev/null
+	  fi
+	  logger -t homematic -p user.info "stopped hap-homematic"
+	fi
+	;;
+
+  restart)
+  	if [ "$PSPID" != "" ]
+  	then
+	  kill -TERM $PSPID 2>/dev/null
+	  sleep 1
+	  kill -0 $PSPID 2>/dev/null
+	  if [ $? -eq 0 ]
+	  then
+	    sleep 10
+	    kill -KILL $PSPID 2>/dev/null
+	  fi
+	  logger -t homematic -p user.info "stopped hap-homematic for restart"
+	fi
+	node $HAPDIR/index.js >>/var/log/hap-homematic.log &
+	logger -t homematic -p user.info "started (restart) hap-homematic"
+	;;
+
+  info)
+	echo "Info: <center><b>HomeKit HomeMatic</b></center><br /><br />Homematic goes Apple Homekit<br /><a href='https://github.com/thkl/hap-homematic/'>https://github.com/thkl/hap-homematic/</a>"
+	echo "Name: HomeKit HomeMatic"
+	echo "Version: $VER"
+	echo "Operations: uninstall"
+	echo "Config-Url: $CONFIG_URL"
+	;;
+
+  uninstall)
+	logger -t homematic -p user.info "removing hap-homematic"
+	kill -KILL $PSPID 2>/dev/null
+	node /usr/local/addons/hap-homematic/etc/hm_addon.js hap
+	rm -R /usr/local/addons/hap-homematic
+    rm /usr/local/etc/config/rc.d/hap-homematic 
+	mount -o remount,rw /
+    rm /etc/init.d/S51hap-homematic
+    rm /etc/logrotate.d/hap-homematic.conf
+	mount -o remount,ro /
+	;;
+
+  *)
+	echo "Usage: $0 {start|stop|restart|uninstall}" >&2
+	exit 1
+	;;
+esac
+
+exit 0

@@ -1,0 +1,37 @@
+{
+    "name": "hap-homematic",
+    "version": "0.0.1",
+    "description": "provides a homekit bridge to the ccu",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/thkl/hap-homematic.git"
+    },
+    "engines": {
+        "node": ">=8.11.0"
+    },
+    "dependencies": {
+        "hap-nodejs": "0.5.6",
+        "chalk":"3.0.0",
+        "homematic-xmlrpc":"1.0.2",
+        "commander":"4.1.1",
+        "qrcode-terminal":"0.12.0",
+        "fakegato-history": "0.5.6"
+    },
+    "scripts": {
+        "start": "node index.js || true",
+        "dev": "node index.js -D || true",
+        "devall": "DEBUG=* node index.js -D || true",
+        "test": "mocha"
+    },
+      
+    "devDependencies": {
+        "mocha": "^7.0.1"
+    },
+    "mocha": {
+        "bail": true,
+        "reporter": "spec",
+        "recursive": true
+    }
+ 
+}
