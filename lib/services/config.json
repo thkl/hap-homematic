@@ -2,5 +2,6 @@
     "DIMMER":"HomeMaticDimmerAccessory",
     "SWITCH":"HomeMaticSwitchAccessory",
     "HM-WDS30-T-O:WEATHER":"HomeMaticThermometerAccessory",
-    "HM-WDS30-OT2-SM:WEATHER":"HomeMaticThermometerAccessory"
+    "HM-WDS30-OT2-SM:WEATHER":"HomeMaticThermometerAccessory",
+    "HM-LC-Bl1PBU-FM:BLIND":"HomeMaticBlindAccessory"
 }
