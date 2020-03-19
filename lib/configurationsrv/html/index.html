@@ -46,7 +46,7 @@
         </li>
 
         <li class="c-sidebar-nav-item">
-          <a class="c-sidebar-nav-link" href="#">Homekit settings</a>
+          <a class="c-sidebar-nav-link" id="hapInstances" href="#">HomeKit Instances</a>
         </li>
 
         <li class="c-sidebar-nav-item">
@@ -110,11 +110,9 @@
               <!-- /.row-->
               <div class="card">
                 <div class="card-header">
-                  <h2>Devices</h2>
+                  <h2 id="containerTitle"></h2>
                 </div>
-                <div class="card-body" id="deviceContainer">
-                  <ul class="pagination" id="deviceContainerPagination">
-                  </ul>
+                <div class="card-body" id="container">
                 </div>
                 <div class="card-footer">
                   <button class="btn btn-block btn-info" id="newService" type="button">New</button>

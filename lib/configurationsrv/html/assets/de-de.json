@@ -1,0 +1,17 @@
+{
+    "Edit":"Bearbeiten",
+    "Delete":"Löschen",
+    "%s running HAP instances<br />":"%s laufende HAP Instanzen<br /><br />",
+    "%s cores %s <br /><br />":"%s Kerne %s <br /><br />",
+    "Devices":"Geräte",
+    "Search":"Suche",
+    "Address":"Adresse",
+    "Homekit name":"Name in Homekit",
+    "Service":"Service",
+    "Instance":"Instanz",
+    "%s MB free memory":"%s MB freier Speicher",
+    "Dismiss":"Abbrechen",
+    "Yes, kick it baby":"Yolo, weg damit!",
+    "%s mapped device(s)":"%s verbundene Geräte"
+
+}
