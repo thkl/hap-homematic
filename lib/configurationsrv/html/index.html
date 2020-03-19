@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<!--
+* hap-homematic admin console
+*
+* https://github.com/thkl/hap-homematic
+*
+* based on CoreUI - Free Bootstrap Admin Template
+* @version v3.0.0
+* @link https://coreui.io
+* Copyright (c) 2020 creativeLabs Łukasz Holeczek
+* Licensed under MIT (https://coreui.io/license)
+-->
+<html lang="en">
+  <head>
+    <base href="./">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>HAP-Homematic Configuration</title>
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="assets/favicon/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+    <link href="css/style.css" rel="stylesheet">
+    <!-- Main styles for this application-->
+    <link href="css/application.css" rel="stylesheet">
+  </head>
+  <body class="c-app">
+    <div class="c-sidebar c-sidebar-dark c-sidebar-fixed c-sidebar-lg-show" id="sidebar">
+      <ul class="c-sidebar-nav">
+        <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="index.html">
+            HAP-Homematic <br />Dashboard</a>
+          </li>
+        <li class="c-sidebar-nav-item">
+          <a class="c-sidebar-nav-link" id="showDevices" href="#">Devices</a>
+        </li>
+        <li class="c-sidebar-nav-item">
+          <a class="c-sidebar-nav-link" href="#">Variables</a>
+        </li>   
+        
+        <li class="c-sidebar-nav-item">
+          <a class="c-sidebar-nav-link" href="#">Programs</a>
+        </li>
+        
+        <li class="c-sidebar-nav-item">
+          <a class="c-sidebar-nav-link" href="#">Special devices</a>
+        </li>
+
+        <li class="c-sidebar-nav-item">
+          <a class="c-sidebar-nav-link" href="#">Homekit settings</a>
+        </li>
+
+        <li class="c-sidebar-nav-item">
+          <a class="c-sidebar-nav-link" id="reloadDevices" href="#">Publish Devices</a>
+        </li>
+
+      </ul>
+      <button class="c-sidebar-minimizer c-class-toggler" type="button" data-target="_parent" data-class="c-sidebar-minimized"></button>
+    </div>
+    <div class="c-wrapper c-fixed-components">
+      <header class="c-header c-header-light c-header-fixed c-header-with-subheader">
+
+        <div class="c-subheader px-3">
+          <!-- Breadcrumb-->
+          <ol class="breadcrumb border-0 m-0">
+            <li class="breadcrumb-item">Home</li>
+            <li class="breadcrumb-item"><a href="#">HAP-Homematic</a></li>
+            <li class="breadcrumb-item active">Dashboard</li>
+            <!-- Breadcrumb Menu-->
+          </ol>
+        </div>
+      </header>
+      <div class="c-body">
+        <main class="c-main">
+          <div class="container-fluid">
+            <div class="fade-in">
+              <div class="row">
+                <div class="col-sm-6 col-lg-3">
+                  <div class="card text-white bg-gradient-primary">
+                    <div class="card-body card-body pb-0 d-flex justify-content-between align-items-start" id="deviceOverview" style="min-height: 130px;">
+                      <br />
+                    </div>
+                  </div>
+                </div>
+                <!-- /.col-->
+
+                <div class="col-sm-6 col-lg-3">
+                  <div class="card text-white bg-gradient-info">
+                    <div class="card-body card-body pb-0 d-flex justify-content-between align-items-start" id="bridgeOverview" style="min-height: 130px;">
+                     
+                    </div>
+                  </div>
+                </div>
+                <!-- /.col-->
+                <div class="col-sm-6 col-lg-3">
+                  <div class="card text-white bg-gradient-warning">
+                    <div class="card-body card-body pb-0 d-flex justify-content-between align-items-start" id="sysOverview" style="min-height: 130px;">
+
+                    </div>
+                  </div>
+                </div>
+                <!-- /.col-->
+                <div class="col-sm-6 col-lg-3">
+                  <div class="card text-white bg-gradient-danger">
+                    <div class="card-body card-body pb-0 d-flex justify-content-between align-items-start" style="min-height: 130px;">
+                    </div>
+                  </div>
+                </div>
+                <!-- /.col-->
+              </div>
+              <!-- /.row-->
+              <div class="card">
+                <div class="card-header">
+                  <h2>Devices</h2>
+                </div>
+                <div class="card-body" id="deviceContainer">
+                  <ul class="pagination" id="deviceContainerPagination">
+                  </ul>
+                </div>
+                <div class="card-footer">
+                  <button class="btn btn-block btn-info" id="newService" type="button">New</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </main>
+        <footer class="c-footer">
+        </footer>
+      </div>
+    </div>
+    <!-- CoreUI and necessary plugins-->
+    <script src="js/coreui.bundle.min.js"></script>
+    <!-- Plugins and scripts required by this view-->
+    <script src="js/coreui-utils.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/bootstrap-notify.js"></script>
+    <script src="js/jquery-ui.min.js"></script>
+    
+    <script type="module">
+        import { Application } from './js/application.js'
+        new Application().run()
+    </script>
+  </body>
+</html>
