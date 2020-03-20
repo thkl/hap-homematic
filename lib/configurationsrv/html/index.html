@@ -31,26 +31,26 @@
             HAP-Homematic <br />Dashboard</a>
           </li>
         <li class="c-sidebar-nav-item">
-          <a class="c-sidebar-nav-link" id="showDevices" href="#">Devices</a>
+          <a class="c-sidebar-nav-link" id="showDevices" href="#" data-localize="Devices">Devices</a>
         </li>
         <li class="c-sidebar-nav-item">
-          <a class="c-sidebar-nav-link" href="#">Variables</a>
+          <a class="c-sidebar-nav-link" href="#" data-localize="Variables">Variables</a>
         </li>   
         
         <li class="c-sidebar-nav-item">
-          <a class="c-sidebar-nav-link" href="#">Programs</a>
+          <a class="c-sidebar-nav-link" href="#" data-localize="Programs">Programs</a>
         </li>
         
         <li class="c-sidebar-nav-item">
-          <a class="c-sidebar-nav-link" href="#">Special devices</a>
+          <a class="c-sidebar-nav-link" href="#" data-localize="Special devices">Special devices</a>
         </li>
 
         <li class="c-sidebar-nav-item">
-          <a class="c-sidebar-nav-link" id="hapInstances" href="#">HomeKit Instances</a>
+          <a class="c-sidebar-nav-link" id="hapInstances" href="#" data-localize="HomeKit Instances">HomeKit Instances</a>
         </li>
 
         <li class="c-sidebar-nav-item">
-          <a class="c-sidebar-nav-link" id="reloadDevices" href="#">Publish Devices</a>
+          <a class="c-sidebar-nav-link" id="reloadDevices" href="#"  data-localize="Publish devices">Publish devices</a>
         </li>
 
       </ul>
@@ -74,7 +74,7 @@
           <div class="container-fluid">
             <div class="fade-in">
               <div class="row">
-                <div class="col-sm-6 col-lg-3">
+                <div class="col-sm-6 col-lg-4">
                   <div class="card text-white bg-gradient-primary">
                     <div class="card-body card-body pb-0 d-flex justify-content-between align-items-start" id="deviceOverview" style="min-height: 130px;">
                       <br />
@@ -83,7 +83,7 @@
                 </div>
                 <!-- /.col-->
 
-                <div class="col-sm-6 col-lg-3">
+                <div class="col-sm-6 col-lg-4">
                   <div class="card text-white bg-gradient-info">
                     <div class="card-body card-body pb-0 d-flex justify-content-between align-items-start" id="bridgeOverview" style="min-height: 130px;">
                      
@@ -91,17 +91,10 @@
                   </div>
                 </div>
                 <!-- /.col-->
-                <div class="col-sm-6 col-lg-3">
+                <div class="col-sm-6 col-lg-4">
                   <div class="card text-white bg-gradient-warning">
                     <div class="card-body card-body pb-0 d-flex justify-content-between align-items-start" id="sysOverview" style="min-height: 130px;">
 
-                    </div>
-                  </div>
-                </div>
-                <!-- /.col-->
-                <div class="col-sm-6 col-lg-3">
-                  <div class="card text-white bg-gradient-danger">
-                    <div class="card-body card-body pb-0 d-flex justify-content-between align-items-start" style="min-height: 130px;">
                     </div>
                   </div>
                 </div>
@@ -114,8 +107,7 @@
                 </div>
                 <div class="card-body" id="container">
                 </div>
-                <div class="card-footer">
-                  <button class="btn btn-block btn-info" id="newService" type="button">New</button>
+                <div class="card-footer" id="container_footer">
                 </div>
               </div>
             </div>
