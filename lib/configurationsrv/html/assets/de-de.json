@@ -44,7 +44,7 @@
      "Für die erste Einrichtung sollte die Bridge ohne Geräte zu HomeKit hinzugefügt werden. Damit ist es möglich, die Bridges einzelnen Räumen zuzuordnen. Wenn dann Geräte die Geräte veröffentlicht werden, werden diese automatisch den Räumem der Bridge zugeordnet.",
     "Publish bridge instances with devices:":"Bridge Instanzen mit Geräten veröffentllichen",
     "Publish devices for %s":"Geräte veröffentlichen für %s",
-    "Publish devices":"Geräte veröffentlichen",
+    "Publishing settings":"Veröffentlichungseinstellungen",
     "Publish":"Veröffentlichen",
     "Variables":"Variablen",
     "Programs":"Programme",
