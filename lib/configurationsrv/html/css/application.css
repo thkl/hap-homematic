@@ -2,3 +2,22 @@
     padding: 11px;
     font-size: 12px;
 }
+
+.dbgridline {
+    border-bottom: 1px black solid;
+    padding-top: 10px;
+    padding-bottom: 5px;
+    min-height: 40px;
+}
+
+.odd {
+    background-color: rgba(0, 0, 21, 0.05);
+}
+
+.dbgridtitle {
+    border-bottom: 1px black solid;
+    padding-top: 10px;
+    padding-bottom: 5px;
+    min-height: 40px;
+    font-weight: bold;
+}

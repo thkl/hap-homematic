@@ -23,34 +23,50 @@
     <link href="css/style.css" rel="stylesheet">
     <!-- Main styles for this application-->
     <link href="css/application.css" rel="stylesheet">
+    <link href="css/free.min.css" rel="stylesheet">
   </head>
   <body class="c-app">
     <div class="c-sidebar c-sidebar-dark c-sidebar-fixed c-sidebar-lg-show" id="sidebar">
       <ul class="c-sidebar-nav">
-        <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="index.html">
-            HAP-Homematic <br />Dashboard</a>
-          </li>
         <li class="c-sidebar-nav-item">
-          <a class="c-sidebar-nav-link" id="showDevices" href="#" data-localize="Devices">Devices</a>
+          <a class="c-sidebar-nav-link" id="showDevices" href="#" >
+            <i class="c-icon c-icon-lg mt-2 ml-1 mr-3 mb-2 cil-devices"></i>
+            <span data-localize="Devices">Devices</span>
+          </a>
         </li>
         <li class="c-sidebar-nav-item">
-          <a class="c-sidebar-nav-link" href="#" data-localize="Variables">Variables</a>
+          <a class="c-sidebar-nav-link" id="showVariables" href="#" >
+            <i class="c-icon c-icon-lg mt-2 ml-1 mr-3 mb-2 cil-apps"></i>
+            <span data-localize="Variables">Variables</span>
+          </a>
         </li>   
         
         <li class="c-sidebar-nav-item">
-          <a class="c-sidebar-nav-link" href="#" data-localize="Programs">Programs</a>
+          <a class="c-sidebar-nav-link" href="#" >
+            <i class="c-icon c-icon-lg mt-2 ml-1 mr-3 mb-2 cil-memory"></i>
+            <span data-localize="Programs">Programs</span>
+          </a>
         </li>
         
         <li class="c-sidebar-nav-item">
-          <a class="c-sidebar-nav-link" href="#" data-localize="Special devices">Special devices</a>
+          <a class="c-sidebar-nav-link" href="#" >
+            <i class="c-icon c-icon-lg mt-2 ml-1 mr-3 mb-2 cil-pizza"></i>
+            <span data-localize="Special devices">Special devices</span>
+          </a>
         </li>
 
         <li class="c-sidebar-nav-item">
-          <a class="c-sidebar-nav-link" id="hapInstances" href="#" data-localize="HomeKit Instances">HomeKit Instances</a>
+          <a class="c-sidebar-nav-link" id="hapInstances" href="#" >
+            <i class="c-icon c-icon-lg mt-2 ml-1 mr-3 mb-2 cil-factory"></i>
+            <span data-localize="HomeKit Instances">HomeKit Instances</span>
+          </a>
         </li>
 
         <li class="c-sidebar-nav-item">
-          <a class="c-sidebar-nav-link" id="publishingSettings" href="#"  data-localize="Publishing settings">Publishing settings</a>
+          <a class="c-sidebar-nav-link" id="publishingSettings" href="#"  >
+            <i class="c-icon c-icon-lg mt-2 ml-1 mr-3 mb-2 cil-settings"></i>
+            <span data-localize="Publishing settings">Publishing settings</span>
+          </a>
         </li>
 
       </ul>
@@ -58,7 +74,9 @@
     </div>
     <div class="c-wrapper c-fixed-components">
       <header class="c-header c-header-light c-header-fixed c-header-with-subheader">
-
+        <button class="c-header-toggler c-class-toggler d-lg-none mfe-auto" type="button" data-target="#sidebar" data-class="c-sidebar-show">
+          
+        </button>
         <div class="c-subheader px-3">
           <!-- Breadcrumb-->
           <ol class="breadcrumb border-0 m-0">

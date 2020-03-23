@@ -71,5 +71,21 @@
     "min value for close":"min. Wert für geschlossen",
     "max value for open":"max. Wert für geöffnet",
     "do not close the blind below this level":"Rollo nicht unter diesen Wert schließen",
-    "do not open the blind above this level":"Rollo nicht über diesen Wert öffnen"
+    "do not open the blind above this level":"Rollo nicht über diesen Wert öffnen",
+    "HomeKit name":"Name in HomeKit",
+    "HomeMatic name":"Name in der CCU",
+    "Update Trigger":"Trigger aktualisieren",
+    "This has to be a KEY datapoint. All variables will be updated on an event at this KEY":"Dies muss ein KEY Datenpunkt sein. Alle Variablen werden bei einem Event dieses Datenpunktes aktualisiert.",
+    "%s mapped variable(s)":"%s verbundene Variablen",
+    "Add Active Switch":"Aktiv Schalter hinzufügen",
+    "adds a switch to turn the sensor on and off":"fügt einen Schalter hinzu, der den Sensor ein und aus schalten kann",
+    "Edit variable":"Variable bearbeiten",
+    "HomeKit name:":"Name in HomeKit:",
+    "Please fill the name":"Bitte fülle den Namen aus",
+    "Updating variable ...":"Variable aktualisieren ...",
+    "Add new Variable":"Neue Variable hinzufügen",
+    "New variable":"Neue Variable",
+    "Variable":"Variable",
+    "Description":"Beschreibung",
+    "Setup variable":"Variableneinstellungen"
 }
