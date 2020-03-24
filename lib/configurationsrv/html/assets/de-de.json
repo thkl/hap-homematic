@@ -77,6 +77,7 @@
     "Update Trigger":"Trigger aktualisieren",
     "This has to be a KEY datapoint. All variables will be updated on an event at this KEY":"Dies muss ein KEY Datenpunkt sein. Alle Variablen werden bei einem Event dieses Datenpunktes aktualisiert.",
     "%s mapped variable(s)":"%s verbundene Variablen",
+    "%s mapped program(s)":"%s verbundene Programme",
     "Add Active Switch":"Aktiv Schalter hinzufügen",
     "adds a switch to turn the sensor on and off":"fügt einen Schalter hinzu, der den Sensor ein und aus schalten kann",
     "Edit variable":"Variable bearbeiten",
@@ -87,5 +88,10 @@
     "New variable":"Neue Variable",
     "Variable":"Variable",
     "Description":"Beschreibung",
-    "Setup variable":"Variableneinstellungen"
+    "Setup variable":"Variableneinstellungen",
+    "Edit program":"Programm bearbeiten",
+    "Updating object ..":"Objekt aktualisieren",
+    "Add new program":"Programm hinzufügen",
+    "Setup program":"Programm einstellen",
+    "Program":"Programm"
 }
