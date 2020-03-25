@@ -35,6 +35,16 @@ cp -af rc.d/* ${RCD_DIR}
 #build system launcher
 chmod +x ${RCD_DIR}/hap-homematic
 
+mount -o remount,rw /
+mkdir -p /usr/local/addons/npm/
+#create new .npm cause /root/.npm is not writable
+echo "cache=/usr/local/addons/npm/.npm" > /root/.npmrc
+echo "init-module=/usr/local/addons/npm/.npm-init.js" >> /root/.npmrc
+echo "userconfig=/usr/local/addons/npm/.npmrc" >> /root/.npmrc
+echo "path=/usr/local/addons/npm/.npm" >> /root/.npmrc
+mount -o remount,ro /
+
+
 cd ${ADDON_DIR}
 npm install hap-homematic
 
