@@ -4,10 +4,10 @@ let regex = /(.*?) \{CONFIG_URL (.*?) CONFIG_DESCRIPTION \{de (.*?) en (.*?)\} I
 var strcnf = ''
 var m
 var items = {}
-var addItem = undefined
+var addItem
 // First parameter is the uid  second the config
 var myArgs = process.argv.slice(2)
-if (myArgs.length === 0)  {
+if (myArgs.length === 0) {
   console.log('usage : hm_addon.js uid [configfile]')
   process.exit(-1)
 }
@@ -32,7 +32,7 @@ if (myArgs.length === 2) {
 
 if (fs.existsSync(cfgFileName)) {
   let contents = fs.readFileSync(cfgFileName, 'utf8')
-  if (contents.slice(-1) != ' ') {
+  if (contents.slice(-1) !== ' ') {
     contents = contents + ' ' // add a space for easyer parsing
   }
   do {

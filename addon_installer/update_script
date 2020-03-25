@@ -25,7 +25,9 @@ chmod 755 ${RCD_DIR}
 mkdir -p ${ADDON_DIR}/etc
 mkdir -p ${CONFIG_DIR}/hap-homematic
 
-cp -af hap/etc/* ${ADDON_DIR}/etc
+#create the www stuff
+mkdir -p /usr/local/etc/config/addons/www/${ADDONNAME}
+cp -af hap/etc/www/index.html /usr/local/etc/config/addons/www/${ADDONNAME}
 
 # copy startup script
 cp -af rc.d/* ${RCD_DIR}
@@ -33,12 +35,16 @@ cp -af rc.d/* ${RCD_DIR}
 #build system launcher
 chmod +x ${RCD_DIR}/hap-homematic
 
-#make postinstall executable / will launch via rc.d
-chmod +x ${ADDON_DIR}/etc/postinstall.sh
+cd ${ADDON_DIR}
+npm install hap-homematic
 
+#create the button in system control
+node /usr/local/addons/hap-homematic/node_modules/hap-homematic/etc/hm_addon.js hap /usr/local/addons/hap-homematic/node_modules/hap-homematic/etc/hap_addon.cfg
+
+#run this
+${RCD_DIR}/hap-homematic start
 
 fi
 
-# synchronize filesystem before performing a reboot
-# afterwards
 sync
+exit 0

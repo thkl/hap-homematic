@@ -1,17 +1,14 @@
 #!/bin/sh
-HAPDIR=/usr/local/addons/hap-homematic
+HAPDIR=/usr/local/addons/hap-homematic/node_modules/hap-homematic/
 CONFIG_URL=/addons/hap-homematic/index.html
 CONFIG_DIR=/usr/local/etc/config
 PIDFILE=/var/run/hap-homematic.pid
 STARTRC=/etc/init.d/S51hap-homematic
 VER=0.0.1
 PSPID=`ps -o pid,comm,args | awk '{if ($2=="node" && $4 ~ /hap-homematic/){print $1}}'`
-
+PSPID2=`ps -o pid,comm,args | awk '{if ($2=="hap-homematic-c"){print $1}}'`
 case "$1" in
   ""|start)
-	#run postinstall if necessary
-#	$HAPDIR/etc/postinstall.sh
-
 	if [ "$PSPID" = "" ]
 	then
 	  node $HAPDIR/index.js >>/var/log/hap-homematic.log &
@@ -22,14 +19,9 @@ case "$1" in
   stop)
   	if [ "$PSPID" != "" ]
   	then
-	  kill -TERM $PSPID 2>/dev/null
-	  sleep 1
-	  kill -0 $PSPID 2>/dev/null
-	  if [ $? -eq 0 ]
-	  then
-	    sleep 10
-	    kill -KILL $PSPID 2>/dev/null
-	  fi
+	  kill $PSPID >/dev/null
+	  sleep 2
+	  kill $PSPID2 >/dev/null
 	  logger -t homematic -p user.info "stopped hap-homematic"
 	fi
 	;;
@@ -37,16 +29,13 @@ case "$1" in
   restart)
   	if [ "$PSPID" != "" ]
   	then
-	  kill -TERM $PSPID 2>/dev/null
-	  sleep 1
-	  kill -0 $PSPID 2>/dev/null
-	  if [ $? -eq 0 ]
-	  then
-	    sleep 10
-	    kill -KILL $PSPID 2>/dev/null
-	  fi
-	  logger -t homematic -p user.info "stopped hap-homematic for restart"
+	  kill $PSPID >/dev/null
+	  sleep 2
+	  kill $PSPID2 >/dev/null
+	  logger -t homematic -p user.info "stopped hap-homematic"
 	fi
+	#wait 10 seconds until the configuration service will close
+	sleep 10
 	node $HAPDIR/index.js >>/var/log/hap-homematic.log &
 	logger -t homematic -p user.info "started (restart) hap-homematic"
 	;;
@@ -62,13 +51,10 @@ case "$1" in
   uninstall)
 	logger -t homematic -p user.info "removing hap-homematic"
 	kill -KILL $PSPID 2>/dev/null
-	node /usr/local/addons/hap-homematic/etc/hm_addon.js hap
-	rm -R /usr/local/addons/hap-homematic
+	node /usr/local/addons/hap-homematic/node_modules/hap-homematic/etc/hm_addon.js hap
+	rm -R /usr/local/addons/hap-homematic/
     rm /usr/local/etc/config/rc.d/hap-homematic 
-	mount -o remount,rw /
-    rm /etc/init.d/S51hap-homematic
-    rm /etc/logrotate.d/hap-homematic.conf
-	mount -o remount,ro /
+	rm -R /usr/local/etc/config/addons/www/hap-homematic
 	;;
 
   *)
