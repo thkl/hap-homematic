@@ -46,6 +46,7 @@ case "$1" in
 	echo "Version: $VER"
 	echo "Operations: uninstall"
 	echo "Config-Url: $CONFIG_URL"
+	echo "Update: /addons/${ADDON_NAME}/update-check.cgi"
 	;;
 
   uninstall)

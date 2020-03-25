@@ -28,12 +28,14 @@ mkdir -p ${CONFIG_DIR}/hap-homematic
 #create the www stuff
 mkdir -p /usr/local/etc/config/addons/www/${ADDONNAME}
 cp -af hap/etc/www/index.html /usr/local/etc/config/addons/www/${ADDONNAME}
+cp -af hap/etc/www/update-check.cgi /usr/local/etc/config/addons/www/${ADDONNAME}
 
 # copy startup script
 cp -af rc.d/* ${RCD_DIR}
 
 #build system launcher
 chmod +x ${RCD_DIR}/hap-homematic
+chmod +x /usr/local/etc/config/addons/www/${ADDONNAME}/update-check.cgi
 
 mount -o remount,rw /
 mkdir -p /usr/local/addons/npm/
