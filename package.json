@@ -1,6 +1,6 @@
 {
     "name": "hap-homematic",
-    "version": "0.0.6",
+    "version": "0.0.7",
     "description": "provides a homekit bridge to the ccu",
     "license": "MIT",
     "repository": {

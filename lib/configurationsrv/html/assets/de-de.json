@@ -93,5 +93,10 @@
     "Updating object ..":"Objekt aktualisieren",
     "Add new program":"Programm hinzufügen",
     "Setup program":"Programm einstellen",
-    "Program":"Programm"
+    "Program":"Programm",
+    "Version %s":"Version %s",
+    "Restart HAP":"HAP Neustarten",
+    "CCU Room":"Raum in der CCU",
+    "Select a room":"Wähle einen Raum",
+    "HomeMatic assigned room:":"Raum in der HomeMatic"
 }
