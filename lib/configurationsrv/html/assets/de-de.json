@@ -129,7 +129,13 @@
     "Some devices have additional settings or alternative services. Settings can be made here.":
       "Einige Geräte haben erweiterte Einstellungen oder alternative Services. Diese Einstellungen können hier gemacht werden.",
     "You can add programs and variables to homekit via the WebUI.":"Du kannst weitere Variablen oder Programme zu HomeKit über das WebUI hinzufügen.",
-    "Have fun ! :o)":"Viel Spass ! :o)"
-
-
+    "Have fun ! :o)":"Viel Spass ! :o)",
+    "less that 1 minute":"weniger als 1 Minute",
+    "%s min":"%s Minuten",
+    "%s hour":"%s Stunde",
+    "%s hours":"%s Stunden",
+    "%s day":"%s Tag",
+    "%s days":"%s Tage",
+    "CCU Uptime %s":"CCU Uptime %s",
+    "HAP Uptime %s":"HAP Uptime %s"
 }
