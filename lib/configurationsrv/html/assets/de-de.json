@@ -98,5 +98,38 @@
     "Restart HAP":"HAP Neustarten",
     "CCU Room":"Raum in der CCU",
     "Select a room":"Wähle einen Raum",
-    "HomeMatic assigned room:":"Raum in der HomeMatic"
+    "HomeMatic assigned room:":"Raum in der HomeMatic",
+    "Next":"Weiter",
+    "Welcome":"Willkommen",
+    "<h2>Welcome to HAP-HomeMatic.</h2><br />With HAP-HomeMatic you are able to use your HomeMatic devices (or most of it) in HomeKit.":
+        "<h2>Willkommen zu HAP-Homematic</h2><br />Mit HAP-Homematic kannst Du alle deine HomeMatic Geräte in HomeKit verwenden (naja die meissten).",
+    "Its time for the first setup.<br />In HomeKit your are able to group your devices by rooms. And to make that as easy as possible for you, its recomented to create a HAP Instance for every room first.":
+       "Ok, Zeit für die erste Einrichtung<br />In HomeKit werden Deine Geräte nach Räumen gruppiert. Um das für Dich so einfach wie möglich zu machen, wird empfohlen zuerst für jeden Raum eine HAP Instanz zu erzeugen.",
+    "So here are your rooms from your CCU. Please mark every room from which you want to use devices in HomeKit.":
+       "Hier sind also Deine Räume aus der CCU. Bitte markiere jeden Raum, aus dem Du Geräte in HomeKit nutzen möchtest.",
+    "(Num o supported devices)" :"(Anzahl der unterstützen Geräte)",
+    "Create HomeKit instance":"Erzeuge eine HomeKit Instanz",
+    "You may add more rooms/instances later on.":"Du kannst später auch noch mehr Räume/Instanzen anlegen.",
+    "Great! Step 2: Here are the new bridges just created. Now its time to add them to HomeKit. Use the HomeKit App of your choice and add them one by one.":
+        "Perfekt! Schritt 2: Hier sind die neu angelegten Bridge Instanzen. Jetzt füge diese bitte zu HomeKit hinzu. Nutze dazu die HomeKit App Deiner Wahl um diese eine nach der anderen hinzuzufügen",
+    "During the setup in HomeKit you can assign a specific room to every bridge. All new devices added to a bridge will then automatically be assigned to this room.":
+        "Während der Einrichtung kannst Du die Bridge einem Raum zuordnen. Alle Geräte die im Nachhinein dieser Bridge hinzugefügt werden, werden diesem Raum zugeordnet.",
+    "If you are using Apples Home App please tap after adding the bridge on the house icon top left, choose Home Settings, tap on your home and there you are able to setup the rooms for the bridges. This is tricky, so its recomented to use eg Elgato Eve.":
+        "Wenn Du Apples Home App benutzt, tippe nach dem Hinzufügen auf das Haus Icon oben links, wähle Haus Einstellungen, tippe auf Dein Home. Dort kannst Du unter Bridges den einzelnen Bridges Räume zuordnen. Das ist ein klein wenig tricky, daher ist es empfehlenswert zb Elgato Eve zu benutzen",
+    "When you done with this, click on Next":"Wenn Du fertig bist, klicke auf Weiter",
+    "update to %s":"aktualisiert %",
+    "Pin Code":"Pin Code",
+    "Room %s":"Raum %s",
+    "Add":"Hinzufügen",
+    "Channel/Type":"Kanal/Typ",
+    "Please mark all channels from this room, you want to use in HomeKit.":"Bitte markiere alle Kanäle in diesem Raum, welche zu HomeKit hinzugefügt werden sollen.",
+    "You may add other channels later via this WebUI":"Du kannst später weitere Kanäle über das WebUI hinzufügen.",
+    "OK, you are done. You should now be able to control the selected devices via HomeKit.":
+      "OK, fertig. Du solltest jetzt alle ausgewählten Geräte via HomeKit bedienen können",
+    "Some devices have additional settings or alternative services. Settings can be made here.":
+      "Einige Geräte haben erweiterte Einstellungen oder alternative Services. Diese Einstellungen können hier gemacht werden.",
+    "You can add programs and variables to homekit via the WebUI.":"Du kannst weitere Variablen oder Programme zu HomeKit über das WebUI hinzufügen.",
+    "Have fun ! :o)":"Viel Spass ! :o)"
+
+
 }
