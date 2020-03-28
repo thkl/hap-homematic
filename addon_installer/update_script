@@ -3,6 +3,7 @@
 ADDONNAME=hap-homematic
 CONFIG_DIR=/usr/local/etc/config
 ADDON_DIR=/usr/local/addons/${ADDONNAME}
+ADDONWWW_DIR=/usr/local/etc/config/addons/www
 RCD_DIR=${CONFIG_DIR}/rc.d
 
 # make sure this addon is only executed on
@@ -23,19 +24,19 @@ chmod 755 ${RCD_DIR}
 
 # copy addon
 mkdir -p ${ADDON_DIR}/etc
-mkdir -p ${CONFIG_DIR}/hap-homematic
+mkdir -p ${CONFIG_DIR}/${ADDONNAME}
 
 #create the www stuff
-mkdir -p /usr/local/etc/config/addons/www/${ADDONNAME}
-cp -af hap/etc/www/index.html /usr/local/etc/config/addons/www/${ADDONNAME}
-cp -af hap/etc/www/update-check.cgi /usr/local/etc/config/addons/www/${ADDONNAME}
+mkdir -p ${ADDONWWW_DIR}/${ADDONNAME}
+cp -af hap/etc/www/index.html ${ADDONWWW_DIR}/${ADDONNAME}
+cp -af hap/etc/www/update-check.cgi ${ADDONWWW_DIR}/${ADDONNAME}
 
 # copy startup script
 cp -af rc.d/* ${RCD_DIR}
 
 #build system launcher
-chmod +x ${RCD_DIR}/hap-homematic
-chmod +x /usr/local/etc/config/addons/www/${ADDONNAME}/update-check.cgi
+chmod +x ${RCD_DIR}/${ADDONNAME}
+chmod +x ${ADDONWWW_DIR}/${ADDONNAME}/update-check.cgi
 
 mount -o remount,rw /
 mkdir -p /usr/local/addons/npm/
@@ -48,13 +49,13 @@ mount -o remount,ro /
 
 
 cd ${ADDON_DIR}
-npm install hap-homematic
+npm install ${ADDONNAME}
 
 #create the button in system control
-node /usr/local/addons/hap-homematic/node_modules/hap-homematic/etc/hm_addon.js hap /usr/local/addons/hap-homematic/node_modules/hap-homematic/etc/hap_addon.cfg
+node ${ADDON_DIR}/node_modules/${ADDONNAME}/etc/hm_addon.js hap ${ADDON_DIR}/node_modules/${ADDONNAME}/etc/hap_addon.cfg
 
 #run this
-${RCD_DIR}/hap-homematic start
+${RCD_DIR}/${ADDONNAME} start
 
 fi
 
