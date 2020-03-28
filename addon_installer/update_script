@@ -8,7 +8,7 @@ RCD_DIR=${CONFIG_DIR}/rc.d
 # make sure this addon is only executed on
 # supported platforms
 
-if [ "$1" == "HM-RASPBERRYMATIC" ]; then
+if [ "$1" == "HM-RASPBERRYMATIC" ]  || [ "$1" == "CCU3" ] ; then
 
 mount | grep /usr/local 2>&1 >/dev/null
 if [ $? -eq 1 ]; then
