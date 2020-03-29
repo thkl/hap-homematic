@@ -11,6 +11,6 @@ cp -a etc tmp/hap
 
 # generate archive
 cd tmp
-tar --exclude=._* --exclude=.DS_Store -czvf ../hap-raspb-$(cat ../VERSION).tar.gz *
+tar --exclude=._* --exclude=.DS_Store -czvf ../hap-homematic-$(cat ../VERSION).tar.gz *
 cd ..
 rm -rf tmp
