@@ -11,7 +11,7 @@
         "node": ">=8.11.0"
     },
     "dependencies": {
-        "hap-nodejs": "0.5.6",
+        "hap-nodejs": "0.5.7",
         "chalk":"3.0.0",
         "homematic-xmlrpc":"1.0.2",
         "commander":"4.1.1",
