@@ -33,31 +33,16 @@ cp -af hap/etc/www/update-check.cgi ${ADDONWWW_DIR}/${ADDONNAME}
 
 # copy startup script
 cp -af rc.d/* ${RCD_DIR}
+# copy installer
+cp -af hap/etc/postinstall.sh ${ADDON_DIR}/etc
+chmod +x ${ADDON_DIR}/etc/postinstall.sh
 
 #build system launcher
 chmod +x ${RCD_DIR}/${ADDONNAME}
 chmod +x ${ADDONWWW_DIR}/${ADDONNAME}/update-check.cgi
 
-mount -o remount,rw /
-mkdir -p /usr/local/addons/npm/
-#create new .npm cause /root/.npm is not writable
-echo "cache=/usr/local/addons/npm/.npm" > /root/.npmrc
-echo "init-module=/usr/local/addons/npm/.npm-init.js" >> /root/.npmrc
-echo "userconfig=/usr/local/addons/npm/.npmrc" >> /root/.npmrc
-echo "path=/usr/local/addons/npm/.npm" >> /root/.npmrc
-mount -o remount,ro /
-
-
-cd ${ADDON_DIR}
-npm install ${ADDONNAME}
-
-#create the button in system control
-node ${ADDON_DIR}/node_modules/${ADDONNAME}/etc/hm_addon.js hap ${ADDON_DIR}/node_modules/${ADDONNAME}/etc/hap_addon.cfg
-
-#run this
-${RCD_DIR}/${ADDONNAME} start
 
 fi
 
 sync
-exit 0
+exit 10

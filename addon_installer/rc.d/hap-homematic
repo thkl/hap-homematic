@@ -1,5 +1,6 @@
 #!/bin/sh
 HAPDIR=/usr/local/addons/hap-homematic/node_modules/hap-homematic/
+HAPROOT=/usr/local/addons/hap-homematic/
 CONFIG_URL=/addons/hap-homematic/index.html
 CONFIG_DIR=/usr/local/etc/config
 PIDFILE=/var/run/hap-homematic.pid
@@ -9,6 +10,10 @@ PSPID=`ps -o pid,comm,args | awk '{if ($2=="node" && $4 ~ /hap-homematic/){print
 PSPID2=`ps -o pid,comm,args | awk '{if ($2=="hap-homematic-c"){print $1}}'`
 case "$1" in
   ""|start)
+
+	# run installer if needed
+  	$HAPROOT/etc/postinstall.sh
+
 	if [ "$PSPID" = "" ]
 	then
 	  node $HAPDIR/index.js >>/var/log/hap-homematic.log &
