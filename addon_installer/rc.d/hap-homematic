@@ -16,7 +16,7 @@ case "$1" in
 
 	if [ "$PSPID" = "" ]
 	then
-	  node $HAPDIR/index.js >>/var/log/hap-homematic.log &
+	  node $HAPDIR/index.js >/dev/null &
 	  logger -t homematic -p user.info "started hap-homematic"
 	fi
 	;;
@@ -41,7 +41,7 @@ case "$1" in
 	fi
 	#wait 10 seconds until the configuration service will close
 	sleep 10
-	node $HAPDIR/index.js >>/var/log/hap-homematic.log &
+	node $HAPDIR/index.js >/dev/null &
 	logger -t homematic -p user.info "started (restart) hap-homematic"
 	;;
 

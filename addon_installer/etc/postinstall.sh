@@ -5,7 +5,7 @@ CONFIG_DIR=/usr/local/etc/config
 ADDON_DIR=/usr/local/addons/${ADDONNAME}
 ADDONWWW_DIR=/usr/local/etc/config/addons/www
 RCD_DIR=${CONFIG_DIR}/rc.d
-LOGFILE=/var/log/hmhap.log
+LOGFILE=/var/log/hmhapinstall.log
 
 #check if we have our core module; if not go ahead and call the installer stuff
 if [ ! -f ${ADDON_DIR}/node_modules/hap-homematic/index.js ]; then
