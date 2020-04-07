@@ -10,10 +10,10 @@ process.name = 'hap-homematic'
 let log = new Logger('HAP Server')
 var configurationPath = path.join('/usr/local/etc/config/addons/', process.name)
 
-program.option('-D, --debug', 'turn on debug level logging', function () {
+program.option('-D, --debug', 'turn on debug level logging', () => {
   log.setDebugEnabled(true)
 })
-program.option('-C, --configuration', 'set configuration path', function (configuration) {
+program.option('-C, --configuration', 'set configuration path', (configuration) => {
   configurationPath = configuration
 }).parse(process.argv)
 
