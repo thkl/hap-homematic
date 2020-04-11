@@ -37,7 +37,8 @@
     },
 
     "files": [
-        "lib/",
+        ".nobackup",
+        "lib/",
         "etc/",
         "README.md",
         "CHANGELOG.md",
