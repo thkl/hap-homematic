@@ -1,48 +1,41 @@
 {
-    "name": "hap-homematic",
-    "version": "0.0.19",
-    "description": "provides a homekit bridge to the ccu",
-    "license": "MIT",
-    "repository": {
-        "type": "git",
-        "url": "git://github.com/thkl/hap-homematic.git"
-    },
-    "engines": {
-        "node": ">=8.11.0"
-    },
-    "dependencies": {
-        "hap-nodejs": "0.5.7",
-        "chalk":"3.0.0",
-        "homematic-xmlrpc":"1.0.2",
-        "commander":"4.1.1",
-        "fakegato-history": "0.5.6",
-        "binrpc": "3.3.1"
-    },
-    "scripts": {
-        "start": "node index.js || true",
-        "dev": "node index.js -D || true",
-        "devall": "DEBUG=* node index.js -D || true",
-        "test": "mocha",
-        "update": "cd /usr/local/addons/hap-homematic;npm install hap-homematic@latest",
-        "restart": "/etc/config/rc.d/hap-homematic restart"
-    },
-      
-    "devDependencies": {
-        "mocha": "^7.0.1"
-    },
-    "mocha": {
-        "bail": true,
-        "reporter": "spec",
-        "recursive": true
-    },
+	"name": "hap-homematic",
+	"version": "0.0.19",
+	"description": "provides a homekit bridge to the ccu",
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "git://github.com/thkl/hap-homematic.git"
+	},
+	"engines": {
+		"node": ">=8.11.0"
+	},
+	"dependencies": {
+		"hap-nodejs": "0.5.7",
+		"chalk": "3.0.0",
+		"homematic-xmlrpc": "1.0.2",
+		"commander": "4.1.1",
+		"fakegato-history": "0.5.6",
+		"binrpc": "3.3.1"
+	},
+	"scripts": {
+		"start": "node index.js || true",
+		"dev": "node index.js -D || true",
+		"devall": "DEBUG=* node index.js -D || true",
+		"test": "mocha",
+		"update": "cd /usr/local/addons/hap-homematic;npm install hap-homematic@latest",
+		"restart": "/etc/config/rc.d/hap-homematic restart"
+	},
 
-    "files": [
-        ".nobackup",
-        "lib/",
-        "etc/",
-        "README.md",
-        "CHANGELOG.md",
-        "index.js",
-        "package.json"
-      ]
+	"devDependencies": {
+		"mocha": "^7.0.1"
+	},
+	"mocha": {
+		"bail": true,
+		"reporter": "spec",
+		"recursive": true
+	},
+
+	"files": ["lib/", "etc/", "README.md", "CHANGELOG.md", "index.js", "package.json", ".nobackup"]
+
 }
