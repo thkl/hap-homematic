@@ -137,5 +137,19 @@
     "%s day":"%s Tag",
     "%s days":"%s Tage",
     "CCU Uptime %s":"CCU Uptime %s",
-    "HAP Uptime %s":"HAP Uptime %s"
+    "HAP Uptime %s":"HAP Uptime %s",
+    "Deactivate":"Deaktivieren",
+    "Deactivate Homekit instance":"Homekit Instanz deaktivieren",
+    "If you deactivate a instance all devices in this instance will be removed from Homekit.":
+     "Wenn Du eine Homekit Instanz deaktivierst werden alle Geräte dieser Instanz aus Homekit entfernt.",
+    "The devices will stay in your configuration so they will appear again in Homekit when you activate the instance again.":
+     "Die Geräte verbleiben weiter in Deiner Konfiguration und erscheinen wieder in Homekit wenn die Instanz wieder aktiviert wird.",
+    "Use this feature to move a instance to another home without the need to assing all devices to a new room.":
+     "Nutze diese Funktion um eine Instanz zb von einem Home in ein anderes umzuziehen, ohne alle Geräte neuen Räumen zuordnen zu müssen.",
+    "To do this deactivate the instance, remove it from homekit, add it to a new Home, assign a room and activate the instance again.":
+     "Dafür deaktiviere die Instanz, entferne sie aus HomeKit, füge sie dem neuen Home hinzu, weise der Instanz einen Rauam zu und aktiviere sie wieder.",
+    "To activate the instance again just set the checkmark in Publishing settings.":
+     "Um eine Instanz wieder zu aktiviere setze den entsprechenden Haken in den Veröffentlichungseinstellungen",
+    "To you want to deactivate %s":"Möchtest Du %s deaktivieren",
+    "Deactivating instance ...":"Deaktiviere Instanz ..."
 }
