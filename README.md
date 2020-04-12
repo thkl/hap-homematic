@@ -18,8 +18,9 @@ Used Ports :
 9874 -> Config WebUI
 
 9875 -> RPC Event Server
+9876 -> RPC Event Server CuxD (optional)
 
-9876..n HAP Instance 0 .. n
+9877..n HAP Instance 0 .. n
 
 make sure your CCU firewall does not block these ports
 
