@@ -9,13 +9,20 @@ process.name = 'hap-homematic'
 
 let log = new Logger('HAP Server')
 var configurationPath = path.join('/usr/local/etc/config/addons/', process.name)
+var simulation
 
 program.option('-D, --debug', 'turn on debug level logging', () => {
   log.setDebugEnabled(true)
 })
-program.option('-C, --configuration', 'set configuration path', (configuration) => {
+program.option('-C, --configuration [path]', 'set configuration path', (configuration) => {
   configurationPath = configuration
-}).parse(process.argv)
+})
+program.option('-S, --simulate [path]', 'simulate with a devices file', (devFile) => {
+  console.log('Running a simulation with %s', devFile)
+  simulation = devFile
+})
+
+  .parse(process.argv)
 
 process.on('uncaughtException', (err) => {
   // Write a crashlog
@@ -47,9 +54,17 @@ if (fs.existsSync(fdebug)) {
 
 log.info('---- launching ----')
 log.info('Welcome to HAP Homematic. Use your HomeMatic devices in HomeKit')
-let server = new Server(log, configurationPath)
-log.debug('Initializing Server')
-server.init()
+var server
+if (simulation !== undefined) {
+  let simPath = path.join(configurationPath, simulation)
+  log.warn('Doing a device file simulation with %s', simulation, simPath)
+  server = new Server(log)
+  server.simulate(simPath)
+} else {
+  log.debug('Initializing Server')
+  server = new Server(log, configurationPath)
+  server.init()
+}
 
 process.on('SIGTERM', () => {
   server.shutdown()
