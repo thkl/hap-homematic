@@ -1,3 +1,9 @@
+Changelog for 0.0.23:
+=====================
+
+* Bugfix for devices with service configuration like devtype:channeltype
+* added a testmode
+
 Changelog for 0.0.22:
 =====================
 
