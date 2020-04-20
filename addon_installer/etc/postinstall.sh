@@ -29,6 +29,9 @@ npm install ${ADDONNAME}
 #create the button in system control
 echo "[Installer]creating HomeKit Button ...">>${LOGFILE}
 node ${ADDON_DIR}/node_modules/${ADDONNAME}/etc/hm_addon.js hap ${ADDON_DIR}/node_modules/${ADDONNAME}/etc/hap_addon.cfg
+#create the .nobackup file into the plugin directory to prevent backing up all the node depencities
+touch ${ADDON_DIR}/.nobackup
+
 mount -o remount,ro /
 
 fi

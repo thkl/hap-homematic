@@ -1,6 +1,6 @@
 {
 	"name": "hap-homematic",
-	"version": "0.0.23",
+	"version": "0.0.24",
 	"description": "provides a homekit bridge to the ccu",
 	"license": "MIT",
 	"repository": {
@@ -26,7 +26,6 @@
 		"update": "cd /usr/local/addons/hap-homematic;npm install hap-homematic@latest",
 		"restart": "/etc/config/rc.d/hap-homematic restart"
 	},
-
 	"devDependencies": {
 		"mocha": "^7.0.1"
 	},
@@ -35,7 +34,13 @@
 		"reporter": "spec",
 		"recursive": true
 	},
-
-	"files": ["lib/", "etc/", "README.md", "CHANGELOG.md", "index.js", "package.json", ".nobackup"]
-
+	"files": [
+		"lib/",
+		"etc/",
+		"README.md",
+		"CHANGELOG.md",
+		"index.js",
+		"package.json",
+		".nobackup"
+	]
 }
