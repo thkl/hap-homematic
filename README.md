@@ -1,7 +1,7 @@
 # hap-homematic
 
 <p align="center">
-    <img src="docs/hap_homematic_ui1.png">
+    <img src="doc/hap_homematic_ui1.png">
 </p>
 
 
