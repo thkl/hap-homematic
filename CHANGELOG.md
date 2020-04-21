@@ -1,3 +1,14 @@
+Changelog for 0.0.25:
+=====================
+
+* Added IP Blinds
+
+Changelog for 0.0.24:
+=====================
+
+* Added WinMatic
+* Changed Plugin installer to prevent backing up all the stuff (RaspberryMatic Only)
+
 Changelog for 0.0.23:
 =====================
 
