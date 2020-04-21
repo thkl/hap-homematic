@@ -1,5 +1,10 @@
 # hap-homematic
 
+<p align="center">
+    <img src="docs/hap_homematic_ui1.png">
+</p>
+
+
 a Raspberrymatic / CCU3 AddOn
 
 
