@@ -153,5 +153,8 @@
     "To you want to deactivate %s":"Möchtest Du %s deaktivieren",
     "Deactivating instance ...":"Deaktiviere Instanz ...",
     "U are not allowed to use this application. Please log in thru your ccu first.":"Du darfst diese Anwendung nicht nutzen. Bitte melde Dich über die CCU an.",
-    "Invalid credentials":"Ungülige Zugangsdaten"
+    "Invalid credentials":"Ungülige Zugangsdaten",
+    "Save":"Speichern",
+    "Use CCU Authentication":"CCU Anmeldung benutzen",
+    "Authentication":"Anmeldung"
 }
