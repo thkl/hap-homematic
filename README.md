@@ -1,4 +1,5 @@
 # hap-homematic
+[![Build Status](https://travis-ci.org/thkl/hap-homematic.svg?branch=master)](https://travis-ci.org/thkl/hap-homematic)
 
 <p align="center">
     <img src="doc/hap_homematic_ui1.png">
