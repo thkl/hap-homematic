@@ -27,7 +27,8 @@
 		"restart": "/etc/config/rc.d/hap-homematic restart"
 	},
 	"devDependencies": {
-		"mocha": "^7.0.1"
+		"mocha": "^7.0.1",
+		"expect.js": "0.3.1"
 	},
 	"mocha": {
 		"bail": true,
