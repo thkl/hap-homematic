@@ -1,3 +1,8 @@
+Changelog for 0.0.27:
+=====================
+
+* changed a https client call - for backwards compatibility to old node8 version on ccu3 devices
+
 Changelog for 0.0.26:
 =====================
 
