@@ -10,16 +10,23 @@ process.name = 'hap-homematic'
 let log = new Logger('HAP Server')
 var configurationPath = path.join('/usr/local/etc/config/addons/', process.name)
 var simulation
+var dryRun
 
 program.option('-D, --debug', 'turn on debug level logging', () => {
   log.setDebugEnabled(true)
 })
+
 program.option('-C, --configuration [path]', 'set configuration path', (configuration) => {
   configurationPath = configuration
 })
+
 program.option('-S, --simulate [path]', 'simulate with a devices file', (devFile) => {
   console.log('Running a simulation with %s', devFile)
   simulation = devFile
+})
+
+program.option('-R, --dryrun', 'only use cached files', () => {
+  dryRun = true
 })
 
   .parse(process.argv)
@@ -63,7 +70,7 @@ if (simulation !== undefined) {
 } else {
   log.debug('Initializing Server')
   server = new Server(log, configurationPath)
-  server.init()
+  server.init(dryRun)
 }
 
 process.on('SIGTERM', () => {

@@ -1,3 +1,8 @@
+Changelog for 0.0.28:
+=====================
+
+* prevent the system from crash on invalid GarageDoorSensors configuration
+
 Changelog for 0.0.27:
 =====================
 
