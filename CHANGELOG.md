@@ -1,3 +1,9 @@
+Changelog for 0.0.29:
+=====================
+
+* WebUI Fixed Internals in left menu
+* Fixed AlarmSystem (internal vs night mode)
+
 Changelog for 0.0.28:
 =====================
 
