@@ -10,7 +10,7 @@ const fs = require('fs')
 let log = new Logger('HAP Test')
 log.setDebugEnabled(false)
 
-const testCase = 'HmIP-SWDM.json'
+const testCase = 'HM-Sec-WDS.json'
 
 describe('HAP-Homematic Tests ' + testCase, () => {
   let that = this
@@ -64,12 +64,12 @@ describe('HAP-Homematic Tests ' + testCase, () => {
   })
 
   it('HAP-Homematic check STATE 0', (done) => {
-    that.server._ccu.fireEvent('HmIP.0123456789ABCD:1.STATE', false)
+    that.server._ccu.fireEvent('BidCos-RF.12345678:1.STATE', false)
     let accessory = that.server._publishedAccessories[Object.keys(that.server._publishedAccessories)[0]]
-    let service = accessory.getService(Service.ContactSensor)
-    assert.ok(service, 'Contact Service not found')
-    let ch = service.getCharacteristic(Characteristic.ContactSensorState)
-    assert.ok(ch, 'Contact State Characteristics not found')
+    let service = accessory.getService(Service.LeakSensor)
+    assert.ok(service, 'LeakSensor Service not found')
+    let ch = service.getCharacteristic(Characteristic.LeakDetected)
+    assert.ok(ch, 'LeakDetected State Characteristics not found')
     ch.getValue((context, value) => {
       try {
         expect(value).to.be(0)
@@ -81,10 +81,10 @@ describe('HAP-Homematic Tests ' + testCase, () => {
   })
 
   it('HAP-Homematic check STATE 1', (done) => {
-    that.server._ccu.fireEvent('HmIP.0123456789ABCD:1.STATE', true)
+    that.server._ccu.fireEvent('BidCos-RF.12345678:1.STATE', true)
     let accessory = that.server._publishedAccessories[Object.keys(that.server._publishedAccessories)[0]]
-    let service = accessory.getService(Service.ContactSensor)
-    let ch = service.getCharacteristic(Characteristic.ContactSensorState)
+    let service = accessory.getService(Service.LeakSensor)
+    let ch = service.getCharacteristic(Characteristic.LeakDetected)
     ch.getValue((context, value) => {
       try {
         expect(value).to.be(1)

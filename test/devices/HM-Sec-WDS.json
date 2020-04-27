@@ -1,0 +1,25 @@
+{
+    "devices": [
+        {
+            "id": 1000,
+            "intf": 0,
+            "intfName":"BidCos-RF",
+            "name": "HM-Sec-WDS",
+            "address": "12345678",
+            "type": "HM-Sec-WDS",
+            "channels": [
+                {
+                    "id": 1002,
+                    "name": "HM-Sec-WDS 12345678:1",
+                    "intf": 0,
+                    "address": "12345678:1",
+                    "type": "WATERDETECTIONSENSOR",
+                    "access": 255
+                }
+            ]
+        }
+    ],
+    "ccu": {
+        "12345678:1": "HomeMaticLeakSensorAccessory"
+    }
+}
