@@ -2,6 +2,9 @@ Changelog for 0.0.28:
 =====================
 
 * prevent the system from crash on invalid GarageDoorSensors configuration
+* changed State() to Value() for fetching data from ccu
+* added JALOUSIE channel to blind accessories
+* removed fault characteristics from leak sensor (there is no such datapoint)
 
 Changelog for 0.0.27:
 =====================
