@@ -3,9 +3,8 @@ HAPDIR=/usr/local/addons/hap-homematic/node_modules/hap-homematic/
 HAPROOT=/usr/local/addons/hap-homematic/
 CONFIG_URL=/addons/hap-homematic/index.html
 CONFIG_DIR=/usr/local/etc/config
-PIDFILE=/var/run/hap-homematic.pid
-STARTRC=/etc/init.d/S51hap-homematic
-VER=0.0.1
+PIDFILE=/var/run/hap-homematic.pid 
+VER=0.0.6
 PSPID=`ps -o pid,comm,args | awk '{if ($2=="node" && $4 ~ /hap-homematic/){print $1}}'`
 PSPID2=`ps -o pid,comm,args | awk '{if ($2=="hap-homematic-c"){print $1}}'`
 case "$1" in
@@ -16,7 +15,7 @@ case "$1" in
 
 	if [ "$PSPID" = "" ]
 	then
-	  node $HAPDIR/index.js >/dev/null &
+	  node $HAPDIR/index.js >/dev/null & echo $! >${PIDFILE}
 	  logger -t homematic -p user.info "started hap-homematic"
 	fi
 	;;
@@ -28,6 +27,7 @@ case "$1" in
 	  sleep 2
 	  kill $PSPID2 >/dev/null
 	  logger -t homematic -p user.info "stopped hap-homematic"
+	  rm -f ${PIDFILE}
 	fi
 	;;
 
@@ -38,10 +38,11 @@ case "$1" in
 	  sleep 2
 	  kill $PSPID2 >/dev/null
 	  logger -t homematic -p user.info "stopped hap-homematic"
+	  rm -f ${PIDFILE}
 	fi
 	#wait 10 seconds until the configuration service will close
 	sleep 10
-	node $HAPDIR/index.js >/dev/null &
+	node $HAPDIR/index.js >/dev/null & echo $! >${PIDFILE}
 	logger -t homematic -p user.info "started (restart) hap-homematic"
 	;;
 

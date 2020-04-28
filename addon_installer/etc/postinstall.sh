@@ -4,6 +4,7 @@ ADDONNAME=hap-homematic
 CONFIG_DIR=/usr/local/etc/config
 ADDON_DIR=/usr/local/addons/${ADDONNAME}
 ADDONWWW_DIR=/usr/local/etc/config/addons/www
+NPMCACHE_DIR=/tmp/hap-homematic-cache
 RCD_DIR=${CONFIG_DIR}/rc.d
 LOGFILE=/var/log/hmhapinstall.log
 
@@ -13,25 +14,18 @@ if [ ! -f ${ADDON_DIR}/node_modules/hap-homematic/index.js ]; then
 echo "[Installer]Start installer" >>${LOGFILE}
 echo "[Installer]Program Dir is ${ADDON_DIR}" >>${LOGFILE}
 
-echo "[Installer]updating npm paths ...">>${LOGFILE}
-mount -o remount,rw /
-mkdir -p /usr/local/addons/npm/
-npm config set cache /usr/local/addons/npm/.npm
-npm config set path /usr/local/addons/npm/.npm
-npm config set userconfig /usr/local/addons/npm/.npmrc
-npm config set init-module /usr/local/addons/npm/.npm-init.js
-
 echo "[Installer]installing HAP-Homematic ...">>${LOGFILE}
-
+#create a cache in /tmp
+mkdir ${NPMCACHE_DIR}
 cd ${ADDON_DIR}
-npm install ${ADDONNAME}
+npm i --cache ${NPMCACHE_DIR} ${ADDONNAME}
+#remove the cache
+rm -R ${NPMCACHE_DIR} 
 
 #create the button in system control
 echo "[Installer]creating HomeKit Button ...">>${LOGFILE}
 node ${ADDON_DIR}/node_modules/${ADDONNAME}/etc/hm_addon.js hap ${ADDON_DIR}/node_modules/${ADDONNAME}/etc/hap_addon.cfg
 #create the .nobackup file into the plugin directory to prevent backing up all the node depencities
 touch ${ADDON_DIR}/.nobackup
-
-mount -o remount,ro /
 
 fi
