@@ -1,3 +1,11 @@
+Changelog for 0.0.30:
+=====================
+
+* hap-homematic will install a config for the raspberrymatic monitoring service (if there is one)
+* added variable based thermometers
+
+
+
 Changelog for 0.0.29:
 =====================
 
