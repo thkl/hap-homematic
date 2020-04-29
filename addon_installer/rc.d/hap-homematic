@@ -1,4 +1,5 @@
 #!/bin/sh
+ADDON_NAME=hap-homematic
 HAPDIR=/usr/local/addons/hap-homematic/node_modules/hap-homematic/
 HAPROOT=/usr/local/addons/hap-homematic/
 CONFIG_URL=/addons/hap-homematic/index.html
