@@ -21,3 +21,15 @@
     min-height: 40px;
     font-weight: bold;
 }
+
+.clickable {
+    cursor: pointer;
+}
+
+.sortedby {
+   text-decoration: underline;
+}
+
+.sortbyreverse {
+    text-decoration: overline;
+}
