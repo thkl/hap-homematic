@@ -44,3 +44,6 @@ Please note: History is only available if u are using the eve app as a homekit c
 
 # Issues and not supported devices
 Please open an issue [here](https://github.com/thkl/hap-homematic/issues/new) for all what went wrong.
+
+# Icon
+the icon was made by @roe1974
