@@ -1,3 +1,8 @@
+Changelog for 0.0.31:
+=====================
+
+* only setup the monitor if system is not in debug and there was a pid file created by the launcher
+
 Changelog for 0.0.30:
 =====================
 
