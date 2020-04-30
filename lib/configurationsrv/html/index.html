@@ -27,6 +27,16 @@
   </head>
   <body class="c-app">
     <div class="c-sidebar c-sidebar-dark c-sidebar-fixed c-sidebar-lg-show" id="sidebar">
+
+
+      <div class="c-sidebar-brand d-md-down-none">
+        <img src="img/logo_white_2.png" style="max-height: 35px;margin-right: 5px;"/>
+        HAP-HomeMatic
+      </div>
+
+
+
+
       <ul class="c-sidebar-nav">
         <li class="c-sidebar-nav-item">
           <a class="c-sidebar-nav-link" id="showDevices" style="cursor:pointer;">
@@ -55,36 +65,70 @@
           </a>
         </li>
 
-        <li class="c-sidebar-nav-item">
-          <a class="c-sidebar-nav-link" id="hapInstances"  style="cursor:pointer;">
+        <li class="c-sidebar-nav-dropdown">
+          <a class="c-sidebar-nav-dropdown-toggle"  style="cursor:pointer;">
             <i class="c-icon c-icon-lg mt-2 ml-1 mr-3 mb-2 cil-factory"></i>
             <span data-localize="HomeKit Instances">HomeKit Instances</span>
           </a>
+
+          <ul class="c-sidebar-nav-dropdown-items">
+            <li class="c-sidebar-nav-item">
+              <a class="c-sidebar-nav-link"  style="cursor:pointer;" id="hapInstances" >
+                <i class="c-icon c-icon-lg mt-2 ml-1 mr-3 mb-2 cil-fork"></i>
+                <span data-localize="Edit instances">Edit instances</span>
+              </a>
+            </li>
+
+            <li class="c-sidebar-nav-item">
+              <a class="c-sidebar-nav-link"  style="cursor:pointer;" id="publishingSettings">
+                <i class="c-icon c-icon-lg mt-2 ml-1 mr-3 mb-2 cil-settings"></i>
+                <span data-localize="Settings">Settings</span>
+              </a>
+            </li>
+
+          </ul>
         </li>
 
-        <li class="c-sidebar-nav-item">
-          <a class="c-sidebar-nav-link" id="publishingSettings"  style="cursor:pointer;">
-            <i class="c-icon c-icon-lg mt-2 ml-1 mr-3 mb-2 cil-settings"></i>
-            <span data-localize="Publishing settings">Publishing settings</span>
-          </a>
-        </li>
-        <li class="c-sidebar-nav-item">
 
-          <a class="c-sidebar-nav-link dropdown-toggle" id="Internals"  style="cursor:pointer;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="c-icon c-icon-lg mt-2 ml-1 mr-3 mb-2 cil-3d"></i>
-            <span data-localize="Internals">Internals</span>
-          </a>
-          <div class="dropdown-menu" x-placement="top-start" style="position: absolute; transform: translate3d(0px, -2px, 0px); top: 0px; left: 0px; will-change: transform;">
-                <a class="dropdown-item"  style="cursor:pointer;" id="btn_settings">Settings</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item"  style="cursor:pointer;" id="btn_changelog">Show changelog</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" style="cursor:pointer;" id="btn_debug">Enable Debug</a>
-                <a class="dropdown-item" style="cursor:pointer;" id="btn_dnlog">Download Log</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" style="cursor:pointer;" id="btn_restart">Restart HAP Service</a>
-          </div>
+        <li class="c-sidebar-nav-dropdown">
+
+        <a class="c-sidebar-nav-dropdown-toggle" style="cursor:pointer;">
+          <i class="c-icon c-icon-lg mt-2 ml-1 mr-3 mb-2 cil-3d"></i>
+          <span data-localize="Internals">Internals</span>
+        </a>
+        <ul class="c-sidebar-nav-dropdown-items">
+          <li class="c-sidebar-nav-item">
+            <a class="c-sidebar-nav-link"  style="cursor:pointer;" id="btn_settings">
+              <i class="c-icon c-icon-lg mt-2 ml-1 mr-3 mb-2 cil-cog"></i>
+              <span data-localize="Settings">Settings</span>
+            </a>
+            
           </li>
+          <li class="c-sidebar-nav-item">
+            <a class="c-sidebar-nav-link"  style="cursor:pointer;" id="btn_changelog">
+              <i class="c-icon c-icon-lg mt-2 ml-1 mr-3 mb-2 cil-description"></i>
+              <span data-localize="Show changelog">Show changelog</span>
+              </a>
+          </li>
+          <li class="c-sidebar-nav-item">
+            <a class="c-sidebar-nav-link"  style="cursor:pointer;" id="btn_debug">
+              <i class="c-icon c-icon-lg mt-2 ml-1 mr-3 mb-2 cil-gauge"></i>
+              <span  data-localize="Enable Debug" id="lbl_btn_debug">Enable Debug</span>
+              </a>
+          </li>
+          <li class="c-sidebar-nav-item">
+            <a class="c-sidebar-nav-link" style="cursor:pointer;" id="btn_dnlog">
+              <i class="c-icon c-icon-lg mt-2 ml-1 mr-3 mb-2 cil-image-broken"></i>
+              <span data-localize="Download Log">Download Log</span></a>
+          </li>
+          <li class="c-sidebar-nav-item">
+            <a class="c-sidebar-nav-link" style="cursor:pointer;" id="btn_restart">
+              <i class="c-icon c-icon-lg mt-2 ml-1 mr-3 mb-2 cil-reload"></i>
+              <span data-localize="Restart HAP Service">Restart HAP Service</span></a>
+          </li>
+        </ul>
+
+      </li>
 
       </ul>
       <button class="c-sidebar-minimizer c-class-toggler" type="button" data-target="_parent" data-class="c-sidebar-minimized"></button>
@@ -98,7 +142,7 @@
           <!-- Breadcrumb-->
           <ol class="breadcrumb border-0 m-0">
             <li class="breadcrumb-item">Home</li>
-            <li class="breadcrumb-item"><a>HAP-Homematic</a></li>
+            <li class="breadcrumb-item"><a>HAP-HomeMatic</a></li>
             <li class="breadcrumb-item active" id="breadcrum_page">Devices</li>
             <!-- Breadcrumb Menu-->
           </ol>

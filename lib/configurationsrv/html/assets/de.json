@@ -186,6 +186,17 @@
     "The message to send to the close actor JSON  (optional)":"Die Nachricht (JSON) welche zum Schließen Aktor gesendet wird (optional)",
     "Sensor requery time":"Zeit Sensor Neuabfrage",
     "Time the sensors will be queried again to fetch a new door state (optional)":
-     "Zeit in Sekunden nachdem der Sensor erneut abgefragt wird, um einen neuen Zustand der Tür zu ermitteln (optional)"
-
+     "Zeit in Sekunden nachdem der Sensor erneut abgefragt wird, um einen neuen Zustand der Tür zu ermitteln (optional)",
+     "Edit instances":"Instanzen bearbeiten",
+     "Settings":"Einstellungen",
+     "Show changelog":"Changelog anzeigen",
+     "Enable Debug":"Debug einschalten",
+     "Disable Debug":"Debug ausschalten",
+     "Download Log":"Log downloaden",
+     "Restart HAP Service":"Neustart HAP Service",
+     "Restart HAP Plugin ?":"Neustart des HAP Plugins ?",
+     "Sure ?":"Sicher ?",
+     "Enable debug at launch":"Debug Modus beim Start einschalten",
+     "YOLO":"YOLO",
+     "Covfefe":"Covfefe"
 }
