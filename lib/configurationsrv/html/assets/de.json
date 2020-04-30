@@ -156,5 +156,36 @@
     "Invalid credentials":"Ungülige Zugangsdaten",
     "Save":"Speichern",
     "Use CCU Authentication":"CCU Anmeldung benutzen",
-    "Authentication":"Anmeldung"
+    "Authentication":"Anmeldung",
+    "Internals":"Internes",
+    "Address close sensor":"Adresse des Schließen Sensors",
+    "Address of the sensor which signals a closed door (mandatory) | Note if you want to use a variable the syntax is V.Varname":
+     "Adresse des Sensors, welcher eine geschlossene Tür anzeigt (Pflichtfeld)",
+    "State close sensor":"Status des Schließen Sensors",
+    "Value of the sensor which signals a closed door (mandatory)":
+     "Wert des Sensors, welcher eine geschlossene Tür anzeigt (Pflichtfeld)",
+    "Address open sensor":"Adresse des Offen Sensors",
+     "Address of the sensor which signals a open door (optional) | Note if you want to use a variable the syntax is V.Varname":
+      "Adresse des Sensors, welcher eine offene Tür anzeigt (Optional)",
+    "State open sensor":"Wert des Offen Sensors",
+    "Value of the sensor which signals a open door (optional)":
+     "Wert des Sensors, welcher eine geöffnete Tür anzeigt (optional)",
+    "Address open actor":"Adresse Öffnen Aktor",
+    "Address of the actor which opens the door (mandatory)":
+     "Adresse des Aktors, welcher die Tür öffnet (Pflichtfeld)",
+    "Address close actor":"Adresse Schließen Aktor",
+    "Address of the actor which closes the door (optional)":
+     "Adresse des Aktors, welcher die Tür schließt (Optional)",
+    "Delay open actor":"Verzögerung Öffnen Aktor",
+    "Delay in seconds to reset the open actor (optional)":"Zeit in Sekunden, bis der Öffnen Aktor zurück gesetzt wird (optional)",
+    "Delay close actor":"Verzögerung Schließen Aktor",
+    "Delay in seconds to reset the close actor (optional)":"Zeit in Sekunden, bis der Schließen Aktor zurück gesetzt wird (optional)",
+    "Message open actor":"Nachricht Öffnen Aktor",
+    "The message to send to the open actor JSON  (optional)":"Die Nachricht (JSON) welche zum Öffnen Aktor gesendet wird (optional)",
+    "Message close actor":"Nachricht Schließen Aktor",
+    "The message to send to the close actor JSON  (optional)":"Die Nachricht (JSON) welche zum Schließen Aktor gesendet wird (optional)",
+    "Sensor requery time":"Zeit Sensor Neuabfrage",
+    "Time the sensors will be queried again to fetch a new door state (optional)":
+     "Zeit in Sekunden nachdem der Sensor erneut abgefragt wird, um einen neuen Zustand der Tür zu ermitteln (optional)"
+
 }

@@ -1,4 +1,5 @@
-# hap-homematic
+<img src="doc/icon.png" style="float:left"> # Hap-HomeMatic
+
 [![Build Status](https://travis-ci.org/thkl/hap-homematic.svg?branch=master)](https://travis-ci.org/thkl/hap-homematic)
 [![npm version](https://badge.fury.io/js/hap-homematic.svg)](https://badge.fury.io/js/hap-homematic)
 

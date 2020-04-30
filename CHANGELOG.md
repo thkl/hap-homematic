@@ -1,3 +1,10 @@
+Changelog for 0.0.32:
+=====================
+
+* added sorting for webui lists
+* implemented a nicer update button
+.. tbc
+
 Changelog for 0.0.31:
 =====================
 
