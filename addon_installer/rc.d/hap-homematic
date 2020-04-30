@@ -5,7 +5,7 @@ HAPROOT=/usr/local/addons/hap-homematic/
 CONFIG_URL=/addons/hap-homematic/index.html
 CONFIG_DIR=/usr/local/etc/config
 PIDFILE=/var/run/hap-homematic.pid 
-VER=0.0.7
+VER=0.0.8
 PSPID=`ps -o pid,comm,args | awk '{if ($2=="node" && $4 ~ /hap-homematic/){print $1}}'`
 PSPID2=`ps -o pid,comm,args | awk '{if ($2=="hap-homematic-c"){print $1}}'`
 case "$1" in
@@ -48,10 +48,10 @@ case "$1" in
 	;;
 
   info)
-	echo "Info: <center><b>HomeKit HomeMatic</b></center><br /><br />Homematic goes Apple Homekit<br /><a href='https://github.com/thkl/hap-homematic/'>https://github.com/thkl/hap-homematic/</a>"
+	echo "Info: <center><b>HomeKit HomeMatic</b><p style='margin-top: 5px;margin-bottom: 5px;'><img src='../addons/hap-homematic/hap-homematic-logo.png'></p></center>Homematic goes Apple Homekit<br /><a href='https://github.com/thkl/hap-homematic/'>https://github.com/thkl/hap-homematic/</a>"
 	echo "Name: HomeKit HomeMatic"
 	echo "Version: $VER"
-	echo "Operations: uninstall"
+	echo "Operations: uninstall restart"
 	echo "Config-Url: $CONFIG_URL"
 	echo "Update: /addons/${ADDON_NAME}/update-check.cgi"
 	;;
