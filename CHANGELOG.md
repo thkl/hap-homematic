@@ -1,3 +1,8 @@
+Changelog for 0.0.34:
+=====================
+
+* Fix for Instances/Settings
+
 Changelog for 0.0.33:
 =====================
 
