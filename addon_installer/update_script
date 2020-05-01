@@ -30,6 +30,7 @@ mkdir -p ${CONFIG_DIR}/${ADDONNAME}
 mkdir -p ${ADDONWWW_DIR}/${ADDONNAME}
 cp -af hap/etc/www/index.html ${ADDONWWW_DIR}/${ADDONNAME}
 cp -af hap/etc/www/update-check.cgi ${ADDONWWW_DIR}/${ADDONNAME}
+cp -af hap/etc/www/hap-homematic-logo.png ${ADDONWWW_DIR}/${ADDONNAME}
 
 # copy startup script
 cp -af rc.d/* ${RCD_DIR}
@@ -41,8 +42,15 @@ chmod +x ${ADDON_DIR}/etc/postinstall.sh
 chmod +x ${RCD_DIR}/${ADDONNAME}
 chmod +x ${ADDONWWW_DIR}/${ADDONNAME}/update-check.cgi
 
+sync
 
+#check if the plugin is allready installd 
+if [ ! -f ${ADDON_DIR}/node_modules/hap-homematic/index.js ]; then
+# new installation so reboot and the launcher will install the rest of the system
+  exit 10
+else
+#so we have an update here and there is no need to reboot the Rasberrymatic will exit without an reboot
+  exit 0
 fi
 
-sync
-exit 10
+fi
