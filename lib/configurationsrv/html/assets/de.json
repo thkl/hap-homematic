@@ -198,5 +198,39 @@
      "Sure ?":"Sicher ?",
      "Enable debug at launch":"Debug Modus beim Start einschalten",
      "YOLO":"YOLO",
-     "Covfefe":"Covfefe"
-}
+     "Covfefe":"Covfefe",
+     "Ignore temperature":"Temperatur ignorieren",
+     "if your device only measures the humidity u should ignore the temperature measurements":
+      "Wenn Dein Gerät nur Feuchtigkeit misst, solltest Du die Temperatur Messung ignorieren",
+     "Ignore humidity":"Feuchtigkeit ignorieren",
+     "if your device only measures the temperature u should ignore the humidity measurements":
+      "Wenn Dein Gerät nur Temperatur misst, solltest Du die Feuchtigkeits Messung ignorieren",
+     "You should never see this":"Das hier solltest Du nie sehen",
+     "This service provides a programmable switch in HomeKit based on a ccu KEY":
+      "Dieser Service erstellt einen programmierbaren Schalter in HomeKit. Dieser basierent auf einem CCU KEY Channel.",
+     "This service provides a switch HomeKit which will press the assigned key at your ccu":
+      "Dieser Service erstellt einen Schalter in HomeKit welcher einen KEY Channel in der CCU auslösen kann",
+     "Key Event":"KEY Ereignis",
+     "Which event should be fired":"Welches Ereignis soll ausgelöst werden.",
+     "This service provides a lightbulb where u can set level and color":
+      "Dieser Service erstellt eine Lampe in HomeKit bei der Level und Farbe gesteuert werden können",
+      "This service provides a dimmer in HomeKit":"Dieser Service erstellt einen Dimmer in HomeKit",
+      "This service provides a Contact in HomeKit":"Dieser Service erstellt einen Kontakt in HomeKit",
+      "Reverse the values":"Umdrehen der Werte",
+      "on is off and off is on":"Ein ist aus und aus ist ein",
+      "This service provides a switch":"Dieser Service erstellt einen Schalter",
+      "This service provides a temperature sensor HomeKit":"Dieser Service erstellt einen Temperatur Sensor in HomeKit",
+      "This service provides a power meter in HomeKit (this only works in eve)":"Dieser Service erstellt einen Leistungsmesser in HomeKit (das funktioniert nur mit eve)",
+      "This service provides a motion sensor in HomeKit":"Dieser Service erstellt einen Bewegungsmelder in HomeKit",
+      "This service provides a contact in HomeKit based on a rotary sensor from your ccu":
+      "Dieser Service erstellt einen Kontakt in HomeKit der auf einem CCU Drehgriffsensor basiert",
+      "This service provides a alarm system for HomeKit":"Dieser Service erstellt ein Alarmsystem in HomeKit",
+      "You can control your blinds with this service":"Mit diesem Service kannst Du ein Rollo in HomeKit steuern",
+      "This service provides a weather station for HomeKit (only works in eve)":"Dieser Service erzeugt eine Wetterstation in HomeKit (funktioniert nur mit eve)",
+      "This service provides a thermometer which will show your current ccu processor temperature":
+      "Dieser Service erzeugt ein Thermometer in HomeKit welches die aktuelle Temperatur deiner CCU anzeigt",
+      "This service provides a garage door opener in HomeKit based on multiple devices from your ccu":
+       "Dieser Service erzeugt einen Garagentoröffner welcher aus einzelnen CCU Geräten zusammengesetzt wird"
+    }
+
+
