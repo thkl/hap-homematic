@@ -5,7 +5,7 @@ HAPROOT=/usr/local/addons/hap-homematic/
 CONFIG_URL=/addons/hap-homematic/index.html
 CONFIG_DIR=/usr/local/etc/config
 PIDFILE=/var/run/hap-homematic.pid 
-VER=0.0.10
+VER=0.0.11
 PSPID=`ps -o pid,comm,args | awk '{if ($2=="node" && $4 ~ /hap-homematic/){print $1}}'`
 PSPID2=`ps -o pid,comm,args | awk '{if ($2=="hap-homematic-c"){print $1}}'`
 case "$1" in
@@ -64,6 +64,14 @@ case "$1" in
     rm /usr/local/etc/config/rc.d/hap-homematic 
 	rm -R /usr/local/etc/config/addons/www/hap-homematic
 	rm -R /usr/local/etc/config/addons/hap-homematic
+
+	# remove the monit settings if there are leftovers
+	if [ -f /usr/local/etc/monit_hap-homematic.cfg ]; then
+	  rm /usr/local/etc/monit_hap-homematic.cfg
+	  # and reload the monit
+	  /usr/bin/monit reload
+	fi 
+
 	;;
 
   *)
