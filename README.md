@@ -15,7 +15,7 @@ This RaspberryMatic / CCU3 addon will allow you to access your HomeMatic devices
 All this runs on your RaspberryMatic / CCU3. You will not need any extra hardware.
 
 # Installation
-Download the addon: https://github.com/thkl/hap-homematic/raw/master/addon_installer/hap-homematic-0.0.8.tar.gz and install it via system preferences.
+Download the addon: https://github.com/thkl/hap-homematic/raw/master/addon_installer/hap-homematic-0.0.9.tar.gz and install it via system preferences.
 
 A little bit later (the addon will install all other needed software) you will have a HomeKit button in your ccu system preference page.
 
