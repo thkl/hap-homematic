@@ -1,3 +1,8 @@
+Changelog for 0.0.33:
+=====================
+
+* some tweeks for the webUI
+
 Changelog for 0.0.32:
 =====================
 
