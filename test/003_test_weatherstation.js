@@ -115,7 +115,7 @@ describe('HAP-Homematic Tests ' + testCase, () => {
   })
 
   it('HAP-Homematic check RAIN_COUNTER 821', (done) => {
-    that.server._ccu.fireEvent('HmIP.0123456789ABCD:1.RAIN_COUNTER', 821)
+    that.server._ccu.setVariable('svHmIPRainCounterToday_1002', 821.0)
     let accessory = that.server._publishedAccessories[Object.keys(that.server._publishedAccessories)[0]]
     let service = accessory.getService(Service.WeatherStation)
     assert.ok(service, 'WeatherStation Service not found')
@@ -149,7 +149,7 @@ describe('HAP-Homematic Tests ' + testCase, () => {
   })
 
   it('HAP-Homematic check SUNSHINEDURATION 340 min which are 5.6 hours', (done) => {
-    that.server._ccu.fireEvent('HmIP.0123456789ABCD:1.SUNSHINEDURATION', 340.0)
+    that.server._ccu.setVariable('svHmIPSunshineCounterToday_1002', 340.0)
     let accessory = that.server._publishedAccessories[Object.keys(that.server._publishedAccessories)[0]]
     let service = accessory.getService(Service.WeatherStation)
     assert.ok(service, 'WeatherStation Service not found')
