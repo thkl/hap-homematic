@@ -1,3 +1,11 @@
+Changelog for 0.0.35:
+=====================
+
+* added HmIP-SWO-*
+* added HmIP-STHO, 
+* added HmIP-SRH
+* added HmIP-SAM(Contact version)
+
 Changelog for 0.0.34:
 =====================
 
@@ -13,7 +21,6 @@ Changelog for 0.0.32:
 
 * added sorting for webui lists
 * implemented a nicer update button
-.. tbc
 
 Changelog for 0.0.31:
 =====================

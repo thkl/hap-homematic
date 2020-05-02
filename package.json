@@ -1,12 +1,17 @@
 {
 	"name": "hap-homematic",
-	"version": "0.0.34",
+	"version": "0.0.35",
 	"description": "provides a homekit bridge to the ccu",
 	"license": "MIT",
 	"repository": {
 		"type": "git",
 		"url": "git://github.com/thkl/hap-homematic.git"
 	},
+	"keywords": [
+		"HomeKit",
+		"HomeMatic",
+		"CCU"
+	],
 	"engines": {
 		"node": ">=8.11.0"
 	},
