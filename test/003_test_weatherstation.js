@@ -148,16 +148,16 @@ describe('HAP-Homematic Tests ' + testCase, () => {
     })
   })
 
-  it('HAP-Homematic check SUNSHINEDURATION 34', (done) => {
-    that.server._ccu.fireEvent('HmIP.0123456789ABCD:1.SUNSHINEDURATION', 34.0)
+  it('HAP-Homematic check SUNSHINEDURATION 340 min which are 5.6 hours', (done) => {
+    that.server._ccu.fireEvent('HmIP.0123456789ABCD:1.SUNSHINEDURATION', 340.0)
     let accessory = that.server._publishedAccessories[Object.keys(that.server._publishedAccessories)[0]]
     let service = accessory.getService(Service.WeatherStation)
     assert.ok(service, 'WeatherStation Service not found')
-    let ch = service.getCharacteristic(Characteristic.CurrentRelativeHumidity)
+    let ch = service.getCharacteristic(Characteristic.CurrentSunShineDurationCharacteristic)
     assert.ok(ch, 'CurrentRelativeHumidity State Characteristics not found')
     ch.getValue((context, value) => {
       try {
-        expect(value).to.be(34)
+        expect(value).to.be(5.6)
         done()
       } catch (e) {
         done(e)
