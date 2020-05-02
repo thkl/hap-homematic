@@ -1,3 +1,8 @@
+Changelog for 0.0.36:
+=====================
+
+* added HmIP-SWD
+
 Changelog for 0.0.35:
 =====================
 
