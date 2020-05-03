@@ -1,0 +1,49 @@
+{
+  "devices": [
+    {
+      "id": 1000,
+      "intf": 0,
+      "intfName": "HmIP",
+      "name": "HmIP-SMI",
+      "address": "0123456789ABCD",
+      "type": "HmIP-SMI",
+      "channels": [
+        {
+          "id": 1001,
+          "name": "0123456789ABCD:0",
+          "intf": 0,
+          "address": "0123456789ABCD:0",
+          "type": "MAINTENANCE",
+          "access": 255
+        },
+        {
+          "id": 1002,
+          "name": "0123456789ABCD:1",
+          "intf": 0,
+          "address": "0123456789ABCD:1",
+          "type": "MOTIONDETECTOR_TRANSCEIVER",
+          "access": 255
+        },
+        {
+          "id": 1003,
+          "name": "0123456789ABCD:2",
+          "intf": 0,
+          "address": "0123456789ABCD:2",
+          "type": "STATE_RESET_RECEIVER",
+          "access": 255
+        },
+        {
+          "id": 1004,
+          "name": "0123456789ABCD:3",
+          "intf": 0,
+          "address": "0123456789ABCD:3",
+          "type": "ALARM_COND_SWITCH_TRANSMITTER",
+          "access": 255
+        }
+      ]
+    }
+  ],
+  "ccu": {
+    "0123456789ABCD:1": "HomeMaticIPMotionAccessory"
+}
+}

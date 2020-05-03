@@ -16,7 +16,7 @@ describe('HAP-Homematic Tests ' + testCase, () => {
   let that = this
 
   before(async () => {
-    log.info('preparing tests')
+    log.debug('preparing tests')
     let datapath = path.join(__dirname, 'devices', testCase)
     let strData = fs.readFileSync(datapath).toString()
     if (strData) {

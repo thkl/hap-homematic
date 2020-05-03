@@ -10,7 +10,7 @@ const fs = require('fs')
 let log = new Logger('HAP Test')
 log.setDebugEnabled(false)
 
-const testCase = 'HM-Sec-WDS.json'
+const testCase = 'HmIP-SMI.json'
 
 describe('HAP-Homematic Tests ' + testCase, () => {
   let that = this
@@ -63,16 +63,16 @@ describe('HAP-Homematic Tests ' + testCase, () => {
     done()
   })
 
-  it('HAP-Homematic check STATE 0', (done) => {
-    that.server._ccu.fireEvent('BidCos-RF.12345678:1.STATE', false)
+  it('HAP-Homematic check MOTION false', (done) => {
+    that.server._ccu.fireEvent('HmIP.0123456789ABCD:1.MOTION', false)
     let accessory = that.server._publishedAccessories[Object.keys(that.server._publishedAccessories)[0]]
-    let service = accessory.getService(Service.LeakSensor)
-    assert.ok(service, 'LeakSensor Service not found')
-    let ch = service.getCharacteristic(Characteristic.LeakDetected)
-    assert.ok(ch, 'LeakDetected State Characteristics not found')
+    let service = accessory.getService(Service.MotionSensor)
+    assert.ok(service, 'MotionSensor Service not found')
+    let ch = service.getCharacteristic(Characteristic.MotionDetected)
+    assert.ok(ch, 'MotionDetected State Characteristics not found')
     ch.getValue((context, value) => {
       try {
-        expect(value).to.be(0)
+        expect(value).to.be(false)
         done()
       } catch (e) {
         done(e)
@@ -80,14 +80,31 @@ describe('HAP-Homematic Tests ' + testCase, () => {
     })
   })
 
-  it('HAP-Homematic check STATE 1', (done) => {
-    that.server._ccu.fireEvent('BidCos-RF.12345678:1.STATE', true)
+  it('HAP-Homematic check MOTION true', (done) => {
+    that.server._ccu.fireEvent('HmIP.0123456789ABCD:1.MOTION', true)
     let accessory = that.server._publishedAccessories[Object.keys(that.server._publishedAccessories)[0]]
-    let service = accessory.getService(Service.LeakSensor)
-    let ch = service.getCharacteristic(Characteristic.LeakDetected)
+    let service = accessory.getService(Service.MotionSensor)
+    let ch = service.getCharacteristic(Characteristic.MotionDetected)
     ch.getValue((context, value) => {
       try {
-        expect(value).to.be(1)
+        expect(value).to.be(true)
+        done()
+      } catch (e) {
+        done(e)
+      }
+    })
+  })
+
+  let rnd = Math.floor(Math.random() * Math.floor(500))
+
+  it('HAP-Homematic check ILLUMINATION ' + rnd, (done) => {
+    that.server._ccu.fireEvent('HmIP.0123456789ABCD:1.ILLUMINATION', rnd)
+    let accessory = that.server._publishedAccessories[Object.keys(that.server._publishedAccessories)[0]]
+    let service = accessory.getService(Service.LightSensor)
+    let ch = service.getCharacteristic(Characteristic.CurrentAmbientLightLevel)
+    ch.getValue((context, value) => {
+      try {
+        expect(value).to.be(rnd)
         done()
       } catch (e) {
         done(e)
