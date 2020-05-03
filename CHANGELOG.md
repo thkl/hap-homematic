@@ -1,3 +1,11 @@
+Changelog for 0.0.37:
+=====================
+
+* added optional ramp time for dimmers thanks to @comtel2000
+* new hap instances will be named as HomeMatic .... (removed the _ ) thanks to @detLAN for researching this
+* added a support dialog for new devices and issues
+
+
 Changelog for 0.0.36:
 =====================
 
