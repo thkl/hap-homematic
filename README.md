@@ -29,6 +29,9 @@ Used Ports :
 
 make sure your ccu firewall does not block ports 9874,9877 ... n
 
+Stefan, of verdrahtet.info, has made a nice german tutorial [here](https://www.verdrahtet.info/2020/05/02/homekit-und-homematic-einfach-wie-nie/)
+
+
 # HTTPS
 If you are using the https version of your ccu WebUI page, you have to enable https for the hap-homematic configuration page also.
 hap-homematic will use the same self signed tls certificate as your ccu.
