@@ -219,4 +219,47 @@ describe('HAP-Homematic Tests ' + testCase, () => {
       }, 550)
     })
   })
+
+  it('HAP-Homematic Test AKKU 100%', (done) => {
+    that.server._ccu.fireEvent('BidCos-RF.1123456789ABCD:2.LEVEL', 1)
+    let accessory = that.server._publishedAccessories[Object.keys(that.server._publishedAccessories)[0]]
+    let service = accessory.getService(Service.BatteryService)
+    let lvl = service.getCharacteristic(Characteristic.BatteryLevel)
+    let lowLvl = service.getCharacteristic(Characteristic.StatusLowBattery)
+    try {
+      expect(lvl.value).to.be(100)
+      expect(lowLvl.value).to.be(Characteristic.StatusLowBattery.BATTERY_LEVEL_NORMAL)
+      done()
+    } catch (e) {
+      done(e)
+    }
+  })
+
+  it('HAP-Homematic Test AKKU 19% LOW Level', (done) => {
+    that.server._ccu.fireEvent('BidCos-RF.1123456789ABCD:2.LEVEL', 0.19)
+    let accessory = that.server._publishedAccessories[Object.keys(that.server._publishedAccessories)[0]]
+    let service = accessory.getService(Service.BatteryService)
+    let lvl = service.getCharacteristic(Characteristic.BatteryLevel)
+    let lowLvl = service.getCharacteristic(Characteristic.StatusLowBattery)
+    try {
+      expect(lvl.value).to.be(19)
+      expect(lowLvl.value).to.be(Characteristic.StatusLowBattery.BATTERY_LEVEL_LOW)
+      done()
+    } catch (e) {
+      done(e)
+    }
+  })
+
+  it('HAP-Homematic Test AKKU Charging', (done) => {
+    that.server._ccu.fireEvent('BidCos-RF.1123456789ABCD:2.STATUS', 1)
+    let accessory = that.server._publishedAccessories[Object.keys(that.server._publishedAccessories)[0]]
+    let service = accessory.getService(Service.BatteryService)
+    let chrg = service.getCharacteristic(Characteristic.ChargingState)
+    try {
+      expect(chrg.value).to.be(Characteristic.ChargingState.CHARGING)
+      done()
+    } catch (e) {
+      done(e)
+    }
+  })
 })
