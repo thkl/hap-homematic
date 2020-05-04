@@ -66,7 +66,7 @@ describe('HAP-Homematic Tests ' + testCase, () => {
   var rnd = Math.floor(Math.random() * Math.floor(30))
 
   it('HAP-Homematic check ACTUAL_TEMPERATURE ' + rnd, (done) => {
-    that.server._ccu.fireEvent('HmIP.0123456789ABCD:1.ACTUAL_TEMPERATURE', rnd)
+    that.server._ccu.fireEvent('HmIP.2123456789ABCD:1.ACTUAL_TEMPERATURE', rnd)
     let accessory = that.server._publishedAccessories[Object.keys(that.server._publishedAccessories)[0]]
     let service = accessory.getService(Service.Thermostat)
     assert.ok(service, 'Thermostat Service not found')
@@ -89,7 +89,7 @@ describe('HAP-Homematic Tests ' + testCase, () => {
     let service = accessory.getService(Service.Thermostat)
     let ch = service.getCharacteristic(Characteristic.TargetTemperature)
     ch.setValue(rnd, async () => {
-      let value = await that.server._ccu.getValue('HmIP.0123456789ABCD:1.SET_POINT_TEMPERATURE')
+      let value = await that.server._ccu.getValue('HmIP.2123456789ABCD:1.SET_POINT_TEMPERATURE')
       try {
         expect(value).to.be(rnd)
       } catch (e) {
@@ -109,7 +109,7 @@ describe('HAP-Homematic Tests ' + testCase, () => {
   })
 
   it('HAP-Homematic check Heating Mode Off', (done) => {
-    that.server._ccu.fireEvent('HmIP.0123456789ABCD:1.SET_POINT_TEMPERATURE', 4.5)
+    that.server._ccu.fireEvent('HmIP.2123456789ABCD:1.SET_POINT_TEMPERATURE', 4.5)
     let accessory = that.server._publishedAccessories[Object.keys(that.server._publishedAccessories)[0]]
     let service = accessory.getService(Service.Thermostat)
     let ch = service.getCharacteristic(Characteristic.TargetHeatingCoolingState)
@@ -128,7 +128,7 @@ describe('HAP-Homematic Tests ' + testCase, () => {
     let service = accessory.getService(Service.Thermostat)
     let ch = service.getCharacteristic(Characteristic.TargetHeatingCoolingState)
     ch.setValue(Characteristic.CurrentHeatingCoolingState.OFF, async () => {
-      let value = await that.server._ccu.getValue('HmIP.0123456789ABCD:1.SET_POINT_TEMPERATURE')
+      let value = await that.server._ccu.getValue('HmIP.2123456789ABCD:1.SET_POINT_TEMPERATURE')
       try {
         expect(value).to.be(4.5)
         done()
@@ -143,7 +143,7 @@ describe('HAP-Homematic Tests ' + testCase, () => {
     let service = accessory.getService(Service.Thermostat)
     let ch = service.getCharacteristic(Characteristic.TargetHeatingCoolingState)
     ch.setValue(Characteristic.CurrentHeatingCoolingState.HEAT, async () => {
-      let value = await that.server._ccu.getValue('HmIP.0123456789ABCD:1.SET_POINT_TEMPERATURE')
+      let value = await that.server._ccu.getValue('HmIP.2123456789ABCD:1.SET_POINT_TEMPERATURE')
       try {
         expect(value).to.be(rnd)
         done()
