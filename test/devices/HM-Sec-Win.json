@@ -1,0 +1,33 @@
+{
+  "devices": [
+    {
+      "id": 1000,
+      "intf": 0,
+      "intfName": "BidCos-RF",
+      "name": "HM-Sec-Win",
+      "address": "1123456789ABCD",
+      "type": "HM-Sec-Win",
+      "channels": [
+        {
+          "id": 1001,
+          "name": "1123456789ABCD:1",
+          "intf": 0,
+          "address": "1123456789ABCD:1",
+          "type": "WINMATIC",
+          "access": 255
+        },
+        {
+          "id": 1002,
+          "name": "1123456789ABCD:2",
+          "intf": 0,
+          "address": "1123456789ABCD:2",
+          "type": "AKKU",
+          "access": 255
+        }
+      ]
+    }
+  ],
+  "ccu": {
+    "1123456789ABCD:1": "HomeMaticWinmaticAccessory"
+  }
+}
