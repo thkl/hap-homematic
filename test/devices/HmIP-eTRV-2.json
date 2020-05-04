@@ -1,0 +1,81 @@
+{
+  "devices": [
+    {
+      "id": 1000,
+      "intf": 0,
+      "intfName": "HmIP",
+      "name": "HmIP-eTRV-2",
+      "address": "0123456789ABCD",
+      "type": "HmIP-eTRV-2",
+      "channels": [
+        {
+          "id": 1001,
+          "name": "0123456789ABCD:0",
+          "intf": 0,
+          "address": "0123456789ABCD:0",
+          "type": "MAINTENANCE",
+          "access": 255
+        },
+        {
+          "id": 1002,
+          "name": "0123456789ABCD:1",
+          "intf": 0,
+          "address": "0123456789ABCD:1",
+          "type": "HEATING_CLIMATECONTROL_TRANSCEIVER",
+          "access": 255
+        },
+        {
+          "id": 1003,
+          "name": "0123456789ABCD:2",
+          "intf": 0,
+          "address": "0123456789ABCD:2",
+          "type": "HEATING_CLIMATECONTROL_RECEIVER",
+          "access": 255
+        },
+        {
+          "id": 1004,
+          "name": "0123456789ABCD:3",
+          "intf": 0,
+          "address": "0123456789ABCD:3",
+          "type": "HEATING_CLIMATECONTROL_CL_RECEIVER",
+          "access": 255
+        },
+        {
+          "id": 1005,
+          "name": "0123456789ABCD:4",
+          "intf": 0,
+          "address": "0123456789ABCD:4",
+          "type": "HEATING_SHUTTER_CONTACT_RECEIVER",
+          "access": 255
+        },
+        {
+          "id": 1006,
+          "name": "0123456789ABCD:5",
+          "intf": 0,
+          "address": "0123456789ABCD:5",
+          "type": "HEATING_ROOM_TH_TRANSCEIVER",
+          "access": 255
+        },
+        {
+          "id": 1007,
+          "name": "0123456789ABCD:6",
+          "intf": 0,
+          "address": "0123456789ABCD:6",
+          "type": "HEATING_ROOM_TH_RECEIVER",
+          "access": 255
+        },
+        {
+          "id": 1008,
+          "name": "0123456789ABCD:7",
+          "intf": 0,
+          "address": "0123456789ABCD:7",
+          "type": "HEATING_KEY_RECEIVER",
+          "access": 255
+        }
+      ]
+    }
+  ],
+  "ccu": {
+    "0123456789ABCD:1": "HomeMaticRadiatorThermostatAccessory"
+}
+}
