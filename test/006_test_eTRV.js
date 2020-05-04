@@ -82,16 +82,16 @@ describe('HAP-Homematic Tests ' + testCase, () => {
     })
   })
 
-  rnd = Math.floor(Math.random() * Math.floor(30)) + 5 // make sure we do not set below the off themp
+  let rnd1 = (Math.floor(Math.random() * Math.floor(24)) + 10) // make sure we do not set below the off themp and 10 is min value
 
-  it('HAP-Homematic check SET_POINT_TEMPERATURE and HeatingMode ' + rnd, (done) => {
+  it('HAP-Homematic check SET_POINT_TEMPERATURE and HeatingMode ' + rnd1, (done) => {
     let accessory = that.server._publishedAccessories[Object.keys(that.server._publishedAccessories)[0]]
     let service = accessory.getService(Service.Thermostat)
     let ch = service.getCharacteristic(Characteristic.TargetTemperature)
-    ch.setValue(rnd, async () => {
+    ch.setValue(rnd1, async () => {
       let value = await that.server._ccu.getValue('HmIP.2123456789ABCD:1.SET_POINT_TEMPERATURE')
       try {
-        expect(value).to.be(rnd)
+        expect(value).to.be(rnd1)
       } catch (e) {
 
       }
@@ -138,18 +138,20 @@ describe('HAP-Homematic Tests ' + testCase, () => {
     })
   })
 
-  it('HAP-Homematic set Heating Mode back to heating check ' + rnd + ' degree again', (done) => {
+  it('HAP-Homematic set Heating Mode back to heating check ' + rnd1 + ' degree again', (done) => {
     let accessory = that.server._publishedAccessories[Object.keys(that.server._publishedAccessories)[0]]
     let service = accessory.getService(Service.Thermostat)
     let ch = service.getCharacteristic(Characteristic.TargetHeatingCoolingState)
-    ch.setValue(Characteristic.CurrentHeatingCoolingState.HEAT, async () => {
-      let value = await that.server._ccu.getValue('HmIP.2123456789ABCD:1.SET_POINT_TEMPERATURE')
-      try {
-        expect(value).to.be(rnd)
-        done()
-      } catch (e) {
-        done(e)
-      }
+    ch.setValue(Characteristic.CurrentHeatingCoolingState.HEAT, () => {
+      setTimeout(async () => {
+        let value = await that.server._ccu.getValue('HmIP.2123456789ABCD:1.SET_POINT_TEMPERATURE')
+        try {
+          expect(value).to.be(rnd1)
+          done()
+        } catch (e) {
+          done(e)
+        }
+      }, 100)
     })
   })
 })

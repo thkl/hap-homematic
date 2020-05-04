@@ -99,16 +99,16 @@ describe('HAP-Homematic Tests ' + testCase, () => {
     })
   })
 
-  rnd = Math.floor(Math.random() * Math.floor(30)) + 5 // make sure we do not set below the off themp
+  let rnd1 = Math.floor(Math.random() * Math.floor(30)) + 5 // make sure we do not set below the off themp
 
-  it('HAP-Homematic check SET_TEMPERATURE and HeatingMode ' + rnd, (done) => {
+  it('HAP-Homematic check SET_TEMPERATURE and HeatingMode ' + rnd1, (done) => {
     let accessory = that.server._publishedAccessories[Object.keys(that.server._publishedAccessories)[0]]
     let service = accessory.getService(Service.Thermostat)
     let ch = service.getCharacteristic(Characteristic.TargetTemperature)
     ch.setValue(rnd, async () => {
       let value = await that.server._ccu.getValue('BidCos-RF.0123456789ABCD:2.SET_TEMPERATURE')
       try {
-        expect(value).to.be(rnd)
+        expect(value).to.be(rnd1)
       } catch (e) {
 
       }

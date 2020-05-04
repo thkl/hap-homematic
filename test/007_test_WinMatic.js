@@ -90,56 +90,47 @@ describe('HAP-Homematic Tests ' + testCase, () => {
   })
 
   it('HAP-Homematic check running window - fire level 50%', (done) => {
-    that.server._ccu.fireEvent('BidCos-RF.1123456789ABCD:1.LEVEL', 0.5)
     that.server._ccu.fireEvent('BidCos-RF.1123456789ABCD:1.WORKING', true)
+    that.server._ccu.fireEvent('BidCos-RF.1123456789ABCD:1.LEVEL', 0.5)
     that.server._ccu.fireEvent('BidCos-RF.1123456789ABCD:1.DIRECTION', 1)
     let accessory = that.server._publishedAccessories[Object.keys(that.server._publishedAccessories)[0]]
     let service = accessory.getService(Service.Window)
-    let ch = service.getCharacteristic(Characteristic.CurrentPosition)
+    let curPos = service.getCharacteristic(Characteristic.CurrentPosition)
+    let tarPos = service.getCharacteristic(Characteristic.TargetPosition)
+    let state = service.getCharacteristic(Characteristic.PositionState)
     // do not get the value cause we want to use the event
     try {
-      expect(ch.value).to.be(50)
-    } catch (e) {
-      done(e)
-    }
-    let ch1 = service.getCharacteristic(Characteristic.TargetPosition)
-    try {
-      expect(ch1.value).to.be(50)
-    } catch (e) {
-      done(e)
-    }
-    let ch2 = service.getCharacteristic(Characteristic.PositionState)
-    try {
-      expect(ch2.value).to.be(Characteristic.PositionState.INCREASING)
-      done()
+      expect(tarPos.value).to.be(50)
+      expect(state.value).to.be(Characteristic.PositionState.INCREASING)
+      // we have to wait cause the service sets current 200ms after the target position
+      setTimeout(() => {
+        expect(tarPos.value).to.be(50)
+        done()
+      }, 250)
     } catch (e) {
       done(e)
     }
   })
 
   it('HAP-Homematic check running window done (100%) Working still not false', (done) => {
+    that.server._ccu.fireEvent('BidCos-RF.1123456789ABCD:1.WORKING', true)
     that.server._ccu.fireEvent('BidCos-RF.1123456789ABCD:1.LEVEL', 1)
     that.server._ccu.fireEvent('BidCos-RF.1123456789ABCD:1.DIRECTION', 1)
-    that.server._ccu.fireEvent('BidCos-RF.1123456789ABCD:1.WORKING', true)
     let accessory = that.server._publishedAccessories[Object.keys(that.server._publishedAccessories)[0]]
     let service = accessory.getService(Service.Window)
-    let ch = service.getCharacteristic(Characteristic.CurrentPosition)
+    let curPos = service.getCharacteristic(Characteristic.CurrentPosition)
+    let tarPos = service.getCharacteristic(Characteristic.TargetPosition)
+    let state = service.getCharacteristic(Characteristic.PositionState)
+
     // do not get the value cause we want to use the event
     try {
-      expect(ch.value).to.be(100)
-    } catch (e) {
-      done(e)
-    }
-    let ch1 = service.getCharacteristic(Characteristic.TargetPosition)
-    try {
-      expect(ch1.value).to.be(100)
-    } catch (e) {
-      done(e)
-    }
-    let ch2 = service.getCharacteristic(Characteristic.PositionState)
-    try {
-      expect(ch2.value).to.be(Characteristic.PositionState.INCREASING)
-      done()
+      expect(tarPos.value).to.be(100)
+      expect(state.value).to.be(Characteristic.PositionState.INCREASING)
+      // we have to wait cause the service sets current 200ms after the target position
+      setTimeout(() => {
+        expect(curPos.value).to.be(100)
+        done()
+      }, 250)
     } catch (e) {
       done(e)
     }
@@ -148,18 +139,18 @@ describe('HAP-Homematic Tests ' + testCase, () => {
   it('HAP-Homematic requery window state by homekit (should be also 100)', (done) => {
     let accessory = that.server._publishedAccessories[Object.keys(that.server._publishedAccessories)[0]]
     let service = accessory.getService(Service.Window)
-    let ch = service.getCharacteristic(Characteristic.CurrentPosition)
-    ch.getValue((context, value) => {
+    let curPos = service.getCharacteristic(Characteristic.CurrentPosition)
+    let tarPos = service.getCharacteristic(Characteristic.TargetPosition)
+    curPos.getValue((context, value) => {
       try {
-        expect(ch.value).to.be(100)
+        expect(value).to.be(100)
       } catch (e) {
         done(e)
       }
     })
-    let ch1 = service.getCharacteristic(Characteristic.TargetPosition)
-    ch1.getValue((context, value) => {
+    tarPos.getValue((context, value) => {
       try {
-        expect(ch1.value).to.be(100)
+        expect(value).to.be(100)
         done()
       } catch (e) {
         done(e)
@@ -173,23 +164,18 @@ describe('HAP-Homematic Tests ' + testCase, () => {
     that.server._ccu.fireEvent('BidCos-RF.1123456789ABCD:1.WORKING', false)
     let accessory = that.server._publishedAccessories[Object.keys(that.server._publishedAccessories)[0]]
     let service = accessory.getService(Service.Window)
-    let ch = service.getCharacteristic(Characteristic.CurrentPosition)
+    let curPos = service.getCharacteristic(Characteristic.CurrentPosition)
+    let tarPos = service.getCharacteristic(Characteristic.TargetPosition)
+    let state = service.getCharacteristic(Characteristic.PositionState)
+
     // do not get the value cause we want to use the event
     try {
-      expect(ch.value).to.be(100)
-    } catch (e) {
-      done(e)
-    }
-    let ch1 = service.getCharacteristic(Characteristic.TargetPosition)
-    try {
-      expect(ch1.value).to.be(100)
-    } catch (e) {
-      done(e)
-    }
-    let ch2 = service.getCharacteristic(Characteristic.PositionState)
-    try {
-      expect(ch2.value).to.be(Characteristic.PositionState.STOPPED)
-      done()
+      expect(tarPos.value).to.be(100)
+      expect(state.value).to.be(Characteristic.PositionState.STOPPED)
+      setTimeout(() => {
+        expect(curPos.value).to.be(100)
+        done()
+      }, 250)
     } catch (e) {
       done(e)
     }
