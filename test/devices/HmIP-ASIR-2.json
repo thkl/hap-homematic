@@ -1,0 +1,47 @@
+{
+  "devices": [
+    {
+      "id": 1000,
+      "intf": 0,
+      "intfName": "HmIP",
+      "name": "HmIP-ASIR-2",
+      "address": "0123456789ABCD",
+      "type": "HmIP-ASIR-2",
+      "channels": [
+        {
+          "id": 1001,
+          "name": "0123456789ABCD:0",
+          "intf": 0,
+          "address": "0123456789ABCD:0",
+          "type": "MAINTENANCE",
+          "access": 255
+        },
+        {
+          "id": 1002,
+          "name": "0123456789ABCD:1",
+          "intf": 0,
+          "address": "0123456789ABCD:1",
+          "type": "KEY_TRANSCEIVER",
+          "access": 255
+        },
+        {
+          "id": 1003,
+          "name": "0123456789ABCD:2",
+          "intf": 0,
+          "address": "0123456789ABCD:2",
+          "type": "ALARM_COND_SWITCH_RECEIVER",
+          "access": 255
+        },
+        {
+          "id": 1004,
+          "name": "0123456789ABCD:3",
+          "intf": 0,
+          "address": "0123456789ABCD:3",
+          "type": "ALARM_SWITCH_VIRTUAL_RECEIVER",
+          "access": 255
+        }
+      ]
+    }
+  ],
+  "ccu":{}
+}
