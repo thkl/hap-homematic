@@ -1,3 +1,16 @@
+Changelog for 0.0.38:
+=====================
+
+* Added a config backup
+* Monitoring is now optional
+* Bugfix for variables and programs with : in names
+* Bugfix HmIP RadiatorThermostate
+* Special device Garagedoor opener will now work with KEY devices
+* Added HmIP-SWO-*
+* Removed HmIP-ASIR support cause there is no need
+* Fixed WinMatic
+
+
 Changelog for 0.0.37:
 =====================
 

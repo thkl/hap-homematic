@@ -1,3 +1,11 @@
+/**
+ * hm_addon.js Node version of hm_addon command
+ * creates or removes a button from homematic webui system page
+ * usage : node hm_addon.js uid [configfile]
+ * 2020 by thkl https://github.com/thkl
+ *
+ */
+
 const fs = require('fs')
 let cfgFileName = '/etc/config/hm_addons.cfg'
 let regex = /(.*?) \{CONFIG_URL (.*?) CONFIG_DESCRIPTION \{de (.*?) en (.*?)\} ID (.*?) CONFIG_NAME (.*?)\} /g
