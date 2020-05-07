@@ -9846,7 +9846,7 @@ html:not([dir="rtl"]) .c-sidebar.c-sidebar-show.c-sidebar-right, html:not([dir="
 
 .c-sidebar .c-sidebar-nav-link.c-active, .c-sidebar .c-active.c-sidebar-nav-dropdown-toggle {
   color: #fff;
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(0, 0, 255, 0.25);
 }
 
 .c-sidebar .c-sidebar-nav-link.c-active .c-sidebar-nav-icon, .c-sidebar .c-active.c-sidebar-nav-dropdown-toggle .c-sidebar-nav-icon {

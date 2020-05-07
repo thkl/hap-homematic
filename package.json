@@ -45,6 +45,7 @@
 		"etc/",
 		"README.md",
 		"CHANGELOG.md",
+		"LICENSE",
 		"index.js",
 		"package.json",
 		".nobackup"
