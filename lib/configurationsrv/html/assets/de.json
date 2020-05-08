@@ -231,8 +231,9 @@
       "Dieser Service erzeugt ein Thermometer in HomeKit welches die aktuelle Temperatur deiner CCU anzeigt",
       "This service provides a garage door opener in HomeKit based on multiple devices from your ccu":
        "Dieser Service erzeugt einen Garagentoröffner welcher aus einzelnen CCU Geräten zusammengesetzt wird",
-       "Enable Monitoring":"Monitoring einschalten",
-       "Disable Eve History":"Eve History ausschalten"
+      "Enable Monitoring":"Monitoring einschalten",
+      "Disable Eve History":"Eve History ausschalten",
+      "Use HTTPS":"HTTPS benutzen"
     }
 
 
