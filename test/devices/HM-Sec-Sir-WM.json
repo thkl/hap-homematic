@@ -1,0 +1,49 @@
+{
+  "devices": [
+    {
+      "id": 1000,
+      "intf": 0,
+      "intfName": "BidCos-RF",
+      "name": "HM-Sec-Sir-WM",
+      "address": "5820259065ABCD",
+      "type": "HM-Sec-Sir-WM",
+      "channels": [
+        {
+          "id": 1001,
+          "name": "5820259065ABCD:1",
+          "intf": 0,
+          "address": "5820259065ABCD:1",
+          "type": "SWITCH_SENSOR",
+          "access": 255
+        },
+        {
+          "id": 1002,
+          "name": "5820259065ABCD:2",
+          "intf": 0,
+          "address": "5820259065ABCD:2",
+          "type": "SWITCH_SENSOR",
+          "access": 255
+        },
+        {
+          "id": 1003,
+          "name": "5820259065ABCD:3",
+          "intf": 0,
+          "address": "5820259065ABCD:3",
+          "type": "SWITCH_PANIC",
+          "access": 255
+        },
+        {
+          "id": 1004,
+          "name": "5820259065ABCD:4",
+          "intf": 0,
+          "address": "5820259065ABCD:4",
+          "type": "ARMING",
+          "access": 255
+        }
+      ]
+    }
+  ],
+  "ccu": {
+    "5820259065ABCD:4": "HomeMaticAlarmAccessory"
+  }
+}
