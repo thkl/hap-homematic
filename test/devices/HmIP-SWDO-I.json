@@ -1,0 +1,38 @@
+{
+  "devices": [
+    {
+      "id": 1000,
+      "intf": 0,
+      "intfName": "HmIP",
+      "name": "HmIP-SWDO-I",
+      "address": "5962284199ABCD",
+      "type": "HmIP-SWDO-I",
+      "channels": [
+        {
+          "id": 1001,
+          "name": "5962284199ABCD:0",
+          "intf": 0,
+          "address": "5962284199ABCD:0",
+          "type": "MAINTENANCE",
+          "access": 255
+        },
+        {
+          "id": 1002,
+          "name": "5962284199ABCD:1",
+          "intf": 0,
+          "address": "5962284199ABCD:1",
+          "type": "SHUTTER_CONTACT",
+          "access": 255
+        }
+      ]
+    }
+  ],
+  "ccu": {
+    "5962284199ABCD:1": "HomeMaticWindowAccessory"
+  },
+  "mappings": {
+    "5962284199ABCD:1": {
+      "Service":"HomeMaticWindowAccessory"
+    }
+  }
+}
