@@ -1,0 +1,86 @@
+{
+	"devices": [{
+		"id": 1000,
+		"intf": 0,
+		"intfName": "HmIP",
+		"name": "HmIP-PSM",
+		"address": "5857734983ABCD",
+		"type": "HMIP-PSM",
+		"channels": [{
+				"id": 1001,
+				"name": "5857734983ABCD:0",
+				"intf": 0,
+				"address": "5857734983ABCD:0",
+				"type": "MAINTENANCE",
+				"access": 253
+			},
+			{
+				"id": 1002,
+				"name": "5857734983ABCD:1",
+				"intf": 0,
+				"address": "5857734983ABCD:1",
+				"type": "KEY_TRANSCEIVER",
+				"access": 253
+			},
+			{
+				"id": 1003,
+				"name": "5857734983ABCD:2",
+				"intf": 0,
+				"address": "5857734983ABCD:2",
+				"type": "SWITCH_TRANSMITTER",
+				"access": 253
+			},
+			{
+				"id": 1004,
+				"name": "5857734983ABCD:3",
+				"intf": 0,
+				"address": "5857734983ABCD:3",
+				"type": "SWITCH_VIRTUAL_RECEIVER",
+				"access": 255
+			},
+			{
+				"id": 1005,
+				"name": "5857734983ABCD:4",
+				"intf": 0,
+				"address": "5857734983ABCD:4",
+				"type": "SWITCH_VIRTUAL_RECEIVER",
+				"access": 255
+			},
+			{
+				"id": 1006,
+				"name": "5857734983ABCD:5",
+				"intf": 0,
+				"address": "5857734983ABCD:5",
+				"type": "SWITCH_VIRTUAL_RECEIVER",
+				"access": 255
+			},
+			{
+				"id": 1007,
+				"name": "5857734983ABCD:6",
+				"intf": 0,
+				"address": "5857734983ABCD:6",
+				"type": "ENERGIE_METER_TRANSMITTER",
+				"access": 253
+			},
+			{
+				"id": 1008,
+				"name": "5857734983ABCD:7",
+				"intf": 0,
+				"address": "5857734983ABCD:7",
+				"type": "COND_SWITCH_TRANSMITTER",
+				"access": 253
+			},
+			{
+				"id": 1009,
+				"name": "5857734983ABCD:8",
+				"intf": 0,
+				"address": "5857734983ABCD:8",
+				"type": "SWITCH_WEEK_PROFILE",
+				"access": 255
+			}
+		]
+	}],
+	"ccu": {
+		"5857734983ABCD:6": "HomeMaticIPPowerMeterSwitchAccessory"
+	}
+}
