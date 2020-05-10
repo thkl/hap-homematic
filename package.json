@@ -22,8 +22,7 @@
 		"fakegato-history": "0.5.6",
 		"hap-nodejs": "0.5.7",
 		"homematic-xmlrpc": "1.0.2",
-		"husky": "^4.2.5",
-		"standard": "14.3.3"
+		"husky": "^4.2.5"
 	},
 	
 	"husky": {
@@ -37,7 +36,7 @@
 		"start": "node index.js || true",
 		"dev": "node index.js -D || true",
 		"devall": "DEBUG=* node index.js -D || true",
-		"test": "standard && mocha",
+		"test": "mocha",
 		"update": "mkdir /tmp/hap-homematic-cache;cd /usr/local/addons/hap-homematic;npm i --cache /tmp/hap-homematic-cache hap-homematic@latest;rm -R /tmp/hap-homematic-cache",
 		"restart": "/etc/config/rc.d/hap-homematic restart"
 	},
