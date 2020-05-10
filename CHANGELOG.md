@@ -1,3 +1,8 @@
+Changelog for 0.0.39:
+=====================
+
+* some bug fixes and improvements 
+
 Changelog for 0.0.38:
 =====================
 
