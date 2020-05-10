@@ -95,7 +95,7 @@ describe('HAP-Homematic Tests ' + testCase, () => {
     })
   })
 
-  let rnd = Math.floor(Math.random() * Math.floor(500))
+  let rnd = Math.floor(Math.random() * Math.floor(500)) + 1 // add 1 to be > 0.0001 which is the min level
 
   it('HAP-Homematic check ILLUMINATION ' + rnd, (done) => {
     that.server._ccu.fireEvent('HmIP.0123456789ABCD:1.ILLUMINATION', rnd)
