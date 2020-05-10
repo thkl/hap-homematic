@@ -37,5 +37,10 @@
     ],
     "ccu": {
         "0123456789ABCD:1": "HomeMaticContactSensorAccessory"
+    },
+    "mappings": {
+      "0123456789ABCD:1": {
+        "Service":"HomeMaticContactSensorAccessory"
+      }
     }
 }
