@@ -104,7 +104,7 @@ describe('HAP-Homematic Tests ' + testCase, () => {
       expect(state.value).to.be(Characteristic.PositionState.INCREASING)
       // we have to wait cause the service sets current 200ms after the target position
       setTimeout(() => {
-        expect(tarPos.value).to.be(50)
+        expect(curPos.value).to.be(50)
         done()
       }, 250)
     } catch (e) {
