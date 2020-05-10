@@ -22,7 +22,8 @@
 		"fakegato-history": "0.5.6",
 		"hap-nodejs": "0.5.7",
 		"homematic-xmlrpc": "1.0.2",
-		"husky": "^4.2.5"
+		"husky": "^4.2.5",
+		"standard": "14.3.3"
 	},
 	
 	"husky": {
