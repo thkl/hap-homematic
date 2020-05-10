@@ -2,6 +2,7 @@
 
 [![Build Status](https://travis-ci.org/thkl/hap-homematic.svg?branch=master)](https://travis-ci.org/thkl/hap-homematic)
 [![npm version](https://badge.fury.io/js/hap-homematic.svg)](https://badge.fury.io/js/hap-homematic)
+[![Node.js CI](https://github.com/thkl/hap-homematic/workflows/Node.js%20CI/badge.svg)]https://github.com/thkl/hap-homematic/workflows/Node.js%20CI/badge.svg)
 
 <p align="center">
     <img src="doc/hap_homematic_ui1.png">

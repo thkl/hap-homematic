@@ -9,7 +9,6 @@
 const fs = require('fs')
 let cfgFileName = '/etc/config/hm_addons.cfg'
 let regex = /(.*?) \{CONFIG_URL (.*?) CONFIG_DESCRIPTION \{de (.*?) en (.*?)\} ID (.*?) CONFIG_NAME (.*?)\} /g
-var strcnf = ''
 var m
 var items = {}
 var addItem

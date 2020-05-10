@@ -16,18 +16,27 @@
 		"node": ">=8.11.0"
 	},
 	"dependencies": {
-		"hap-nodejs": "0.5.7",
+		"binrpc": "3.3.1",
 		"chalk": "3.0.0",
-		"homematic-xmlrpc": "1.0.2",
 		"commander": "4.1.1",
 		"fakegato-history": "0.5.6",
-		"binrpc": "3.3.1"
+		"hap-nodejs": "0.5.7",
+		"homematic-xmlrpc": "1.0.2",
+		"husky": "^4.2.5"
 	},
+	
+	"husky": {
+		"hooks": {
+			"pre-commit": "npm test",
+			"pre-push": "npm test"
+		}
+	},
+
 	"scripts": {
 		"start": "node index.js || true",
 		"dev": "node index.js -D || true",
 		"devall": "DEBUG=* node index.js -D || true",
-		"test": "mocha",
+		"test": "standard && mocha",
 		"update": "mkdir /tmp/hap-homematic-cache;cd /usr/local/addons/hap-homematic;npm i --cache /tmp/hap-homematic-cache hap-homematic@latest;rm -R /tmp/hap-homematic-cache",
 		"restart": "/etc/config/rc.d/hap-homematic restart"
 	},
@@ -39,6 +48,16 @@
 		"bail": true,
 		"reporter": "spec",
 		"recursive": true
+	},
+	"standard": {
+		"ignore": [
+			"/lib/configurationsrv/html/*"
+		],
+		"env": [
+			"commonjs",
+			"node",
+			"mocha"
+		]
 	},
 	"files": [
 		"lib/",
