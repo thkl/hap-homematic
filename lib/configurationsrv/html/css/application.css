@@ -33,3 +33,17 @@
 .sortbyreverse {
     text-decoration: overline;
 }
+
+
+#bridgeOverview::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  
+#bridgeOverview::-webkit-scrollbar-thumb {
+  background: rgba(90, 90, 90);
+}
+  
+#bridgeOverview::-webkit-scrollbar-track {
+    background: rgba(41, 130, 204, 0.2);
+}
