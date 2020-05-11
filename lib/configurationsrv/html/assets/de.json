@@ -241,6 +241,8 @@
       "Download":"Download",
       "Close":"Schließen",
       "Request Support ...":"Supportanfrage",
+      "Support":"Hilfe",
+      "Backup":"Datensicherung",
       "If you want to add a devices you own, which is currently not supported, u may help the developer here.":
        "Wenn Du ein Gerät von Dir hinzufügen möchtest, welches aktuell noch nicht unterstützt wird, kannst Du hier dem Entwickler helfen.",
       "Please enter the serial number of your device. HAP-HomeMatic will create an anonymous file with all necessary information to add this device.":

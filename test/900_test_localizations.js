@@ -6,6 +6,8 @@ const expect = require('expect.js')
 
 describe('HAP-Homematic Localization Tests', () => {
   this.regEx = /.__\('([^,][^']*)/g
+  this.regExIndex = /data-localize="(.*)"/g
+
   let locFile = path.join(__dirname, '..', 'lib', 'configurationsrv', 'html', 'assets', 'de.json')
   if (fs.existsSync(locFile)) {
     this.localizations = JSON.parse(fs.readFileSync(locFile))
@@ -57,6 +59,24 @@ describe('HAP-Homematic Localization Tests', () => {
       // split
       do {
         m = this.regEx.exec(content)
+        if (m) {
+          assert.ok(this.localizations[m[1]], m[1] + ' has no localization')
+        }
+      } while (m)
+    }
+
+    done()
+  })
+
+  it('HAP-Homematic check index.html', (done) => {
+    // load the file
+    let file = path.join(__dirname, '..', 'lib', 'configurationsrv', 'html', 'index.html')
+    if (fs.existsSync(file)) {
+      let content = fs.readFileSync(file)
+      var m
+      // split
+      do {
+        m = this.regExIndex.exec(content)
         if (m) {
           assert.ok(this.localizations[m[1]], m[1] + ' has no localization')
         }
