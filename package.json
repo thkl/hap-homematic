@@ -17,21 +17,18 @@
 	},
 	"dependencies": {
 		"binrpc": "3.3.1",
-		"chalk": "3.0.0",
-		"commander": "4.1.1",
+		"chalk": "4.0.0",
+		"commander": "5.1.0",
 		"fakegato-history": "0.5.6",
 		"hap-nodejs": "0.5.7",
-		"homematic-xmlrpc": "1.0.2",
-		"husky": "^4.2.5"
+		"homematic-xmlrpc": "1.0.2"
 	},
-	
 	"husky": {
 		"hooks": {
 			"pre-commit": "npm test",
 			"pre-push": "npm test"
 		}
 	},
-
 	"scripts": {
 		"start": "node index.js || true",
 		"dev": "node index.js -D || true",
@@ -42,7 +39,8 @@
 	},
 	"devDependencies": {
 		"mocha": "^7.0.1",
-		"expect.js": "0.3.1"
+		"expect.js": "0.3.1",
+		"husky": "^4.2.5"
 	},
 	"mocha": {
 		"bail": true,
