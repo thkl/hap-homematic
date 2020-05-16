@@ -131,10 +131,17 @@
               <span data-localize="Backup">Backup</span></a>
           </li>
           <li class="c-sidebar-nav-item">
+            <a class="c-sidebar-nav-link" style="cursor:pointer;" id="btn_refreshCache">
+              <i class="c-icon c-icon-lg mt-2 ml-1 mr-3 mb-2 cil-audio"></i>
+              <span data-localize="Refresh CCU Cache">Refresh CCU Cache</span></a>
+          </li>
+
+          <li class="c-sidebar-nav-item">
             <a class="c-sidebar-nav-link" style="cursor:pointer;" id="btn_restart">
               <i class="c-icon c-icon-lg mt-2 ml-1 mr-3 mb-2 cil-reload"></i>
               <span data-localize="Restart HAP Service">Restart HAP Service</span></a>
           </li>
+
       </ul>
       </li>
 
@@ -213,6 +220,7 @@
     <script src="js/bootstrap.min.js"></script>
     <script src="js/bootstrap-notify.js"></script>
     <script src="js/jquery-ui.min.js"></script>
+    <script src="js/sockjs.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.1/showdown.min.js"></script>
     <script type="module">
         import { Application } from './js/application.js'

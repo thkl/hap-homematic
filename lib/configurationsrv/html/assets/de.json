@@ -294,8 +294,8 @@
       "Type of valve":"Ventiltyp",
       "A valve can have different types":"Ein Ventil kann verschiedene Typen haben",
       "Apple Home compatible":"Apple Home kompatibel",
-      "creates an Apple Home App compatible Device. This will only show temperature, humidity and light level":"erstellt ein Apple Home App kompatibles Gerät. Dieses hat nur Temperatur, Feuchtigkeit und Helligkeitssensoren"
-
+      "creates an Apple Home App compatible Device. This will only show temperature, humidity and light level":"erstellt ein Apple Home App kompatibles Gerät. Dieses hat nur Temperatur, Feuchtigkeit und Helligkeitssensoren",
+      "Refresh CCU Cache":"CCU Cache aktualisieren"
     }
 
 
