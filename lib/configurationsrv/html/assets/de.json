@@ -296,7 +296,11 @@
       "Apple Home compatible":"Apple Home kompatibel",
       "creates an Apple Home App compatible Device. This will only show temperature, humidity and light level":"erstellt ein Apple Home App kompatibles Gerät. Dieses hat nur Temperatur, Feuchtigkeit und Helligkeitssensoren",
       "Refresh CCU Cache":"CCU Cache aktualisieren",
-      "(!!) = Please make sure, that these ports are not blocked by your CCU firewall.":"(!!) = Bitte stelle sicher, das diese Ports nicht von Deiner CCU Firewall blockiert werden."
+      "(!!) = Please make sure, that these ports are not blocked by your CCU firewall.":"(!!) = Bitte stelle sicher, das diese Ports nicht von Deiner CCU Firewall blockiert werden.",
+      "Backup file":"Datensicherungsdatei",
+      "Backup/Restore":"Datensicherung / Zurückspielen",
+      "Create Backup":"Datensicherung erzeugen",
+      "Restore":"Datensicherung zurückspielen"
     }
 
 

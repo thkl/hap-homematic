@@ -22,7 +22,8 @@
 		"fakegato-history": "^0.5.6",
 		"hap-nodejs": "^0.5.7",
 		"homematic-xmlrpc": "1.0.2",
-		"sockjs":"^0.3.20"
+		"sockjs":"^0.3.20",
+		"formidable":"^1.2.2"
 	},
 	"husky": {
 		"hooks": {
