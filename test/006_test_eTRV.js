@@ -153,4 +153,49 @@ describe('HAP-Homematic Tests ' + testCase, () => {
       }, 100)
     })
   })
+
+  it('HAP-Homematic test low bat', (done) => {
+    that.server._ccu.fireEvent('HmIP.2123456789ABCD:0.LOW_BAT', true)
+    let accessory = that.server._publishedAccessories[Object.keys(that.server._publishedAccessories)[0]]
+    let service = accessory.getService(Service.BatteryService)
+    let ch = service.getCharacteristic(Characteristic.StatusLowBattery)
+    ch.getValue((context, value) => {
+      try {
+        expect(value).to.be(Characteristic.StatusLowBattery.BATTERY_LEVEL_LOW)
+        done()
+      } catch (e) {
+        done(e)
+      }
+    })
+  })
+
+  it('HAP-Homematic test low bat negative', (done) => {
+    that.server._ccu.fireEvent('HmIP.2123456789ABCD:0.LOW_BAT', false)
+    let accessory = that.server._publishedAccessories[Object.keys(that.server._publishedAccessories)[0]]
+    let service = accessory.getService(Service.BatteryService)
+    let ch = service.getCharacteristic(Characteristic.StatusLowBattery)
+    ch.getValue((context, value) => {
+      try {
+        expect(value).to.be(Characteristic.StatusLowBattery.BATTERY_LEVEL_NORMAL)
+        done()
+      } catch (e) {
+        done(e)
+      }
+    })
+  })
+
+  it('HAP-Homematic test voltage reading 1.2V 50%', (done) => {
+    that.server._ccu.fireEvent('HmIP.2123456789ABCD:0.OPERATING_VOLTAGE', 1.2)
+    let accessory = that.server._publishedAccessories[Object.keys(that.server._publishedAccessories)[0]]
+    let service = accessory.getService(Service.BatteryService)
+    let ch = service.getCharacteristic(Characteristic.BatteryLevel)
+    ch.getValue((context, value) => {
+      try {
+        expect(value).to.be(50)
+        done()
+      } catch (e) {
+        done(e)
+      }
+    })
+  })
 })
