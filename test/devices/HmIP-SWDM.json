@@ -21,7 +21,7 @@
                     "name": "HmIP-SWDM 0123456789ABCD:1",
                     "intf": 0,
                     "address": "0123456789ABCD:1",
-                    "type": "SHUTTER_CONTACT",
+                    "type": "SHUTTER_CONTACT_TRANSCEIVER",
                     "access": 255
                 },
                 {
