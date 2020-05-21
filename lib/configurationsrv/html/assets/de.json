@@ -305,7 +305,7 @@
       "The value of your HomeMatic variable when it says you are at home":"Der Wert der HomeMatic Variable, wenn sie anzeigt, das Du Zuhause bist.",
       "Value for away":"Wert für Auswärts",
       "The value of your HomeMatic variable when it says you are away":"Der Wert der HomeMatic Variable, wenn sie anzeigt das Du auswärts bist.",
-      "Value for night":"Wert für Nachmodus",
+      "Value for night":"Wert für Nachtmodus",
       "The value of your HomeMatic variable when it says your home internal secured":"Der Wert der HomeMatic Variable, wenn sie intern scharf anzeigt.",
       "Value for disarmed":"Wert für unscharf",
       "The value of your HomeMatic variable when it says the alarm system is off.":"Der Wert der HomeMatic Variable, wenn sie anzeigt, das das System ausgeschalten ist.",
