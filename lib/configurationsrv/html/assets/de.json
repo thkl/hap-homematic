@@ -300,7 +300,18 @@
       "Backup file":"Datensicherungsdatei",
       "Backup/Restore":"Datensicherung / Zurückspielen",
       "Create Backup":"Datensicherung erzeugen",
-      "Restore":"Datensicherung zurückspielen"
+      "Restore":"Datensicherung zurückspielen",
+      "Value for stay":"Wert für Zuhause",
+      "The value of your HomeMatic variable when it says you are at home":"Der Wert der HomeMatic Variable, wenn sie anzeigt, das Du Zuhause bist.",
+      "Value for away":"Wert für Auswärts",
+      "The value of your HomeMatic variable when it says you are away":"Der Wert der HomeMatic Variable, wenn sie anzeigt das Du auswärts bist.",
+      "Value for night":"Wert für Nachmodus",
+      "The value of your HomeMatic variable when it says your home internal secured":"Der Wert der HomeMatic Variable, wenn sie intern scharf anzeigt.",
+      "Value for disarmed":"Wert für unscharf",
+      "The value of your HomeMatic variable when it says the alarm system is off.":"Der Wert der HomeMatic Variable, wenn sie anzeigt, das das System ausgeschalten ist.",
+      "Value for alarm":"Wert für Alarm",
+      "The value of your HomeMatic variable when all the red lights are flashing.":"Der Wert der HomeMatic Variable, wenn all die roten Lampen blinken.",
+      "This service provides a alarm system based on a variable":"Dieser Service stellt ein Alarmsystem, basierend auf einer Variable, zur Verfügung."
     }
 
 
