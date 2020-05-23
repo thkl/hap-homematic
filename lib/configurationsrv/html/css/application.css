@@ -47,3 +47,8 @@
 #bridgeOverview::-webkit-scrollbar-track {
     background: rgba(41, 130, 204, 0.2);
 }
+
+
+html:not([dir="rtl"]) .c-sidebar-nav-dropdown-items .c-sidebar-nav-link, html:not([dir="rtl"]) .c-sidebar-nav-dropdown-items .c-sidebar-nav-dropdown-toggle {
+    padding-left: 45px;
+}
