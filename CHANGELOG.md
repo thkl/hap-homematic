@@ -1,3 +1,11 @@
+Changelog for 0.0.41:
+=====================
+
+* changed WebUI to use WebSockets (beta)
+* added Battery Indicators
+* fixed evehistory for variables and ccu temp sensor
+* fixed HmIP-MOD-HO
+
 Changelog for 0.0.40:
 =====================
 

@@ -2,8 +2,6 @@ const assert = require('assert')
 const path = require('path')
 const fs = require('fs')
 
-const expect = require('expect.js')
-
 describe('HAP-Homematic Localization Tests', () => {
   this.regEx = /.__\('([^,][^']*)/g
   this.regExIndex = /data-localize="(.*)"/g
