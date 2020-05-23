@@ -1,3 +1,8 @@
+Changelog for 0.0.42:
+=====================
+
+* the welcome wizzard is back after a short visit at the beach 
+
 Changelog for 0.0.41:
 =====================
 
