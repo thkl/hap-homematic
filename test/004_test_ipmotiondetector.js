@@ -27,7 +27,12 @@ describe('HAP-Homematic Tests ' + testCase, () => {
       await that.server.simulate(undefined, {config: {
         channels: Object.keys(that.data.ccu)
       },
-      devices: that.data.devices})
+      devices: that.data.devices,
+      values: {
+        'HmIP.0123456789ABCD:0.LOW_BAT': false,
+        'HmIP.0123456789ABCD:0.OPERATING_VOLTAGE': 0
+      }
+      })
     } else {
       assert.ok(false, 'Unable to load Test data')
     }

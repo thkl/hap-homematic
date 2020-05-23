@@ -10,13 +10,14 @@ const fs = require('fs')
 let log = new Logger('HAP Test')
 log.setDebugEnabled(false)
 
-const testCase = 'HmIP-eTRV-2.json'
+const testCase = 'HmIP-Heating.json'
 
-describe('HAP-Homematic Tests ' + testCase, () => {
+describe('HAP-Homematic Tests (IP Heating Groups) ' + testCase, () => {
   let that = this
 
   before(async () => {
     log.debug('preparing tests')
+
     let datapath = path.join(__dirname, 'devices', testCase)
     let strData = fs.readFileSync(datapath).toString()
     if (strData) {
@@ -28,10 +29,8 @@ describe('HAP-Homematic Tests ' + testCase, () => {
         channels: Object.keys(that.data.ccu)
       },
       devices: that.data.devices,
-      values: {
-        'HmIP.2123456789ABCD:0.LOW_BAT': false,
-        'HmIP.2123456789ABCD:0.OPERATING_VOLTAGE': 2.4
-      }
+      mappings: that.data.mappings,
+      values: {'HmIP.4762653007ABCD:0.LOW_BAT': false}
       })
     } else {
       assert.ok(false, 'Unable to load Test data')
@@ -68,9 +67,9 @@ describe('HAP-Homematic Tests ' + testCase, () => {
     done()
   })
 
-  it('HAP-Homematic check ACTUAL_TEMPERATURE', (done) => {
+  it('HAP-Homematic check ACTUAL_TEMPERATURE with random value', (done) => {
     let rnd = Math.floor(Math.random() * Math.floor(30))
-    that.server._ccu.fireEvent('HmIP.2123456789ABCD:1.ACTUAL_TEMPERATURE', rnd)
+    that.server._ccu.fireEvent('HmIP.4762653007ABCD:1.ACTUAL_TEMPERATURE', rnd)
     let accessory = that.server._publishedAccessories[Object.keys(that.server._publishedAccessories)[0]]
     let service = accessory.getService(Service.Thermostat)
     assert.ok(service, 'Thermostat Service not found')
@@ -86,13 +85,29 @@ describe('HAP-Homematic Tests ' + testCase, () => {
     })
   })
 
-  it('HAP-Homematic check SET_POINT_TEMPERATURE and HeatingMode', (done) => {
-    let rnd1 = (Math.floor(Math.random() * Math.floor(24)) + 10) // make sure we do not set below the off themp and 10 is min value
+  it('HAP-Homematic check HUMIDITY with random value', (done) => {
+    let rnd = Math.floor(Math.random() * Math.floor(100))
+    that.server._ccu.fireEvent('HmIP.4762653007ABCD:1.HUMIDITY', rnd)
+    let accessory = that.server._publishedAccessories[Object.keys(that.server._publishedAccessories)[0]]
+    let service = accessory.getService(Service.Thermostat)
+    let ch = service.getCharacteristic(Characteristic.CurrentRelativeHumidity)
+    ch.getValue((context, value) => {
+      try {
+        expect(value).to.be(rnd)
+        done()
+      } catch (e) {
+        done(e)
+      }
+    })
+  })
+
+  it('HAP-Homematic check SET_TEMPERATURE and HeatingMode', (done) => {
+    let rnd1 = Math.floor(Math.random() * Math.floor(30)) + 5 // make sure we do not set below the off themp
     let accessory = that.server._publishedAccessories[Object.keys(that.server._publishedAccessories)[0]]
     let service = accessory.getService(Service.Thermostat)
     let ch = service.getCharacteristic(Characteristic.TargetTemperature)
     ch.setValue(rnd1, async () => {
-      let value = await that.server._ccu.getValue('HmIP.2123456789ABCD:1.SET_POINT_TEMPERATURE')
+      let value = await that.server._ccu.getValue('HmIP.4762653007ABCD:1.SET_POINT_TEMPERATURE')
       try {
         expect(value).to.be(rnd1)
       } catch (e) {
@@ -104,7 +119,6 @@ describe('HAP-Homematic Tests ' + testCase, () => {
     ch1.getValue((context, value) => {
       try {
         expect(value).to.be(Characteristic.CurrentHeatingCoolingState.HEAT)
-        that.saveTemp = rnd1
         done()
       } catch (e) {
         done(e)
@@ -113,7 +127,7 @@ describe('HAP-Homematic Tests ' + testCase, () => {
   })
 
   it('HAP-Homematic check Heating Mode Off', (done) => {
-    that.server._ccu.fireEvent('HmIP.2123456789ABCD:1.SET_POINT_TEMPERATURE', 4.5)
+    that.server._ccu.fireEvent('HmIP.4762653007ABCD:1.SET_POINT_TEMPERATURE', 4.5)
     let accessory = that.server._publishedAccessories[Object.keys(that.server._publishedAccessories)[0]]
     let service = accessory.getService(Service.Thermostat)
     let ch = service.getCharacteristic(Characteristic.TargetHeatingCoolingState)
@@ -127,55 +141,8 @@ describe('HAP-Homematic Tests ' + testCase, () => {
     })
   })
 
-  it('HAP-Homematic set Heating Mode Off check 4.5 degree', (done) => {
-    let accessory = that.server._publishedAccessories[Object.keys(that.server._publishedAccessories)[0]]
-    let service = accessory.getService(Service.Thermostat)
-    let ch = service.getCharacteristic(Characteristic.TargetHeatingCoolingState)
-    ch.setValue(Characteristic.CurrentHeatingCoolingState.OFF, async () => {
-      let value = await that.server._ccu.getValue('HmIP.2123456789ABCD:1.SET_POINT_TEMPERATURE')
-      try {
-        expect(value).to.be(4.5)
-        done()
-      } catch (e) {
-        done(e)
-      }
-    })
-  })
-
-  it('HAP-Homematic set Heating Mode back to heating check degree again', (done) => {
-    let accessory = that.server._publishedAccessories[Object.keys(that.server._publishedAccessories)[0]]
-    let service = accessory.getService(Service.Thermostat)
-    let ch = service.getCharacteristic(Characteristic.TargetHeatingCoolingState)
-    ch.setValue(Characteristic.CurrentHeatingCoolingState.HEAT, () => {
-      setTimeout(async () => {
-        let value = await that.server._ccu.getValue('HmIP.2123456789ABCD:1.SET_POINT_TEMPERATURE')
-        try {
-          expect(value).to.be(that.saveTemp)
-          done()
-        } catch (e) {
-          done(e)
-        }
-      }, 100)
-    })
-  })
-
-  it('HAP-Homematic test low bat', (done) => {
-    that.server._ccu.fireEvent('HmIP.2123456789ABCD:0.LOW_BAT', true)
-    let accessory = that.server._publishedAccessories[Object.keys(that.server._publishedAccessories)[0]]
-    let service = accessory.getService(Service.BatteryService)
-    let ch = service.getCharacteristic(Characteristic.StatusLowBattery)
-    ch.getValue((context, value) => {
-      try {
-        expect(value).to.be(Characteristic.StatusLowBattery.BATTERY_LEVEL_LOW)
-        done()
-      } catch (e) {
-        done(e)
-      }
-    })
-  })
-
-  it('HAP-Homematic test low bat negative', (done) => {
-    that.server._ccu.fireEvent('HmIP.2123456789ABCD:0.LOW_BAT', false)
+  it('HAP-Homematic test low bat normal level', (done) => {
+    that.server._ccu.fireEvent('HmIP.4762653007ABCD:0.LOW_BAT', false)
     let accessory = that.server._publishedAccessories[Object.keys(that.server._publishedAccessories)[0]]
     let service = accessory.getService(Service.BatteryService)
     let ch = service.getCharacteristic(Characteristic.StatusLowBattery)
@@ -189,14 +156,44 @@ describe('HAP-Homematic Tests ' + testCase, () => {
     })
   })
 
-  it('HAP-Homematic test voltage reading 1.2V 50%', (done) => {
-    that.server._ccu.fireEvent('HmIP.2123456789ABCD:0.OPERATING_VOLTAGE', 1.2)
+  it('HAP-Homematic test low bat low level', (done) => {
+    that.server._ccu.fireEvent('HmIP.4762653007ABCD:0.LOW_BAT', true)
+    let accessory = that.server._publishedAccessories[Object.keys(that.server._publishedAccessories)[0]]
+    let service = accessory.getService(Service.BatteryService)
+    let ch = service.getCharacteristic(Characteristic.StatusLowBattery)
+    ch.getValue((context, value) => {
+      try {
+        expect(value).to.be(Characteristic.StatusLowBattery.BATTERY_LEVEL_LOW)
+        done()
+      } catch (e) {
+        done(e)
+      }
+    })
+  })
+
+  it('HAP-Homematic test BatteryLevel is 100 on non existing OPERATING_VOLTAGE datapoint', (done) => {
+    that.server._ccu.fireEvent('HmIP.4762653007ABCD:0.LOW_BAT', false)
     let accessory = that.server._publishedAccessories[Object.keys(that.server._publishedAccessories)[0]]
     let service = accessory.getService(Service.BatteryService)
     let ch = service.getCharacteristic(Characteristic.BatteryLevel)
     ch.getValue((context, value) => {
       try {
-        expect(value).to.be(50)
+        expect(value).to.be(100)
+        done()
+      } catch (e) {
+        done(e)
+      }
+    })
+  })
+
+  it('HAP-Homematic test BatteryLevel is 0 on non existing OPERATING_VOLTAGE datapoint and LOW_BAT is true', (done) => {
+    that.server._ccu.fireEvent('HmIP.4762653007ABCD:0.LOW_BAT', true)
+    let accessory = that.server._publishedAccessories[Object.keys(that.server._publishedAccessories)[0]]
+    let service = accessory.getService(Service.BatteryService)
+    let ch = service.getCharacteristic(Characteristic.BatteryLevel)
+    ch.getValue((context, value) => {
+      try {
+        expect(value).to.be(0)
         done()
       } catch (e) {
         done(e)
