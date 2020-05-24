@@ -159,6 +159,18 @@ describe('HAP-Homematic Tests ' + testCase, () => {
     })
   })
 
+  it('HAP-Homematic check HUMIDITY', (done) => {
+    let rnd = Math.floor(Math.random() * Math.floor(100))
+    that.server._ccu.fireEvent('HmIP.2123456789ABCD:1.HUMIDITY', rnd)
+    let accessory = that.server._publishedAccessories[Object.keys(that.server._publishedAccessories)[0]]
+    let service = accessory.getService(Service.Thermostat)
+    assert.ok(service, 'Thermostat Service not found')
+    let ch = service.getCharacteristic(Characteristic.CurrentRelativeHumidity)
+    assert.ok(ch, 'CurrentRelativeHumidity State Characteristics not found')
+    expect(ch.value).to.be(rnd)
+    done()
+  })
+
   it('HAP-Homematic test low bat', (done) => {
     that.server._ccu.fireEvent('HmIP.2123456789ABCD:0.LOW_BAT', true)
     let accessory = that.server._publishedAccessories[Object.keys(that.server._publishedAccessories)[0]]
