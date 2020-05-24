@@ -27,7 +27,9 @@ describe('HAP-Homematic Tests ' + testCase, () => {
       await that.server.simulate(undefined, {config: {
         channels: Object.keys(that.data.ccu)
       },
-      devices: that.data.devices})
+      devices: that.data.devices,
+      mappings: that.data.mappings
+      })
     } else {
       assert.ok(false, 'Unable to load Test data')
     }

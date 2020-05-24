@@ -1,58 +1,62 @@
 {
-  "devices": [
-    {
-      "id": 1000,
-      "intf": 0,
-      "intfName": "BidCos-RF",
-      "name": "HM-TC-IT-WM-W-EU",
-      "address": "0123456789ABCD",
-      "type": "HM-TC-IT-WM-W-EU",
-      "channels": [
+    "devices": [
         {
-          "id": 1001,
-          "name": "0123456789ABCD:1",
-          "intf": 0,
-          "address": "0123456789ABCD:1",
-          "type": "WEATHER_TRANSMIT",
-          "access": 255
-        },
-        {
-          "id": 1002,
-          "name": "0123456789ABCD:2",
-          "intf": 0,
-          "address": "0123456789ABCD:2",
-          "type": "THERMALCONTROL_TRANSMIT",
-          "access": 255
-        },
-        {
-          "id": 1003,
-          "name": "0123456789ABCD:3",
-          "intf": 0,
-          "address": "0123456789ABCD:3",
-          "type": "WINDOW_SWITCH_RECEIVER",
-          "access": 255
-        },
-        {
-          "id": 1004,
-          "name": "0123456789ABCD:6",
-          "intf": 0,
-          "address": "0123456789ABCD:6",
-          "type": "REMOTECONTROL_RECEIVER",
-          "access": 255
-        },
-        {
-          "id": 1005,
-          "name": "0123456789ABCD:7",
-          "intf": 0,
-          "address": "0123456789ABCD:7",
-          "type": "SWITCH_TRANSMIT",
-          "access": 255
+            "id": 1000,
+            "intf": 0,
+            "intfName": "BidCos-RF",
+            "name": "HM-TC-IT-WM-W-EU",
+            "address": "0123456789ABCD",
+            "type": "HM-TC-IT-WM-W-EU",
+            "channels": [
+                {
+                    "id": 1001,
+                    "name": "0123456789ABCD:1",
+                    "intf": 0,
+                    "address": "0123456789ABCD:1",
+                    "type": "WEATHER_TRANSMIT",
+                    "access": 255
+                },
+                {
+                    "id": 1002,
+                    "name": "0123456789ABCD:2",
+                    "intf": 0,
+                    "address": "0123456789ABCD:2",
+                    "type": "THERMALCONTROL_TRANSMIT",
+                    "access": 255
+                },
+                {
+                    "id": 1003,
+                    "name": "0123456789ABCD:3",
+                    "intf": 0,
+                    "address": "0123456789ABCD:3",
+                    "type": "WINDOW_SWITCH_RECEIVER",
+                    "access": 255
+                },
+                {
+                    "id": 1004,
+                    "name": "0123456789ABCD:6",
+                    "intf": 0,
+                    "address": "0123456789ABCD:6",
+                    "type": "REMOTECONTROL_RECEIVER",
+                    "access": 255
+                },
+                {
+                    "id": 1005,
+                    "name": "0123456789ABCD:7",
+                    "intf": 0,
+                    "address": "0123456789ABCD:7",
+                    "type": "SWITCH_TRANSMIT",
+                    "access": 255
+                }
+            ]
         }
-      ]
+    ],
+    "ccu": {
+        "0123456789ABCD:2": "HomeMaticThermostatAccessory"
+    },
+    "mappings": {
+        "0123456789ABCD:2": {
+            "Service": "HomeMaticThermostatAccessory"
+        }
     }
-  ],
-  "ccu": {
-    "0123456789ABCD:2": "HomeMaticThermostatAccessory"
 }
-}
-
