@@ -1,0 +1,113 @@
+{
+    "devices": [
+        {
+            "id": 1000,
+            "intf": 0,
+            "intfName": "BidCos-Wired",
+            "name": "HMW-Sen-SC-12-DR",
+            "address": "7348266248ABCD",
+            "type": "HMW-Sen-SC-12-DR",
+            "channels": [
+                {
+                    "id": 1001,
+                    "name": "7348266248ABCD:1",
+                    "intf": 0,
+                    "address": "7348266248ABCD:1",
+                    "type": "SENSOR",
+                    "access": 255
+                },
+                {
+                    "id": 1002,
+                    "name": "7348266248ABCD:2",
+                    "intf": 0,
+                    "address": "7348266248ABCD:2",
+                    "type": "SENSOR",
+                    "access": 255
+                },
+                {
+                    "id": 1003,
+                    "name": "7348266248ABCD:3",
+                    "intf": 0,
+                    "address": "7348266248ABCD:3",
+                    "type": "SENSOR",
+                    "access": 255
+                },
+                {
+                    "id": 1004,
+                    "name": "7348266248ABCD:4",
+                    "intf": 0,
+                    "address": "7348266248ABCD:4",
+                    "type": "SENSOR",
+                    "access": 255
+                },
+                {
+                    "id": 1005,
+                    "name": "7348266248ABCD:5",
+                    "intf": 0,
+                    "address": "7348266248ABCD:5",
+                    "type": "SENSOR",
+                    "access": 255
+                },
+                {
+                    "id": 1006,
+                    "name": "7348266248ABCD:6",
+                    "intf": 0,
+                    "address": "7348266248ABCD:6",
+                    "type": "SENSOR",
+                    "access": 255
+                },
+                {
+                    "id": 1007,
+                    "name": "7348266248ABCD:7",
+                    "intf": 0,
+                    "address": "7348266248ABCD:7",
+                    "type": "SENSOR",
+                    "access": 255
+                },
+                {
+                    "id": 1008,
+                    "name": "7348266248ABCD:8",
+                    "intf": 0,
+                    "address": "7348266248ABCD:8",
+                    "type": "SENSOR",
+                    "access": 255
+                },
+                {
+                    "id": 1009,
+                    "name": "7348266248ABCD:9",
+                    "intf": 0,
+                    "address": "7348266248ABCD:9",
+                    "type": "SENSOR",
+                    "access": 255
+                },
+                {
+                    "id": 1010,
+                    "name": "7348266248ABCD:10",
+                    "intf": 0,
+                    "address": "7348266248ABCD:10",
+                    "type": "SENSOR",
+                    "access": 255
+                },
+                {
+                    "id": 1011,
+                    "name": "7348266248ABCD:11",
+                    "intf": 0,
+                    "address": "7348266248ABCD:11",
+                    "type": "SENSOR",
+                    "access": 255
+                },
+                {
+                    "id": 1012,
+                    "name": "7348266248ABCD:12",
+                    "intf": 0,
+                    "address": "7348266248ABCD:12",
+                    "type": "SENSOR",
+                    "access": 255
+                }
+            ]
+        }
+    ],
+    "ccu": {
+        "7348266248ABCD:1": "HomeMaticContactSensorAccessory"
+    }
+}
