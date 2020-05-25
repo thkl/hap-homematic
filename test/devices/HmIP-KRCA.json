@@ -61,5 +61,10 @@
     ],
     "ccu": {
         "4436784678ABCD:1": "HomeMaticKeyAccessory"
+    },
+    "mappings": {
+        "4436784678ABCD:1": {
+          "Service":"HomeMaticKeyAccessory"
+        }
       }
 }
