@@ -1,0 +1,65 @@
+{
+    "devices": [
+        {
+            "id": 1000,
+            "intf": 0,
+            "intfName": "HmIP",
+            "name": "HmIP-KRCA",
+            "address": "4436784678ABCD",
+            "type": "HmIP-KRCA",
+            "channels": [
+                {
+                    "id": 1001,
+                    "name": "4436784678ABCD:0",
+                    "intf": 0,
+                    "address": "4436784678ABCD:0",
+                    "type": "MAINTENANCE",
+                    "access": 255
+                },
+                {
+                    "id": 1002,
+                    "name": "4436784678ABCD:1",
+                    "intf": 0,
+                    "address": "4436784678ABCD:1",
+                    "type": "KEY_TRANSCEIVER",
+                    "access": 255
+                },
+                {
+                    "id": 1003,
+                    "name": "4436784678ABCD:2",
+                    "intf": 0,
+                    "address": "4436784678ABCD:2",
+                    "type": "KEY_TRANSCEIVER",
+                    "access": 255
+                },
+                {
+                    "id": 1004,
+                    "name": "4436784678ABCD:3",
+                    "intf": 0,
+                    "address": "4436784678ABCD:3",
+                    "type": "KEY_TRANSCEIVER",
+                    "access": 255
+                },
+                {
+                    "id": 1005,
+                    "name": "4436784678ABCD:4",
+                    "intf": 0,
+                    "address": "4436784678ABCD:4",
+                    "type": "KEY_TRANSCEIVER",
+                    "access": 255
+                },
+                {
+                    "id": 1006,
+                    "name": "4436784678ABCD:5",
+                    "intf": 0,
+                    "address": "4436784678ABCD:5",
+                    "type": "ALARM_COND_SWITCH_TRANSMITTER",
+                    "access": 255
+                }
+            ]
+        }
+    ],
+    "ccu": {
+        "4436784678ABCD:1": "HomeMaticKeyAccessory"
+      }
+}
