@@ -313,7 +313,8 @@
       "The value of your HomeMatic variable when all the red lights are flashing.":"Der Wert der HomeMatic Variable, wenn all die roten Lampen blinken.",
       "This service provides a alarm system based on a variable":"Dieser Service stellt ein Alarmsystem, basierend auf einer Variable, zur Verfügung.",
       "Logging for":"Logging für",
-      "Eve is only able to log on option.":"Eve kann nur nur eine Option loggen."
+      "Eve is only able to log on option.":"Eve kann nur nur eine Option loggen.",
+      "No Illumination sensor":"Kein Helligkeitssensor"
     }
 
 
