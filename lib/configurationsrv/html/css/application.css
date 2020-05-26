@@ -52,3 +52,15 @@
 html:not([dir="rtl"]) .c-sidebar-nav-dropdown-items .c-sidebar-nav-link, html:not([dir="rtl"]) .c-sidebar-nav-dropdown-items .c-sidebar-nav-dropdown-toggle {
     padding-left: 45px;
 }
+
+/* see https://github.com/thkl/hap-homematic/pull/92 */
+.c-app{
+    margin-top: -21px !important;
+}
+
+* {
+    scrollbar-width: thin;
+    scrollbar-color: #5A5A5A #00000000;
+}
+
+/* end https://github.com/thkl/hap-homematic/pull/92 */
