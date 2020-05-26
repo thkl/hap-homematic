@@ -34,6 +34,11 @@
     text-decoration: overline;
 }
 
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #5A5A5A #00000000;
+}
+
 
 #bridgeOverview::-webkit-scrollbar {
     width: 10px;
