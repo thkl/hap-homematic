@@ -63,6 +63,7 @@ body,.c-app {
   -ms-flex-direction: column;
   flex-direction: column;
   min-height: 100vh;
+  margin-top: -21px;
 }
 
 [tabindex="-1"]:focus:not(:focus-visible) {
