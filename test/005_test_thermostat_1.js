@@ -99,10 +99,10 @@ describe('HAP-Homematic Tests ' + testCase, () => {
     })
   })
 
-  it('HAP-Homematic check SET_TEMPERATURE and HeatingMode', (done) => {
+  it('HAP-Homematic check SET_TEMPERATURE and HeatingMode should be heating', (done) => {
     let rnd1 = Math.floor(Math.random() * Math.floor(30)) + 5 // make sure we do not set below the off themp
     // We have to set a Current Temperature below the new settemp to make sure the thermostate is in heating mode
-    that.server._ccu.fireEvent('BidCos-RF.0123456789ABCD:2.ACTUAL_TEMPERATURE', rnd1 - 1)
+    that.server._ccu.fireEvent('BidCos-RF.0123456789ABCD:2.ACTUAL_TEMPERATURE', (rnd1 - 2))
     // Set The controlmode to manual
     that.server._ccu.fireEvent('BidCos-RF.0123456789ABCD:2.CONTROL_MODE', 1)
     let accessory = that.server._publishedAccessories[Object.keys(that.server._publishedAccessories)[0]]
@@ -115,24 +115,52 @@ describe('HAP-Homematic Tests ' + testCase, () => {
       } catch (e) {
 
       }
-    })
-    // we have a temperature so the TargetHeatingCoolingState should be heating
-    let ch1 = service.getCharacteristic(Characteristic.TargetHeatingCoolingState)
-    ch1.getValue((context, value) => {
-      try {
-        expect(value).to.be(Characteristic.CurrentHeatingCoolingState.HEAT)
-        done()
-      } catch (e) {
-        done(e)
-      }
+      // we have a temperature so the CurrentHeatingCoolingState should be heating
+      let ch1 = service.getCharacteristic(Characteristic.CurrentHeatingCoolingState)
+      ch1.getValue((context, value) => {
+        try {
+          expect(value).to.be(Characteristic.CurrentHeatingCoolingState.HEAT)
+          done()
+        } catch (e) {
+          done(e)
+        }
+      })
     })
   })
 
-  it('HAP-Homematic check Heating Mode Off', (done) => {
+  it('HAP-Homematic check SET_TEMPERATURE and HeatingMode should be OFF', (done) => {
+    // Set The controlmode to manual
+    that.server._ccu.fireEvent('BidCos-RF.0123456789ABCD:2.CONTROL_MODE', 1)
+    // We have to set a Current Temperature below the new settemp to make sure the thermostate is in heating mode
+    that.server._ccu.fireEvent('BidCos-RF.0123456789ABCD:2.ACTUAL_TEMPERATURE', 24.1)
+    let accessory = that.server._publishedAccessories[Object.keys(that.server._publishedAccessories)[0]]
+    let service = accessory.getService(Service.Thermostat)
+    let ch = service.getCharacteristic(Characteristic.TargetTemperature)
+    ch.setValue(20, async () => {
+      let value = await that.server._ccu.getValue('BidCos-RF.0123456789ABCD:2.SET_TEMPERATURE')
+      try {
+        expect(value).to.be(20)
+      } catch (e) {
+
+      }
+      // we have a temperature so the CurrentHeatingCoolingState should be heating
+      let ch1 = service.getCharacteristic(Characteristic.CurrentHeatingCoolingState)
+      ch1.getValue((context, value) => {
+        try {
+          expect(value).to.be(Characteristic.CurrentHeatingCoolingState.OFF)
+          done()
+        } catch (e) {
+          done(e)
+        }
+      })
+    })
+  })
+
+  it('HAP-Homematic check Heating Mode Off by setting 4.5 degrees', (done) => {
     that.server._ccu.fireEvent('BidCos-RF.0123456789ABCD:2.SET_TEMPERATURE', 4.5)
     let accessory = that.server._publishedAccessories[Object.keys(that.server._publishedAccessories)[0]]
     let service = accessory.getService(Service.Thermostat)
-    let ch = service.getCharacteristic(Characteristic.TargetHeatingCoolingState)
+    let ch = service.getCharacteristic(Characteristic.CurrentHeatingCoolingState)
     ch.getValue((context, value) => {
       try {
         expect(value).to.be(Characteristic.CurrentHeatingCoolingState.OFF)
