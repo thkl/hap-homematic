@@ -103,6 +103,9 @@ describe('HAP-Homematic Tests (IP Heating Groups) ' + testCase, () => {
 
   it('HAP-Homematic check SET_TEMPERATURE and HeatingMode', (done) => {
     let rnd1 = Math.floor(Math.random() * Math.floor(30)) + 5 // make sure we do not set below the off themp
+    that.server._ccu.fireEvent('HmIP.4762653007ABCD:1.SET_POINT_MODE', 1) // Set Control Mode
+    that.server._ccu.fireEvent('HmIP.4762653007ABCD:1.ACTUAL_TEMPERATURE', (rnd1 - 5)) // Set Temperature
+
     let accessory = that.server._publishedAccessories[Object.keys(that.server._publishedAccessories)[0]]
     let service = accessory.getService(Service.Thermostat)
     let ch = service.getCharacteristic(Characteristic.TargetTemperature)
