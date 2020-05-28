@@ -1,3 +1,12 @@
+Changelog for 0.0.43:
+=====================
+
+* optional Co2 Variable for Thermometer
+* some UI BugFixes
+* alarm system will now send pushes
+* other bug fixes
+* introduced fresh new bugs
+
 Changelog for 0.0.42:
 =====================
 
