@@ -8,7 +8,7 @@ const expect = require('expect.js')
 
 const fs = require('fs')
 let log = new Logger('HAP Test')
-log.setDebugEnabled(true)
+log.setDebugEnabled(false)
 
 const testCase = 'HmIP-eTRV-2.json'
 
@@ -182,6 +182,21 @@ describe('HAP-Homematic Tests ' + testCase, () => {
           done(e)
         }
       }, 100)
+    })
+  })
+
+  it('HAP-Homematic check HUMIDITY is not here', (done) => {
+    let accessory = that.server._publishedAccessories[Object.keys(that.server._publishedAccessories)[0]]
+    let service = accessory.getService(Service.Thermostat)
+    assert.ok(service, 'Thermostat Service not found')
+    let ch = service.getCharacteristic(Characteristic.CurrentRelativeHumidity)
+    ch.getValue((context, value) => {
+      try {
+        expect(value).to.be(0)
+        done()
+      } catch (e) {
+        done(e)
+      }
     })
   })
 
