@@ -30,7 +30,7 @@ describe('HAP-Homematic Tests (IP Heating Groups) ' + testCase, () => {
       },
       devices: that.data.devices,
       mappings: that.data.mappings,
-      values: {'HmIP.4762653007ABCD:0.LOW_BAT': false}
+      values: {'HmIP.4762653007ABCD:0.LOW_BAT': false, 'HmIP.4762653007ABCD:1.HUMIDITY': 1}
       })
     } else {
       assert.ok(false, 'Unable to load Test data')
