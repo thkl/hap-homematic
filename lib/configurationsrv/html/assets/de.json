@@ -318,7 +318,8 @@
       "opt. CO2 Sensor":"optionaler CO2 Sensor",
       "You can add an optional CO2 Sensor here. The value will be read from that variable.":"Du kannst einen optionalen CO2 Sensor hinzufügen. Der Wert wird aus dieser Variablen gelesen.",
       "Observe Inhibit":"Sperrung beachten",
-      "when checked the blind will not move when inhbit is set":"Wenn aktiv, wird HomeKit die Rollos nicht bewegen, wenn sie gesperrt sind."
+      "when checked the blind will not move when inhbit is set":"Wenn aktiv, wird HomeKit die Rollos nicht bewegen, wenn sie gesperrt sind.",
+      "Cache updated ...":"Cache wurde aktualisiert ..."
     }
 
 

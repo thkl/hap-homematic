@@ -64,3 +64,12 @@ html:not([dir="rtl"]) .c-sidebar-nav-dropdown-items .c-sidebar-nav-link, html:no
 }
 
 /* end https://github.com/thkl/hap-homematic/pull/92 */
+
+.toast.info, .info .toast-header {
+    background-color:#321fdb !important;
+    color:#ffffff !important;
+}
+
+.toast-header button.close.info  {
+    color:#ffffff !important;
+}

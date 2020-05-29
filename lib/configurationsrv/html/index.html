@@ -26,6 +26,10 @@
     <link href="css/free.min.css" rel="stylesheet">
   </head>
   <body class="c-app">
+
+
+
+
     <div class="c-sidebar c-sidebar-dark c-sidebar-fixed c-sidebar-lg-show" id="sidebar">
 
 
@@ -149,6 +153,21 @@
       <button class="c-sidebar-minimizer c-class-toggler" type="button" data-target="_parent" id="sidebartoggler" data-class="c-sidebar-minimized"></button>
     </div>
     <div class="c-wrapper">
+
+      <div style="position: absolute; top: 0; right: 0;z-index: 2000;">
+        <div class="toast fade hide info" id="toast" role="alert" aria-live="assertive" aria-atomic="true">
+          <div class="toast-header">
+            <strong class="mr-auto">Info</strong>
+            <button type="button" class="ml-2 mb-1 close info" data-dismiss="toast" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="toast-body" id="toastMessage">
+            Oh, hi there
+          </div>
+        </div>
+      </div>
+
       <header class="c-header c-header-light c-header-fixed c-header-with-subheader">
         <!-- c-sidebar-show -->
         <button class="c-header-toggler c-class-toggler d-lg-none mfe-auto" type="button" data-target="#sidebar" data-class="c-sidebar-show">
@@ -210,8 +229,12 @@
         </main>
         <footer class="c-footer">
         </footer>
+
+
+
       </div>
     </div>
+
     <!-- CoreUI and necessary plugins-->
     <script src="js/coreui.bundle.min.js"></script>
     <!-- Plugins and scripts required by this view-->
