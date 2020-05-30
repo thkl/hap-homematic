@@ -302,15 +302,20 @@
       "Create Backup":"Datensicherung erzeugen",
       "Restore":"Datensicherung zurückspielen",
       "Value for stay":"Wert für Zuhause",
-      "The value of your HomeMatic variable when it says you are at home":"Der Wert der HomeMatic Variable, wenn sie anzeigt, das Du Zuhause bist.",
+      "The value of your HomeMatic variable when it says you are at home. Set it to -1 if you do not want this state.":
+        "Der Wert der HomeMatic Variable, wenn sie anzeigt, das Du Zuhause bist. Setze den Wert auf -1 wenn Du diesen Zustand nicht benötigst.",
       "Value for away":"Wert für Auswärts",
-      "The value of your HomeMatic variable when it says you are away":"Der Wert der HomeMatic Variable, wenn sie anzeigt das Du auswärts bist.",
+      "The value of your HomeMatic variable when it says you are away. Set it to -1 if you do not want this state.":
+        "Der Wert der HomeMatic Variable, wenn sie anzeigt das Du auswärts bist. Setze den Wert auf -1 wenn Du diesen Zustand nicht benötigst.",
       "Value for night":"Wert für Nachtmodus",
-      "The value of your HomeMatic variable when it says your home internal secured":"Der Wert der HomeMatic Variable, wenn sie intern scharf anzeigt.",
+      "The value of your HomeMatic variable when it says your home internal secured. Set it to -1 if you do not want this state.":
+        "Der Wert der HomeMatic Variable, wenn sie intern scharf anzeigt. Setze den Wert auf -1 wenn Du diesen Zustand nicht benötigst.",
       "Value for disarmed":"Wert für unscharf",
-      "The value of your HomeMatic variable when it says the alarm system is off.":"Der Wert der HomeMatic Variable, wenn sie anzeigt, das das System ausgeschalten ist.",
+      "The value of your HomeMatic variable when it says the alarm system is off. Set it to -1 if you do not want this state.":
+       "Der Wert der HomeMatic Variable, wenn sie anzeigt, das das System ausgeschalten ist. Setze den Wert auf -1 wenn Du diesen Zustand nicht benötigst.",
       "Value for alarm":"Wert für Alarm",
-      "The value of your HomeMatic variable when all the red lights are flashing.":"Der Wert der HomeMatic Variable, wenn all die roten Lampen blinken.",
+      "The value of your HomeMatic variable when all the red lights are flashing. Set it to -1 if you do not want this state.":
+       "Der Wert der HomeMatic Variable, wenn all die roten Lampen blinken. Setze den Wert auf -1 wenn Du diesen Zustand nicht benötigst.",
       "This service provides a alarm system based on a variable":"Dieser Service stellt ein Alarmsystem, basierend auf einer Variable, zur Verfügung.",
       "Logging for":"Logging für",
       "Eve is only able to log on option.":"Eve kann nur nur eine Option loggen.",
