@@ -1,0 +1,38 @@
+{
+    "devices": [
+        {
+            "id": 1000,
+            "intf": 0,
+            "intfName": "BidCos-RF",
+            "name": "HM-LC-Bl1PBU-FM",
+            "address": "5120978052ABCD",
+            "type": "HM-LC-Bl1PBU-FM",
+            "channels": [
+                {
+                    "id": 1001,
+                    "name": "5120978052ABCD:0",
+                    "intf": 0,
+                    "address": "5120978052ABCD:0",
+                    "type": "MAINTENANCE",
+                    "access": 255
+                },
+                {
+                    "id": 1002,
+                    "name": "5120978052ABCD:1",
+                    "intf": 0,
+                    "address": "5120978052ABCD:1",
+                    "type": "BLIND",
+                    "access": 255
+                }
+            ]
+        }
+    ],
+    "ccu": {
+        "5120978052ABCD:1": "HomeMaticBlindAccessory"
+    },
+    "mappings": {
+        "5120978052ABCD:1": {
+            "Service": "HomeMaticBlindAccessory"
+        }
+    }
+}

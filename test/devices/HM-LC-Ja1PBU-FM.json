@@ -1,0 +1,30 @@
+{
+    "devices": [
+        {
+            "id": 1000,
+            "intf": 0,
+            "intfName": "BidCos-RF",
+            "name": "HM-LC-Ja1PBU-FM",
+            "address": "1097176715ABCD",
+            "type": "HM-LC-Ja1PBU-FM",
+            "channels": [
+                {
+                    "id": 1001,
+                    "name": "1097176715ABCD:1",
+                    "intf": 0,
+                    "address": "1097176715ABCD:1",
+                    "type": "JALOUSIE",
+                    "access": 255
+                }
+            ]
+        }
+    ],
+    "ccu": {
+        "1097176715ABCD:1": "HomeMaticBlindAccessory"
+    },
+    "mappings": {
+        "1097176715ABCD:1": {
+            "Service": "HomeMaticBlindAccessory"
+        }
+    }
+}

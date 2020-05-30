@@ -74,5 +74,13 @@
         }
       ]
     }
-  ]
+  ],
+  "ccu": {
+    "7515755417ABCD:4": "HomeMaticBlindIPAccessory"
+},
+"mappings": {
+  "7515755417ABCD:4": {
+    "Service":"HomeMaticBlindIPAccessory"
+  }
+}
 }
