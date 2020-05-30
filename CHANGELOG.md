@@ -1,3 +1,13 @@
+Changelog for 0.0.44:
+=====================
+
+* flexible Alarm System
+* Thermostats have not Off/Manu/Auto Modes
+* Blinds with Slats
+* some bugfixes
+* even more new bugs
+
+
 Changelog for 0.0.43:
 =====================
 
