@@ -327,7 +327,7 @@
       "Cache updated ...":"Cache wurde aktualisiert ...",
       "Create/Update the CCU helper program.":"CCU Hilfsprogramm erzeugen/aktualisieren",
       "Due to the fact, that your ccu will not sent a message to hap when a variable will change its value, we have to build a helper.":
-        "Aufgrund der Tatsache, das die CCU keine Benachrichtigungen schickt, wenn eine Variable geändert wird, muss für HAP ein kleines Hilfprogramm gebaut werden.",
+        "Aufgrund der Tatsache, dass die CCU keine Benachrichtigungen schickt, wenn eine Variable geändert wird, muss für HAP ein kleines Hilfprogramm gebaut werden.",
       "HAP will use a virtual key from your CCU for that helper.":"HAP muss für dieses Hilfsprogramm eine virtuelle Taste der CCU benutzen.",
       "This key will be monitored by HAP. So HAP is able to detect when its time to reload the variables.":"Diese Taste wird von HAP überwacht. Damit erkennt HAP die Änderung von Variablen und kann diese in HomeKit aktualisieren.",
       "The program to manage all this can be build by HAP automatically. Just select the option after you have chosen a key.":"Das Programm um all das zu managen, kann von HAP automatisch erstellt werden. Dazu aktiviere nach der Auswahl der Taste einfach die passende Option.",
