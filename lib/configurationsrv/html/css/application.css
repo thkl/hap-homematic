@@ -73,3 +73,26 @@ html:not([dir="rtl"]) .c-sidebar-nav-dropdown-items .c-sidebar-nav-link, html:no
 .toast-header button.close.info  {
     color:#ffffff !important;
 }
+
+
+.ps--active-y > .ps__rail-y {
+    display: none;
+}
+
+*::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+*::-webkit-scrollbar-track {
+    background: rgba(41, 130, 204, 0.2);
+}
+
+*::-webkit-scrollbar-thumb {
+    background: rgba(90, 90, 90);
+}
+
+.ps {
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+}
