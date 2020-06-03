@@ -1,0 +1,161 @@
+{
+  "devices": [
+    {
+      "id": 1000,
+      "intf": 0,
+      "intfName": "HmIPW",
+      "name": "HmIPW-DRBL4",
+      "address": "3445238272ABCD",
+      "type": "HmIPW-DRBL4",
+      "channels": [
+        {
+          "id": 1001,
+          "name": "3445238272ABCD:0",
+          "intf": 0,
+          "address": "3445238272ABCD:0",
+          "type": "MAINTENANCE",
+          "access": 255
+        },
+        {
+          "id": 1002,
+          "name": "3445238272ABCD:1",
+          "intf": 0,
+          "address": "3445238272ABCD:1",
+          "type": "BLIND_TRANSMITTER",
+          "access": 255
+        },
+        {
+          "id": 1003,
+          "name": "3445238272ABCD:2",
+          "intf": 0,
+          "address": "3445238272ABCD:2",
+          "type": "BLIND_VIRTUAL_RECEIVER",
+          "access": 255
+        },
+        {
+          "id": 1004,
+          "name": "3445238272ABCD:3",
+          "intf": 0,
+          "address": "3445238272ABCD:3",
+          "type": "BLIND_VIRTUAL_RECEIVER",
+          "access": 255
+        },
+        {
+          "id": 1005,
+          "name": "3445238272ABCD:4",
+          "intf": 0,
+          "address": "3445238272ABCD:4",
+          "type": "BLIND_VIRTUAL_RECEIVER",
+          "access": 255
+        },
+        {
+          "id": 1006,
+          "name": "3445238272ABCD:5",
+          "intf": 0,
+          "address": "3445238272ABCD:5",
+          "type": "BLIND_TRANSMITTER",
+          "access": 255
+        },
+        {
+          "id": 1007,
+          "name": "3445238272ABCD:6",
+          "intf": 0,
+          "address": "3445238272ABCD:6",
+          "type": "BLIND_VIRTUAL_RECEIVER",
+          "access": 255
+        },
+        {
+          "id": 1008,
+          "name": "3445238272ABCD:7",
+          "intf": 0,
+          "address": "3445238272ABCD:7",
+          "type": "BLIND_VIRTUAL_RECEIVER",
+          "access": 255
+        },
+        {
+          "id": 1009,
+          "name": "3445238272ABCD:8",
+          "intf": 0,
+          "address": "3445238272ABCD:8",
+          "type": "BLIND_VIRTUAL_RECEIVER",
+          "access": 255
+        },
+        {
+          "id": 1010,
+          "name": "3445238272ABCD:9",
+          "intf": 0,
+          "address": "3445238272ABCD:9",
+          "type": "BLIND_TRANSMITTER",
+          "access": 255
+        },
+        {
+          "id": 1011,
+          "name": "3445238272ABCD:10",
+          "intf": 0,
+          "address": "3445238272ABCD:10",
+          "type": "BLIND_VIRTUAL_RECEIVER",
+          "access": 255
+        },
+        {
+          "id": 1012,
+          "name": "3445238272ABCD:11",
+          "intf": 0,
+          "address": "3445238272ABCD:11",
+          "type": "BLIND_VIRTUAL_RECEIVER",
+          "access": 255
+        },
+        {
+          "id": 1013,
+          "name": "3445238272ABCD:12",
+          "intf": 0,
+          "address": "3445238272ABCD:12",
+          "type": "BLIND_VIRTUAL_RECEIVER",
+          "access": 255
+        },
+        {
+          "id": 1014,
+          "name": "3445238272ABCD:13",
+          "intf": 0,
+          "address": "3445238272ABCD:13",
+          "type": "BLIND_TRANSMITTER",
+          "access": 255
+        },
+        {
+          "id": 1015,
+          "name": "3445238272ABCD:14",
+          "intf": 0,
+          "address": "3445238272ABCD:14",
+          "type": "BLIND_VIRTUAL_RECEIVER",
+          "access": 255
+        },
+        {
+          "id": 1016,
+          "name": "3445238272ABCD:15",
+          "intf": 0,
+          "address": "3445238272ABCD:15",
+          "type": "BLIND_VIRTUAL_RECEIVER",
+          "access": 255
+        },
+        {
+          "id": 1017,
+          "name": "3445238272ABCD:16",
+          "intf": 0,
+          "address": "3445238272ABCD:16",
+          "type": "BLIND_VIRTUAL_RECEIVER",
+          "access": 255
+        },
+        {
+          "id": 1018,
+          "name": "3445238272ABCD:17",
+          "intf": 0,
+          "address": "3445238272ABCD:17",
+          "type": "BLIND_WEEK_PROFILE",
+          "access": 255
+        }
+      ]
+    }
+  ],
+  "ccu": {
+    "3445238272ABCD:2": "HomeMaticBlindIPAccessory"
+  }
+}
