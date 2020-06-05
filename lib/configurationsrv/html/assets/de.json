@@ -333,7 +333,11 @@
       "The program to manage all this can be build by HAP automatically. Just select the option after you have chosen a key.":"Das Programm um all das zu managen, kann von HAP automatisch erstellt werden. Dazu aktiviere nach der Auswahl der Taste einfach die passende Option.",
       "Select a key":"Wähle eine Taste aus",
       "Select a virtual key":"Wähle eine virtuelle Taste aus",
-      "Cancel":"Abbrechen"
+      "Cancel":"Abbrechen",
+      "Add Slats":"Lamellen hinzufügen",
+      "when available a control to manipulate the slats will be added":"Wenn verfügbar, wird ein Control für die Lamellensteuerung hinzugefügt",
+      "use thermostat program no.":"benutze Thermostat Programm",
+      "Settings from eve will stored as program at the thermostat":"Programmierungen aus Eve werden in dieses Programm des Thermostats gespeichert."
     }
 
 
