@@ -28,6 +28,7 @@ describe('HAP-Homematic Tests ' + testCase, () => {
         channels: Object.keys(that.data.ccu)
       },
       devices: that.data.devices,
+      mappings: that.data.mappings,
       values: { // add dummy values so hazDatapoint will find this DP and the device will get HMIP Style battery checks
 
       }

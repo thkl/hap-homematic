@@ -80,7 +80,10 @@
 },
 "mappings": {
   "7515755417ABCD:4": {
-    "Service":"HomeMaticBlindIPAccessory"
+    "Service":"HomeMaticBlindIPAccessory",
+    "settings":{
+      "useSlats":true
+    }
   }
 }
 }

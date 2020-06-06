@@ -157,5 +157,13 @@
   ],
   "ccu": {
     "3445238272ABCD:2": "HomeMaticBlindIPAccessory"
+  },
+  "mappings": {
+    "3445238272ABCD:2": {
+      "Service":"HomeMaticBlindIPAccessory",
+      "settings":{
+        "useSlats":true
+      }
+    }
   }
 }
