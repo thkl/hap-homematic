@@ -28,7 +28,10 @@ describe('HAP-Homematic Tests ' + testCase, () => {
         channels: Object.keys(that.data.ccu)
       },
       devices: that.data.devices,
-      mappings: that.data.mappings
+      mappings: that.data.mappings,
+      values: { // add dummy values so hazDatapoint will find this DP and the device will get HMIP Style battery checks
+        'BidCos-RF.0123456789ABCD:2.ACTUAL_HUMIDITY': 1
+      }
       })
     } else {
       assert.ok(false, 'Unable to load Test data')
