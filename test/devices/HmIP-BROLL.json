@@ -1,0 +1,81 @@
+{
+  "devices": [
+    {
+      "id": 1000,
+      "intf": 0,
+      "intfName": "HmIP",
+      "name": "HmIP-BROLL",
+      "address": "7877899276ABCD",
+      "type": "HmIP-BROLL",
+      "channels": [
+        {
+          "id": 1001,
+          "name": "7877899276ABCD:0",
+          "intf": 0,
+          "address": "7877899276ABCD:0",
+          "type": "MAINTENANCE",
+          "access": 255
+        },
+        {
+          "id": 1002,
+          "name": "7877899276ABCD:1",
+          "intf": 0,
+          "address": "7877899276ABCD:1",
+          "type": "KEY_TRANSCEIVER",
+          "access": 255
+        },
+        {
+          "id": 1003,
+          "name": "7877899276ABCD:2",
+          "intf": 0,
+          "address": "7877899276ABCD:2",
+          "type": "KEY_TRANSCEIVER",
+          "access": 255
+        },
+        {
+          "id": 1004,
+          "name": "7877899276ABCD:3",
+          "intf": 0,
+          "address": "7877899276ABCD:3",
+          "type": "SHUTTER_TRANSMITTER",
+          "access": 255
+        },
+        {
+          "id": 1005,
+          "name": "7877899276ABCD:4",
+          "intf": 0,
+          "address": "7877899276ABCD:4",
+          "type": "SHUTTER_VIRTUAL_RECEIVER",
+          "access": 255
+        },
+        {
+          "id": 1006,
+          "name": "7877899276ABCD:5",
+          "intf": 0,
+          "address": "7877899276ABCD:5",
+          "type": "SHUTTER_VIRTUAL_RECEIVER",
+          "access": 255
+        },
+        {
+          "id": 1007,
+          "name": "7877899276ABCD:6",
+          "intf": 0,
+          "address": "7877899276ABCD:6",
+          "type": "SHUTTER_VIRTUAL_RECEIVER",
+          "access": 255
+        },
+        {
+          "id": 1008,
+          "name": "7877899276ABCD:7",
+          "intf": 0,
+          "address": "7877899276ABCD:7",
+          "type": "BLIND_WEEK_PROFILE",
+          "access": 255
+        }
+      ]
+    }
+  ],
+  "ccu": {
+    "7877899276ABCD:4": "HomeMaticBlindIPAccessory"
+}
+}
