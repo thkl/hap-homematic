@@ -1,3 +1,11 @@
+Changelog for 0.0.45:
+=====================
+
+* eve thermo for HM-TC-IT-WM-W-EU
+* fix for garage service
+* some other bug fixes
+* new problems new bugs 
+
 Changelog for 0.0.44:
 =====================
 
