@@ -1,3 +1,8 @@
+Changelog for 0.0.46:
+=====================
+
+* removed a bug in BROLL
+
 Changelog for 0.0.45:
 =====================
 
