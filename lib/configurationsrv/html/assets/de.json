@@ -337,7 +337,8 @@
       "Add Slats":"Lamellen hinzufügen",
       "when available a control to manipulate the slats will be added":"Wenn verfügbar, wird ein Control für die Lamellensteuerung hinzugefügt",
       "use thermostat program no.":"benutze Thermostat Programm",
-      "Settings from eve will stored as program at the thermostat":"Programmierungen aus Eve werden in dieses Programm des Thermostats gespeichert."
+      "Settings from eve will stored as program at the thermostat":"Programmierungen aus Eve werden in dieses Programm des Thermostats gespeichert.",
+      "This service provides a window device in HomeKit based on a ccu rotary sensor":"Dieser Service stellt ein Fenster in HomeKit, basierend auf einem Drehgriffkontakt zur Verfügung."
     }
 
 
