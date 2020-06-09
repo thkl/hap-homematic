@@ -96,3 +96,11 @@ html:not([dir="rtl"]) .c-sidebar-nav-dropdown-items .c-sidebar-nav-link, html:no
     overflow-y: auto !important;
     overflow-x: hidden !important;
 }
+
+/* prevent checkboxes from exploding into biiiiig boxes */
+input[type="radio"], input[type="checkbox"] {
+    box-sizing: border-box;
+    padding: 0;
+    height: 13px;
+    width: 13px;
+}
