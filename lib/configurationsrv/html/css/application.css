@@ -104,3 +104,9 @@ input[type="radio"], input[type="checkbox"] {
     height: 13px;
     width: 13px;
 }
+
+@media screen and (min-width: 640px) {
+    .roe-padding {
+        padding-top: 5px;
+    }
+}
