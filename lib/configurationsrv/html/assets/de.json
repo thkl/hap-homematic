@@ -340,7 +340,12 @@
       "Settings from eve will stored as program at the thermostat":"Programmierungen aus Eve werden in dieses Programm des Thermostats gespeichert.",
       "This service provides a window device in HomeKit based on a ccu rotary sensor":"Dieser Service stellt ein Fenster in HomeKit, basierend auf einem Drehgriffkontakt zur Verfügung.",
       "This service provides a sensor with value from variables":"Dieser Service stellt einen Sensor auf Basis einer Variablen bereit",
-      "This device can have different sub types":"Dieses Gerät kann verschiedene SubTypen haben"
+      "This device can have different sub types":"Dieses Gerät kann verschiedene SubTypen haben",
+      "Time (min) the variable will be queried again to fetch a new data.":"Zeit (min) bis die Variable erneut abgefragt wird um neue Daten zu laden",
+      "Variable requery time":"Aktualisierungsinterval",
+      "This service provides a power comsumption sensor HomeKit based on a variable from your ccu":"Dieser Service stellt ein Verbrauchsmessgerät basierend auf einer CCU Variable zur Verfügung.",
+      "Eve wants kwH,and the value of your variable will be multiplied with this factor, so here u are able to do the math.":"Eve nutzt kwH, und der Wert der Variablen wird mit diesem Faktor multipliziert.",
+      "Factor":"Faktor"
     }
 
 
