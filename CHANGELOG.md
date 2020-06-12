@@ -1,3 +1,12 @@
+Changelog for 0.0.47:
+=====================
+
+* pimped dimmers
+* garage door service has no onTime settings
+* added variable based devices
+* fixed some bugs
+
+
 Changelog for 0.0.46:
 =====================
 
