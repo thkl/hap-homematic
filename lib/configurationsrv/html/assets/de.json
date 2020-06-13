@@ -345,7 +345,10 @@
       "Variable requery time":"Aktualisierungsinterval",
       "This service provides a power comsumption sensor HomeKit based on a variable from your ccu":"Dieser Service stellt ein Verbrauchsmessgerät basierend auf einer CCU Variable zur Verfügung.",
       "Eve wants kwH,and the value of your variable will be multiplied with this factor, so here u are able to do the math.":"Eve nutzt kwH, und der Wert der Variablen wird mit diesem Faktor multipliziert.",
-      "Factor":"Faktor"
+      "Factor":"Faktor",
+      "CCU / Gateway":"CCU / Gateway",
+      "This service provides duty cycle measurement":"Dieser Service stellt CCU DutyCycle Messingen bereit.",
+      "Which device should be used":"Welches Gerät soll benutzt werden"
     }
 
 
