@@ -203,6 +203,12 @@ describe('HAP-Homematic Tests ' + testCase, () => {
         let value = await that.server._ccu.getValue('HmIPW.3445238272ABCD:2.LEVEL')
         try {
           expect(value).to.be(0.5)
+        } catch (e) {
+          done(e)
+        }
+        let valueSlat = await that.server._ccu.getValue('HmIPW.3445238272ABCD:2.LEVEL_2')
+        try {
+          expect(valueSlat).to.be(1.01) // Slats should be set to 1.01
           done()
         } catch (e) {
           done(e)
@@ -221,6 +227,12 @@ describe('HAP-Homematic Tests ' + testCase, () => {
         let value = await that.server._ccu.getValue('HmIPW.3445238272ABCD:2.LEVEL')
         try {
           expect(value).to.be(1)
+        } catch (e) {
+          done(e)
+        }
+        let valueSlat = await that.server._ccu.getValue('HmIPW.3445238272ABCD:2.LEVEL_2')
+        try {
+          expect(valueSlat).to.be(1.01) // Slats should be set to 1.01
           done()
         } catch (e) {
           done(e)
@@ -229,16 +241,22 @@ describe('HAP-Homematic Tests ' + testCase, () => {
     })
   })
 
-  it('HAP-Homematic set slats 0%', (done) => {
+  it('HAP-Homematic set slats 0% Level should be 100%', (done) => {
     let accessory = that.server._publishedAccessories[Object.keys(that.server._publishedAccessories)[0]]
     accessory.delayOnSet = 10
     let service = accessory.getService(Service.WindowCovering)
     let chTar = service.getCharacteristic(Characteristic.TargetHorizontalTiltAngle)
     chTar.setValue(-90, () => {
       setTimeout(async () => {
-        let value = await that.server._ccu.getValue('HmIPW.3445238272ABCD:2.LEVEL_2')
+        let valueSlat = await that.server._ccu.getValue('HmIPW.3445238272ABCD:2.LEVEL_2')
         try {
-          expect(value).to.be(0)
+          expect(valueSlat).to.be(0)
+        } catch (e) {
+          done(e)
+        }
+        let value = await that.server._ccu.getValue('HmIPW.3445238272ABCD:2.LEVEL')
+        try {
+          expect(value).to.be(1) // Normal Level should be 1 from prevoius test
           done()
         } catch (e) {
           done(e)
@@ -247,34 +265,51 @@ describe('HAP-Homematic Tests ' + testCase, () => {
     })
   })
 
-  it('HAP-Homematic set slats 50%', (done) => {
+  it('HAP-Homematic set slats 50% level 50%', (done) => {
     let accessory = that.server._publishedAccessories[Object.keys(that.server._publishedAccessories)[0]]
     accessory.delayOnSet = 10
     let service = accessory.getService(Service.WindowCovering)
-    let chTar = service.getCharacteristic(Characteristic.TargetHorizontalTiltAngle)
-    chTar.setValue(0, () => {
+    let chLTar = service.getCharacteristic(Characteristic.TargetPosition)
+    chLTar.setValue(50, () => {
       setTimeout(async () => {
-        let value = await that.server._ccu.getValue('HmIPW.3445238272ABCD:2.LEVEL_2')
-        try {
-          expect(value).to.be(0.5)
-          done()
-        } catch (e) {
-          done(e)
-        }
-      }, 20) // default delay is 750ms
+        let chTar = service.getCharacteristic(Characteristic.TargetHorizontalTiltAngle)
+        chTar.setValue(0, () => {
+          setTimeout(async () => {
+            let valueSlat = await that.server._ccu.getValue('HmIPW.3445238272ABCD:2.LEVEL_2')
+            try {
+              expect(valueSlat).to.be(0.5)
+            } catch (e) {
+              done(e)
+            }
+            let value = await that.server._ccu.getValue('HmIPW.3445238272ABCD:2.LEVEL')
+            try {
+              expect(value).to.be(0.5) // Normal Level should be 50%
+              done()
+            } catch (e) {
+              done(e)
+            }
+          }, 20) // default delay is 750ms
+        })
+      }, 20)
     })
   })
 
-  it('HAP-Homematic set slats 100%', (done) => {
+  it('HAP-Homematic set slats 100% level will stay at 50%', (done) => {
     let accessory = that.server._publishedAccessories[Object.keys(that.server._publishedAccessories)[0]]
     accessory.delayOnSet = 10
     let service = accessory.getService(Service.WindowCovering)
     let chTar = service.getCharacteristic(Characteristic.TargetHorizontalTiltAngle)
     chTar.setValue(90, () => {
       setTimeout(async () => {
-        let value = await that.server._ccu.getValue('HmIPW.3445238272ABCD:2.LEVEL_2')
+        let valueSlat = await that.server._ccu.getValue('HmIPW.3445238272ABCD:2.LEVEL_2')
         try {
-          expect(value).to.be(1)
+          expect(valueSlat).to.be(1)
+        } catch (e) {
+          done(e)
+        }
+        let value = await that.server._ccu.getValue('HmIPW.3445238272ABCD:2.LEVEL')
+        try {
+          expect(value).to.be(0.5)
           done()
         } catch (e) {
           done(e)
