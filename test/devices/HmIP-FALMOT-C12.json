@@ -1,0 +1,153 @@
+{
+  "devices": [
+    {
+      "id": 1000,
+      "intf": 0,
+      "intfName": "HmIP",
+      "name": "HmIP-FALMOT-C12",
+      "address": "4664078465ABCD",
+      "type": "HmIP-FALMOT-C12",
+      "channels": [
+        {
+          "id": 1001,
+          "name": "4664078465ABCD:0",
+          "intf": 0,
+          "address": "4664078465ABCD:0",
+          "type": "MAINTENANCE",
+          "access": 255
+        },
+        {
+          "id": 1002,
+          "name": "4664078465ABCD:1",
+          "intf": 0,
+          "address": "4664078465ABCD:1",
+          "type": "CLIMATECONTROL_FLOOR_TRANSCEIVER",
+          "access": 255
+        },
+        {
+          "id": 1003,
+          "name": "4664078465ABCD:2",
+          "intf": 0,
+          "address": "4664078465ABCD:2",
+          "type": "CLIMATECONTROL_FLOOR_TRANSCEIVER",
+          "access": 255
+        },
+        {
+          "id": 1004,
+          "name": "4664078465ABCD:3",
+          "intf": 0,
+          "address": "4664078465ABCD:3",
+          "type": "CLIMATECONTROL_FLOOR_TRANSCEIVER",
+          "access": 255
+        },
+        {
+          "id": 1005,
+          "name": "4664078465ABCD:4",
+          "intf": 0,
+          "address": "4664078465ABCD:4",
+          "type": "CLIMATECONTROL_FLOOR_TRANSCEIVER",
+          "access": 255
+        },
+        {
+          "id": 1006,
+          "name": "4664078465ABCD:5",
+          "intf": 0,
+          "address": "4664078465ABCD:5",
+          "type": "CLIMATECONTROL_FLOOR_TRANSCEIVER",
+          "access": 255
+        },
+        {
+          "id": 1007,
+          "name": "4664078465ABCD:6",
+          "intf": 0,
+          "address": "4664078465ABCD:6",
+          "type": "CLIMATECONTROL_FLOOR_TRANSCEIVER",
+          "access": 255
+        },
+        {
+          "id": 1008,
+          "name": "4664078465ABCD:7",
+          "intf": 0,
+          "address": "4664078465ABCD:7",
+          "type": "CLIMATECONTROL_FLOOR_TRANSCEIVER",
+          "access": 255
+        },
+        {
+          "id": 1009,
+          "name": "4664078465ABCD:8",
+          "intf": 0,
+          "address": "4664078465ABCD:8",
+          "type": "CLIMATECONTROL_FLOOR_TRANSCEIVER",
+          "access": 255
+        },
+        {
+          "id": 1010,
+          "name": "4664078465ABCD:9",
+          "intf": 0,
+          "address": "4664078465ABCD:9",
+          "type": "CLIMATECONTROL_FLOOR_TRANSCEIVER",
+          "access": 255
+        },
+        {
+          "id": 1011,
+          "name": "4664078465ABCD:10",
+          "intf": 0,
+          "address": "4664078465ABCD:10",
+          "type": "CLIMATECONTROL_FLOOR_TRANSCEIVER",
+          "access": 255
+        },
+        {
+          "id": 1012,
+          "name": "4664078465ABCD:11",
+          "intf": 0,
+          "address": "4664078465ABCD:11",
+          "type": "CLIMATECONTROL_FLOOR_TRANSCEIVER",
+          "access": 255
+        },
+        {
+          "id": 1013,
+          "name": "4664078465ABCD:12",
+          "intf": 0,
+          "address": "4664078465ABCD:12",
+          "type": "CLIMATECONTROL_FLOOR_TRANSCEIVER",
+          "access": 255
+        },
+        {
+          "id": 1014,
+          "name": "4664078465ABCD:13",
+          "intf": 0,
+          "address": "4664078465ABCD:13",
+          "type": "CLIMATECONTROL_HEAT_DEMAND_BOILER_TRANSMITTER",
+          "access": 255
+        },
+        {
+          "id": 1015,
+          "name": "4664078465ABCD:14",
+          "intf": 0,
+          "address": "4664078465ABCD:14",
+          "type": "CLIMATECONTROL_HEAT_DEMAND_PUMP_TRANSMITTER",
+          "access": 255
+        },
+        {
+          "id": 1016,
+          "name": "4664078465ABCD:15",
+          "intf": 0,
+          "address": "4664078465ABCD:15",
+          "type": "CLIMATECONTROL_DEHUMIDIFIER_TRANSMITER",
+          "access": 255
+        },
+        {
+          "id": 1017,
+          "name": "4664078465ABCD:16",
+          "intf": 0,
+          "address": "4664078465ABCD:16",
+          "type": "CLIMATECONTROL_INPUT_RECEIVER",
+          "access": 255
+        }
+      ]
+    }
+  ],
+  "ccu": {
+    "4664078465ABCD:2": "HomeMaticFloorHeatingActuatorAccessory"
+}
+}
