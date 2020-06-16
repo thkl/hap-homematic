@@ -67,9 +67,8 @@ describe('HAP-Homematic Tests ' + testCase, () => {
     done()
   })
 
-  it('HAP-Homematic check Valve with random value', (done) => {
-    let rnd = Math.floor(Math.random() * Math.floor(99)) / 100
-    that.server._ccu.fireEvent('HmIP.4664078465ABCD:2.LEVEL', rnd)
+  it('HAP-Homematic check Valve with 50% value', (done) => {
+    that.server._ccu.fireEvent('HmIP.4664078465ABCD:2.LEVEL', 0.5)
     let eveValve = new EveHomeKitValveTypes(that.server.gatoHomeBridge.hap)
 
     let accessory = that.server._publishedAccessories[Object.keys(that.server._publishedAccessories)[0]]
@@ -79,7 +78,7 @@ describe('HAP-Homematic Tests ' + testCase, () => {
     assert.ok(ch, 'CurrentValveState State Characteristics not found')
     ch.getValue((context, value) => {
       try {
-        expect(value).to.be((rnd * 100))
+        expect(value).to.be(50)
         done()
       } catch (e) {
         done(e)
