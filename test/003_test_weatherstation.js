@@ -165,7 +165,7 @@ describe('HAP-Homematic Tests ' + testCase, () => {
     })
   })
 
-  it('HAP-Homematic check WIND_DIR 218', (done) => {
+  it('HAP-Homematic check WIND_DIR 218 will be converted to SW', (done) => {
     that.server._ccu.fireEvent('HmIP.0123456789ABCD:1.WIND_DIR', 218)
     let accessory = that.server._publishedAccessories[Object.keys(that.server._publishedAccessories)[0]]
     let service = accessory.getService(accessory.eveWeatherProg.Service.EveWeather)
@@ -174,7 +174,7 @@ describe('HAP-Homematic Tests ' + testCase, () => {
     assert.ok(ch, 'WindDirectionCharacteristic State Characteristics not found')
     ch.getValue((context, value) => {
       try {
-        expect(value).to.be('218')
+        expect(value).to.be('SW')
         done()
       } catch (e) {
         done(e)
