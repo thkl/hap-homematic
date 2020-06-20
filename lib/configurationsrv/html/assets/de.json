@@ -348,7 +348,9 @@
       "Factor":"Faktor",
       "CCU / Gateway":"CCU / Gateway",
       "This service provides duty cycle measurement":"Dieser Service stellt CCU DutyCycle Messingen bereit.",
-      "Which device should be used":"Welches Gerät soll benutzt werden"
+      "Which device should be used":"Welches Gerät soll benutzt werden",
+      "Back":"Zurück",
+      "Select a datapoint":"Datenpunkt auswählen"
     }
 
 

@@ -66,7 +66,7 @@ describe('HAP-Homematic Tests ' + testCase, () => {
   it('HAP-Homematic check ACTUAL_TEMPERATURE 10', (done) => {
     that.server._ccu.fireEvent('HmIP.0123456789ABCD:1.ACTUAL_TEMPERATURE', 10.0)
     let accessory = that.server._publishedAccessories[Object.keys(that.server._publishedAccessories)[0]]
-    let service = accessory.getService(Service.WeatherStation)
+    let service = accessory.getService(accessory.eveWeatherProg.Service.EveWeather)
     assert.ok(service, 'WeatherStation Service not found')
     let ch = service.getCharacteristic(Characteristic.CurrentTemperature)
     assert.ok(ch, 'CurrentTemperature State Characteristics not found')
@@ -83,7 +83,7 @@ describe('HAP-Homematic Tests ' + testCase, () => {
   it('HAP-Homematic check HUMIDITY 34', (done) => {
     that.server._ccu.fireEvent('HmIP.0123456789ABCD:1.HUMIDITY', 34.0)
     let accessory = that.server._publishedAccessories[Object.keys(that.server._publishedAccessories)[0]]
-    let service = accessory.getService(Service.WeatherStation)
+    let service = accessory.getService(accessory.eveWeatherProg.Service.EveWeather)
     assert.ok(service, 'WeatherStation Service not found')
     let ch = service.getCharacteristic(Characteristic.CurrentRelativeHumidity)
     assert.ok(ch, 'CurrentRelativeHumidity State Characteristics not found')
@@ -100,7 +100,7 @@ describe('HAP-Homematic Tests ' + testCase, () => {
   it('HAP-Homematic check ILLUMINATION 140', (done) => {
     that.server._ccu.fireEvent('HmIP.0123456789ABCD:1.ILLUMINATION', 140)
     let accessory = that.server._publishedAccessories[Object.keys(that.server._publishedAccessories)[0]]
-    let service = accessory.getService(Service.WeatherStation)
+    let service = accessory.getService(accessory.eveWeatherProg.Service.EveWeather)
     assert.ok(service, 'WeatherStation Service not found')
     let ch = service.getCharacteristic(Characteristic.CurrentAmbientLightLevel)
     assert.ok(ch, 'CurrentAmbientLightLevel State Characteristics not found')
@@ -114,16 +114,16 @@ describe('HAP-Homematic Tests ' + testCase, () => {
     })
   })
 
-  it('HAP-Homematic check RAIN_COUNTER 821', (done) => {
-    that.server._ccu.setVariable('svHmIPRainCounterToday_1002', 821.0)
+  it('HAP-Homematic check RAIN_COUNTER 240', (done) => {
+    that.server._ccu.setVariable('svHmIPRainCounterToday_1002', 240.0)
     let accessory = that.server._publishedAccessories[Object.keys(that.server._publishedAccessories)[0]]
-    let service = accessory.getService(Service.WeatherStation)
+    let service = accessory.getService(accessory.eveWeatherProg.Service.EveWeather)
     assert.ok(service, 'WeatherStation Service not found')
-    let ch = service.getCharacteristic(Characteristic.CurrentRainCountCharacteristic)
+    let ch = service.getCharacteristic(accessory.eveWeatherProg.Characteristic.RainDay)
     assert.ok(ch, 'CurrentRainCountCharacteristic State Characteristics not found')
     ch.getValue((context, value) => {
       try {
-        expect(value).to.be(821)
+        expect(value).to.be(240)
         done()
       } catch (e) {
         done(e)
@@ -134,9 +134,9 @@ describe('HAP-Homematic Tests ' + testCase, () => {
   it('HAP-Homematic check RAINING true', (done) => {
     that.server._ccu.fireEvent('HmIP.0123456789ABCD:1.RAINING', true)
     let accessory = that.server._publishedAccessories[Object.keys(that.server._publishedAccessories)[0]]
-    let service = accessory.getService(Service.WeatherStation)
+    let service = accessory.getService(accessory.eveWeatherProg.Service.EveWeather)
     assert.ok(service, 'WeatherStation Service not found')
-    let ch = service.getCharacteristic(Characteristic.IsRainingCharacteristic)
+    let ch = service.getCharacteristic(accessory.eveWeatherProg.Characteristic.RainBool)
     assert.ok(ch, 'IsRainingCharacteristic State Characteristics not found')
     ch.getValue((context, value) => {
       try {
@@ -151,9 +151,9 @@ describe('HAP-Homematic Tests ' + testCase, () => {
   it('HAP-Homematic check SUNSHINEDURATION 340 min which are 5.6 hours', (done) => {
     that.server._ccu.setVariable('svHmIPSunshineCounterToday_1002', 340.0)
     let accessory = that.server._publishedAccessories[Object.keys(that.server._publishedAccessories)[0]]
-    let service = accessory.getService(Service.WeatherStation)
+    let service = accessory.getService(accessory.eveWeatherProg.Service.EveWeather)
     assert.ok(service, 'WeatherStation Service not found')
-    let ch = service.getCharacteristic(Characteristic.CurrentSunShineDurationCharacteristic)
+    let ch = service.getCharacteristic(accessory.eveWeatherProg.Characteristic.SunShineDuration)
     assert.ok(ch, 'CurrentRelativeHumidity State Characteristics not found')
     ch.getValue((context, value) => {
       try {
@@ -168,13 +168,13 @@ describe('HAP-Homematic Tests ' + testCase, () => {
   it('HAP-Homematic check WIND_DIR 218', (done) => {
     that.server._ccu.fireEvent('HmIP.0123456789ABCD:1.WIND_DIR', 218)
     let accessory = that.server._publishedAccessories[Object.keys(that.server._publishedAccessories)[0]]
-    let service = accessory.getService(Service.WeatherStation)
+    let service = accessory.getService(accessory.eveWeatherProg.Service.EveWeather)
     assert.ok(service, 'WeatherStation Service not found')
-    let ch = service.getCharacteristic(Characteristic.WindDirectionCharacteristic)
+    let ch = service.getCharacteristic(accessory.eveWeatherProg.Characteristic.WindDirection)
     assert.ok(ch, 'WindDirectionCharacteristic State Characteristics not found')
     ch.getValue((context, value) => {
       try {
-        expect(value).to.be(218)
+        expect(value).to.be('218')
         done()
       } catch (e) {
         done(e)
@@ -185,9 +185,9 @@ describe('HAP-Homematic Tests ' + testCase, () => {
   it('HAP-Homematic check WIND_SPEED 98', (done) => {
     that.server._ccu.fireEvent('HmIP.0123456789ABCD:1.WIND_SPEED', 98)
     let accessory = that.server._publishedAccessories[Object.keys(that.server._publishedAccessories)[0]]
-    let service = accessory.getService(Service.WeatherStation)
+    let service = accessory.getService(accessory.eveWeatherProg.Service.EveWeather)
     assert.ok(service, 'WeatherStation Service not found')
-    let ch = service.getCharacteristic(Characteristic.WindSpeedCharacteristic)
+    let ch = service.getCharacteristic(accessory.eveWeatherProg.Characteristic.WindSpeed)
     assert.ok(ch, 'WindSpeedCharacteristic State Characteristics not found')
     ch.getValue((context, value) => {
       try {
@@ -202,9 +202,9 @@ describe('HAP-Homematic Tests ' + testCase, () => {
   it('HAP-Homematic check WIND_DIR_RANGE 12', (done) => {
     that.server._ccu.fireEvent('HmIP.0123456789ABCD:1.WIND_DIR_RANGE', 12.0)
     let accessory = that.server._publishedAccessories[Object.keys(that.server._publishedAccessories)[0]]
-    let service = accessory.getService(Service.WeatherStation)
+    let service = accessory.getService(accessory.eveWeatherProg.Service.EveWeather)
     assert.ok(service, 'WeatherStation Service not found')
-    let ch = service.getCharacteristic(Characteristic.WindRangeCharacteristic)
+    let ch = service.getCharacteristic(accessory.eveWeatherProg.Characteristic.Windrange)
     assert.ok(ch, 'WindRangeCharacteristic State Characteristics not found')
     ch.getValue((context, value) => {
       try {
