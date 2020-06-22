@@ -72,7 +72,7 @@ describe('HAP-Homematic Tests ' + testCase, () => {
     let rnd = Math.floor(Math.random() * Math.floor(30))
     that.server._ccu.fireEvent('HmIP.2123456789ABCD:1.ACTUAL_TEMPERATURE', rnd)
     let accessory = that.server._publishedAccessories[Object.keys(that.server._publishedAccessories)[0]]
-    let service = accessory.getService(Service.Thermostat)
+    let service = accessory.getService(Service.Thermostat, 'TestDevice', false, '', true)
     assert.ok(service, 'Thermostat Service not found')
     let ch = service.getCharacteristic(Characteristic.CurrentTemperature)
     assert.ok(ch, 'CurrentTemperature State Characteristics not found')

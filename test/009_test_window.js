@@ -67,7 +67,7 @@ describe('HAP-Homematic Tests ' + testCase + ' as a Window', () => {
   it('HAP-Homematic check STATE 0', (done) => {
     that.server._ccu.fireEvent('HmIP.5962284199ABCD:1.STATE', false)
     let accessory = that.server._publishedAccessories[Object.keys(that.server._publishedAccessories)[0]]
-    let service = accessory.getService(Service.Window)
+    let service = accessory.getService(Service.Window, 'TestDevice', false, '', true)
     assert.ok(service, 'Window Service not found')
     let chTar = service.getCharacteristic(Characteristic.TargetPosition)
     let chCur = service.getCharacteristic(Characteristic.CurrentPosition)

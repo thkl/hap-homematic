@@ -66,7 +66,7 @@ describe('HAP-Homematic Tests ' + testCase, () => {
   it('HAP-Homematic check STATE 0', (done) => {
     that.server._ccu.fireEvent('BidCos-RF.12345678:1.STATE', false)
     let accessory = that.server._publishedAccessories[Object.keys(that.server._publishedAccessories)[0]]
-    let service = accessory.getService(Service.LeakSensor)
+    let service = accessory.getService(Service.LeakSensor, 'TestDevice', false, '', true)
     assert.ok(service, 'LeakSensor Service not found')
     let ch = service.getCharacteristic(Characteristic.LeakDetected)
     assert.ok(ch, 'LeakDetected State Characteristics not found')

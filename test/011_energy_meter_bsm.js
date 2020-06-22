@@ -66,8 +66,8 @@ describe('HAP-Homematic Tests ' + testCase, () => {
   it('HAP-Homematic check STATE 0', (done) => {
     that.server._ccu.fireEvent('HmIP.6094613587ABCD:4.STATE', false)
     let accessory = that.server._publishedAccessories[Object.keys(that.server._publishedAccessories)[0]]
-    let service = accessory.getService(Service.Switch)
-    assert.ok(service, 'Switch Service not found')
+    let service = accessory.getService(Service.Outlet, 'TestDevice', false, '', true)
+    assert.ok(service, 'Switch Outlet not found')
     let ch = service.getCharacteristic(Characteristic.On)
     assert.ok(ch, 'On Characteristics not found')
     ch.getValue((context, value) => {
@@ -83,7 +83,7 @@ describe('HAP-Homematic Tests ' + testCase, () => {
   it('HAP-Homematic check STATE 1', (done) => {
     that.server._ccu.fireEvent('HmIP.6094613587ABCD:4.STATE', true)
     let accessory = that.server._publishedAccessories[Object.keys(that.server._publishedAccessories)[0]]
-    let service = accessory.getService(Service.Switch)
+    let service = accessory.getService(Service.Outlet)
     let ch = service.getCharacteristic(Characteristic.On)
     ch.getValue((context, value) => {
       try {
@@ -99,7 +99,7 @@ describe('HAP-Homematic Tests ' + testCase, () => {
   it('HAP-Homematic check Measurements CURRENT ' + rndC, (done) => {
     that.server._ccu.fireEvent('HmIP.6094613587ABCD:7.CURRENT', rndC)
     let accessory = that.server._publishedAccessories[Object.keys(that.server._publishedAccessories)[0]]
-    let service = accessory.getService(accessory.eve.Service.PowerMeterService)
+    let service = accessory.getService(Service.Outlet)
     let ch = service.getCharacteristic(accessory.eve.Characteristic.ElectricCurrent)
     try {
       expect(ch.value).to.be(rndC / 1000) // eve will use ampere homematic millis
@@ -113,7 +113,7 @@ describe('HAP-Homematic Tests ' + testCase, () => {
   it('HAP-Homematic check Measurements POWER ' + rndP, (done) => {
     that.server._ccu.fireEvent('HmIP.6094613587ABCD:7.POWER', rndP)
     let accessory = that.server._publishedAccessories[Object.keys(that.server._publishedAccessories)[0]]
-    let service = accessory.getService(accessory.eve.Service.PowerMeterService)
+    let service = accessory.getService(Service.Outlet)
     let ch = service.getCharacteristic(accessory.eve.Characteristic.ElectricPower)
     try {
       expect(ch.value).to.be(rndP)
@@ -127,7 +127,7 @@ describe('HAP-Homematic Tests ' + testCase, () => {
   it('HAP-Homematic check Measurements Voltage ' + rndV, (done) => {
     that.server._ccu.fireEvent('HmIP.6094613587ABCD:7.VOLTAGE', rndV)
     let accessory = that.server._publishedAccessories[Object.keys(that.server._publishedAccessories)[0]]
-    let service = accessory.getService(accessory.eve.Service.PowerMeterService)
+    let service = accessory.getService(Service.Outlet)
     let ch = service.getCharacteristic(accessory.eve.Characteristic.Voltage)
     try {
       expect(ch.value).to.be(rndV)
@@ -141,7 +141,7 @@ describe('HAP-Homematic Tests ' + testCase, () => {
   it('HAP-Homematic check Measurements TotalConsumption ' + rndF, (done) => {
     that.server._ccu.fireEvent('HmIP.6094613587ABCD:7.ENERGY_COUNTER', rndF)
     let accessory = that.server._publishedAccessories[Object.keys(that.server._publishedAccessories)[0]]
-    let service = accessory.getService(accessory.eve.Service.PowerMeterService)
+    let service = accessory.getService(Service.Outlet)
     let ch = service.getCharacteristic(accessory.eve.Characteristic.TotalConsumption)
     try {
       expect(ch.value).to.be((rndF / 1000).toFixed(2)) // ccu uses Wh HomeKit kWh and the service rounds

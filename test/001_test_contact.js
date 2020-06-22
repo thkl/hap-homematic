@@ -72,7 +72,7 @@ describe('HAP-Homematic Tests ' + testCase, () => {
   it('HAP-Homematic check STATE 0', (done) => {
     that.server._ccu.fireEvent('HmIP.0123456789ABCD:1.STATE', false)
     let accessory = that.server._publishedAccessories[Object.keys(that.server._publishedAccessories)[0]]
-    let service = accessory.getService(Service.ContactSensor)
+    let service = accessory.getService(Service.ContactSensor, 'TestDevice', false, '', true)
     assert.ok(service, 'Contact Service not found')
     let ch = service.getCharacteristic(Characteristic.ContactSensorState)
     assert.ok(ch, 'Contact State Characteristics not found')

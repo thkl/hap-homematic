@@ -66,7 +66,7 @@ describe('HAP-Homematic Tests ' + testCase, () => {
   it('HAP-Homematic check ARMSTATE 0', (done) => {
     that.server._ccu.fireEvent('BidCos-RF.5820259065ABCD:4.ARMSTATE', 0)
     let accessory = that.server._publishedAccessories[Object.keys(that.server._publishedAccessories)[0]]
-    let service = accessory.getService(Service.SecuritySystem)
+    let service = accessory.getService(Service.SecuritySystem, 'TestDevice', false, '', true)
     assert.ok(service, 'SecuritySystem Service not found')
     let chCur = service.getCharacteristic(Characteristic.SecuritySystemCurrentState)
     let chTar = service.getCharacteristic(Characteristic.SecuritySystemTargetState)

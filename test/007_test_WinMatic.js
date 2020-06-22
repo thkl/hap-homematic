@@ -66,7 +66,7 @@ describe('HAP-Homematic Tests ' + testCase, () => {
   it('HAP-Homematic check LEVEL 0 Cur Tar Pos sould be 0', (done) => {
     that.server._ccu.fireEvent('BidCos-RF.1123456789ABCD:1.LEVEL', 0)
     let accessory = that.server._publishedAccessories[Object.keys(that.server._publishedAccessories)[0]]
-    let service = accessory.getService(Service.Window)
+    let service = accessory.getService(Service.Window, 'TestDevice', false, '', true)
     assert.ok(service, 'Window Service not found')
     let ch = service.getCharacteristic(Characteristic.CurrentPosition)
     assert.ok(ch, 'CurrentPosition State Characteristics not found')

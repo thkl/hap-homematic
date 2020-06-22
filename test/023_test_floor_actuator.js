@@ -72,7 +72,7 @@ describe('HAP-Homematic Tests ' + testCase, () => {
     let eveValve = new EveHomeKitValveTypes(that.server.gatoHomeBridge.hap)
 
     let accessory = that.server._publishedAccessories[Object.keys(that.server._publishedAccessories)[0]]
-    let service = accessory.getService(eveValve.Service.ValveService)
+    let service = accessory.getService(eveValve.Service.ValveService, 'TestDevice', false, '', true)
     assert.ok(service, 'ValveService Service not found')
     let ch = service.getCharacteristic(eveValve.Characteristic.CurrentValveState)
     assert.ok(ch, 'CurrentValveState State Characteristics not found')

@@ -71,7 +71,7 @@ describe('HAP-Homematic Tests ' + testCase, () => {
   it('HAP-Homematic check LEVEL 0%', (done) => {
     that.server._ccu.fireEvent('HmIP.7515755417ABCD:4.LEVEL', 0)
     let accessory = that.server._publishedAccessories[Object.keys(that.server._publishedAccessories)[0]]
-    let service = accessory.getService(Service.WindowCovering)
+    let service = accessory.getService(Service.WindowCovering, 'TestDevice', false, '', true)
     assert.ok(service, 'WindowCovering not found')
     let chCur = service.getCharacteristic(Characteristic.CurrentPosition)
     assert.ok(chCur, 'CurrentPosition Characteristics not found')

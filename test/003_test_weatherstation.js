@@ -66,7 +66,7 @@ describe('HAP-Homematic Tests ' + testCase, () => {
   it('HAP-Homematic check ACTUAL_TEMPERATURE 10', (done) => {
     that.server._ccu.fireEvent('HmIP.0123456789ABCD:1.ACTUAL_TEMPERATURE', 10.0)
     let accessory = that.server._publishedAccessories[Object.keys(that.server._publishedAccessories)[0]]
-    let service = accessory.getService(accessory.eveWeatherProg.Service.EveWeather)
+    let service = accessory.getService(accessory.eveWeatherProg.Service.EveWeather, 'TestDevice', false, '', true)
     assert.ok(service, 'WeatherStation Service not found')
     let ch = service.getCharacteristic(Characteristic.CurrentTemperature)
     assert.ok(ch, 'CurrentTemperature State Characteristics not found')

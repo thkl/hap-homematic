@@ -71,7 +71,7 @@ describe('HAP-Homematic Tests ' + testCase, () => {
   it('HAP-Homematic check MOTION false', (done) => {
     that.server._ccu.fireEvent('HmIP.0123456789ABCD:1.MOTION', false)
     let accessory = that.server._publishedAccessories[Object.keys(that.server._publishedAccessories)[0]]
-    let service = accessory.getService(Service.MotionSensor)
+    let service = accessory.getService(Service.MotionSensor, 'TestDevice', false, '', true)
     assert.ok(service, 'MotionSensor Service not found')
     let ch = service.getCharacteristic(Characteristic.MotionDetected)
     assert.ok(ch, 'MotionDetected State Characteristics not found')

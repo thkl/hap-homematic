@@ -66,7 +66,7 @@ describe('HAP-Homematic Tests ' + testCase, () => {
   it('HAP-Homematic open the door', (done) => {
     that.server._ccu.fireEvent('HmIP.3123456789ABCD:1.DOOR_STATE', 3)
     let accessory = that.server._publishedAccessories[Object.keys(that.server._publishedAccessories)[0]]
-    let service = accessory.getService(Service.GarageDoorOpener)
+    let service = accessory.getService(Service.GarageDoorOpener, 'TestDevice', false, '', true)
     assert.ok(service, 'GarageDoorOpener Service not found')
     let chCur = service.getCharacteristic(Characteristic.CurrentDoorState)
     let chTar = service.getCharacteristic(Characteristic.TargetDoorState)

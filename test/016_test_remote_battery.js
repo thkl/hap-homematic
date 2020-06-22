@@ -72,7 +72,7 @@ describe('HAP-Homematic Tests ' + testCase, () => {
   it('HAP-Homematic test low bat', (done) => {
     that.server._ccu.fireEvent('HmIP.4436784678ABCD:0.LOW_BAT', true)
     let accessory = that.server._publishedAccessories[Object.keys(that.server._publishedAccessories)[0]]
-    let service = accessory.getService(Service.BatteryService)
+    let service = accessory.getService(Service.BatteryService, 'TestDevice', false, '', true)
     let ch = service.getCharacteristic(Characteristic.StatusLowBattery)
     ch.getValue((context, value) => {
       try {

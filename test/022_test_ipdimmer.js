@@ -71,7 +71,7 @@ describe('HAP-Homematic Tests ' + testCase, () => {
   it('HAP-Homematic check LEVEL 0', (done) => {
     that.server._ccu.fireEvent('HmIP.6483408182ABCD:4.LEVEL', 0)
     let accessory = that.server._publishedAccessories[Object.keys(that.server._publishedAccessories)[0]]
-    let service = accessory.getService(Service.Lightbulb)
+    let service = accessory.getService(Service.Lightbulb, 'TestDevice', false, '', true)
     assert.ok(service, 'Lightbulb Service not found')
     let ch = service.getCharacteristic(Characteristic.Brightness)
     assert.ok(ch, 'Brightness Characteristics not found')
