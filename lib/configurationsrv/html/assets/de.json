@@ -350,7 +350,8 @@
       "This service provides duty cycle measurement":"Dieser Service stellt CCU DutyCycle Messingen bereit.",
       "Which device should be used":"Welches Gerät soll benutzt werden",
       "Back":"Zurück",
-      "Select a datapoint":"Datenpunkt auswählen"
+      "Select a datapoint":"Datenpunkt auswählen",
+      "Add to another instance":"Zu weiterer Instanz hinzufügen"
     }
 
 
