@@ -1,3 +1,10 @@
+Changelog for 0.0.48:
+=====================
+
+* bugfixes
+* garage door datapoint now have selectors
+* devices can be assigned to multiple hap instances
+
 Changelog for 0.0.47:
 =====================
 
