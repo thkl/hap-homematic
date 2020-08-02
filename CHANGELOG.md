@@ -1,3 +1,10 @@
+Changelog for 0.0.49:
+=====================
+
+* fixed a bug that some installations are not able to add new devices
+* fixed a bug für special devices are not added anymore
+
+
 Changelog for 0.0.48:
 =====================
 
