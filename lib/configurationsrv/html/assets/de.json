@@ -352,7 +352,10 @@
       "Back":"Zurück",
       "Select a datapoint":"Datenpunkt auswählen",
       "Add to another instance":"Zu weiterer Instanz hinzufügen",
-      "Remove":"Entfernen"
+      "Remove":"Entfernen",
+      "This service provides multiple HomeMatic Keys in one device.":"Dieser Service stellt multiple Tasten in einem HomeKit Gerät zur Verfügung",
+      "Address of the Key Channel":"Adresse des Tastenkanals",
+      "Add new channel":"Neuen Kanal hinzufügen"
     }
 
 
