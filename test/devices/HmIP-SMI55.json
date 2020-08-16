@@ -1,0 +1,62 @@
+{
+  "devices": [
+    {
+      "id": 1000,
+      "intf": 0,
+      "intfName": "HmIP",
+      "name": "HmIP-SMI55",
+      "address": "9979012713ABCD",
+      "type": "HmIP-SMI55",
+      "channels": [
+        {
+          "id": 1001,
+          "name": "9979012713ABCD:0",
+          "intf": 0,
+          "address": "9979012713ABCD:0",
+          "type": "MAINTENANCE",
+          "access": 255
+        },
+        {
+          "id": 1002,
+          "name": "9979012713ABCD:1",
+          "intf": 0,
+          "address": "9979012713ABCD:1",
+          "type": "KEY_TRANSCEIVER",
+          "access": 255
+        },
+        {
+          "id": 1003,
+          "name": "9979012713ABCD:2",
+          "intf": 0,
+          "address": "9979012713ABCD:2",
+          "type": "KEY_TRANSCEIVER",
+          "access": 255
+        },
+        {
+          "id": 1004,
+          "name": "9979012713ABCD:3",
+          "intf": 0,
+          "address": "9979012713ABCD:3",
+          "type": "MOTIONDETECTOR_TRANSCEIVER",
+          "access": 255
+        },
+        {
+          "id": 1005,
+          "name": "9979012713ABCD:4",
+          "intf": 0,
+          "address": "9979012713ABCD:4",
+          "type": "STATE_RESET_RECEIVER",
+          "access": 255
+        }
+      ]
+    }
+  ],
+  "mappings": {
+    "9979012713ABCD:1": {
+      "Service":"HomeMaticKeyAccessory"
+    }
+  },
+  "ccu": {
+    "9979012713ABCD:1": "HomeMaticKeyAccessory"
+}
+}
