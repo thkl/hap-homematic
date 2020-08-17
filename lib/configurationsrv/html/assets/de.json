@@ -355,7 +355,10 @@
       "Remove":"Entfernen",
       "This service provides multiple HomeMatic Keys in one device.":"Dieser Service stellt multiple Tasten in einem HomeKit Gerät zur Verfügung",
       "Address of the Key Channel":"Adresse des Tastenkanals",
-      "Add new channel":"Neuen Kanal hinzufügen"
+      "Add new channel":"Neuen Kanal hinzufügen",
+      "Url":"Url",
+      "The url for the GET Request":"URL für den GET Request",
+      "This service provides a switch HomeKit which will call a url":"Dieses Gerät stellt einen Schalter zur Verfügung, welcher eine URL aufruft."
     }
 
 
