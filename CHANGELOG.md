@@ -1,8 +1,16 @@
+Changelog for 0.0.50:
+=====================
+
+* added multiple key device
+* added http device
+* fixed a bug in garage door
+
+
 Changelog for 0.0.49:
 =====================
 
 * fixed a bug that some installations are not able to add new devices
-* fixed a bug für special devices are not added anymore
+* fixed a bug that special devices are not added anymore
 
 
 Changelog for 0.0.48:
