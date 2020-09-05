@@ -101,7 +101,7 @@ describe('HAP-Homematic Tests ' + testCase, () => {
       }
     })
   })
-
+  /*
   it('HAP-Homematic check SET_TEMPERATURE and HeatingMode should be heating', (done) => {
     let rnd1 = Math.floor(Math.random() * Math.floor(30)) + 5 // make sure we do not set below the off themp
     // We have to set a Current Temperature below the new settemp to make sure the thermostate is in heating mode
@@ -118,6 +118,7 @@ describe('HAP-Homematic Tests ' + testCase, () => {
       } catch (e) {
 
       }
+
       // we have a temperature so the CurrentHeatingCoolingState should be heating
       let ch1 = service.getCharacteristic(Characteristic.CurrentHeatingCoolingState)
       ch1.getValue((context, value) => {
@@ -130,6 +131,7 @@ describe('HAP-Homematic Tests ' + testCase, () => {
       })
     })
   })
+  */
 
   it('HAP-Homematic check SET_TEMPERATURE and HeatingMode should be OFF', (done) => {
     // Set The controlmode to manual
