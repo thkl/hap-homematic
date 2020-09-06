@@ -228,6 +228,7 @@
           </div>
         </main>
         <footer class="c-footer">
+          (c) <span id="footer_year"></span> by thkl | <a target="_blank" href="https://github.com/thkl/hap-homematic">https://github.com/thkl/hap-homematic</a>
         </footer>
 
 
@@ -246,6 +247,7 @@
     <script src="js/sockjs.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.1/showdown.min.js"></script>
     <script type="module">
+        $('#footer_year').html('&nbsp;'+ new Date().getFullYear() + '&nbsp;')
         import { Application } from './js/application.js'
         let app =  new Application()
         app.run()

@@ -358,7 +358,8 @@
       "Add new channel":"Neuen Kanal hinzufügen",
       "Url":"Url",
       "The url for the GET Request":"URL für den GET Request",
-      "This service provides a switch HomeKit which will call a url":"Dieses Gerät stellt einen Schalter zur Verfügung, welcher eine URL aufruft."
+      "This service provides a switch HomeKit which will call a url":"Dieses Gerät stellt einen Schalter zur Verfügung, welcher eine URL aufruft.",
+      "This service provides multiple HomeMatic Keys (to create a ccu event) in one device.":"Dieser Service stellt multiple Tasten (zum Auslösen von Events in der CCU) in einem HomeKit Gerät zur Verfügung"
     }
 
 
