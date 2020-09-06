@@ -1,3 +1,8 @@
+Changelog for 0.0.51:
+=====================
+
+* worked on some timing issues
+
 Changelog for 0.0.50:
 =====================
 
