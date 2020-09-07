@@ -38,7 +38,10 @@
 		"test": "mocha",
 		"update": "mkdir /tmp/hap-homematic-cache;cd /usr/local/addons/hap-homematic;npm i --cache /tmp/hap-homematic-cache hap-homematic@latest;rm -R /tmp/hap-homematic-cache",
 		"restart": "/etc/config/rc.d/hap-homematic restart",
-		"lint": "standard"
+		"lint": "standard",
+		"preversion": "npm run test",
+		"version": "",
+    	"postversion": "git push && git push --tags && npm publish"
 	},
 	"devDependencies": {
 		"mocha": "^7.0.1",
