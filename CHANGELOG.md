@@ -1,3 +1,8 @@
+Changelog for 0.0.53:
+=====================
+
+* fixed a problem that some installations are not able to create or edit devices anymore
+
 Changelog for 0.0.51:
 =====================
 
