@@ -5,7 +5,7 @@
 ![Node.js CI](https://github.com/thkl/hap-homematic/workflows/Node.js%20CI/badge.svg)
 
 <p align="center">
-    <img src="doc/hap_homematic_ui1.png">
+    <img src="doc/hap_homematic_ui2.png">
 </p>
 
 
