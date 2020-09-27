@@ -1,0 +1,46 @@
+{
+    "devices": [
+        {
+            "id": 1461,
+            "intf": 0,
+            "name": "HM-CC-TC 5120978032ABCD",
+            "address": "5120978032ABCD",
+            "type": "HM-CC-TC",
+            "intfName": "BidCos-RF",
+            "channels": [
+                {
+                    "id": 1481,
+                    "name": "HM-CC-TC 5120978032ABCD:1",
+                    "intf": 0,
+                    "address": "5120978032ABCD:1",
+                    "type": "WEATHER",
+                    "access": 255
+                },
+                {
+                    "id": 1484,
+                    "name": "HM-CC-TC 5120978032ABCD:2",
+                    "intf": 0,
+                    "address": "5120978032ABCD:2",
+                    "type": "CLIMATECONTROL_REGULATOR",
+                    "access": 255
+                },
+                {
+                    "id": 1489,
+                    "name": "HM-CC-TC 5120978032ABCD:3",
+                    "intf": 0,
+                    "address": "5120978032ABCD:3",
+                    "type": "WINDOW_SWITCH_RECEIVER",
+                    "access": 255
+                }
+            ]
+        }
+    ],
+    "ccu": {
+        "5120978032ABCD:2": "HomeMaticThermostatAccessory"
+    },
+    "mappings": {
+        "5120978032ABCD:2": {
+            "Service": "HomeMaticThermostatAccessory"
+        }
+    }
+}
