@@ -361,7 +361,9 @@
       "This service provides a switch HomeKit which will call a url":"Dieses Gerät stellt einen Schalter zur Verfügung, welcher eine URL aufruft.",
       "This service provides multiple HomeMatic Keys (to create a ccu event) in one device.":"Dieser Service stellt multiple Tasten (zum Auslösen von Events in der CCU) in einem HomeKit Gerät zur Verfügung",
       "Show graph":"Graph anzeigen",
-      "Show measured values as graph on the frontpage":"Zeigt einen Graph des Messwertes auf der Startseite an"
+      "Show measured values as graph on the frontpage":"Zeigt einen Graph des Messwertes auf der Startseite an",
+      "Unlock mode":"Unlock Modus",
+      "What to do when HomeKit will unlock the door":"Was soll getan werden, wenn Homekit die Tür aufschliesst"
     }
 
 
