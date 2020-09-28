@@ -36,11 +36,11 @@
     }
   ],
   "ccu": {
-      "5704833150ABCD:1": "HomeMaticLeakSensorAccessory"
+      "5704833150ABCD:1": "HomeMaticIPLeakSensorAccessory"
   },
   "mappings": {
     "5704833150ABCD:1": {
-      "Service":"HomeMaticLeakSensorAccessory"
+      "Service":"HomeMaticIPLeakSensorAccessory"
     }
   }
 } 
