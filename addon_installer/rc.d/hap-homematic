@@ -6,45 +6,50 @@ CONFIG_URL=/addons/hap-homematic/index.html
 CONFIG_DIR=/usr/local/etc/config
 PIDFILE=/var/run/hap-homematic.pid 
 VER=0.0.11
-PSPID=`ps -o pid,comm,args | awk '{if ($2=="node" && $4 ~ /hap-homematic/){print $1}}'`
-PSPID2=`ps -o pid,comm,args | awk '{if ($2=="hap-homematic-c"){print $1}}'`
+EXEC=node
+EXECARGS=$HAPDIR/index.js
+
+do_start()
+{
+	# run installer if needed
+  	$HAPROOT/etc/postinstall.sh
+	start-stop-daemon --start --quiet --oknodo --make-pidfile --background  --pidfile $PIDFILE --exec $EXEC $EXECARGS
+	logger -t homematic -p user.info "start hap-homematic"
+}
+
+do_stop()
+{
+    start-stop-daemon --stop --quiet  --oknodo  --retry 5  --pidfile $PIDFILE
+
+    if [ -e $PIDFILE ];then
+      rm -f $PIDFILE
+    fi
+  	
+	sleep 2
+	pgrep -f '^hap-homematic-.*' | xargs kill -9
+	logger -t homematic -p user.info "stopped hap-homematic"
+}
+
+
 case "$1" in
   ""|start)
 
-	# run installer if needed
-  	$HAPROOT/etc/postinstall.sh
-
-	if [ "$PSPID" = "" ]
-	then
-	  node $HAPDIR/index.js >/dev/null & echo $! >${PIDFILE}
-	  logger -t homematic -p user.info "started hap-homematic"
-	fi
+	do_start
+	
 	;;
 
   stop)
-  	if [ "$PSPID" != "" ]
-  	then
-	  kill $PSPID >/dev/null
-	  sleep 2
-	  kill $PSPID2 >/dev/null
-	  logger -t homematic -p user.info "stopped hap-homematic"
-	  rm -f ${PIDFILE}
-	fi
+	
+	do_stop
+	
 	;;
 
   restart)
-  	if [ "$PSPID" != "" ]
-  	then
-	  kill $PSPID >/dev/null
-	  sleep 2
-	  kill $PSPID2 >/dev/null
-	  logger -t homematic -p user.info "stopped hap-homematic"
-	  rm -f ${PIDFILE}
-	fi
-	#wait 10 seconds until the configuration service will close
+  	
+	do_stop
 	sleep 10
-	node $HAPDIR/index.js >/dev/null & echo $! >${PIDFILE}
-	logger -t homematic -p user.info "started (restart) hap-homematic"
+	do_start
+	
 	;;
 
   info)
