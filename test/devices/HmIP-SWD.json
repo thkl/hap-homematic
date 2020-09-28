@@ -1,0 +1,46 @@
+{
+ "devices": [
+    {
+      "id": 1000,
+      "intf": 0,
+      "intfName": "HmIP",
+      "name": "HmIP-SWD",
+      "address": "5704833150ABCD",
+      "type": "HmIP-SWD",
+      "channels": [
+        {
+          "id": 1001,
+          "name": "5704833150ABCD:0",
+          "intf": 0,
+          "address": "5704833150ABCD:0",
+          "type": "MAINTENANCE",
+          "access": 255
+        },
+        {
+          "id": 1002,
+          "name": "5704833150ABCD:1",
+          "intf": 0,
+          "address": "5704833150ABCD:1",
+          "type": "WATER_DETECTION_TRANSMITTER",
+          "access": 255
+        },
+        {
+          "id": 1003,
+          "name": "5704833150ABCD:2",
+          "intf": 0,
+          "address": "5704833150ABCD:2",
+          "type": "ALARM_COND_SWITCH_TRANSMITTER",
+          "access": 255
+        }
+      ]
+    }
+  ],
+  "ccu": {
+      "5704833150ABCD:1": "HomeMaticLeakSensorAccessory"
+  },
+  "mappings": {
+    "5704833150ABCD:1": {
+      "Service":"HomeMaticLeakSensorAccessory"
+    }
+  }
+} 
