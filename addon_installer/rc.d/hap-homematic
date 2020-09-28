@@ -5,7 +5,7 @@ HAPROOT=/usr/local/addons/hap-homematic/
 CONFIG_URL=/addons/hap-homematic/index.html
 CONFIG_DIR=/usr/local/etc/config
 PIDFILE=/var/run/hap-homematic.pid 
-VER=0.0.11
+VER=0.0.12
 EXEC=node
 EXECARGS=$HAPDIR/index.js
 
