@@ -369,7 +369,8 @@
       "Show graph":"Graph anzeigen",
       "Show measured values as graph on the frontpage":"Zeigt einen Graph des Messwertes auf der Startseite an",
       "Unlock mode":"Unlock Modus",
-      "What to do when HomeKit will unlock the door":"Was soll getan werden, wenn Homekit die Tür aufschliesst"
+      "What to do when HomeKit will unlock the door":"Was soll getan werden, wenn Homekit die Tür aufschliesst",
+      "This service provides a filling sensor":"Dieser Service stellt einen Füllstandssensor bereit."
     }
 
 

@@ -1,0 +1,30 @@
+{
+    "devices": [
+        {
+            "id": 1000,
+            "intf": 0,
+            "intfName": "BidCos-RF",
+            "name": "HM-Sen-Wa-Od",
+            "address": "3951871708ABCD",
+            "type": "HM-Sen-Wa-Od",
+            "channels": [
+                {
+                    "id": 1001,
+                    "name": "3951871708ABCD:1",
+                    "intf": 0,
+                    "address": "3951871708ABCD:1",
+                    "type": "CAPACITIVE_FILLING_LEVEL_SENSOR",
+                    "access": 255
+                }
+            ]
+        }
+    ],
+    "ccu": {
+        "3951871708ABCD:1": "HomeMaticFillingSensorAccessory"
+      },
+      "mappings": {
+        "3951871708ABCD:1": {
+          "Service":"HomeMaticFillingSensorAccessory"
+        }
+      }
+}
