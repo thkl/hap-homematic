@@ -17,7 +17,7 @@ This RaspberryMatic / CCU3 addon will allow you to access your HomeMatic devices
 All this runs on your RaspberryMatic / CCU3. You will not need any extra hardware.
 
 # Installation
-Download the latest addon (hap-homematic-x.x.xx.tar.gz) from https://github.com/thkl/hap-homematic/releases/latest/ and install it via system preferences.
+Download the latest addon (hap-homematic-x.x.xx.tar.gz) from https://github.com/thkl/hap-homematic/releases/latest/ and install it via system preferences to your ccu.
 
 A little bit later (the addon will install all other needed software) you will have a HomeKit button in your ccu system preference page.
 
@@ -50,6 +50,9 @@ Please note: History is only available if u are using the eve app as a homekit c
 
 # Issues and not supported devices
 Please open an issue [here](https://github.com/thkl/hap-homematic/issues/new) for all what went wrong.
+
+# Documentation
+Please find the documentation in the [wiki](https://github.com/thkl/hap-homematic/wiki)
 
 # Icon
 the icon was made by @roe1974
