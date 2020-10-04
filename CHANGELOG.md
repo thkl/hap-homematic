@@ -1,3 +1,10 @@
+Changelog for 0.0.54:
+=====================
+
+* Bug Fixes
+* customizable lock mode for Keymatic 
+* CCU Temperature Chart 
+
 Changelog for 0.0.53:
 =====================
 
