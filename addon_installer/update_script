@@ -4,6 +4,7 @@ ADDONNAME=hap-homematic
 CONFIG_DIR=/usr/local/etc/config
 ADDON_DIR=/usr/local/addons/${ADDONNAME}
 ADDONWWW_DIR=/usr/local/etc/config/addons/www
+ADDONCFG_DIR=${CONFIG_DIR}/addons/${ADDONNAME}
 RCD_DIR=${CONFIG_DIR}/rc.d
 
 # make sure this addon is only executed on
@@ -23,7 +24,7 @@ mkdir -p ${RCD_DIR}
 chmod 755 ${RCD_DIR}
 
 # copy addon
-mkdir -p ${ADDON_DIR}/etc
+mkdir -p ${ADDONCFG_DIR}/etc
 mkdir -p ${CONFIG_DIR}/${ADDONNAME}
 
 #create the www stuff
@@ -35,8 +36,8 @@ cp -af hap/etc/www/hap-homematic-logo.png ${ADDONWWW_DIR}/${ADDONNAME}
 # copy startup script
 cp -af rc.d/* ${RCD_DIR}
 # copy installer
-cp -af hap/etc/postinstall.sh ${ADDON_DIR}/etc
-chmod +x ${ADDON_DIR}/etc/postinstall.sh
+cp -af hap/etc/postinstall.sh ${ADDONCFG_DIR}/etc
+chmod +x ${ADDONCFG_DIR}/etc/postinstall.sh
 
 #build system launcher
 chmod +x ${RCD_DIR}/${ADDONNAME}

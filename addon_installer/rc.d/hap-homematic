@@ -4,15 +4,18 @@ HAPDIR=/usr/local/addons/hap-homematic/node_modules/hap-homematic/
 HAPROOT=/usr/local/addons/hap-homematic/
 CONFIG_URL=/addons/hap-homematic/index.html
 CONFIG_DIR=/usr/local/etc/config
+ADDONCFG_DIR=${CONFIG_DIR}/addons/${ADDON_NAME}
 PIDFILE=/var/run/hap-homematic.pid 
-VER=0.0.12
+VER=0.0.14
 EXEC=node
 EXECARGS=$HAPDIR/index.js
 
 do_start()
 {
 	# run installer if needed
-  	$HAPROOT/etc/postinstall.sh
+  	if [ -e $ADDONCFG_DIR/etc/postinstall.sh ];then
+	  $ADDONCFG_DIR/etc/postinstall.sh
+	fi
 	start-stop-daemon --start --quiet --oknodo --make-pidfile --background  --pidfile $PIDFILE --exec $EXEC $EXECARGS
 	logger -t homematic -p user.info "start hap-homematic"
 }
