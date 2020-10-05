@@ -370,7 +370,10 @@
       "Show measured values as graph on the frontpage":"Zeigt einen Graph des Messwertes auf der Startseite an",
       "Unlock mode":"Unlock Modus",
       "What to do when HomeKit will unlock the door":"Was soll getan werden, wenn Homekit die Tür aufschliesst",
-      "This service provides a filling sensor":"Dieser Service stellt einen Füllstandssensor bereit."    
+      "This service provides a filling sensor":"Dieser Service stellt einen Füllstandssensor bereit.",
+      "On Time":"Einschaltzeit",
+      "HAP will switch off this device automatically after the given seconds. Set this to 0 to turn off this feature.":
+        "HAP wird das Gerät automatisch nach der angegebenen Anzahl der Sekunden ausschalten. Stelle den Wert auf 0 um die Funktion zu deaktivieren."
     }
 
 
