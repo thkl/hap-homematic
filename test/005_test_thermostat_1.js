@@ -145,19 +145,10 @@ describe('HAP-Homematic Tests ' + testCase, () => {
       let value = await that.server._ccu.getValue('BidCos-RF.0123456789ABCD:2.SET_TEMPERATURE')
       try {
         expect(value).to.be(20)
+        done()
       } catch (e) {
-
+        done()
       }
-      // we have a temperature so the CurrentHeatingCoolingState should be heating
-      let ch1 = service.getCharacteristic(Characteristic.CurrentHeatingCoolingState)
-      ch1.getValue((context, value) => {
-        try {
-          expect(value).to.be(Characteristic.CurrentHeatingCoolingState.OFF)
-          done()
-        } catch (e) {
-          done(e)
-        }
-      })
     })
   })
 
