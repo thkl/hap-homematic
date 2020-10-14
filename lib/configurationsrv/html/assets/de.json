@@ -373,7 +373,13 @@
       "This service provides a filling sensor":"Dieser Service stellt einen Füllstandssensor bereit.",
       "On Time":"Einschaltzeit",
       "HAP will switch off this device automatically after the given seconds. Set this to 0 to turn off this feature.":
-        "HAP wird das Gerät automatisch nach der angegebenen Anzahl der Sekunden ausschalten. Stelle den Wert auf 0 um die Funktion zu deaktivieren."
+        "HAP wird das Gerät automatisch nach der angegebenen Anzahl der Sekunden ausschalten. Stelle den Wert auf 0 um die Funktion zu deaktivieren.",
+        "HAP will switch off this device automatically after the given seconds. Default is 10 sec.":"HAP wird das Gerät automatisch nach der angegebenen Anzahl der Sekunden ausschalten. Vorgabe ist 10 sec.",
+        "This service provides a door lock service which will actuate a switch":"Dieser Service stellt einen Türöffner bereit, der über einen Switch geschalten werden kann.",
+        "Address door bell indicator":"Addresse der Türklingel",
+        "This service provides a Video door bell for HomeKit":"Dieser Service stellt eine Video Klingel zur Verfügung",
+        "URL RTSP video":"RTSP Video URL",
+        "URL still image":"URL des Bildes"
     }
 
 
