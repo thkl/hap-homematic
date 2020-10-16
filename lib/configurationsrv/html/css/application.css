@@ -110,3 +110,29 @@ input[type="radio"], input[type="checkbox"] {
         padding-top: 5px;
     }
 }
+
+.homeKitCode {
+    background-image: url('../img/hkhome.png');
+    min-height: 380px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    margin-right: auto;
+    margin-left: auto;
+    width: 300px;
+    margin-bottom: 20px;
+}
+
+.homeKitCode span{
+    font-size: 25px;
+    font-weight: bolder;
+    position: relative;
+    top: 40px;
+    left: 126px;
+    letter-spacing: 17px;
+}
+
+.homeKitCode img {
+    bottom: 42px;
+    margin-left: 44px;
+    margin-top: 60px;
+}
