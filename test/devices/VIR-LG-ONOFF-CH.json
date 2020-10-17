@@ -1,0 +1,38 @@
+{
+    "devices": [
+        {
+            "id": 1000,
+            "intf": 0,
+            "intfName": "VirtualDevices",
+            "name": "VIR-LG-ONOFF",
+            "address": "1079891751ABCD",
+            "type": "VIR-LG-ONOFF",
+            "channels": [
+                {
+                    "id": 1001,
+                    "name": "1079891751ABCD:0",
+                    "intf": 0,
+                    "address": "1079891751ABCD:0",
+                    "type": "VIP-MAINTENANCE",
+                    "access": 255
+                },
+                {
+                    "id": 1002,
+                    "name": "1079891751ABCD:1",
+                    "intf": 0,
+                    "address": "1079891751ABCD:1",
+                    "type": "VIR-LG-ONOFF-CH",
+                    "access": 255
+                }
+            ]
+        }
+    ],
+    "ccu": {
+        "1079891751ABCD:1": "HomeMaticSwitchAccessory"
+    },
+    "mappings": {
+        "1079891751ABCD:1": {
+            "Service": "HomeMaticSwitchAccessory"
+        }
+    }
+}
