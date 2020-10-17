@@ -379,7 +379,8 @@
         "Address door bell indicator":"Addresse der Türklingel",
         "This service provides a Video door bell for HomeKit":"Dieser Service stellt eine Video Klingel zur Verfügung",
         "URL RTSP video":"RTSP Video URL",
-        "URL still image":"URL des Bildes"
+        "URL still image":"URL des Bildes",
+        "Path to ffmpg":"Pfad zu ffmpeg"
     }
 
 
