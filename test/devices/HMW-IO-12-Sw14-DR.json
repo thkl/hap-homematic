@@ -1,0 +1,225 @@
+{
+  "devices": [
+    {
+      "id": 1000,
+      "intf": 0,
+      "intfName": "BidCos-Wir",
+      "name": "HMW-IO-12-Sw14-DR",
+      "address": "2752767911ABCD",
+      "type": "HMW-IO-12-Sw14-DR",
+      "channels": [
+        {
+          "id": 1001,
+          "name": "2752767911ABCD:1",
+          "intf": 0,
+          "address": "2752767911ABCD:1",
+          "type": "DIGITAL_OUTPUT",
+          "access": 255
+        },
+        {
+          "id": 1002,
+          "name": "2752767911ABCD:2",
+          "intf": 0,
+          "address": "2752767911ABCD:2",
+          "type": "DIGITAL_OUTPUT",
+          "access": 255
+        },
+        {
+          "id": 1003,
+          "name": "2752767911ABCD:3",
+          "intf": 0,
+          "address": "2752767911ABCD:3",
+          "type": "DIGITAL_OUTPUT",
+          "access": 255
+        },
+        {
+          "id": 1004,
+          "name": "2752767911ABCD:4",
+          "intf": 0,
+          "address": "2752767911ABCD:4",
+          "type": "DIGITAL_OUTPUT",
+          "access": 255
+        },
+        {
+          "id": 1005,
+          "name": "2752767911ABCD:5",
+          "intf": 0,
+          "address": "2752767911ABCD:5",
+          "type": "DIGITAL_OUTPUT",
+          "access": 255
+        },
+        {
+          "id": 1006,
+          "name": "2752767911ABCD:6",
+          "intf": 0,
+          "address": "2752767911ABCD:6",
+          "type": "DIGITAL_OUTPUT",
+          "access": 255
+        },
+        {
+          "id": 1007,
+          "name": "2752767911ABCD:7",
+          "intf": 0,
+          "address": "2752767911ABCD:7",
+          "type": "DIGITAL_ANALOG_OUTPUT",
+          "access": 255
+        },
+        {
+          "id": 1008,
+          "name": "2752767911ABCD:8",
+          "intf": 0,
+          "address": "2752767911ABCD:8",
+          "type": "DIGITAL_ANALOG_OUTPUT",
+          "access": 255
+        },
+        {
+          "id": 1009,
+          "name": "2752767911ABCD:9",
+          "intf": 0,
+          "address": "2752767911ABCD:9",
+          "type": "DIGITAL_ANALOG_OUTPUT",
+          "access": 255
+        },
+        {
+          "id": 1010,
+          "name": "2752767911ABCD:10",
+          "intf": 0,
+          "address": "2752767911ABCD:10",
+          "type": "DIGITAL_ANALOG_OUTPUT",
+          "access": 255
+        },
+        {
+          "id": 1011,
+          "name": "2752767911ABCD:11",
+          "intf": 0,
+          "address": "2752767911ABCD:11",
+          "type": "DIGITAL_ANALOG_OUTPUT",
+          "access": 255
+        },
+        {
+          "id": 1012,
+          "name": "2752767911ABCD:12",
+          "intf": 0,
+          "address": "2752767911ABCD:12",
+          "type": "DIGITAL_ANALOG_OUTPUT",
+          "access": 255
+        },
+        {
+          "id": 1013,
+          "name": "2752767911ABCD:13",
+          "intf": 0,
+          "address": "2752767911ABCD:13",
+          "type": "DIGITAL_ANALOG_OUTPUT",
+          "access": 255
+        },
+        {
+          "id": 1014,
+          "name": "2752767911ABCD:14",
+          "intf": 0,
+          "address": "2752767911ABCD:14",
+          "type": "DIGITAL_ANALOG_OUTPUT",
+          "access": 255
+        },
+        {
+          "id": 1015,
+          "name": "2752767911ABCD:15",
+          "intf": 0,
+          "address": "2752767911ABCD:15",
+          "type": "DIGITAL_INPUT",
+          "access": 255
+        },
+        {
+          "id": 1016,
+          "name": "2752767911ABCD:16",
+          "intf": 0,
+          "address": "2752767911ABCD:16",
+          "type": "DIGITAL_INPUT",
+          "access": 255
+        },
+        {
+          "id": 1017,
+          "name": "2752767911ABCD:17",
+          "intf": 0,
+          "address": "2752767911ABCD:17",
+          "type": "DIGITAL_INPUT",
+          "access": 255
+        },
+        {
+          "id": 1018,
+          "name": "2752767911ABCD:18",
+          "intf": 0,
+          "address": "2752767911ABCD:18",
+          "type": "DIGITAL_INPUT",
+          "access": 255
+        },
+        {
+          "id": 1019,
+          "name": "2752767911ABCD:19",
+          "intf": 0,
+          "address": "2752767911ABCD:19",
+          "type": "DIGITAL_INPUT",
+          "access": 255
+        },
+        {
+          "id": 1020,
+          "name": "2752767911ABCD:20",
+          "intf": 0,
+          "address": "2752767911ABCD:20",
+          "type": "DIGITAL_INPUT",
+          "access": 255
+        },
+        {
+          "id": 1021,
+          "name": "2752767911ABCD:21",
+          "intf": 0,
+          "address": "2752767911ABCD:21",
+          "type": "DIGITAL_ANALOG_INPUT",
+          "access": 255
+        },
+        {
+          "id": 1022,
+          "name": "2752767911ABCD:22",
+          "intf": 0,
+          "address": "2752767911ABCD:22",
+          "type": "DIGITAL_ANALOG_INPUT",
+          "access": 255
+        },
+        {
+          "id": 1023,
+          "name": "2752767911ABCD:23",
+          "intf": 0,
+          "address": "2752767911ABCD:23",
+          "type": "DIGITAL_ANALOG_INPUT",
+          "access": 255
+        },
+        {
+          "id": 1024,
+          "name": "2752767911ABCD:24",
+          "intf": 0,
+          "address": "2752767911ABCD:24",
+          "type": "DIGITAL_ANALOG_INPUT",
+          "access": 255
+        },
+        {
+          "id": 1025,
+          "name": "2752767911ABCD:25",
+          "intf": 0,
+          "address": "2752767911ABCD:25",
+          "type": "DIGITAL_ANALOG_INPUT",
+          "access": 255
+        },
+        {
+          "id": 1026,
+          "name": "2752767911ABCD:26",
+          "intf": 0,
+          "address": "2752767911ABCD:26",
+          "type": "DIGITAL_ANALOG_INPUT",
+          "access": 255
+        }
+      ]
+    }
+  ],
+  "ccu": {
+    "2752767911ABCD:1": "HomeMaticSwitchAccessory"
+}
+}
