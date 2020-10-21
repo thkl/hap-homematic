@@ -380,7 +380,8 @@
         "This service provides a Video door bell for HomeKit":"Dieser Service stellt eine Video Klingel zur Verfügung",
         "URL RTSP video":"RTSP Video URL",
         "URL still image":"URL des Bildes",
-        "Path to ffmpg":"Pfad zu ffmpeg"
+        "Path to ffmpg":"Pfad zu ffmpeg",
+        "This service provides a humidity sensor for HomeKit":"Dieser Service stellt einen Feuchtigkeitssensor für HomeKit zur Verfügung"
     }
 
 
