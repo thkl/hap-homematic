@@ -1,3 +1,11 @@
+Changelog for 0.0.55:
+=====================
+
+* Bug fixes
+* new Instances are now able to setup by using the qr code
+* added some new device types
+
+
 Changelog for 0.0.54:
 =====================
 
