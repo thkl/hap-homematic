@@ -63,8 +63,8 @@ describe('HAP-Homematic Tests ' + testCase, () => {
     done()
   })
 
-  it('HAP-Homematic check LEVEL 0', (done) => {
-    that.server._ccu.fireEvent('BidCos-RF.3951871708ABCD:1.LEVEL', 0)
+  it('HAP-Homematic check FILLING_LEVEL 0', (done) => {
+    that.server._ccu.fireEvent('BidCos-RF.3951871708ABCD:1.FILLING_LEVEL', 0)
     let accessory = that.server._publishedAccessories[Object.keys(that.server._publishedAccessories)[0]]
     let service = accessory.getService(Service.HumiditySensor, 'TestDevice', false, '', true)
     assert.ok(service, 'Humidity Service not found')
@@ -80,8 +80,8 @@ describe('HAP-Homematic Tests ' + testCase, () => {
     })
   })
 
-  it('HAP-Homematic check LEVEL 50%', (done) => {
-    that.server._ccu.fireEvent('BidCos-RF.3951871708ABCD:1.LEVEL', 50)
+  it('HAP-Homematic check FILLING_LEVEL 50%', (done) => {
+    that.server._ccu.fireEvent('BidCos-RF.3951871708ABCD:1.FILLING_LEVEL', 50)
     let accessory = that.server._publishedAccessories[Object.keys(that.server._publishedAccessories)[0]]
     let service = accessory.getService(Service.HumiditySensor)
     let ch = service.getCharacteristic(Characteristic.CurrentRelativeHumidity)
@@ -95,8 +95,8 @@ describe('HAP-Homematic Tests ' + testCase, () => {
     })
   })
 
-  it('HAP-Homematic check LEVEL 100%', (done) => {
-    that.server._ccu.fireEvent('BidCos-RF.3951871708ABCD:1.LEVEL', 100)
+  it('HAP-Homematic check FILLING_LEVEL 100%', (done) => {
+    that.server._ccu.fireEvent('BidCos-RF.3951871708ABCD:1.FILLING_LEVEL', 100)
     let accessory = that.server._publishedAccessories[Object.keys(that.server._publishedAccessories)[0]]
     let service = accessory.getService(Service.HumiditySensor)
     let ch = service.getCharacteristic(Characteristic.CurrentRelativeHumidity)
