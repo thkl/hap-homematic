@@ -23,7 +23,8 @@
 		"formidable": "^1.2.2",
 		"hap-nodejs": "^0.5.7",
 		"homematic-xmlrpc": "1.0.2",
-		"sockjs": "^0.3.20"
+		"sockjs": "^0.3.20",
+		"moment": "2.29.0"
 	},
 	"husky": {
 		"hooks": {
