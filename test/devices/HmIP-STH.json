@@ -1,0 +1,86 @@
+{
+  "devices": [
+    {
+      "id": 1000,
+      "intf": 0,
+      "intfName": "HmIP",
+      "name": "HmIP-STH",
+      "address": "4734919797ABCD",
+      "type": "HmIP-STH",
+      "channels": [
+        {
+          "id": 1001,
+          "name": "4734919797ABCD:0",
+          "intf": 0,
+          "address": "4734919797ABCD:0",
+          "type": "MAINTENANCE",
+          "access": 255
+        },
+        {
+          "id": 1002,
+          "name": "4734919797ABCD:1",
+          "intf": 0,
+          "address": "4734919797ABCD:1",
+          "type": "HEATING_CLIMATECONTROL_TRANSCEIVER",
+          "access": 255
+        },
+        {
+          "id": 1003,
+          "name": "4734919797ABCD:2",
+          "intf": 0,
+          "address": "4734919797ABCD:2",
+          "type": "HEATING_CLIMATECONTROL_RECEIVER",
+          "access": 255
+        },
+        {
+          "id": 1004,
+          "name": "4734919797ABCD:3",
+          "intf": 0,
+          "address": "4734919797ABCD:3",
+          "type": "HEATING_CLIMATECONTROL_CL_TRANSMITTER",
+          "access": 255
+        },
+        {
+          "id": 1005,
+          "name": "4734919797ABCD:4",
+          "intf": 0,
+          "address": "4734919797ABCD:4",
+          "type": "HEATING_SHUTTER_CONTACT_RECEIVER",
+          "access": 255
+        },
+        {
+          "id": 1006,
+          "name": "4734919797ABCD:5",
+          "intf": 0,
+          "address": "4734919797ABCD:5",
+          "type": "HEATING_CLIMATECONTROL_SWITCH_TRANSMITTER",
+          "access": 255
+        },
+        {
+          "id": 1007,
+          "name": "4734919797ABCD:6",
+          "intf": 0,
+          "address": "4734919797ABCD:6",
+          "type": "HEATING_KEY_RECEIVER",
+          "access": 255
+        },
+        {
+          "id": 1008,
+          "name": "4734919797ABCD:7",
+          "intf": 0,
+          "address": "4734919797ABCD:7",
+          "type": "CLIMATECONTROL_FLOOR_TRANSMITTER",
+          "access": 255
+        }
+      ]
+    }
+  ],
+  "ccu": {
+      "4734919797ABCD:1": "HomeMaticThermometerAccessory"
+  },
+  "mappings": {
+    "4734919797ABCD:1": {
+      "Service":"HomeMaticThermometerAccessory"
+    }
+  }
+}
