@@ -48,14 +48,15 @@
     "Programs": "Programme",
     "Special devices": "Besondere Geräte",
     "HomeKit Instances": "HomeKit Instanzen",
+    "Reset Instance":"Instanz zurücksetzen",
     "Instance name": "Name der Instanz",
     "Please choose a HAP instance": "Bitte eine HAP Instanz auswählen",
     "PinCode": "PinCode",
     "Published devices": "Veröffentlichte Geräte",
     "Edit device": "Gerät bearbeiten",
-    "Edit Homekit instance": "HomeKit Instanze bearbeiten",
-    "Edit HAP Instance": "HomeKit Instanze bearbeiten",
-    "Homekit instance name:": "Name der HomeKit Instanze",
+    "Edit Homekit instance": "HomeKit Instanz bearbeiten",
+    "Edit HAP Instance": "HomeKit Instanz bearbeiten",
+    "Homekit instance name:": "Name der HomeKit Instanz",
     "Create new HomeKit instance": "HomeKit Instanz anlegen",
     "Here you can setup a new HomeKit instance. Please give your instance a nice name (eg. Roomname)": "Hier kannst Du eine neue HomeKit Instanz anlegen. Gib ihr einen eindeutigen Namen (zb. Raumnamen)",
     "Edit your device %s here": "Bearbeite das Gerät %s hier",
@@ -344,5 +345,12 @@
     "max Dim Value": "max Wert Dimmer",
     "min Dim Value": "min Wert Dimmer",
     "This is the maximum HAP will dim this light (0-100). Set this to 0 to turn off this feature.": "Dies ist das Maximum auf welches HAP das Licht dimmen wird (0-100). Der Wert 0 schaltet diese Funktion aus.",
-    "This is the minium HAP will dim this light (0-100). Set this to 0 to turn off this feature.": "Dies ist das Minimum auf welches HAP das Licht dimmen wird (0-100). Der Wert 0 schaltet diese Funktion aus."
+    "This is the minium HAP will dim this light (0-100). Set this to 0 to turn off this feature.": "Dies ist das Minimum auf welches HAP das Licht dimmen wird (0-100). Der Wert 0 schaltet diese Funktion aus.",
+    "Are you sure you want to reset %s? HomeKit will not be able to access devices in this instance anymore. You have to reconnect the instance new to HomeKit. All your settings, automations using devices from this instance will be lost. Only perfom this in case you removed a instance allready and now you are note able to add it again to HomeKit.":
+     "Bist Du sicher, das Du die Instanz %s zurücksetzen möchtest ? HomeKit wird dann nicht mehr in der Lage sein, Geräte dieser Instanz zu steuern. Nach dem Rücksetzen muss die Instanz neu mit HomeKit verbunden werden. Alle Einstellungen und Automationen welche Geräte dieser Instanz beinhalten werden gelöscht. Führe den Reset nur aus, wenn Du die Instanz schon aus HomeKit gelöscht hast und sie jetzt nicht wieder hinzufügen kannst.",
+     "Reset ?":"Zurücksetzen ?",
+     "Yes, reset the instance":"JA, die Instanz zurücksetzen.",
+     "Apple Home Compatibility":"Apple Home-App kompatibel",
+     "This will disable the eve history. Due to the fact that Apples Home App is not able to show custom devices using this option will not generate custom devices.":
+      "Dies wird die Eve History abschalten. Dadurch das Apples Home App keine custom Geräte anzeigen kann wird diese Option vermeiden solche Geräte zu erzeugen."
 }
