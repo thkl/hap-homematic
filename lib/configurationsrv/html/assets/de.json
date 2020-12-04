@@ -352,5 +352,6 @@
      "Yes, reset the instance":"JA, die Instanz zurücksetzen.",
      "Apple Home Compatibility":"Apple Home-App kompatibel",
      "This will disable the eve history. Due to the fact that Apples Home App is not able to show custom devices using this option will not generate custom devices.":
-      "Dies wird die Eve History abschalten. Dadurch das Apples Home App keine custom Geräte anzeigen kann wird diese Option vermeiden solche Geräte zu erzeugen."
+      "Dies wird die Eve History abschalten. Dadurch das Apples Home App keine custom Geräte anzeigen kann wird diese Option vermeiden solche Geräte zu erzeugen.",
+      "This service provides a motion sensor based on a short press event in HomeKit":"Dieser Service stellt einen Bewegungsmelder auf Basis eines kurzen Tastendruck Events zur Verfügung"
 }
