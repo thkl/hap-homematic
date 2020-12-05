@@ -30,7 +30,8 @@ describe('HAP-Homematic Tests ' + testCase, () => {
       devices: that.data.devices,
       mappings: that.data.mappings,
       values: { // add dummy values so hazDatapoint will find this DP and the device will get HMIP Style battery checks
-
+        'HmIP.9979012713ABCD:1.PRESS_SHORT': false,
+        'HmIP.9979012713ABCD:1.PRESS_LONG': false
       }
       })
       // we have to send this for init cause the attache event will query ccu and create an event that will be scrubbed as initial event by the service
