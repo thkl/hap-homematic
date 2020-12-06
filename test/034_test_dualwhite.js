@@ -193,8 +193,25 @@ describe('HAP-Homematic Tests ' + testCase, () => {
     })
   })
 
-  it('HAP-Homematic check WHITE 0.5', (done) => {
+  it('HAP-Homematic check WHITE 1', (done) => {
     that.server._ccu.fireEvent('BidCos-RF.1357501497ABCD:2.LEVEL', 1)
+    let accessory = that.server._publishedAccessories[Object.keys(that.server._publishedAccessories)[0]]
+    let service = accessory.getService(Service.Lightbulb)
+    assert.ok(service, 'Lightbulb Service not found')
+    let ch = service.getCharacteristic(Characteristic.ColorTemperature)
+    assert.ok(ch, 'ColorTemperature Characteristics not found')
+    ch.getValue((context, value) => {
+      try {
+        expect(value).to.be(140)
+        done()
+      } catch (e) {
+        done(e)
+      }
+    })
+  })
+
+  it('HAP-Homematic check WHITE 0', (done) => {
+    that.server._ccu.fireEvent('BidCos-RF.1357501497ABCD:2.LEVEL', 0)
     let accessory = that.server._publishedAccessories[Object.keys(that.server._publishedAccessories)[0]]
     let service = accessory.getService(Service.Lightbulb)
     assert.ok(service, 'Lightbulb Service not found')
@@ -210,6 +227,25 @@ describe('HAP-Homematic Tests ' + testCase, () => {
     })
   })
 
+  it('HAP-Homematic set WHITE 1%', (done) => {
+    let accessory = that.server._publishedAccessories[Object.keys(that.server._publishedAccessories)[0]]
+    accessory.delayOnSet = 10
+    let service = accessory.getService(Service.Lightbulb)
+    assert.ok(service, 'Lightbulb not found')
+    let chTar = service.getCharacteristic(Characteristic.ColorTemperature)
+    chTar.setValue(140, () => {
+      setTimeout(async () => {
+        let value = await that.server._ccu.getValue('BidCos-RF.1357501497ABCD:2.LEVEL')
+        try {
+          expect(value).to.be(1)
+          done()
+        } catch (e) {
+          done(e)
+        }
+      }, 15) // default delay is 500ms
+    })
+  })
+
   it('HAP-Homematic set WHITE 50%', (done) => {
     let accessory = that.server._publishedAccessories[Object.keys(that.server._publishedAccessories)[0]]
     accessory.delayOnSet = 10
@@ -221,6 +257,25 @@ describe('HAP-Homematic Tests ' + testCase, () => {
         let value = await that.server._ccu.getValue('BidCos-RF.1357501497ABCD:2.LEVEL')
         try {
           expect(value).to.be(0.5)
+          done()
+        } catch (e) {
+          done(e)
+        }
+      }, 15) // default delay is 500ms
+    })
+  })
+
+  it('HAP-Homematic set WHITE 0%', (done) => {
+    let accessory = that.server._publishedAccessories[Object.keys(that.server._publishedAccessories)[0]]
+    accessory.delayOnSet = 10
+    let service = accessory.getService(Service.Lightbulb)
+    assert.ok(service, 'Lightbulb not found')
+    let chTar = service.getCharacteristic(Characteristic.ColorTemperature)
+    chTar.setValue(500, () => {
+      setTimeout(async () => {
+        let value = await that.server._ccu.getValue('BidCos-RF.1357501497ABCD:2.LEVEL')
+        try {
+          expect(value).to.be(0)
           done()
         } catch (e) {
           done(e)
