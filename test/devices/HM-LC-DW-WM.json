@@ -1,0 +1,70 @@
+{
+  "devices": [
+    {
+      "id": 1000,
+      "intf": 0,
+      "intfName": "BidCos-RF",
+      "name": "HM-LC-DW-WM",
+      "address": "1357501497ABCD",
+      "type": "HM-LC-DW-WM",
+      "channels": [
+        {
+          "id": 1001,
+          "name": "1357501497ABCD:1",
+          "intf": 0,
+          "address": "1357501497ABCD:1",
+          "type": "DUAL_WHITE_BRIGHTNESS",
+          "access": 255
+        },
+        {
+          "id": 1002,
+          "name": "1357501497ABCD:2",
+          "intf": 0,
+          "address": "1357501497ABCD:2",
+          "type": "DUAL_WHITE_COLOR",
+          "access": 255
+        },
+        {
+          "id": 1003,
+          "name": "1357501497ABCD:3",
+          "intf": 0,
+          "address": "1357501497ABCD:3",
+          "type": "VIRTUAL_DUAL_WHITE_BRIGHTNESS",
+          "access": 255
+        },
+        {
+          "id": 1004,
+          "name": "1357501497ABCD:4",
+          "intf": 0,
+          "address": "1357501497ABCD:4",
+          "type": "VIRTUAL_DUAL_WHITE_COLOR",
+          "access": 255
+        },
+        {
+          "id": 1005,
+          "name": "1357501497ABCD:5",
+          "intf": 0,
+          "address": "1357501497ABCD:5",
+          "type": "VIRTUAL_DUAL_WHITE_BRIGHTNESS",
+          "access": 255
+        },
+        {
+          "id": 1006,
+          "name": "1357501497ABCD:6",
+          "intf": 0,
+          "address": "1357501497ABCD:6",
+          "type": "VIRTUAL_DUAL_WHITE_COLOR",
+          "access": 255
+        }
+      ]
+    }
+  ],
+  "ccu": {
+    "1357501497ABCD:1": "HomeMaticDualWhiteDimmerAccessory"
+},
+"mappings": {
+    "1357501497ABCD:1": {
+        "Service": "HomeMaticDualWhiteDimmerAccessory"
+    }
+}
+}
