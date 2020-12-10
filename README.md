@@ -49,7 +49,7 @@ All generated homekit devices will support fakegato history (if there is a histo
 Please note: History is only available if u are using the eve app as a homekit controller.
 
 # Issues and not supported devices
-Please open an issue [here](https://github.com/thkl/hap-homematic/issues/new) for all what went wrong.
+Please open an issue [here](https://github.com/thkl/hap-homematic/issues/new) for all what went wrong. If you just have a question or want to know something consider to open a thread in [Discussions](https://github.com/thkl/hap-homematic/discussions)
 
 # Documentation
 Please find the documentation in the [wiki](https://github.com/thkl/hap-homematic/wiki)
