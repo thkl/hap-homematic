@@ -41,6 +41,7 @@ let log = new Logger('HAP Server')
 var configurationPath = path.join('/usr/local/etc/config/addons/', process.name)
 var simulation
 var dryRun
+var resetSettings = false
 
 program.option('-D, --debug', 'turn on debug level logging', () => {
   log.setDebugEnabled(true)
@@ -48,6 +49,10 @@ program.option('-D, --debug', 'turn on debug level logging', () => {
 
 program.option('-C, --configuration [path]', 'set configuration path', (configuration) => {
   configurationPath = configuration
+})
+
+program.option('--reset', 'reset configuration', () => {
+  resetSettings = true
 })
 
 program.option('-S, --simulate [path]', 'simulate with a devices file', (devFile) => {
@@ -103,6 +108,10 @@ if (simulation !== undefined) {
 } else {
   log.debug('Initializing Server')
   server = new Server(log, configurationPath)
+  if (resetSettings === true) {
+    server.reset()
+    process.exit()
+  }
   server.init(dryRun)
 }
 
