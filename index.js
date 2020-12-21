@@ -109,6 +109,7 @@ if (simulation !== undefined) {
   log.debug('Initializing Server')
   server = new Server(log, configurationPath)
   if (resetSettings === true) {
+    log.info('---- reset all settings ----')
     server.reset()
     process.exit()
   }
