@@ -20,9 +20,7 @@ describe('HAP-Homematic Tests ' + testCase, () => {
     let strData = fs.readFileSync(datapath).toString()
     if (strData) {
       that.data = JSON.parse(strData)
-
       that.server = new Server(log)
-
       await that.server.simulate(undefined, {config: {
         channels: Object.keys(that.data.ccu)
       },
