@@ -352,9 +352,12 @@
      "Yes, reset the instance":"JA, die Instanz zurücksetzen.",
      "Apple Home Compatibility":"Apple Home-App kompatibel",
      "This will disable the eve history. Due to the fact that Apples Home App is not able to show custom devices using this option will not generate custom devices.":
-      "Dies wird die Eve History abschalten. Dadurch das Apples Home App keine custom Geräte anzeigen kann wird diese Option vermeiden solche Geräte zu erzeugen.",
+      "Dies wird die Eve History abschalten. Dadurch das Apples Home App keine custom Geräte anzeigen kann, wird diese Option vermeiden solche Geräte zu erzeugen.",
       "This service provides a motion sensor based on a short press event in HomeKit":"Dieser Service stellt einen Bewegungsmelder auf Basis eines kurzen Tastendruck Events zur Verfügung",
       "This service provides a window accessory combined from a rotary sensor and a normal window contact":"Dieser Service stellt einen Fensterkontakt zur Verfügung, der aus einem Drehgriff und FensterSensor besteht.",
       "Address retary sensor":"Adresse des Drehgriffs",
-      "Address window sensor":"Adresse des Fenstersensors"
+      "Address window sensor":"Adresse des Fenstersensors",
+      "Force Cache usage":"Cache immer benutzen",
+      "Add ventilation":"Belüftung hinzufügen",
+      "Adds a button to set the gate to ventilation mode":"Fügt einen Button hinzu um das Tor in den Belüftungsmodus zu versetzen."
 }

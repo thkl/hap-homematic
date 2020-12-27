@@ -65,6 +65,7 @@ describe('HAP-Homematic Tests ' + testCase, () => {
 
   it('HAP-Homematic open the door', (done) => {
     that.server._ccu.fireEvent('HmIP.3123456789ABCD:1.DOOR_STATE', 3)
+    that.server._ccu.fireEvent('HmIP.3123456789ABCD:1.PROCESS', 0)
     let accessory = that.server._publishedAccessories[Object.keys(that.server._publishedAccessories)[0]]
     let service = accessory.getService(Service.GarageDoorOpener, 'TestDevice', false, '', true)
     assert.ok(service, 'GarageDoorOpener Service not found')
@@ -85,6 +86,7 @@ describe('HAP-Homematic Tests ' + testCase, () => {
 
   it('HAP-Homematic close the door', (done) => {
     that.server._ccu.fireEvent('HmIP.3123456789ABCD:1.DOOR_STATE', 0)
+    that.server._ccu.fireEvent('HmIP.3123456789ABCD:1.PROCESS', 0)
     let accessory = that.server._publishedAccessories[Object.keys(that.server._publishedAccessories)[0]]
     let service = accessory.getService(Service.GarageDoorOpener)
     assert.ok(service, 'GarageDoorOpener Service not found')
@@ -94,10 +96,9 @@ describe('HAP-Homematic Tests ' + testCase, () => {
     assert.ok(chTar, 'TargetDoorState Characteristics not found')
     try {
       // it takes 100ms so the state should be the previous
-      expect(chCur.value).to.be(Characteristic.CurrentDoorState.OPEN)
-      expect(chTar.value).to.be(Characteristic.TargetDoorState.CLOSED)
       setTimeout(() => {
         expect(chCur.value).to.be(Characteristic.CurrentDoorState.CLOSED)
+        expect(chTar.value).to.be(Characteristic.TargetDoorState.CLOSED)
         done()
       }, 110)
     } catch (e) {
