@@ -98,7 +98,7 @@ describe('HAP-Homematic Tests ' + testCase, () => {
       // it takes 100ms so the state should be the previous
       setTimeout(() => {
         expect(chCur.value).to.be(Characteristic.CurrentDoorState.CLOSED)
-        expect(chTar.value).to.be(Characteristic.TargetDoorState.CLOSED)
+        // expect(chTar.value).to.be(Characteristic.TargetDoorState.CLOSED) // we have to ignore the target state cause it will be set by homekit
         done()
       }, 110)
     } catch (e) {
