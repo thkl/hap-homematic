@@ -69,6 +69,7 @@ describe('HAP-Homematic Tests ' + testCase, () => {
   })
 
   it('HAP-Homematic check LEVEL 0%', (done) => {
+    that.server._ccu.fireEvent('HmIP.7877899276ABCD:3.LEVEL', 0)
     that.server._ccu.fireEvent('HmIP.7877899276ABCD:4.LEVEL', 0)
     let accessory = that.server._publishedAccessories[Object.keys(that.server._publishedAccessories)[0]]
     let service = accessory.getService(Service.WindowCovering, 'TestDevice', false, '', true)
@@ -87,6 +88,7 @@ describe('HAP-Homematic Tests ' + testCase, () => {
   })
 
   it('HAP-Homematic check LEVEL 50%', (done) => {
+    that.server._ccu.fireEvent('HmIP.7877899276ABCD:3.LEVEL', 0.5)
     that.server._ccu.fireEvent('HmIP.7877899276ABCD:4.LEVEL', 0.5)
     let accessory = that.server._publishedAccessories[Object.keys(that.server._publishedAccessories)[0]]
     let service = accessory.getService(Service.WindowCovering)
@@ -105,6 +107,7 @@ describe('HAP-Homematic Tests ' + testCase, () => {
   })
 
   it('HAP-Homematic check LEVEL 100%', (done) => {
+    that.server._ccu.fireEvent('HmIP.7877899276ABCD:3.LEVEL', 1)
     that.server._ccu.fireEvent('HmIP.7877899276ABCD:4.LEVEL', 1)
     let accessory = that.server._publishedAccessories[Object.keys(that.server._publishedAccessories)[0]]
     let service = accessory.getService(Service.WindowCovering)
