@@ -359,5 +359,7 @@
       "Address window sensor":"Adresse des Fenstersensors",
       "Force Cache usage":"Cache immer benutzen",
       "Add ventilation":"Belüftung hinzufügen",
-      "Adds a button to set the gate to ventilation mode":"Fügt einen Button hinzu um das Tor in den Belüftungsmodus zu versetzen."
+      "Adds a button to set the gate to ventilation mode":"Fügt einen Button hinzu um das Tor in den Belüftungsmodus zu versetzen.",
+      "reverse values":"Werte umdrehen",
+      "0 is 100 and 100 is 0":"0 ist 100 und 100 ist 0"
 }
