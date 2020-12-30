@@ -1,3 +1,16 @@
+Changelog for 0.0.57:
+
+* restore from backup will also restore the accessory infos for an existing homekit mapping
+* new : reset of an instance
+* added SIMPLE_SWITCH_RECEIVER to support garage door drives
+* added all types of Keys as a Trigger for a Motion sensor
+* support for HM-SwI-3-FM 
+* support for HM-LC-DW-WM
+* better HmIP-MOD-HO support
+* BugFixes
+* some fresh new Bugs
+
+
 Changelog for 0.0.56:
 =====================
 
