@@ -96,7 +96,7 @@ if (fs.existsSync(fdebug)) {
 
 log.info('---- launching ----')
 log.info('Welcome to HAP Homematic. Use your HomeMatic devices in HomeKit')
-log.info('(c) 2020 by @thkl - https://github.com/thkl/hap-homematic')
+log.info('(c) 2021 by @thkl - https://github.com/thkl/hap-homematic')
 
 var server
 
