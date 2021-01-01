@@ -27,7 +27,9 @@ describe('HAP-Homematic Tests ' + testCase, () => {
       await that.server.simulate(undefined, {config: {
         channels: Object.keys(that.data.ccu)
       },
-      devices: that.data.devices})
+      devices: that.data.devices,
+      mappings: that.data.mappings
+      })
     } else {
       assert.ok(false, 'Unable to load Test data')
     }
@@ -131,6 +133,22 @@ describe('HAP-Homematic Tests ' + testCase, () => {
       setTimeout(async () => {
         let value = await that.server._ccu.getValue('HmIP.3123456789ABCD:1.DOOR_COMMAND')
         expect(value).to.be(1)
+        done()
+      }, 10)
+    } catch (e) {
+      done(e)
+    }
+  })
+
+  it('HAP-Homematic test hk ventilation', (done) => {
+    let accessory = that.server._publishedAccessories[Object.keys(that.server._publishedAccessories)[0]]
+    let service = accessory.getService(Service.Switch)
+    let chTar = service.getCharacteristic(Characteristic.On)
+    chTar.emit('set', true)
+    try {
+      setTimeout(async () => {
+        let value = await that.server._ccu.getValue('HmIP.3123456789ABCD:1.DOOR_COMMAND')
+        expect(value).to.be(4)
         done()
       }, 10)
     } catch (e) {

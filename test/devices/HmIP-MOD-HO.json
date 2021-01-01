@@ -37,5 +37,15 @@
   ],
   "ccu": {
     "3123456789ABCD:1": "HomeMaticGarageDoorOpenerAccessory"
+  },
+
+
+  "mappings": {
+    "3123456789ABCD:1": {
+      "Service":"HomeMaticGarageDoorOpenerAccessory",
+      "settings":{
+        "addventilation":true
+      }
+    }
   }
 }
