@@ -361,5 +361,7 @@
       "Add ventilation":"Belüftung hinzufügen",
       "Adds a button to set the gate to ventilation mode":"Fügt einen Button hinzu um das Tor in den Belüftungsmodus zu versetzen.",
       "reverse values":"Werte umdrehen",
-      "0 is 100 and 100 is 0":"0 ist 100 und 100 ist 0"
+      "0 is 100 and 100 is 0":"0 ist 100 und 100 ist 0",
+      "This service provides a leak sensor in HomeKit which connects to a CCU Rain Detector":
+        "Dieser Service stellt einen Leak Sensor in Homekit zur Verfügung der einen HmIP-SRD abbildet."
 }
