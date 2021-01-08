@@ -1,6 +1,14 @@
 This is work in progress
 ========================
 
+0. you can use the 1 Step install script:
+
+```
+curl -sL https://raw.githubusercontent.com/thkl/hap-homematic/master/doc/debmatic.sh | sudo -E bash -
+````
+
+or do the steps by yourself 
+
 1. install nodejs:
 ```
 curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
@@ -10,34 +18,20 @@ sudo apt install -y nodejs
 2. create a folder for hap in your home 
 
 ```
-cd ~
-mkdir hap-homematic
-cd hap-homematic
+mkdir $HOME/hap-homematic
+cd $HOME/hap-homematic
 npm install hap-homematic
 ```
 
 3. create a data folder in your home
 ```
-mkdir ~/.hap-homematic
+mkdir $HOME/.hap-homematic
 ```
 
-4. (just for the current version)
-test run hap as root (so it's able to write into /var/log)
+4. create a file in your $home/hap-homematic folder named hap-homematic.service
 
 ```
-sudo node /home/pi/hap-homematic/node_modules/hap-homematic/index -C /home/pi/.hap-homematic/
-```
-
-Note : you have to change /home/pi in the command above into the home path of your user 
-
-5. browse to http://ipofyourdebmatic:9874 to check your installation
-
-if all runs well its time to create a service for hap
-
-create a file in your $home/hap-homematic folder named hap-homematic.service
-
-```
-nano hap-homematic.service
+nano $HOME/hap-homematic.service
 ```
 
 paste this content
@@ -49,7 +43,7 @@ After=debmatic-rega.target
 [Service]
 Type=simple
 User=root
-ExecStart=/usr/bin/node /home/pi/hap-homematic/node_modules/hap-homematic/index -C /home/pi/.hap-homematic/
+ExecStart=/usr/bin/node $HOME/hap-homematic/node_modules/hap-homematic/index -C $HOME/.hap-homematic/
 Restart=on-failure
 RestartSec=10
 KillMode=process
@@ -62,13 +56,13 @@ WantedBy=multi-user.target
 make the file runable
 
 ```
-chmod +x ~/hap-homematic/hap-homematic.service
+chmod +x $HOME/hap-homematic/hap-homematic.service
 ```
 
 link this to the systemd and enable the service
 
 ```
-sudo systemctl link /home/pi/hap-homematic/hap-homematic.service
+sudo systemctl link $HOME/hap-homematic/hap-homematic.service
 sudo systemctl enable hap-homematic.service
 ```
 
