@@ -4,7 +4,7 @@ This is work in progress
 0. you can use the 1 Step install script:
 
 ```
-curl -sL https://raw.githubusercontent.com/thkl/hap-homematic/master/doc/debmatic.sh | sudo -E bash -
+curl -sL https://raw.githubusercontent.com/thkl/hap-homematic/master/doc/debmatic.sh | bash -
 ````
 
 or do the steps by yourself 
