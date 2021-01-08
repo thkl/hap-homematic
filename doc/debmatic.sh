@@ -24,3 +24,4 @@ EOT'
 chmod +x $HOME/hap-homematic/hap-homematic.service
 sudo systemctl link $HOME/hap-homematic/hap-homematic.service
 sudo systemctl enable hap-homematic.service
+sudo service hap-homematic start
