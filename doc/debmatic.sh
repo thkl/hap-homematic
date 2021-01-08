@@ -6,6 +6,10 @@ mkdir $HOME/hap-homematic
 mkdir $HOME/.hap-homematic
 cd $HOME/hap-homematic
 npm install hap-homematic
+rm $HOME/hap-homematic/hap-homematic.service
+if test -f "$HOME/hap-homematic/hap-homematic.service"; then
+    rm $HOME/hap-homematic/hap-homematic.service
+fi
 bash -c 'cat << EOT >> $HOME/hap-homematic/hap-homematic.service
 [Unit]
 Description=Hap_Homematic
