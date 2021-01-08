@@ -34,7 +34,13 @@ Note : you have to change /home/pi in the command above into the home path of yo
 
 if all runs well its time to create a service for hap
 
-create a file in your $home/hap-homematic folder named (nano hap-homematic.service):
+create a file in your $home/hap-homematic folder named hap-homematic.service
+
+```
+nano hap-homematic.service
+```
+
+paste this content
 
 ```
 [Unit]
