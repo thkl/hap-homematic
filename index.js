@@ -41,7 +41,9 @@ let log = new Logger('HAP Server')
 var configurationPath = path.join('/usr/local/etc/config/addons/', process.name)
 var simulation
 var dryRun
+var logPath
 var resetSettings = false
+var ccuHost = '127.0.0.1'
 
 program.option('-D, --debug', 'turn on debug level logging', () => {
   log.setDebugEnabled(true)
@@ -64,6 +66,14 @@ program.option('-R, --dryrun', 'only use cached files', () => {
   dryRun = true
 })
 
+program.option('-L, --log [path]', 'set the path where the log will be created', (logpath) => {
+  logPath = logpath
+})
+
+program.option('-H, --host [ccuhost]', 'set the host ip for your ccu', (ccuhost) => {
+  ccuHost = ccuhost
+})
+
   .parse(process.argv)
 
 process.on('uncaughtException', (err) => {
@@ -80,13 +90,20 @@ process.on('uncaughtException', (err) => {
   process.exit(1) // mandatory (as per the Node docs)
 })
 
-if (fs.existsSync('/var/log')) {
-  log.setLogFile(path.join('/var/log', 'hap-homematic.log'))
-} else {
-  let tmpDir = fs.realpathSync(os.tmpdir())
-  log.setLogFile(path.join(tmpDir, 'hap-homematic.log'))
-}
+try {
+  if ((logPath) && (fs.existsSync(logPath)) && (fs.accessSync(logPath, fs.constants.W_OK))) {
+    log.setLogFile(path.join(logPath, 'hap-homematic.log'))
+  } else
 
+  if (fs.existsSync('/var/log') && (fs.accessSync('/var/log', fs.constants.W_OK))) {
+    log.setLogFile(path.join('/var/log', 'hap-homematic.log'))
+  } else {
+    let tmpDir = fs.realpathSync(os.tmpdir())
+    log.setLogFile(path.join(tmpDir, 'hap-homematic.log'))
+  }
+} catch (e) {
+  log.warn('cannot set persistent file for logger')
+}
 // check if there is a .hapdebug in /tmp and switch on the debug mode then
 let fdebug = path.join(fs.realpathSync(os.tmpdir()), '.hapdebug')
 if (fs.existsSync(fdebug)) {
@@ -97,7 +114,7 @@ if (fs.existsSync(fdebug)) {
 log.info('---- launching ----')
 log.info('Welcome to HAP Homematic. Use your HomeMatic devices in HomeKit')
 log.info('(c) 2021 by @thkl - https://github.com/thkl/hap-homematic')
-
+log.info('Logging into %s', log.getLogFile())
 var server
 
 if (simulation !== undefined) {
@@ -107,12 +124,13 @@ if (simulation !== undefined) {
   server.simulate(simPath)
 } else {
   log.debug('Initializing Server')
-  server = new Server(log, configurationPath)
+  server = new Server(log, configurationPath, ccuHost)
   if (resetSettings === true) {
     log.info('---- reset all settings ----')
     server.reset()
     process.exit()
   }
+  log.info('Using CCU at %s', ccuHost)
   server.init(dryRun)
 }
 

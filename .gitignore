@@ -6,5 +6,5 @@ coverage
 node_modules
 tools
 temp
-HomeMaticProgrammableSwitchAccessory.js
 lib/services/HomeMaticSmartSpeakerAccessory.js
+lib/services/HomeMaticProgrammableSwitchAccessory.js
