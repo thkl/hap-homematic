@@ -1,4 +1,14 @@
+Changelog for 0.0.58:
+=====================
+
+* Bug Fixes for Thermometer and Weather Station
+* added HmIP-DSD-PCB
+* auto refresh for cached ccu data on at the point the user loads the ui
+* added HmIP-SRD
+
+
 Changelog for 0.0.57:
+=====================
 
 * restore from backup will also restore the accessory infos for an existing homekit mapping
 * new : reset of an instance
