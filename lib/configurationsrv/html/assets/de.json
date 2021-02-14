@@ -362,5 +362,8 @@
       "reverse values":"Werte umdrehen",
       "0 is 100 and 100 is 0":"0 ist 100 und 100 ist 0",
       "This service provides a leak sensor in HomeKit which connects to a CCU Rain Detector":
-        "Dieser Service stellt einen Leak Sensor in Homekit zur Verfügung der einen HmIP-SRD abbildet."
+        "Dieser Service stellt einen Leak Sensor in Homekit zur Verfügung der einen HmIP-SRD abbildet.",
+      "Looks like you have deleted some devices from your ccu recently. Do you want to remove these also from Homekit ?":
+       "Es sieht so aus, als ob Du einige Geräte aus der CCU gelöscht hast. Sollen diese auch aus Homekit entfernt werden ?",
+       "Deleted devices":"Gelöschte Geräte"
 }
