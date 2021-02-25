@@ -69,6 +69,9 @@ describe('HAP-Homematic Tests ' + testCase, () => {
   })
 
   it('HAP-Homematic check ACTUAL_TEMPERATURE', (done) => {
+    // first close the windows so the heating will operate
+    that.server._ccu.fireEvent('HmIP.2123456789ABCD:1.WINDOW_STATE', 0)
+
     let rnd = Math.floor(Math.random() * Math.floor(30))
     that.server._ccu.fireEvent('HmIP.2123456789ABCD:1.ACTUAL_TEMPERATURE', rnd)
     let accessory = that.server._publishedAccessories[Object.keys(that.server._publishedAccessories)[0]]
@@ -169,6 +172,7 @@ describe('HAP-Homematic Tests ' + testCase, () => {
   })
 
   it('HAP-Homematic set Heating Mode back to heating check degree again', (done) => {
+    that.server._ccu.fireEvent('HmIP.2123456789ABCD:1.WINDOW_STATE', 0)
     let accessory = that.server._publishedAccessories[Object.keys(that.server._publishedAccessories)[0]]
     let service = accessory.getService(Service.Thermostat)
     let ch = service.getCharacteristic(Characteristic.TargetHeatingCoolingState)
@@ -177,6 +181,25 @@ describe('HAP-Homematic Tests ' + testCase, () => {
         let value = await that.server._ccu.getValue('HmIP.2123456789ABCD:1.SET_POINT_TEMPERATURE')
         try {
           expect(value).to.be(20)
+          done()
+        } catch (e) {
+          done(e)
+        }
+      }, 100)
+    })
+  })
+
+  it('HAP-Homematic open the window and we will make shure the temp will not set while changing the mode', (done) => {
+    that.server._ccu.fireEvent('HmIP.2123456789ABCD:1.WINDOW_STATE', 1) // open the window
+    that.server._ccu.fireEvent('HmIP.2123456789ABCD:1.SET_POINT_TEMPERATURE', 12) // ccu will set themp to window temp
+    let accessory = that.server._publishedAccessories[Object.keys(that.server._publishedAccessories)[0]]
+    let service = accessory.getService(Service.Thermostat)
+    let ch = service.getCharacteristic(Characteristic.TargetHeatingCoolingState)
+    ch.setValue(Characteristic.TargetHeatingCoolingState.HEAT, () => { // set the heating mode
+      setTimeout(async () => {
+        let value = await that.server._ccu.getValue('HmIP.2123456789ABCD:1.SET_POINT_TEMPERATURE')
+        try {
+          expect(value).to.be(12) // temp should be 12 not the last known 20
           done()
         } catch (e) {
           done(e)
