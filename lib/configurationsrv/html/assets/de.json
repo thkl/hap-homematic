@@ -62,6 +62,7 @@
     "Edit your device %s here": "Bearbeite das Gerät %s hier",
     "Subtype of this device": "Subtyp des Gerätes",
     "A switch can have different sub types": "Ein Switch kann unterschiedliche Subtypen haben.",
+    "This service provides a controlable fan in HomeKit": "Dieser Service erstellt einen regelbaren Lüfter auf Basis eines Dimmers.",
     "Creating device ...": "Gerät wird angelegt ...",
     "min value": "min. Wert",
     "max value": "max. Wert",
