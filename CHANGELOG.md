@@ -8,6 +8,7 @@ Changelog for 0.0.59:
 * Bug fixes
 * introducing some fresh new bugs
 
+
 Changelog for 0.0.58:
 =====================
 
