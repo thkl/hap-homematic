@@ -4,7 +4,7 @@ Changelog for 0.0.59:
 * added HM-ES-TX-WM
 * DIMMER are now available as Homekit FANs
 * added HmIP-STE2-PCB
-* first Test for HmIP-HDM1
+* first Test HmIP-HDM1
 * Bug fixes
 * introducing some fresh new bugs
 
