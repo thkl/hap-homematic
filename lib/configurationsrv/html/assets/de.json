@@ -368,5 +368,6 @@
        "Es sieht so aus, als ob Du einige Geräte aus der CCU gelöscht hast. Sollen diese auch aus Homekit entfernt werden ?",
        "Deleted devices":"Gelöschte Geräte",
        "Show Humidity as separate tile":"Luftfeuchtigkeit einzeln anzeigen",
-       "this will remove the humidity sensor from the thermostat and will show the humidity as a separate tile":"Zeigt die Luftfeuchtigkeit als einzelne Kachel in Home an."
+       "this will remove the humidity sensor from the thermostat and will show the humidity as a separate tile":"Zeigt die Luftfeuchtigkeit als einzelne Kachel in Home an.",
+       "This service provides a temperature and a co2 sensor in HomeKit":"Dieser Service stellt einen Temperatur&CO2 Sensor zur Verfügung."
 }
