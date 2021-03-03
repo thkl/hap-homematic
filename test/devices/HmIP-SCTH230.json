@@ -1,0 +1,139 @@
+{
+	"devices": [{
+		"id": 1000,
+		"intf": 0,
+		"intfName": "",
+		"name": "HmIP-SCTH230",
+		"address": "5499157171ABCD",
+		"type": "HmIP-SCTH230",
+		"channels": [{
+				"id": 1001,
+				"name": "5499157171ABCD:0",
+				"intf": 0,
+				"address": "5499157171ABCD:0",
+				"type": "MAINTENANCE",
+				"access": 255
+			},
+			{
+				"id": 1002,
+				"name": "5499157171ABCD:1",
+				"intf": 0,
+				"address": "5499157171ABCD:1",
+				"type": "CARBON_DIOXIDE_RECEIVER",
+				"access": 255
+			},
+			{
+				"id": 1003,
+				"name": "5499157171ABCD:2",
+				"intf": 0,
+				"address": "5499157171ABCD:2",
+				"type": "COND_SWITCH_TRANSMITTER",
+				"access": 255
+			},
+			{
+				"id": 1004,
+				"name": "5499157171ABCD:3",
+				"intf": 0,
+				"address": "5499157171ABCD:3",
+				"type": "COND_SWITCH_TRANSMITTER",
+				"access": 255
+			},
+			{
+				"id": 1005,
+				"name": "5499157171ABCD:4",
+				"intf": 0,
+				"address": "5499157171ABCD:4",
+				"type": "CLIMATE_TRANSCEIVER",
+				"access": 255
+			},
+			{
+				"id": 1006,
+				"name": "5499157171ABCD:5",
+				"intf": 0,
+				"address": "5499157171ABCD:5",
+				"type": "COND_SWITCH_TRANSMITTER",
+				"access": 255
+			},
+			{
+				"id": 1007,
+				"name": "5499157171ABCD:6",
+				"intf": 0,
+				"address": "5499157171ABCD:6",
+				"type": "COND_SWITCH_TRANSMITTER",
+				"access": 255
+			},
+			{
+				"id": 1008,
+				"name": "5499157171ABCD:7",
+				"intf": 0,
+				"address": "5499157171ABCD:7",
+				"type": "SWITCH_TRANSMITTER",
+				"access": 255
+			},
+			{
+				"id": 1009,
+				"name": "5499157171ABCD:8",
+				"intf": 0,
+				"address": "5499157171ABCD:8",
+				"type": "SWITCH_VIRTUAL_RECEIVER",
+				"access": 255
+			},
+			{
+				"id": 1010,
+				"name": "5499157171ABCD:9",
+				"intf": 0,
+				"address": "5499157171ABCD:9",
+				"type": "SWITCH_VIRTUAL_RECEIVER",
+				"access": 255
+			},
+			{
+				"id": 1011,
+				"name": "5499157171ABCD:10",
+				"intf": 0,
+				"address": "5499157171ABCD:10",
+				"type": "SWITCH_VIRTUAL_RECEIVER",
+				"access": 255
+			},
+			{
+				"id": 1012,
+				"name": "5499157171ABCD:11",
+				"intf": 0,
+				"address": "5499157171ABCD:11",
+				"type": "DIMMER_TRANSMITTER",
+				"access": 255
+			},
+			{
+				"id": 1013,
+				"name": "5499157171ABCD:12",
+				"intf": 0,
+				"address": "5499157171ABCD:12",
+				"type": "DIMMER_VIRTUAL_RECEIVER",
+				"access": 255
+			},
+			{
+				"id": 1014,
+				"name": "5499157171ABCD:13",
+				"intf": 0,
+				"address": "5499157171ABCD:13",
+				"type": "DIMMER_VIRTUAL_RECEIVER",
+				"access": 255
+			},
+			{
+				"id": 1015,
+				"name": "5499157171ABCD:14",
+				"intf": 0,
+				"address": "5499157171ABCD:14",
+				"type": "DIMMER_VIRTUAL_RECEIVER",
+				"access": 255
+			},
+			{
+				"id": 1016,
+				"name": "5499157171ABCD:15",
+				"intf": 0,
+				"address": "5499157171ABCD:15",
+				"type": "DIMMER_WEEK_PROFILE",
+				"access": 255
+			}
+		]
+	}]
+}
