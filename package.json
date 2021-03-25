@@ -1,6 +1,6 @@
 {
 	"name": "hap-homematic",
-	"version": "0.0.59",
+	"version": "0.0.60",
 	"description": "provides a homekit bridge to the ccu",
 	"license": "MIT",
 	"repository": {
@@ -42,7 +42,7 @@
 		"lint": "standard",
 		"preversion": "npm run test",
 		"version": "",
-    	"postversion": "git push && git push --tags && npm publish"
+		"postversion": "git push && git push --tags && npm publish"
 	},
 	"devDependencies": {
 		"mocha": "^7.0.1",

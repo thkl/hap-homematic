@@ -1,3 +1,13 @@
+Changelog for 0.0.60:
+
+* fixed the admin changelog bug
+* added HmIP-SCTH230
+* fixed var trigger helper generator
+* fixed a crash that may occur when there are multiple service UUIDs in one instance
+* temp sensor for HmIP-SRD is now optional
+* added HomeMaticVariableBinarySwitchAccessory to use variables as other than switches (Fan / Lightbulb ...)
+* added voltage level for MULTI_MODE_INPUT_TRANSMITTER
+
 Changelog for 0.0.59:
 =====================
 
