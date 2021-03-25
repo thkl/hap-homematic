@@ -95,12 +95,12 @@ try {
     log.setLogFile(path.join(logPath, 'hap-homematic.log'))
   } else
 
-  if (fs.existsSync('/var/log') && (fs.accessSync('/var/log', fs.constants.W_OK))) {
-    log.setLogFile(path.join('/var/log', 'hap-homematic.log'))
-  } else {
-    let tmpDir = fs.realpathSync(os.tmpdir())
-    log.setLogFile(path.join(tmpDir, 'hap-homematic.log'))
-  }
+    if (fs.existsSync('/var/log') && (fs.accessSync('/var/log', fs.constants.W_OK))) {
+      log.setLogFile(path.join('/var/log', 'hap-homematic.log'))
+    } else {
+      let tmpDir = fs.realpathSync(os.tmpdir())
+      log.setLogFile(path.join(tmpDir, 'hap-homematic.log'))
+    }
 } catch (e) {
   log.warn('cannot set persistent file for logger')
 }
