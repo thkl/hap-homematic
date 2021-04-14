@@ -1,0 +1,110 @@
+{
+  "devices": [
+    {
+      "id": 1000,
+      "intf": 0,
+      "intfName": "HmIP",
+      "name": "HmIP-DLD",
+      "address": "7316163726ABCD",
+      "type": "HmIP-DLD",
+      "channels": [
+        {
+          "id": 1001,
+          "name": "7316163726ABCD:0",
+          "intf": 0,
+          "address": "7316163726ABCD:0",
+          "type": "MAINTENANCE",
+          "access": 255
+        },
+        {
+          "id": 1002,
+          "name": "7316163726ABCD:1",
+          "intf": 0,
+          "address": "7316163726ABCD:1",
+          "type": "DOOR_LOCK_STATE_TRANSMITTER",
+          "access": 255
+        },
+        {
+          "id": 1003,
+          "name": "7316163726ABCD:2",
+          "intf": 0,
+          "address": "7316163726ABCD:2",
+          "type": "ACCESS_RECEIVER",
+          "access": 255
+        },
+        {
+          "id": 1004,
+          "name": "7316163726ABCD:3",
+          "intf": 0,
+          "address": "7316163726ABCD:3",
+          "type": "ACCESS_RECEIVER",
+          "access": 255
+        },
+        {
+          "id": 1005,
+          "name": "7316163726ABCD:4",
+          "intf": 0,
+          "address": "7316163726ABCD:4",
+          "type": "ACCESS_RECEIVER",
+          "access": 255
+        },
+        {
+          "id": 1006,
+          "name": "7316163726ABCD:5",
+          "intf": 0,
+          "address": "7316163726ABCD:5",
+          "type": "ACCESS_RECEIVER",
+          "access": 255
+        },
+        {
+          "id": 1007,
+          "name": "7316163726ABCD:6",
+          "intf": 0,
+          "address": "7316163726ABCD:6",
+          "type": "ACCESS_RECEIVER",
+          "access": 255
+        },
+        {
+          "id": 1008,
+          "name": "7316163726ABCD:7",
+          "intf": 0,
+          "address": "7316163726ABCD:7",
+          "type": "ACCESS_RECEIVER",
+          "access": 255
+        },
+        {
+          "id": 1009,
+          "name": "7316163726ABCD:8",
+          "intf": 0,
+          "address": "7316163726ABCD:8",
+          "type": "ACCESS_RECEIVER",
+          "access": 255
+        },
+        {
+          "id": 1010,
+          "name": "7316163726ABCD:9",
+          "intf": 0,
+          "address": "7316163726ABCD:9",
+          "type": "ACCESS_RECEIVER",
+          "access": 255
+        },
+        {
+          "id": 1011,
+          "name": "7316163726ABCD:10",
+          "intf": 0,
+          "address": "7316163726ABCD:10",
+          "type": "SWITCH_WEEK_PROFILE",
+          "access": 255
+        }
+      ]
+    }
+  ],
+  "ccu": {
+    "7316163726ABCD:1": "HomeMaticKeyMaticIPAccessory"
+  },
+  "mappings": {
+    "7316163726ABCD:1": {
+      "Service": "HomeMaticKeyMaticIPAccessory"
+    }
+  }
+}
