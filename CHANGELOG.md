@@ -1,3 +1,10 @@
+Changelog for 0.0.61:
+====================
+
+* added HmIP-DLD
+* a backup file name will now contain the current date in the name
+* some bugfixes
+
 Changelog for 0.0.60:
 
 * fixed the admin changelog bug
