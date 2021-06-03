@@ -367,5 +367,6 @@
   "this will remove the humidity sensor from the thermostat and will show the humidity as a separate tile": "Zeigt die Luftfeuchtigkeit als einzelne Kachel in Home an.",
   "This service provides a temperature and a co2 sensor in HomeKit": "Dieser Service stellt einen Temperatur&CO2 Sensor zur Verfügung.",
   "This service provides switches to operate the KeyMaticIP Accessrights channels": "Dieser Service stellt einen Schalter für die Einstellungen der Zugriffsrechte einer KeyMacticIP zur Verfügung.",
-  "Add a door opener switch": "Füge einen Öffnen Schalter hinzu"
+  "Add a door opener switch": "Füge einen Öffnen Schalter hinzu",
+  "Watchdog Timeout (sec / 0 is off)": "Watchdog Timeout (in Sekunden / 0 = aus)"
 }
