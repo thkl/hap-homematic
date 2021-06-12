@@ -1,0 +1,145 @@
+{
+    "devices": [
+        {
+            "id": 1000,
+            "intf": 0,
+            "intfName": "HmIP",
+            "name": "HmIP-BSL",
+            "address": "7068778492ABCD",
+            "type": "HmIP-BSL",
+            "channels": [
+                {
+                    "id": 1001,
+                    "name": "7068778492ABCD:0",
+                    "intf": 0,
+                    "address": "7068778492ABCD:0",
+                    "type": "MAINTENANCE",
+                    "access": 255
+                },
+                {
+                    "id": 1002,
+                    "name": "7068778492ABCD:1",
+                    "intf": 0,
+                    "address": "7068778492ABCD:1",
+                    "type": "KEY_TRANSCEIVER",
+                    "access": 255
+                },
+                {
+                    "id": 1003,
+                    "name": "7068778492ABCD:2",
+                    "intf": 0,
+                    "address": "7068778492ABCD:2",
+                    "type": "KEY_TRANSCEIVER",
+                    "access": 255
+                },
+                {
+                    "id": 1004,
+                    "name": "7068778492ABCD:3",
+                    "intf": 0,
+                    "address": "7068778492ABCD:3",
+                    "type": "SWITCH_TRANSMITTER",
+                    "access": 255
+                },
+                {
+                    "id": 1005,
+                    "name": "7068778492ABCD:4",
+                    "intf": 0,
+                    "address": "7068778492ABCD:4",
+                    "type": "SWITCH_VIRTUAL_RECEIVER",
+                    "access": 255
+                },
+                {
+                    "id": 1006,
+                    "name": "7068778492ABCD:5",
+                    "intf": 0,
+                    "address": "7068778492ABCD:5",
+                    "type": "SWITCH_VIRTUAL_RECEIVER",
+                    "access": 255
+                },
+                {
+                    "id": 1007,
+                    "name": "7068778492ABCD:6",
+                    "intf": 0,
+                    "address": "7068778492ABCD:6",
+                    "type": "SWITCH_VIRTUAL_RECEIVER",
+                    "access": 255
+                },
+                {
+                    "id": 1008,
+                    "name": "7068778492ABCD:7",
+                    "intf": 0,
+                    "address": "7068778492ABCD:7",
+                    "type": "DIMMER_TRANSMITTER",
+                    "access": 255
+                },
+                {
+                    "id": 1009,
+                    "name": "7068778492ABCD:8",
+                    "intf": 0,
+                    "address": "7068778492ABCD:8",
+                    "type": "DIMMER_VIRTUAL_RECEIVER",
+                    "access": 255
+                },
+                {
+                    "id": 1010,
+                    "name": "7068778492ABCD:9",
+                    "intf": 0,
+                    "address": "7068778492ABCD:9",
+                    "type": "DIMMER_VIRTUAL_RECEIVER",
+                    "access": 255
+                },
+                {
+                    "id": 1011,
+                    "name": "7068778492ABCD:10",
+                    "intf": 0,
+                    "address": "7068778492ABCD:10",
+                    "type": "DIMMER_VIRTUAL_RECEIVER",
+                    "access": 255
+                },
+                {
+                    "id": 1012,
+                    "name": "7068778492ABCD:11",
+                    "intf": 0,
+                    "address": "7068778492ABCD:11",
+                    "type": "DIMMER_TRANSMITTER",
+                    "access": 255
+                },
+                {
+                    "id": 1013,
+                    "name": "7068778492ABCD:12",
+                    "intf": 0,
+                    "address": "7068778492ABCD:12",
+                    "type": "DIMMER_VIRTUAL_RECEIVER",
+                    "access": 255
+                },
+                {
+                    "id": 1014,
+                    "name": "7068778492ABCD:13",
+                    "intf": 0,
+                    "address": "7068778492ABCD:13",
+                    "type": "DIMMER_VIRTUAL_RECEIVER",
+                    "access": 255
+                },
+                {
+                    "id": 1015,
+                    "name": "7068778492ABCD:14",
+                    "intf": 0,
+                    "address": "7068778492ABCD:14",
+                    "type": "DIMMER_VIRTUAL_RECEIVER",
+                    "access": 255
+                },
+                {
+                    "id": 1016,
+                    "name": "7068778492ABCD:15",
+                    "intf": 0,
+                    "address": "7068778492ABCD:15",
+                    "type": "DIMMER_WEEK_PROFILE",
+                    "access": 255
+                }
+            ]
+        }
+    ],
+    "ccu": {
+        "7068778492ABCD:8": "HomeMaticDimmerAccessory"
+    }
+}
