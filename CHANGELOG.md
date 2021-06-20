@@ -1,3 +1,11 @@
+Changelog for 0.0.62:
+====================
+
+* mostly bugfixes
+* added HmIP-BSL Lights
+* added variable based Light sensor
+
+
 Changelog for 0.0.61:
 ====================
 
