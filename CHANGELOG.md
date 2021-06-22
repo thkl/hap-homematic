@@ -1,3 +1,8 @@
+Changelog for 0.0.63:
+====================
+
+* Just one BugFix (in some cases the ui will not get devices from core)
+
 Changelog for 0.0.62:
 ====================
 
