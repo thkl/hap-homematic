@@ -368,5 +368,7 @@
   "This service provides a temperature and a co2 sensor in HomeKit": "Dieser Service stellt einen Temperatur&CO2 Sensor zur Verfügung.",
   "This service provides switches to operate the KeyMaticIP Accessrights channels": "Dieser Service stellt einen Schalter für die Einstellungen der Zugriffsrechte einer KeyMacticIP zur Verfügung.",
   "Add a door opener switch": "Füge einen Öffnen Schalter hinzu",
-  "Watchdog Timeout (sec / 0 is off)": "Watchdog Timeout (in Sekunden / 0 = aus)"
+  "Watchdog Timeout (sec / 0 is off)": "Watchdog Timeout (in Sekunden / 0 = aus)",
+  "Delay the arming": "Scharfschaltverzögerung",
+  "Delay the arming by X seconds. The Arming will be set x seconds after Homekit gets the command.": "Scharfschalten wird um x Sekunden verzögert. Die Variable wird erst nach der angegebenen Zeit (sek) gesetzt."
 }
