@@ -1,0 +1,18 @@
+<div class="card text-white bg-gradient-warning">
+    <div class="card-body card-body pb-0 d-flex justify-content-between align-items-start"
+        style="min-height: 200px;width: 100%;">
+        <ul>
+            <li *ngIf="systemState.cpu">{{'%s Cores' | localize : [systemState.cpu.length]}} </li>
+            <li *ngIf="systemState.mem">{{'%s MB free Memory' | localize : [(systemState.mem / 10000)]}}</li>
+            <br />
+            <li *ngIf="systemState.uptime">{{'CCU Uptime %s' | localize : [(systemState.uptime | runtime)]}}</li>
+            <li *ngIf="systemState.hapuptime">{{'HAP Uptime %s' | localize : [(systemState.hapuptime | runtime)]}}</li>
+            <br />
+            <li *ngIf="systemState.version">Version {{systemState.version}}</li>
+            <li *ngIf="systemState.update && systemState.update !== systemState.version"><button type="button"
+                    class="btn btn-info" style="cursor:pointer">{{'update to %s' | localize :
+                    [systemState.update]}}</button>
+            </li>
+        </ul>
+    </div>
+</div>

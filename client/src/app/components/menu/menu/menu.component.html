@@ -1,0 +1,114 @@
+<div class="c-sidebar-brand">
+  <img src="./assets/img/logo_white_2.png" class="c-sidebar-brand-full" style="max-height: 35px;margin-right: 5px;" />
+  <img src="./assets/img/logo_white_2.png" class="c-sidebar-brand-minimized"
+    style="max-height: 35px;margin-right: 5px;margin-left: 5px;" />
+  <span class="c-sidebar-brand-full">HAP-HomeMatic</span>
+</div>
+
+<ul class="c-sidebar-nav">
+  <li class="c-sidebar-nav-item">
+    <a class="c-sidebar-nav-link" [class.c-active]="currentRouteUrl === 'devices'" routerLink="/devices">
+      <i class="c-icon c-icon-lg mt-2 ml-1 mr-3 mb-2 cil-devices"></i>
+      <span>{{'Devices' | localize}}</span>
+    </a>
+  </li>
+  <li class="c-sidebar-nav-item">
+    <a class="c-sidebar-nav-link" [class.c-active]="currentRouteUrl === 'variables'" routerLink="/variables">
+      <i class="c-icon c-icon-lg mt-2 ml-1 mr-3 mb-2 cil-apps"></i>
+      <span>{{'Variables' | localize}}</span>
+    </a>
+  </li>
+
+  <li class="c-sidebar-nav-item">
+    <a class="c-sidebar-nav-link" [class.c-active]="currentRouteUrl === 'programs'" routerLink="/programs">
+      <i class="c-icon c-icon-lg mt-2 ml-1 mr-3 mb-2 cil-memory"></i>
+      <span>{{'Programs' | localize}}</span>
+    </a>
+  </li>
+
+  <li class="c-sidebar-nav-item">
+    <a class="c-sidebar-nav-link" [class.c-active]="currentRouteUrl === 'special'" routerLink="/special">
+      <i class="c-icon c-icon-lg mt-2 ml-1 mr-3 mb-2 cil-pizza"></i>
+      <span>{{'Special devices' | localize}}</span>
+    </a>
+  </li>
+
+  <li class="c-sidebar-nav-dropdown" [class.c-show]="currentSubMenu === 'instances'">
+    <a class="c-sidebar-nav-dropdown-toggle" (click)="toggleSubMenu('instances')">
+      <i class="c-icon c-icon-lg mt-2 ml-1 mr-3 mb-2 cil-factory"></i>{{'HomeKit Instances' | localize}}
+    </a>
+
+    <ul class="c-sidebar-nav-dropdown-items">
+      <li class="c-sidebar-nav-item">
+        <a class="c-sidebar-nav-link" id="hapInstances" routerLink="/instances">
+          <i class="c-icon c-icon-lg mt-2 ml-1 mr-3 mb-2 cil-fork"></i>
+          <span>{{'Edit instances' | localize}}</span>
+        </a>
+      </li>
+
+      <li class="c-sidebar-nav-item">
+        <a class="c-sidebar-nav-link" id="publishingSettings">
+          <i class="c-icon c-icon-lg mt-2 ml-1 mr-3 mb-2 cil-settings"></i>
+          <span>{{'Settings' | localize}}</span>
+        </a>
+      </li>
+
+    </ul>
+  </li>
+
+
+  <li class="c-sidebar-nav-dropdown" [class.c-show]="currentSubMenu === 'internal'">
+    <a class="c-sidebar-nav-dropdown-toggle" (click)="toggleSubMenu('internal')">
+      <i class="c-icon c-icon-lg mt-2 ml-1 mr-3 mb-2 cil-3d"></i>
+      <span>{{'Internals' | localize}}</span>
+    </a>
+    <ul class="c-sidebar-nav-dropdown-items" style="top:-200px">
+      <li class="c-sidebar-nav-item">
+        <a class="c-sidebar-nav-link" id="btn_settings">
+          <i class="c-icon c-icon-lg mt-2 ml-1 mr-3 mb-2 cil-cog"></i>
+          <span>{{'Settings' | localize}}</span>
+        </a>
+
+      </li>
+      <li class="c-sidebar-nav-item">
+        <a class="c-sidebar-nav-link" id="btn_changelog">
+          <i class="c-icon c-icon-lg mt-2 ml-1 mr-3 mb-2 cil-description"></i>
+          <span>{{'Show changelog' | localize}}</span>
+        </a>
+      </li>
+      <li class="c-sidebar-nav-item">
+        <a class="c-sidebar-nav-link" id="btn_debug">
+          <i class="c-icon c-icon-lg mt-2 ml-1 mr-3 mb-2 cil-gauge"></i>
+          <span id="lbl_btn_debug">{{'Enable Debug' | localize}}</span>
+        </a>
+      </li>
+      <li class="c-sidebar-nav-item">
+        <a class="c-sidebar-nav-link" id="btn_dnlog">
+          <i class="c-icon c-icon-lg mt-2 ml-1 mr-3 mb-2 cil-image-broken"></i>
+          <span>{{'Download Log' | localize}}</span></a>
+      </li>
+      <li class="c-sidebar-nav-item">
+        <a class="c-sidebar-nav-link" id="btn_support">
+          <i class="c-icon c-icon-lg mt-2 ml-1 mr-3 mb-2 cil-life-ring"></i>
+          <span>{{'Support' | localize}}</span></a>
+      </li>
+      <li class="c-sidebar-nav-item">
+        <a class="c-sidebar-nav-link" id="btn_backup">
+          <i class="c-icon c-icon-lg mt-2 ml-1 mr-3 mb-2 cil-save"></i>
+          <span>{{'Backup' | localize}}</span></a>
+      </li>
+      <li class="c-sidebar-nav-item">
+        <a class="c-sidebar-nav-link" id="btn_refreshCache">
+          <i class="c-icon c-icon-lg mt-2 ml-1 mr-3 mb-2 cil-audio"></i>
+          <span>{{'Refresh CCU Cache' | localize}}</span></a>
+      </li>
+
+      <li class="c-sidebar-nav-item">
+        <a class="c-sidebar-nav-link" id="btn_restart">
+          <i class="c-icon c-icon-lg mt-2 ml-1 mr-3 mb-2 cil-reload"></i>
+          <span>{{'Restart HAP Service' | localize}}</span></a>
+      </li>
+
+    </ul>
+  </li>
+</ul>

@@ -1,0 +1,10 @@
+<div class="card text-white bg-gradient-primary">
+    <div class="card-body card-body pb-0 d-flex justify-content-between align-items-start"
+        style="overflow-y:auto;max-height:200px;min-height: 200px;">
+        <ul>
+            <li>{{hapDeviceCount | pluralize : "%s mapped device" : "%s mapped devices"}}</li>
+            <li>{{hapProgramCount | pluralize : "%s mapped program" : "%s mapped programs"}}</li>
+            <li>{{hapVariableCount | pluralize : "%s mapped variable" : "%s mapped variables"}}</li>
+        </ul>
+    </div>
+</div>

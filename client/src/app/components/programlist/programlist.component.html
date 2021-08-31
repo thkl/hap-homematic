@@ -1,0 +1,50 @@
+<!-- /.row-->
+<div class="card">
+  <div class="card-header">
+    <h2>{{'Programs' | localize}}</h2>
+  </div>
+  <div class="card-body" id="container">
+    <div class="input-group mb-2">
+      <div class="input-group-prepend">
+        <div class="input-group-text">{{'Search' | localize}}</div>
+      </div>
+      <input type="text" #searchInput [(ngModel)]="searchText" class="form-control form-control-lg" />
+    </div>
+    <table cdk-table [dataSource]="dataSource" matSort (matSortChange)="sortData($event)"
+      class="table table-responsive-sm table-striped table-sm">
+      <ng-container cdkColumnDef="name">
+        <th cdk-header-cell *cdkHeaderCellDef mat-sort-header="name" disableClear width="20%">{{'Homekit name' |
+          localize}}</th>
+        <td cdk-cell *cdkCellDef="let program"> {{program.name}} </td>
+      </ng-container>
+
+      <ng-container cdkColumnDef="nameInCCU">
+        <th cdk-header-cell *cdkHeaderCellDef mat-sort-header="nameInCCU" disableClear width="20%">{{'HomeMatic name' |
+          localize}}
+        </th>
+        <td cdk-cell *cdkCellDef="let program"> {{program.nameInCCU}} </td>
+      </ng-container>
+
+      <ng-container cdkColumnDef="instanceID">
+        <th cdk-header-cell *cdkHeaderCellDef mat-sort-header="instanceNames" disableClear width="35%">{{'HAP Instance'
+          | localize}}
+        </th>
+        <td cdk-cell *cdkCellDef="let program"> {{program.instanceNames}} </td>
+      </ng-container>
+
+      <ng-container cdkColumnDef="control">
+        <th cdk-header-cell *cdkHeaderCellDef width="25%"></th>
+        <td cdk-cell *cdkCellDef="let program">
+          <button type="button" class="btn btn-success">{{'Edit' | localize}}</button>
+          &nbsp;
+          <button type="button" class="btn btn-danger">{{'Delete' | localize}}</button>
+        </td>
+      </ng-container>
+
+      <tr cdk-header-row *cdkHeaderRowDef="displayedColumns"></tr>
+      <tr cdk-row *cdkRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
+  <div class="card-footer" id="container_footer">
+  </div>
+</div>

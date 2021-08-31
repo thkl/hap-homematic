@@ -1,0 +1,57 @@
+<!-- /.row-->
+<div class="card">
+  <div class="card-header">
+    <h2>{{'Special Appliances' | localize}}</h2>
+  </div>
+  <div class="card-body" id="container">
+    <div class="input-group mb-2">
+      <div class="input-group-prepend">
+        <div class="input-group-text">{{'Search' | localize}}</div>
+      </div>
+      <input type="text" #searchInput [(ngModel)]="searchText" class="form-control form-control-lg" />
+    </div>
+
+    <table cdk-table [dataSource]="dataSourceFlt" class="table table-responsive-sm table-striped table-sm" matSort
+      (matSortChange)="sortData($event)">
+
+      <ng-container cdkColumnDef="serial">
+        <th cdk-header-cell *cdkHeaderCellDef mat-sort-header="serial" disableClear>{{'Address' | localize}}</th>
+        <td cdk-cell *cdkCellDef="let device"> {{device.serial}} </td>
+      </ng-container>
+
+      <ng-container cdkColumnDef="name">
+        <th cdk-header-cell *cdkHeaderCellDef mat-sort-header="name" disableClear>{{'Homekit name' | localize}}</th>
+        <td cdk-cell *cdkCellDef="let device"> {{device.name}} </td>
+      </ng-container>
+
+      <ng-container cdkColumnDef="serviceClass">
+        <th cdk-header-cell *cdkHeaderCellDef mat-sort-header="serviceClass" disableClear>{{'Service' | localize}}</th>
+        <td cdk-cell *cdkCellDef="let device"> {{device.serviceClass}} </td>
+      </ng-container>
+
+      <ng-container cdkColumnDef="instanceID">
+        <th cdk-header-cell *cdkHeaderCellDef mat-sort-header="instanceNames" disableClear>{{'HAP Instance' | localize}}
+        </th>
+        <td cdk-cell *cdkCellDef="let device"> {{device.instanceNames}} </td>
+      </ng-container>
+
+      <ng-container cdkColumnDef="control">
+        <th cdk-header-cell *cdkHeaderCellDef width="25%"></th>
+        <td cdk-cell *cdkCellDef="let device">
+          <button type="button" class="btn btn-success">{{'Edit' | localize}}</button>
+          &nbsp;
+          <button type="button" class="btn btn-danger">{{'Delete' | localize}}</button>
+        </td>
+      </ng-container>
+
+      <tr cdk-header-row *cdkHeaderRowDef="displayedColumns"></tr>
+      <tr cdk-row *cdkRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <span *ngIf="noData===true">
+      {{'No data' | localize}}
+    </span>
+  </div>
+  <div class="card-footer" id="container_footer">
+  </div>
+</div>
