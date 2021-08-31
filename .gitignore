@@ -4,7 +4,9 @@ package-lock.json
 .nyc_output
 coverage
 node_modules
+node_modules.nosync
 tools
 temp
 lib/services/HomeMaticSmartSpeakerAccessory.js
 lib/services/HomeMaticProgrammableSwitchAccessory.js
+conf.d

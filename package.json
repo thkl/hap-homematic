@@ -19,12 +19,14 @@
 		"binrpc": "3.3.1",
 		"chalk": "^4.0.0",
 		"commander": "^5.1.0",
+		"cors": "^2.8.5",
+		"express": "^4.17.1",
 		"fakegato-history": "^0.5.6",
 		"formidable": "^1.2.2",
 		"hap-nodejs": "^0.5.7",
 		"homematic-xmlrpc": "1.0.2",
-		"sockjs": "^0.3.20",
-		"moment": "2.29.0"
+		"moment": "2.29.0",
+		"sockjs": "^0.3.20"
 	},
 	"husky": {
 		"hooks": {
@@ -34,7 +36,7 @@
 	},
 	"scripts": {
 		"start": "node index.js || true",
-		"dev": "node index.js -D || true",
+		"dev": "nodemon ./index.js -- -D -H ccutest.thkl.arpa -C ./conf.d",
 		"devall": "DEBUG=* node index.js -D || true",
 		"test": "mocha",
 		"update": "mkdir /tmp/hap-homematic-cache;cd /usr/local/addons/hap-homematic;npm i --cache /tmp/hap-homematic-cache hap-homematic@latest;rm -R /tmp/hap-homematic-cache",
@@ -74,5 +76,11 @@
 		"index.js",
 		"package.json",
 		".nobackup"
-	]
+	],
+	"nodemonConfig": {
+		"ignore": [
+			"conf.d/*",
+			"client/*"
+		]
+	}
 }

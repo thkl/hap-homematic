@@ -50,7 +50,11 @@ program.option('-D, --debug', 'turn on debug level logging', () => {
 })
 
 program.option('-C, --configuration [path]', 'set configuration path', (configuration) => {
-  configurationPath = configuration
+  if (configuration.startsWith('.')) {
+    configurationPath = path.join(__dirname, configuration)
+  } else {
+    configurationPath = configuration
+  }
 })
 
 program.option('--reset', 'reset configuration', () => {
