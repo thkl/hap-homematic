@@ -8,6 +8,7 @@ import * as hapDevicesReducer from './reducer/HapDevice.reducer';
 import * as hapVariableReducer from './reducer/HapVariableReducer';
 
 import * as hapSpecialDevicesReducer from './reducer/HapSpecial.reducer';
+import * as localizationReducer from './reducer/Localization.reducer';
 
 
 import { EffectsModule } from '@ngrx/effects';
@@ -20,6 +21,7 @@ import { HapProgramEffects } from './effects/HapProgram.effect';
 import { HapInstanceEffects } from './effects/HapInstance.effect';
 import { HapVariableEffects } from './effects/HapVariable.effect';
 import { HapSpecialDeviceEffects } from './effects/HapSpecialDevice.effect';
+import { LocalizationEffects } from './effects/Localization.effect';
 
 @NgModule({
   declarations: [],
@@ -31,7 +33,8 @@ import { HapSpecialDeviceEffects } from './effects/HapSpecialDevice.effect';
       hapPrograms: hapProgramsReducer.reducer,
       hapDevices: hapDevicesReducer.reducer,
       hapVariables: hapVariableReducer.reducer,
-      hapSpecialDevices: hapSpecialDevicesReducer.reducer
+      hapSpecialDevices: hapSpecialDevicesReducer.reducer,
+      localizationData: localizationReducer.reducer
     }),
 
     EffectsModule.forRoot([
@@ -40,7 +43,8 @@ import { HapSpecialDeviceEffects } from './effects/HapSpecialDevice.effect';
       HapProgramEffects,
       HapDeviceEffects,
       HapVariableEffects,
-      HapSpecialDeviceEffects
+      HapSpecialDeviceEffects,
+      LocalizationEffects
     ]),
     StoreDevtoolsModule.instrument({
       maxAge: 25,

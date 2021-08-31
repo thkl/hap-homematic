@@ -12,6 +12,7 @@ export class ShellComponent implements OnInit {
   constructor(private store: Store<Models.AppState>) { }
 
   ngOnInit(): void {
+
     this.store.dispatch({ type: Actions.HapProgramActionTypes.LOAD_PROGRAM });
     this.store.dispatch({ type: Actions.HapDeviceActionTypes.LOAD_DEVICE });
     this.store.dispatch({ type: Actions.HapVariableActionTypes.LOAD_VARIABLE });

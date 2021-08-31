@@ -1,69 +1,67 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { select, Store } from '@ngrx/store';
+import { Observable, Subscription } from 'rxjs';
 import { BehaviorSubject } from 'rxjs';
+import { map, switchAll } from 'rxjs/operators';
+import { Actions, Models, Selectors } from '../store';
+import { LocalizationPhrase } from '../store/models';
 import { ApplicationService } from './application.service';
 
-export interface Phrase {
-    [key: string]: string;
-}
 
 @Injectable({
-    providedIn: 'root'
+  providedIn: 'root'
 })
 export class LocalizationService {
 
-    private phrases: Phrase = {};
-    private api: string;
-    private phrasesLoaded$: Observable<Phrase>;
+  private phrases: LocalizationPhrase = {};
+  private api: string;
 
-    constructor(private http: HttpClient, private application: ApplicationService) {
-        this.api = application.api;
-        this.phrasesLoaded$ = new Observable<Phrase>();
-        this.loadPhrases('de');
+  constructor(private http: HttpClient, private store: Store<Models.AppState>, private application: ApplicationService) {
+    this.api = application.api;
+
+    this.store.pipe(select(Selectors.localizationData)).subscribe((phrases) => {
+      this.phrases = phrases;
+    });
+  }
+
+  subscribeToPhraseLoadStatus() {
+    return this.store.pipe(select(Selectors.localizationData));
+  }
+
+  loadPhrases() {
+    const lang = this.application.language;
+    return this.http.get<LocalizationPhrase>(`${this.api}/localizations/${lang}`);
+  }
+
+  phrasesLoaded(): boolean {
+    return Object.keys(this.phrases).length > 0;
+  }
+
+  l18n(msg: string, parameter?: any[]): string {
+    if (this.phrases) {
+      if ((this.phrases[msg] === undefined) && (msg !== undefined) && (msg !== '')) {
+        console.warn('No translation for ' + msg)
+      }
+
+      msg = this.phrases[msg] || msg
     }
 
-    loadPhrases(lang: string): void {
-        this.phrasesLoaded$ = this.http.get<Phrase>(`${this.api}/localizations/${lang}`);
+    if (parameter !== undefined) {
 
-        this.phrasesLoaded$.subscribe(newList => {
-            this.phrases = newList;
-        })
-
-    }
-
-    phrasesLoaded(): boolean {
-        return Object.keys(this.phrases).length > 0;
-    }
-
-    subscribeToPhraseLoadStatus(): Observable<Phrase> {
-        return this.phrasesLoaded$;
-    }
-
-    l18n(msg: string, parameter?: any[]): string {
-        if (this.phrases) {
-            if ((this.phrases[msg] === undefined) && (msg !== undefined) && (msg !== '')) {
-                console.warn('No translation for ' + msg)
-            }
-
-            msg = this.phrases[msg] || msg
+      if (parameter.length > 0) {
+        var i = 0
+        var output = msg
+        if ((typeof msg) === 'string') {
+          output = msg.replace(/%s/g, (match, idx) => {
+            var subst = parameter.slice(i, ++i)
+            return subst.toString()
+          })
         }
-
-        if (parameter !== undefined) {
-
-            if (parameter.length > 0) {
-                var i = 0
-                var output = msg
-                if ((typeof msg) === 'string') {
-                    output = msg.replace(/%s/g, (match, idx) => {
-                        var subst = parameter.slice(i, ++i)
-                        return subst.toString()
-                    })
-                }
-                return output
-            } else {
-                return msg
-            }
-        } return msg;
-    }
+        return output
+      } else {
+        return msg
+      }
+    } return msg;
+  }
 }
