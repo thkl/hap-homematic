@@ -15,7 +15,7 @@ export class HapSpecialDeviceEffects {
           map((data: any) => {
             return {
               type: HapSpecialDevicesActionTypes.LOAD_DEVICE_SUCCESS,
-              payload: data.devices,
+              payload: data.special,
             };
           }),
           catchError((error) =>
