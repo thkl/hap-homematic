@@ -18,9 +18,8 @@ export class AbstractTableComponent implements OnInit {
   private _loadingSelector: any;
   private _dataSourceSelector: any;
   private _searchFields: string[] = [];
-  public dataSourceFlt: MatTableDataSource<Models.HapAppliance> =
-    new MatTableDataSource([]);
-
+  public dataSourceFlt: MatTableDataSource<any> = new MatTableDataSource([]);
+  private _selectedObject: any;
   private searchChanged: EventEmitter<number> = new EventEmitter();
   private sortChanged: Subject<any> = new Subject();
   private sortDir: string = 'asc';
@@ -66,6 +65,10 @@ export class AbstractTableComponent implements OnInit {
     this._loadingSelector = sl;
   }
 
+  getDataSource(): Observable<any> {
+    return this._dataSource
+  }
+
   hasSearchOption(): boolean {
     return (this._searchFields.length > 0);
   }
@@ -86,7 +89,7 @@ export class AbstractTableComponent implements OnInit {
     this.subscription.unsubscribe();
   }
 
-  ngAfterViewInit() {
+  ngAfterViewInit(): void {
     if (this.hasSearchOption() === true) {
       fromEvent(this.input.nativeElement, 'keyup').subscribe(() => {
         this.searchChanged.emit(0);
@@ -94,12 +97,12 @@ export class AbstractTableComponent implements OnInit {
     }
   }
 
-  ngAfterContentChecked() {
+  ngAfterContentChecked(): void {
     merge(this.searchChanged, this.sortChanged)
       .pipe(
         startWith({}),
         switchMap(() => {
-          return this._dataSource;
+          return this.getDataSource();
         }),
         map((items) =>
           items.filter((item) =>
@@ -117,9 +120,18 @@ export class AbstractTableComponent implements OnInit {
       });
   }
 
-  sortData(event: any) {
+  sortData(event: any): void {
     this.sortDir = event.direction;
     this.sortField = event.active;
     this.sortChanged.next();
   }
+
+  selectObject(obj: any): void {
+    this._selectedObject = obj;
+  }
+
+  get selectedObject(): any {
+    return this._selectedObject;
+  }
+
 }
