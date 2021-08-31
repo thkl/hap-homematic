@@ -4,7 +4,7 @@
     <h2>{{'Special Appliances' | localize}}</h2>
   </div>
   <div class="card-body" id="container">
-    <div class="input-group mb-2">
+    <div class="input-group mb-2" *ngIf="hasSearchOption() === true" else dummyInput>
       <div class="input-group-prepend">
         <div class="input-group-text">{{'Search' | localize}}</div>
       </div>
@@ -13,11 +13,6 @@
 
     <table cdk-table [dataSource]="dataSourceFlt" class="table table-responsive-sm table-striped table-sm" matSort
       (matSortChange)="sortData($event)">
-
-      <ng-container cdkColumnDef="serial">
-        <th cdk-header-cell *cdkHeaderCellDef mat-sort-header="serial" disableClear>{{'Address' | localize}}</th>
-        <td cdk-cell *cdkCellDef="let device"> {{device.serial}} </td>
-      </ng-container>
 
       <ng-container cdkColumnDef="name">
         <th cdk-header-cell *cdkHeaderCellDef mat-sort-header="name" disableClear>{{'Homekit name' | localize}}</th>
@@ -55,3 +50,7 @@
   <div class="card-footer" id="container_footer">
   </div>
 </div>
+
+<ng-template #dummyInput>
+  <input type="text" #searchInput style="display:none;">
+</ng-template>

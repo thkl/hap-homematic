@@ -1,10 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { HapDeviceActionTypes } from 'src/app/store/actions/HapDevice.action';
-import { HapInstanceActionTypes } from 'src/app/store/actions/HapInstance.action';
-import { HapProgramActionTypes } from 'src/app/store/actions/HapProgram.action';
-import { HapVariableActionTypes } from 'src/app/store/actions/HapVariable.action';
-import { AppState } from 'src/app/store/models/app-state.model';
+import { Models, Actions } from 'src/app/store';
 
 @Component({
   selector: 'app-shell',
@@ -13,13 +9,15 @@ import { AppState } from 'src/app/store/models/app-state.model';
 })
 export class ShellComponent implements OnInit {
 
-  constructor(private store: Store<AppState>) { }
+  constructor(private store: Store<Models.AppState>) { }
 
   ngOnInit(): void {
-    this.store.dispatch({ type: HapProgramActionTypes.LOAD_PROGRAM });
-    this.store.dispatch({ type: HapDeviceActionTypes.LOAD_DEVICE });
-    this.store.dispatch({ type: HapVariableActionTypes.LOAD_VARIABLE });
-    this.store.dispatch({ type: HapInstanceActionTypes.LOAD_INSTANCES });
+    this.store.dispatch({ type: Actions.HapProgramActionTypes.LOAD_PROGRAM });
+    this.store.dispatch({ type: Actions.HapDeviceActionTypes.LOAD_DEVICE });
+    this.store.dispatch({ type: Actions.HapVariableActionTypes.LOAD_VARIABLE });
+    this.store.dispatch({ type: Actions.HapInstanceActionTypes.LOAD_INSTANCES });
+    this.store.dispatch({ type: Actions.HapSpecialDevicesActionTypes.LOAD_DEVICE });
+
   }
 
 }

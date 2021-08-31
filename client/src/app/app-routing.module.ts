@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AppliancelistComponent } from './components/appliances/appliancelist/appliancelist.component';
+import { DeviceListComponent } from './components/appliances/devices/devices.component';
 import { InstancelistComponent } from './components/instances/instancelist/instancelist.component';
-import { ProgramlistComponent } from './components/programlist/programlist.component';
+import { ProgramlistComponent } from './components/appliances/programs/programlist/programlist.component';
 import { ShellComponent } from './components/shell/shell.component';
-import { SpeciallistComponent } from './components/special/speciallist/speciallist.component';
-import { VariablelistComponent } from './components/variables/variablelist/variablelist.component';
+import { SpeciallistComponent } from './components/appliances/special/speciallist/speciallist.component';
+import { VariablelistComponent } from './components/appliances/variables/variablelist/variablelist.component';
 import { LocalizationResolver } from './service/localization.resolver';
 
 const routes: Routes = [
@@ -16,25 +16,25 @@ const routes: Routes = [
     children: [
       { path: '', redirectTo: 'devices', pathMatch: 'full' },
       {
-        path: 'devices',
-        component: AppliancelistComponent,
+        path: 'devices', component: DeviceListComponent,
         data: { breadcrumb: 'Devices' },
       },
-      { path: 'devices/:id', component: AppliancelistComponent },
+      { path: 'devices/:id', component: DeviceListComponent },
       {
-        path: 'variables',
-        component: VariablelistComponent,
+        path: 'variables', component: VariablelistComponent,
         data: { breadcrumb: 'Variables' },
       },
       { path: 'variables/:id', component: VariablelistComponent },
       {
-        path: 'programs',
-        component: ProgramlistComponent,
+        path: 'programs', component: ProgramlistComponent,
         data: { breadcrumb: 'Programs' },
       },
       { path: 'programs/:id', component: ProgramlistComponent },
 
-      { path: 'special', component: SpeciallistComponent },
+      {
+        path: 'special', component: SpeciallistComponent,
+        data: { breadcrumb: 'Special Appliances' }
+      },
 
       { path: 'instances', component: InstancelistComponent }
 

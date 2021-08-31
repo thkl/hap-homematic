@@ -1,9 +1,7 @@
-import { Component, ElementRef, EventEmitter, OnInit, ViewChild } from '@angular/core';
-import { MatTableDataSource } from '@angular/material/table';
-import { select, Store } from '@ngrx/store';
-import { fromEvent, Observable, Subject, Subscription } from 'rxjs';
+import { Component } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { AbstractTableComponent } from 'src/app/components/abstracttable/abstracttable';
 import { Models, Selectors } from 'src/app/store';
-import { AbstractTableComponent } from '../../abstracttable/abstracttable';
 
 @Component({
   selector: 'app-speciallist',
@@ -14,15 +12,16 @@ export class SpeciallistComponent extends AbstractTableComponent {
 
   constructor(public store: Store<Models.AppState>) {
     super(store);
+
     this.displayedColumns = [
-      'serial',
       'name',
       'serviceClass',
       'instanceID',
       'control',
     ];
 
-    this.dataSource = this.store.pipe(select(Selectors.selectAllSpecialDevices));
+    this.dataSourceSelector = Selectors.selectAllSpecialDevices;
+    this.loadingSelector = Selectors.specialDeviceLoading;
   }
 
 

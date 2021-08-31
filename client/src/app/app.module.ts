@@ -5,32 +5,34 @@ import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-
 import { CommonModule } from '@angular/common';
-
-import { MenuComponent } from './components/menu/menu/menu.component';
-import { AppliancelistComponent } from './components/appliances/appliancelist/appliancelist.component';
-import { VariablelistComponent } from './components/variables/variablelist/variablelist.component';
-
-import { ProgramlistComponent } from './components/programlist/programlist.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+
 import { CdkTableModule } from '@angular/cdk/table';
 import { MatSortModule } from '@angular/material/sort';
 
-import { LocalizationResolver } from './service/localization.resolver';
-import { ShellComponent } from './components/shell/shell.component';
+import { MenuComponent } from './components/menu/menu/menu.component';
 import { StorageModule } from './store/storage.module';
+import { PipeModule } from './pipes/pipes.module';
+
+import { LocalizationResolver } from './service/localization.resolver';
+
+import { ShellComponent } from './components/shell/shell.component';
 import { BreadcrumbsComponent } from './components/breadcrumbs/breadcrumbs.component';
 import { InstancelistComponent } from './components/instances/instancelist/instancelist.component';
 import { HeaderModule } from './components/header/header.module';
-import { PipeModule } from './pipes/pipes.module';
-import { SpeciallistComponent } from './components/special/speciallist/speciallist.component';
+import { DeviceListComponent } from './components/appliances/devices/devices.component';
+import { VariablelistComponent } from './components/appliances/variables/variablelist/variablelist.component';
+import { ProgramlistComponent } from './components/appliances/programs/programlist/programlist.component';
+import { SpeciallistComponent } from './components/appliances/special/speciallist/speciallist.component';
+
+
 
 @NgModule({
   declarations: [
     AppComponent,
     MenuComponent,
-    AppliancelistComponent,
+    DeviceListComponent,
     VariablelistComponent,
     ProgramlistComponent,
     ShellComponent,

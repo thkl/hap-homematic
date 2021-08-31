@@ -11,6 +11,7 @@ export class AppliancelistHeaderComponent implements OnInit {
   public hapProgramCount: number;
   public hapDeviceCount: number;
   public hapVariableCount: number;
+  public hapSpecialDeviceCount: number;
 
   constructor(private store: Store<Models.AppState>) { }
 
@@ -25,5 +26,10 @@ export class AppliancelistHeaderComponent implements OnInit {
     this.store.pipe(select(Selectors.selectVariableCount)).subscribe((varcount) => {
       this.hapVariableCount = varcount;
     });
+
+    this.store.pipe(select(Selectors.selectSpecialDeviceCount)).subscribe((spdcount) => {
+      this.hapSpecialDeviceCount = spdcount;
+    });
+
   }
 }
