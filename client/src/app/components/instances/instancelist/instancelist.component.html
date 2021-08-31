@@ -11,7 +11,7 @@
       <input type="text" #searchInput [(ngModel)]="searchText" class="form-control form-control-lg" />
     </div>
 
-    <table cdk-table [dataSource]="dataSource" matSort (matSortChange)="sortData($event)"
+    <table cdk-table [dataSource]="dataSourceFlt" matSort (matSortChange)="sortData($event)"
       class="table table-responsive-sm table-striped table-sm">
 
       <ng-container cdkColumnDef="room">
@@ -40,7 +40,9 @@
         <td cdk-cell *cdkCellDef="let instance">
           <button type="button" class="btn btn-success">{{'Edit' | localize}}</button>
           &nbsp;
-          <button type="button" class="btn btn-danger">{{'Delete' | localize}}</button>
+          <button *ngIf="instance.canDelete===true" type="button" class="btn btn-danger"
+            (click)="selectObject(instance)" data-toggle="modal" data-target="#deleteProgramDialog">{{'Delete'
+            | localize}}</button>
         </td>
       </ng-container>
 
@@ -53,5 +55,29 @@
     </span>
   </div>
   <div class="card-footer" id="container_footer">
+  </div>
+</div>
+
+
+<div class="modal fade" id="deleteProgramDialog" tabindex="-1" role="dialog" aria-labelledby="deleteInstanceDialogLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-danger" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteIntanceDialogLabel">{{'Delete' | localize}}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <span *ngIf="selectedObject">
+          {{'Are you sure you want to remove %s? All your devices will be reassigned to the default Instance.' |
+          localize : [selectedObject.displayName]}}</span>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">{{'Dismiss' | localize}}</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">{{'Yes, kick it baby' | localize}}</button>
+      </div>
+    </div>
   </div>
 </div>
