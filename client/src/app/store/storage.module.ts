@@ -7,7 +7,7 @@ import * as hapProgramsReducer from './reducer/HapProgram.reducer';
 import * as hapDevicesReducer from './reducer/HapDevice.reducer';
 import * as hapVariableReducer from './reducer/HapVariableReducer';
 
-import * as hapDeviceSelectors from './selectors/HapDevice.selector';
+import * as hapSpecialDevicesReducer from './reducer/HapSpecial.reducer';
 
 
 import { EffectsModule } from '@ngrx/effects';
@@ -19,6 +19,7 @@ import { HapDeviceEffects } from './effects/HapDevice.effect';
 import { HapProgramEffects } from './effects/HapProgram.effect';
 import { HapInstanceEffects } from './effects/HapInstance.effect';
 import { HapVariableEffects } from './effects/HapVariable.effect';
+import { HapSpecialDeviceEffects } from './effects/HapSpecialDevice.effect';
 
 @NgModule({
   declarations: [],
@@ -30,6 +31,7 @@ import { HapVariableEffects } from './effects/HapVariable.effect';
       hapPrograms: hapProgramsReducer.reducer,
       hapDevices: hapDevicesReducer.reducer,
       hapVariables: hapVariableReducer.reducer,
+      hapSpecialDevices: hapSpecialDevicesReducer.reducer
     }),
 
     EffectsModule.forRoot([
@@ -38,6 +40,7 @@ import { HapVariableEffects } from './effects/HapVariable.effect';
       HapProgramEffects,
       HapDeviceEffects,
       HapVariableEffects,
+      HapSpecialDeviceEffects
     ]),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
