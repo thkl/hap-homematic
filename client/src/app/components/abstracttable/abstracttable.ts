@@ -8,8 +8,7 @@ import { Models } from "src/app/store";
 
 @Component({
   selector: 'app-abstracttable',
-  template: '',
-  styleUrls: [],
+  template: ' '
 })
 
 export class AbstractTableComponent implements OnInit {
@@ -17,6 +16,7 @@ export class AbstractTableComponent implements OnInit {
   private _displayedColumns: string[];
   private _dataSource: Observable<Models.HapAppliance[]>;
   private _loadingSelector: any;
+  private _dataSourceSelector: any;
   private _searchFields: string[] = [];
   public dataSourceFlt: MatTableDataSource<Models.HapAppliance> =
     new MatTableDataSource([]);
@@ -42,13 +42,15 @@ export class AbstractTableComponent implements OnInit {
       throw new Error('loadingSelector not set');
     }
 
-    if (this._dataSource === undefined) {
+    if (this._dataSourceSelector === undefined) {
       throw new Error('dataSource Selector not set not set');
     }
 
     if (this._displayedColumns === undefined) {
       throw new Error('display Columns not set');
     }
+
+    this._dataSource = this.store.pipe(select(this._dataSourceSelector));
 
     this.subscription.add(
       this.store.pipe(select(this._loadingSelector)).subscribe((loading) => {
@@ -57,12 +59,15 @@ export class AbstractTableComponent implements OnInit {
     );
   }
 
-  set dataSource(ds: Observable<Models.HapAppliance[]>) {
-    this._dataSource = ds;
+  set dataSourceSelector(sl: any) {
+    this._dataSourceSelector = sl;
   }
-
   set loadingSelector(sl: any) {
     this._loadingSelector = sl;
+  }
+
+  hasSearchOption(): boolean {
+    return (this._searchFields.length > 0);
   }
 
   get displayedColumns(): string[] {
@@ -82,9 +87,11 @@ export class AbstractTableComponent implements OnInit {
   }
 
   ngAfterViewInit() {
-    fromEvent(this.input.nativeElement, 'keyup').subscribe(() => {
-      this.searchChanged.emit(0);
-    });
+    if (this.hasSearchOption() === true) {
+      fromEvent(this.input.nativeElement, 'keyup').subscribe(() => {
+        this.searchChanged.emit(0);
+      });
+    }
   }
 
   ngAfterContentChecked() {
