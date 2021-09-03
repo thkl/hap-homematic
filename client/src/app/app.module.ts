@@ -25,7 +25,9 @@ import { DeviceListComponent } from './components/appliances/devices/devices.com
 import { VariablelistComponent } from './components/appliances/variables/variablelist/variablelist.component';
 import { ProgramlistComponent } from './components/appliances/programs/programlist/programlist.component';
 import { SpeciallistComponent } from './components/appliances/special/speciallist/speciallist.component';
-
+import { InstancedetailComponent } from './components/instances/instancedetail/instancedetail.component';
+import { QrCodeModule } from 'ng-qrcode';
+import { DropdownmenuComponent } from './components/util/dropdownmenu/dropdownmenu.component';
 
 
 @NgModule({
@@ -39,6 +41,8 @@ import { SpeciallistComponent } from './components/appliances/special/speciallis
     BreadcrumbsComponent,
     InstancelistComponent,
     SpeciallistComponent,
+    InstancedetailComponent,
+    DropdownmenuComponent,
   ],
   imports: [
     HttpClientModule,
@@ -51,7 +55,8 @@ import { SpeciallistComponent } from './components/appliances/special/speciallis
     StorageModule,
     PipeModule,
     NoopAnimationsModule,
-    HeaderModule
+    HeaderModule,
+    QrCodeModule
   ],
   providers: [LocalizationResolver],
   bootstrap: [AppComponent],

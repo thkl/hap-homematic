@@ -7,6 +7,7 @@ import { ShellComponent } from './components/shell/shell.component';
 import { SpeciallistComponent } from './components/appliances/special/speciallist/speciallist.component';
 import { VariablelistComponent } from './components/appliances/variables/variablelist/variablelist.component';
 import { LocalizationResolver } from './service/localization.resolver';
+import { InstancedetailComponent } from './components/instances/instancedetail/instancedetail.component';
 
 const routes: Routes = [
   {
@@ -36,12 +37,17 @@ const routes: Routes = [
         data: { breadcrumb: 'Special Appliances' }
       },
 
-      { path: 'instances', component: InstancelistComponent }
-
+      {
+        path: 'instances', component: InstancelistComponent,
+        data: { breadcrumb: 'Instances' }
+      },
+      {
+        path: 'instances/detail/:id', component: InstancedetailComponent,
+        data: { breadcrumb: 'Edit Instance' }
+      }
     ],
   },
 ];
-
 @NgModule({
   imports: [RouterModule.forRoot(routes, { useHash: true })],
   exports: [RouterModule],
