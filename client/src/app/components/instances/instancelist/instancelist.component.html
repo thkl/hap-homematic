@@ -31,14 +31,14 @@
       </ng-container>
 
       <ng-container cdkColumnDef="pincode">
-        <th cdk-header-cell *cdkHeaderCellDef>{{'PIN' | localize}}</th>
+        <th cdk-header-cell *cdkHeaderCellDef>{{'PinCode' | localize}}</th>
         <td cdk-cell *cdkCellDef="let instance"> {{instance.pincode}} </td>
       </ng-container>
 
       <ng-container cdkColumnDef="control">
         <th cdk-header-cell *cdkHeaderCellDef width="25%"></th>
         <td cdk-cell *cdkCellDef="let instance">
-          <button type="button" class="btn btn-success">{{'Edit' | localize}}</button>
+          <button type="button" class="btn btn-success" (click)="editObject(instance)">{{'Edit' | localize}}</button>
           &nbsp;
           <button *ngIf="instance.canDelete===true" type="button" class="btn btn-danger"
             (click)="selectObject(instance)" data-toggle="modal" data-target="#deleteProgramDialog">{{'Delete'

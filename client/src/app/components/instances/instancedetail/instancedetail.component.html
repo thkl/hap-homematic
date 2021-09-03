@@ -1,0 +1,75 @@
+<div class="card">
+  <div class="card-header">
+    <h2>{{'Edit instance %s' | localize : [selectedInstance?selectedInstance.displayName:'']}}</h2>
+  </div>
+  <div class="card-body" id="container">
+    <form *ngIf="selectedInstance">
+      <div class="row">
+        <div class="col-md-4 d-sm-none d-lg-none d-xl-block col-xl-5">
+          <img id="instance" src="./assets/img/udsmart.svg" />
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="row">
+            <div class="col-12">
+              <label for="inlineFormInputGroup">{{'Instance name' | localize}}</label>
+              <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                  <div class="input-group-text">HomeMatic</div>
+                </div>
+                <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="default">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <div>
+                <label for="inlineFormInputGroup">{{'PinCode' | localize}}</label>
+                <div class="input-group mb-2">
+                  <h1>{{selectedInstance.pincode}}</h1>
+                </div>
+              </div>
+              <br />
+              <div>
+                <label for="inlineFormInputGroup">{{'Room' | localize}}</label>
+                <dropdownmenu [dataSource]="roomList" [keyLabel]="'name'" [keyId]="'id'"
+                  [selected]="selectedInstance.roomid" (selectedChanged)="selectRoom($event)">
+                  {{'Select a room' | localize}}</dropdownmenu>
+              </div>
+              <br />
+              <div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                  <label class="form-check-label" for="defaultCheck1">
+                    {{'Include devices' | localize}}
+                  </label>
+                </div>
+              </div>
+              <br />
+              <div>
+                You can include the devices later. HomeKit will publish them into the same room as your instance.
+                Publishing instances first without devices will make it easier to setup homekit.
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+        <div class="col-md-6 col-sm-4 col-lg-4 col-xl-3" id="qrcontainer">
+          <div class="homekitcode">
+            <span>{{iconPin.substr(0,4)}}<br />{{iconPin.substr(4,8)}}</span>
+            <qr-code id="setupQR" value="{{selectedInstance.setupURI}}" size="240" errorCorrectionLevel="H">
+            </qr-code>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="card-footer" id="container_footer">
+    <button type="button" class="btn btn-success"><span class="cil-save btn-icon mr-2"></span>{{'Save' |
+      localize}}</button>
+    &nbsp;
+    <button type="button" class="btn btn-primary"><span class="cil-x btn-icon mr-2"></span>{{'Dismiss' |
+      localize}}</button>
+
+  </div>
+</div>
