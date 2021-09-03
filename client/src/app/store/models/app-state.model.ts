@@ -1,6 +1,7 @@
 import { HapDeviceState } from '../reducer/HapDevice.reducer';
 import { HapInstanceState } from '../reducer/HapInstance.reducer';
 import { HapProgramState } from '../reducer/HapProgram.reducer';
+import { HapRoomState } from '../reducer/HapRoom.reducer';
 import { HapSpecialDeviceState } from '../reducer/HapSpecial.reducer';
 import { HapVariableState } from '../reducer/HapVariableReducer';
 import { LocalizationState } from '../reducer/Localization.reducer';
@@ -14,4 +15,5 @@ export interface AppState {
   readonly hapVariables: HapVariableState;
   readonly hapSpecialDevices: HapSpecialDeviceState;
   readonly localizationData: LocalizationState;
+  readonly hapRooms: HapRoomState;
 }

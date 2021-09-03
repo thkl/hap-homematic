@@ -9,7 +9,7 @@ import * as hapVariableReducer from './reducer/HapVariableReducer';
 
 import * as hapSpecialDevicesReducer from './reducer/HapSpecial.reducer';
 import * as localizationReducer from './reducer/Localization.reducer';
-
+import * as roomLoadingReducer from './reducer/HapRoom.reducer';
 
 import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
@@ -22,6 +22,7 @@ import { HapInstanceEffects } from './effects/HapInstance.effect';
 import { HapVariableEffects } from './effects/HapVariable.effect';
 import { HapSpecialDeviceEffects } from './effects/HapSpecialDevice.effect';
 import { LocalizationEffects } from './effects/Localization.effect';
+import { HapRoomEffects } from './effects/HapRoom.effect';
 
 @NgModule({
   declarations: [],
@@ -34,7 +35,8 @@ import { LocalizationEffects } from './effects/Localization.effect';
       hapDevices: hapDevicesReducer.reducer,
       hapVariables: hapVariableReducer.reducer,
       hapSpecialDevices: hapSpecialDevicesReducer.reducer,
-      localizationData: localizationReducer.reducer
+      localizationData: localizationReducer.reducer,
+      hapRooms: roomLoadingReducer.reducer
     }),
 
     EffectsModule.forRoot([
@@ -44,7 +46,8 @@ import { LocalizationEffects } from './effects/Localization.effect';
       HapDeviceEffects,
       HapVariableEffects,
       HapSpecialDeviceEffects,
-      LocalizationEffects
+      LocalizationEffects,
+      HapRoomEffects
     ]),
     StoreDevtoolsModule.instrument({
       maxAge: 25,

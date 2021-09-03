@@ -18,11 +18,18 @@ export const instancesLoading = createSelector(
 export const selectInstanceCount = createSelector(
   selectHapInstanceState,
   (state: HapInstanceState): number =>
-    ((state !== undefined) && (state.list !== undefined))  ? state.list.length : 0
+    ((state !== undefined) && (state.list !== undefined)) ? state.list.length : 0
 );
 
 export const selectAllInstances = createSelector(
   selectHapInstanceState,
   (state: HapInstanceState): HapInstance[] =>
-    ((state !== undefined) && (state.list !== undefined))  ? state.list : []
+    ((state !== undefined) && (state.list !== undefined)) ? state.list : []
 );
+
+
+export const selectInstancesById = (id: string) => createSelector(
+  selectHapInstanceState,
+  (state: HapInstanceState) => ((state !== undefined) && (state.list !== undefined)) ? state.list.filter(item => (item.id === id))[0] : undefined
+);
+

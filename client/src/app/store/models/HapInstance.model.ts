@@ -9,4 +9,5 @@ export interface HapInstance {
   setupURI: string;
   ccuFirewall: boolean;
   canDelete: boolean;
+  iconPin?: string;
 }

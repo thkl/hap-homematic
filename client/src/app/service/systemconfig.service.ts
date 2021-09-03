@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { SystemConfig } from '../store/models/SystemConfig.model';
 import { ApplicationService } from './application.service';
+import { HapRoom } from '../store/models';
 
 @Injectable({
   providedIn: 'root'
@@ -17,5 +18,9 @@ export class SystemconfigService {
 
   loadSystemConfiguration() {
     return this.http.get<SystemConfig>(`${this.api}/system`);
+  }
+
+  loadRooms() {
+    return this.http.get<HapRoom[]>(`${this.api}/rooms`);
   }
 }

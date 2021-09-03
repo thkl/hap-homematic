@@ -1,9 +1,7 @@
 import { Injectable } from "@angular/core";
 import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from "@angular/router";
 import { select, Store } from "@ngrx/store";
-import { Observable } from "rxjs";
 import { Models, Selectors } from "../store";
-import { LocalizationPhrase } from "../store/models";
 import { LocalizationService } from "./localization.service";
 
 @Injectable()
