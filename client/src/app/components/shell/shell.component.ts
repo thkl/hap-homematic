@@ -18,7 +18,7 @@ export class ShellComponent implements OnInit {
     this.store.dispatch({ type: Actions.HapVariableActionTypes.LOAD_VARIABLE });
     this.store.dispatch({ type: Actions.HapInstanceActionTypes.LOAD_INSTANCES });
     this.store.dispatch({ type: Actions.HapSpecialDevicesActionTypes.LOAD_DEVICE });
-
+    this.store.dispatch({ type: Actions.HapRoomActionTypes.LOAD_ROOMS });
   }
 
 }
