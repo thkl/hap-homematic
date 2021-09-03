@@ -33,27 +33,10 @@
     </a>
   </li>
 
-  <li class="c-sidebar-nav-dropdown" [class.c-show]="currentSubMenu === 'instances'">
-    <a class="c-sidebar-nav-dropdown-toggle" (click)="toggleSubMenu('instances')">
+  <li class="c-sidebar-nav-item" [class.c-show]="currentSubMenu === 'instances'" routerLink="/instances">
+    <a class="c-sidebar-nav-link">
       <i class="c-icon c-icon-lg mt-2 ml-1 mr-3 mb-2 cil-factory"></i>{{'HomeKit Instances' | localize}}
     </a>
-
-    <ul class="c-sidebar-nav-dropdown-items">
-      <li class="c-sidebar-nav-item">
-        <a class="c-sidebar-nav-link" id="hapInstances" routerLink="/instances">
-          <i class="c-icon c-icon-lg mt-2 ml-1 mr-3 mb-2 cil-fork"></i>
-          <span>{{'Edit instances' | localize}}</span>
-        </a>
-      </li>
-
-      <li class="c-sidebar-nav-item">
-        <a class="c-sidebar-nav-link" id="publishingSettings">
-          <i class="c-icon c-icon-lg mt-2 ml-1 mr-3 mb-2 cil-settings"></i>
-          <span>{{'Settings' | localize}}</span>
-        </a>
-      </li>
-
-    </ul>
   </li>
 
 
