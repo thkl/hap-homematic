@@ -1,0 +1,11 @@
+<div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="{{id}}button" data-toggle="dropdown"
+    aria-expanded="false">
+    <span *ngIf="selectedLabel">{{selectedLabel}}</span>
+    <ng-content *ngIf="selectedLabel===undefined"></ng-content>
+  </button>
+  <div class="dropdown-menu" attr.aria-labelledby="{{id}}button">
+    <a class="dropdown-item" *ngFor="let item of dataSource | async"
+      (click)="_selected(item[keyId])">{{item[keyLabel]}}</a>
+  </div>
+</div>
