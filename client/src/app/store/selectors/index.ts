@@ -5,4 +5,5 @@ export * from './HapVariable.selector';
 export * from './HapConfig.selector';
 export * from './HapSpecial.selector';
 export * from './Localization.selector';
-export * from './HapRoom.selector';
+export * from './CCURoom.selector';
+export * from './CCUDevice.selector';

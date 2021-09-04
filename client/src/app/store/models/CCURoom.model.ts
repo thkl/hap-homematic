@@ -1,4 +1,4 @@
-export interface HapRoom {
+export interface CCURoom {
   id: number;
   name: string;
   channels: [number];

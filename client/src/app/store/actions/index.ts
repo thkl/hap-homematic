@@ -5,4 +5,5 @@ export * from './HapVariable.action';
 export * from './SystemConfig.action';
 export * from './HapSpecial.action';
 export * from './Localization.action';
-export * from './HapRoom.action';
+export * from './CCURoom.action';
+export * from './CCUDevice.action';

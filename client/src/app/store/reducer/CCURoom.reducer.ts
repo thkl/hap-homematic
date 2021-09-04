@@ -1,14 +1,13 @@
 import { Action, createReducer, on } from '@ngrx/store';
-import * as HapRoomActionTypes from '../actions/HapRoom.action';
-import { HapAppliance } from '../models/HapAppliance.model';
-import { HapRoom } from '../models/HapRoom.model';
+import * as CCURoomActionTypes from '../actions/CCURoom.action';
+import { CCURoom } from '../models/CCURoom.model';
 
-export interface HapRoomState {
-  list: HapRoom[];
+export interface CCURoomState {
+  list: CCURoom[];
   loading: boolean;
   error?: Error;
 }
-export const initialState: HapRoomState = {
+export const initialState: CCURoomState = {
   list: [],
   loading: false,
   error: undefined,
@@ -16,13 +15,13 @@ export const initialState: HapRoomState = {
 
 const roomLoadingReducer = createReducer(
   initialState,
-  on(HapRoomActionTypes.LoadHapRoomsAction, (state) => ({
+  on(CCURoomActionTypes.LoadCCURoomsAction, (state) => ({
     ...state,
     loading: true,
   })),
 
   on(
-    HapRoomActionTypes.LoadHapRoomsSuccessAction,
+    CCURoomActionTypes.LoadCCURoomsSuccessAction,
     (state, { payload }) => ({
       ...state,
       list: payload,
@@ -30,7 +29,7 @@ const roomLoadingReducer = createReducer(
     })
   ),
   on(
-    HapRoomActionTypes.LoadHapRoomsFailureAction,
+    CCURoomActionTypes.LoadCCURoomsFailureAction,
     (state, { payload }) => ({
       ...state,
       error: payload,
@@ -39,6 +38,6 @@ const roomLoadingReducer = createReducer(
   )
 );
 
-export function reducer(state: HapRoomState | undefined, action: Action) {
+export function reducer(state: CCURoomState | undefined, action: Action) {
   return roomLoadingReducer(state, action);
 }

@@ -18,11 +18,23 @@ export const deviceLoading = createSelector(
 export const selectDeviceCount = createSelector(
   selectHapDeviceState,
   (state: HapDeviceState): number =>
-    ((state !== undefined) && (state.list !== undefined))  ? state.list.length : 0
+    ((state !== undefined) && (state.list !== undefined)) ? state.list.length : 0
 );
 
 export const selectAllDevices = createSelector(
   selectHapDeviceState,
   (state: HapDeviceState): HapAppliance[] =>
-    ((state !== undefined) && (state.list !== undefined))  ? state.list : []
+    ((state !== undefined) && (state.list !== undefined)) ? state.list : []
+);
+
+export const devicesLoaded = createSelector(
+  selectHapDeviceState,
+  (state: HapDeviceState): boolean =>
+    ((state !== undefined) && (state.list !== undefined) && (state.list.length > 0))
+);
+
+
+export const selectDeviceById = (id: string) => createSelector(
+  selectHapDeviceState,
+  (state: HapDeviceState): HapAppliance => ((state !== undefined) && (state.list !== undefined)) ? state.list.filter(item => (item.UUID === id))[0] : undefined
 );
