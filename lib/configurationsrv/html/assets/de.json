@@ -32,6 +32,7 @@
   "Finish": "Fertigstellen",
   "Edit Homekit instanc": "HomeKit Instanz bearbeiten",
   "Add new device": "Neues Gerät hinzufügen",
+  "1. Select a channel to map to homekit": "1. Wähle einen Kanal aus um ihn zu Homekit hinzuzufügen",
   "Please setup the service for %s  (%s)": "Einstellungen für den Service für %s (%s)",
   "Publish device ?": "Gerät veröffentlichen ?",
   "Select a instance": "Instanz auswählen",
