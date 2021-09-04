@@ -10,6 +10,8 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 import { CdkTableModule } from '@angular/cdk/table';
 import { MatSortModule } from '@angular/material/sort';
+import { CdkTreeModule } from '@angular/cdk/tree';
+import { MatIconModule } from '@angular/material/icon';
 
 import { MenuComponent } from './components/menu/menu/menu.component';
 import { StorageModule } from './store/storage.module';
@@ -28,6 +30,11 @@ import { SpeciallistComponent } from './components/appliances/special/speciallis
 import { InstancedetailComponent } from './components/instances/instancedetail/instancedetail.component';
 import { QrCodeModule } from 'ng-qrcode';
 import { DropdownmenuComponent } from './components/util/dropdownmenu/dropdownmenu.component';
+import { CCCUDevicelistComponent } from './components/devices/ccudevicelist/ccudevicelist.component';
+import { NewDevicewizzardComponent } from './components/devices/newdevicewizzard/newdevicewizzard.component';
+import { AppliancePropertiesComponent } from './components/appliances/applianceproperties/applianceproperties.component';
+import { ApplicanceListResolver } from './service/appliance.resolver';
+import { EditApplianceComponent } from './components/appliances/editappliance/editappliance.component';
 
 
 @NgModule({
@@ -43,6 +50,10 @@ import { DropdownmenuComponent } from './components/util/dropdownmenu/dropdownme
     SpeciallistComponent,
     InstancedetailComponent,
     DropdownmenuComponent,
+    CCCUDevicelistComponent,
+    NewDevicewizzardComponent,
+    AppliancePropertiesComponent,
+    EditApplianceComponent
   ],
   imports: [
     HttpClientModule,
@@ -51,14 +62,16 @@ import { DropdownmenuComponent } from './components/util/dropdownmenu/dropdownme
     FormsModule,
     AppRoutingModule,
     CdkTableModule,
+    CdkTreeModule,
     MatSortModule,
+    MatIconModule,
     StorageModule,
     PipeModule,
     NoopAnimationsModule,
     HeaderModule,
-    QrCodeModule
+    QrCodeModule,
   ],
-  providers: [LocalizationResolver],
+  providers: [LocalizationResolver, ApplicanceListResolver],
   bootstrap: [AppComponent],
 })
 export class AppModule { }

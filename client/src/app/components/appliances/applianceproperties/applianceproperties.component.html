@@ -1,0 +1,6 @@
+Property Sheet {{selectedAppliance.serviceClass}}
+
+
+<dropdownmenu [dataSource]="serviceList" [keyLabel]="'serviceClazz'" [keyId]="'serviceClazz'"
+  [selected]="selectedAppliance.serviceClass" (selectedChanged)="selectClazz($event)">
+  {{'Select a Service' | localize}}</dropdownmenu>

@@ -6,6 +6,6 @@
   </button>
   <div class="dropdown-menu" attr.aria-labelledby="{{id}}button">
     <a class="dropdown-item" *ngFor="let item of dataSource | async"
-      (click)="_selected(item[keyId])">{{item[keyLabel]}}</a>
+      (click)="_select(item[keyId])">{{item[keyLabel]}}</a>
   </div>
 </div>

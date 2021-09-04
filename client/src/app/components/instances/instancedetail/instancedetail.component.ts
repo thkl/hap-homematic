@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Models, Selectors } from 'src/app/store';
-import { HapInstance, HapRoom } from 'src/app/store/models';
+import { HapInstance, CCURoom } from 'src/app/store/models';
 
 @Component({
   selector: 'app-instancedetail',
@@ -13,7 +13,7 @@ import { HapInstance, HapRoom } from 'src/app/store/models';
 export class InstancedetailComponent implements OnInit {
 
   selectedInstance: HapInstance;
-  roomList: Observable<HapRoom[]>;
+  roomList: Observable<CCURoom[]>;
   public iconPin: string;
   constructor(private route: ActivatedRoute, public store: Store<Models.AppState>) { }
 

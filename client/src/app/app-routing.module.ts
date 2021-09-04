@@ -8,6 +8,11 @@ import { SpeciallistComponent } from './components/appliances/special/speciallis
 import { VariablelistComponent } from './components/appliances/variables/variablelist/variablelist.component';
 import { LocalizationResolver } from './service/localization.resolver';
 import { InstancedetailComponent } from './components/instances/instancedetail/instancedetail.component';
+import { CCCUDevicelistComponent } from './components/devices/ccudevicelist/ccudevicelist.component';
+import { NewDevicewizzardComponent } from './components/devices/newdevicewizzard/newdevicewizzard.component';
+import { AppliancePropertiesComponent } from './components/appliances/applianceproperties/applianceproperties.component';
+import { ApplicanceListResolver } from './service/appliance.resolver';
+import { EditApplianceComponent } from './components/appliances/editappliance/editappliance.component';
 
 const routes: Routes = [
   {
@@ -16,20 +21,32 @@ const routes: Routes = [
     resolve: { phrases: LocalizationResolver },
     children: [
       { path: '', redirectTo: 'devices', pathMatch: 'full' },
+
       {
         path: 'devices', component: DeviceListComponent,
         data: { breadcrumb: 'Devices' },
       },
-      { path: 'devices/:id', component: DeviceListComponent },
+
+      {
+        path: 'device/:id', component: EditApplianceComponent,
+        resolve: { loaded: ApplicanceListResolver },
+        data: { breadcrumb: 'Edit Device' },
+      },
+
+      { path: 'device/new', component: NewDevicewizzardComponent },
+
       {
         path: 'variables', component: VariablelistComponent,
         data: { breadcrumb: 'Variables' },
       },
+
       { path: 'variables/:id', component: VariablelistComponent },
+
       {
         path: 'programs', component: ProgramlistComponent,
         data: { breadcrumb: 'Programs' },
       },
+
       { path: 'programs/:id', component: ProgramlistComponent },
 
       {
@@ -41,6 +58,7 @@ const routes: Routes = [
         path: 'instances', component: InstancelistComponent,
         data: { breadcrumb: 'Instances' }
       },
+
       {
         path: 'instances/detail/:id', component: InstancedetailComponent,
         data: { breadcrumb: 'Edit Instance' }

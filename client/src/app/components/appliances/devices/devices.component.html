@@ -38,7 +38,8 @@
       <ng-container cdkColumnDef="control">
         <th cdk-header-cell *cdkHeaderCellDef width="25%"></th>
         <td cdk-cell *cdkCellDef="let device">
-          <button type="button" class="btn btn-success">{{'Edit' | localize}}</button>
+          <button type="button" class="btn btn-success" routerLink='/device/{{device.UUID}}'>{{'Edit' |
+            localize}}</button>
           &nbsp;
           <button type="button" class="btn btn-danger">{{'Delete' | localize}}</button>
         </td>
@@ -53,5 +54,8 @@
     </span>
   </div>
   <div class="card-footer" id="container_footer">
+    <button type="button" class="btn btn-primary" routerLink="/device/new"><span
+        class="cil-plus btn-icon mr-2"></span>{{'Add new device' |
+      localize}}</button>
   </div>
 </div>

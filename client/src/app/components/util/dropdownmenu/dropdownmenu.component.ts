@@ -10,11 +10,31 @@ import { filter, map, switchMap } from 'rxjs/operators';
 })
 export class DropdownmenuComponent implements OnInit {
 
-  @Input() dataSource: Observable<any[]>;
+  private _dataSource: Observable<any[]>;
+  private _selected: any;
+
+  @Input() set dataSource(newDs: Observable<any[]>) {
+    this._dataSource = newDs;
+    this._select(this.selected);
+  }
+
+  get dataSource(): Observable<any[]> {
+    return this._dataSource;
+  }
+
+  @Input() set selected(newSel: any) {
+    this._selected = newSel;
+    this._select(this._selected);
+  }
+
+  get selected(): any {
+    return this._selected;
+  }
+
+
   @Input() id: string;
   @Input() keyLabel: string;
   @Input() keyId: string;
-  @Input() selected: any;
   @Output() selectedChanged = new EventEmitter();
 
   public selectedLabel: string;
@@ -22,10 +42,10 @@ export class DropdownmenuComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this._selected(this.selected);
+    this._select(this.selected);
   }
 
-  _selected(newId: number) {
+  _select(newId: number) {
     this.dataSource.pipe(map(items => items.filter(item => item[this.keyId] === newId))
     ).subscribe(fItem => {
       if (fItem.length > 0) {

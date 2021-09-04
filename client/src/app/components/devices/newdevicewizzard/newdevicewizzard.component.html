@@ -1,0 +1,32 @@
+<div class="card">
+  <div class="card-header">
+    <h2>{{'Add new device' | localize}}</h2>
+  </div>
+  <div class="card-body">
+    <ng-container *ngIf="wizzardStep===0" id="container">
+      <h5 class="stepHeader">{{'1. Select a channel to map to homekit' | localize}}</h5>
+      <div class="row">
+        <div class="col-md-4 d-none d-md-block d-lg-block d-xl-block">
+          <img id="wzimage" src="./assets/img/lightbulb.svg">
+        </div>
+        <div class="col-12 col-md-8">
+          <app-ccudevicelist (selectionChanged)="deviceSelectionChanged($event)"></app-ccudevicelist>
+        </div>
+      </div>
+
+      <br />
+    </ng-container>
+    <ng-container *ngIf="wizzardStep > 0" id="container">
+      Edit Device {{wizzardStep}}
+    </ng-container>
+  </div>
+  <div class="card-footer" id="container_footer">
+    <button type="button" class="btn btn-success" (click)="nextStep()" [attr.disabled]="canDoNext?null:'disabled'"><span
+        class="cil-chevron-circle-right-alt btn-icon mr-2"></span>{{'Next' |
+      localize}}</button>
+    &nbsp;
+    <button type="button" class="btn btn-primary" routerLink="/devices"><span
+        class="cil-x btn-icon mr-2"></span>{{'Dismiss' |
+      localize}}</button>
+
+  </div>

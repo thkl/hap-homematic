@@ -1,0 +1,20 @@
+<div class="card">
+  <div class="card-header">
+    <h2>{{'Edit device' | localize}}</h2>
+  </div>
+  <div class="card-body">
+    <app-applianceproperties [selectedAppliance]="selectedAppliance">
+    </app-applianceproperties>
+  </div>
+
+  <div class="card-footer" id="container_footer">
+    <button type="button" class="btn btn-success"><span
+        class="cil-chevron-circle-right-alt btn-icon mr-2"></span>{{'Save' |
+      localize}}</button>
+    &nbsp;
+    <button type="button" class="btn btn-primary" routerLink="/devices"><span
+        class="cil-x btn-icon mr-2"></span>{{'Dismiss' |
+      localize}}</button>
+
+  </div>
+</div>

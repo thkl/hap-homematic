@@ -1,0 +1,37 @@
+<div class="input-group mb-2">
+  <div class="input-group-prepend">
+    <div class="input-group-text">{{'Search' | localize}}</div>
+  </div>
+  <input type="text" #searchInput [(ngModel)]="filterText" (change)="rebuildTree()"
+    class="form-control form-control-lg" />
+</div>
+
+<cdk-tree [dataSource]="dataSource" [treeControl]="treeControl">
+  <!-- This is the tree node template for leaf nodes -->
+  <cdk-nested-tree-node *cdkTreeNodeDef="let node" class="device-tree-node">
+    <!-- use a disabled button to provide padding for tree leaf -->
+    <button mat-icon-button disabled class="btn btn-link"></button>
+    <div class="row">
+      <div class="col-1"><input class="form-check-input" type="checkbox" id="{{node.id}}_check"
+          [(ngModel)]="node.active" *ngIf="node.exists===false" (ngModelChange)="select(node)"></div>
+      <div class="col-3" [class.exists]="node.exists">{{node.name}}</div>
+      <div class="col-3">{{node.pl1}}</div>
+      <div class="col-3"><span *ngIf="node.exists">{{'already exists'|localize}}</span></div>
+    </div>
+
+
+
+  </cdk-nested-tree-node>
+  <!-- This is the tree node template for expandable nodes -->
+  <cdk-nested-tree-node *cdkTreeNodeDef="let node; when: hasChild" class="device-tree-node">
+    <button mat-icon-button [attr.aria-label]="'Toggle ' + node.name" cdkTreeNodeToggle class="btn btn-link">
+      <mat-icon class="mat-icon-rtl-mirror">
+        {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
+      </mat-icon>
+    </button>
+    {{node.name}}
+    <div [class.device-tree-invisible]="!treeControl.isExpanded(node)">
+      <ng-container cdkTreeNodeOutlet></ng-container>
+    </div>
+  </cdk-nested-tree-node>
+</cdk-tree>
