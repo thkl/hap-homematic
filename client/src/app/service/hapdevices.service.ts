@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { HapAppliance } from '../store/models/HapAppliance.model';
+import { HapAppliance, HapApplianceServiceResponse } from '../store/models';
 import { ApplicationService } from './application.service';
 
 @Injectable({
@@ -19,4 +19,13 @@ export class HapDevicesService {
   loadHapDevices() {
     return this.http.get<HapAppliance[]>(`${this.api}/devices`);
   }
+
+  loadCompatibleCCUDevices() {
+    return this.http.get<HapAppliance[]>(`${this.api}/ccudevices`);
+  }
+
+  loadServiceData(channelAddress: string) {
+    return this.http.get<HapApplianceServiceResponse>(`${this.api}/service/${channelAddress}`);
+  }
+
 }
