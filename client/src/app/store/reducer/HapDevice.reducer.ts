@@ -37,9 +37,15 @@ const deviceLoadingReducer = createReducer(
       loading: false,
     })
   ),
-  on(HapDeviceActionTypes.SaveHapDeviceAction,
+
+  on(HapDeviceActionTypes.SaveHapDeviceAction, (state) => ({
+    ...state,
+    loading: true,
+  })),
+
+  on(HapDeviceActionTypes.SaveHapDeviceActionSuccess,
     (state, { payload }) => {
-      const index = state.list.findIndex(appl => appl.UUID === payload.UUID); //finding index of the item
+      const index = state.list.findIndex(appl => appl.address === payload.address); //finding index of the item
       const newList = [...state.list]; //making a new array
       if (index === -1) {
         newList.push(payload);
@@ -48,10 +54,31 @@ const deviceLoadingReducer = createReducer(
       }
       return {
         ...state,
+        loading: false,
         list: newList
       }
     }
-  )
+  ),
+  on(HapDeviceActionTypes.AddHapDeviceAction,
+    (state, { payload }) => {
+      const newList = [...state.list]; //making a new array
+      newList.push(payload);
+      return {
+        ...state,
+        loading: false,
+        list: newList
+      }
+    }
+  ),
+  on(HapDeviceActionTypes.CleanHapApplianceStore, (state) => {
+    const newList = [...state.list].filter(tmpAp => (tmpAp.isTemporary === false || tmpAp.isTemporary === undefined)); //making a new array
+
+    return {
+      ...state,
+      list: newList
+    }
+  })
+
 );
 
 export function reducer(state: HapDeviceState | undefined, action: Action) {

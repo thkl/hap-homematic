@@ -10,7 +10,7 @@ export class ApplicanceListResolver implements Resolve<any> {
   loaded = false;
 
   constructor(private store: Store<Models.AppState>) {
-    this.store.pipe(select(Selectors.devicesLoaded)).subscribe(loaded => {
+    this.store.pipe(select(Selectors.appliancesLoaded)).subscribe(loaded => {
       this.loaded = loaded;
     })
   }

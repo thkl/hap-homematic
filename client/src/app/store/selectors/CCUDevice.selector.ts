@@ -1,5 +1,5 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { CCUDevice } from '../models/CCUDevice.model';
+import { CCUChannel, CCUDevice } from '../models/CCUDevice.model';
 import { CCUDeviceState } from '../reducer/CCUDevice.reducer';
 
 export const selectCCUDeviceState =
@@ -31,5 +31,21 @@ export const selectAllCCUDevices = createSelector(
 export const selectDeviceByAddress = (address: string) => createSelector(
   selectCCUDeviceState,
   (state: CCUDeviceState) => ((state !== undefined) && (state.list !== undefined)) ? state.list.filter(item => (item.device === address))[0] : undefined
+);
+
+const getChannelByAddress = (list: CCUDevice[], address: string) => {
+  const dadr = address.split(':')[0]
+  const device = list.filter(item => (item.device === dadr))[0];
+  if (device !== undefined) {
+    return device.channels.filter(citem => (citem.address === address))[0];
+  }
+  return undefined;
+}
+
+
+export const selectChannelByAddress = (address: string) => createSelector(
+  selectCCUDeviceState,
+  (state: CCUDeviceState): CCUChannel =>
+    ((state !== undefined) && (state.list !== undefined)) ? getChannelByAddress(state.list, address) : undefined
 );
 

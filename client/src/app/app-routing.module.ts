@@ -28,7 +28,7 @@ const routes: Routes = [
       { path: 'device/new', component: NewDevicewizzardComponent },
 
       {
-        path: 'device/:id', component: EditApplianceComponent,
+        path: 'device/:address', component: EditApplianceComponent,
         resolve: { loaded: ApplicanceListResolver },
         data: { breadcrumb: 'Edit device' },
       },

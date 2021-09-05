@@ -28,4 +28,7 @@ export class HapDevicesService {
     return this.http.get<HapApplianceServiceResponse>(`${this.api}/service/${channelAddress}`);
   }
 
+  saveHapDevice(appliance: HapAppliance) {
+    return this.http.patch<HapAppliance>(`${this.api}/device`, appliance);
+  }
 }

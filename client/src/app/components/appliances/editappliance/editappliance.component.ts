@@ -19,8 +19,8 @@ export class EditApplianceComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
-      const id = params['id'];
-      this.store.pipe(select(Selectors.selectDeviceById(id))).subscribe(appliance => {
+      const address = params['address'];
+      this.store.pipe(select(Selectors.selectApplianceByAddress(address))).subscribe(appliance => {
         if (appliance !== undefined) {
           this.selectedAppliance = appliance;
         }

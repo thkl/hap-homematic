@@ -22,8 +22,8 @@ export class DeviceListComponent extends AbstractTableComponent {
       'control',
     ];
 
-    this.dataSourceSelector = Selectors.selectAllDevices;
-    this.loadingSelector = Selectors.deviceLoading;
+    this.dataSourceSelector = Selectors.selectAllAppliances(false);
+    this.loadingSelector = Selectors.appliancesLoading;
     this.searchFields = ['serial', 'name'];
   }
 }

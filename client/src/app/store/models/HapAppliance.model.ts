@@ -1,13 +1,15 @@
 export interface HapAppliance {
-  UUID: string;
+  UUID?: string;
   name: string;
-  interface: string;
+  interface?: string;
   serial: string;
   channel: string;
-  instanceID: string;
+  address?: string;
+  instanceID?: string;
   serviceClass: string;
   settings: any;
   isPublished: boolean;
   nameInCCU: string;
   instanceNames: string;
+  isTemporary: boolean;
 }

@@ -17,7 +17,8 @@
       <div class="form-group">
         <label for="appliance_service">{{'Service' | localize}}</label>
         <dropdownmenu [dataSource]="serviceList" [keyLabel]="'serviceClazz'" [keyId]="'serviceClazz'"
-          [selected]="selectedAppliance.serviceClass" (selectedChanged)="selectClazz($event)" id="appliance_service">
+          [selected]="selectedServiceClass ? selectedServiceClass.serviceClazz :''"
+          (selectedChanged)="selectClazz($event)" id="appliance_service">
           {{'Select the service you want to use for this channel' | localize}}</dropdownmenu>
       </div>
     </div>
@@ -41,6 +42,13 @@
           <input id="service_prop_{{prop.key}}" *ngIf="prop.value['type'] === 'number' || prop.value['type'] === 'text'"
             type="text" [value]="getSettings(prop.key,prop.value['default'])" class="form-control form-control-lg"
             (change)="saveSetting(prop.key,$event.target['value'])">
+
+
+          <div class="form-check" *ngIf="prop.value['type'] === 'checkbox'">
+            <input class="form-check-input position-static" type="checkbox" id="blankCheckbox"
+              value="getSettings(prop.key,prop.value['default'])" aria-label="...">
+          </div>
+
         </div>
       </div>
       <div class="col-6 propertyDescription">

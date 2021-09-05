@@ -38,7 +38,7 @@ export class CCCUDevicelistComponent implements OnInit {
   constructor(public store: Store<Models.AppState>) { }
 
   ngOnInit(): void {
-    this.store.pipe(select(Selectors.selectAllDevices)).subscribe(hapdevices => {
+    this.store.pipe(select(Selectors.selectAllAppliances(false))).subscribe(hapdevices => {
       this.store.pipe(select(Selectors.selectAllCCUDevices)).subscribe(ccudeviceList => {
         this.treeList = [];
         ccudeviceList.forEach(device => {

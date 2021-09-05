@@ -17,7 +17,8 @@
       <br />
     </ng-container>
     <ng-container *ngIf="wizzardStep > 0" id="container">
-      Edit Device {{wizzardStep}}
+      <app-applianceproperties [selectedAppliance]="selectedAppliance" [save]="save">
+      </app-applianceproperties>
     </ng-container>
   </div>
   <div class="card-footer" id="container_footer">
@@ -25,7 +26,7 @@
         class="cil-chevron-circle-right-alt btn-icon mr-2"></span>{{'Next' |
       localize}}</button>
     &nbsp;
-    <button type="button" class="btn btn-primary" routerLink="/devices"><span
+    <button type="button" class="btn btn-primary" (click)="cancelAddNew()"><span
         class="cil-x btn-icon mr-2"></span>{{'Dismiss' |
       localize}}</button>
 

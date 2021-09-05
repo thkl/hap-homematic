@@ -2,6 +2,7 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable, of } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { HapDevicesService } from 'src/app/service/hapdevices.service';
 import { Actions, Models } from 'src/app/store';
 import { HapAppliance, HapApplianceService } from 'src/app/store/models';
@@ -34,7 +35,6 @@ export class AppliancePropertiesComponent implements OnInit {
 
 
   serviceList: Observable<HapApplianceService[]>;
-
   selectedServiceClass: HapApplianceService;
 
   constructor(
@@ -50,15 +50,20 @@ export class AppliancePropertiesComponent implements OnInit {
 
   loadServices() {
     if (this.selectedAppliance !== undefined) {
-      const applianceAddress = `${this.selectedAppliance.serial}:${this.selectedAppliance.channel}`;
-      this.deviceService.loadServiceData(applianceAddress).subscribe(serviceResponse => {
+      this.deviceService.loadServiceData(this.selectedAppliance.address).subscribe(serviceResponse => {
         this.serviceList = of(serviceResponse.service);
+
+        if (this.selectedAppliance.serviceClass) {
+          this.selectedServiceClass = serviceResponse.service.filter(sc => sc.serviceClazz === this.selectedAppliance.serviceClass)[0];
+        } else {
+          this.selectedServiceClass = serviceResponse.service.filter(sc => sc.priority === 0)[0];
+        }
       })
     }
   }
 
   getSettings(propKey: any, defaultData: any): any {
-    let settings = this._selectedAppliance.settings;
+    let settings = this._selectedAppliance.settings.settings; // this is a little weird
     if (settings !== undefined) {
       return settings[propKey] || defaultData;
     } else {
@@ -67,7 +72,7 @@ export class AppliancePropertiesComponent implements OnInit {
   }
 
   saveSetting(propKey: any, newSetting: any): void {
-    this._selectedAppliance.settings[propKey] = newSetting;
+    this._selectedAppliance.settings.settings[propKey] = newSetting;
   }
 
   selectClazz(newClazz: any) {
