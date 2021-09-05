@@ -30,7 +30,6 @@
   "Are you sure you want to remove %s from HomeKit?": "Sicher, das %s aus HomeKit entfernt werden soll.",
   "Are you sure you want to remove %s? All your devices will be reassigned to the default Instance.": "Sicher das %s entfernt werden soll? Alle Geräte werden der default Instanz zugeordnet",
   "Finish": "Fertigstellen",
-  "Edit Homekit instanc": "HomeKit Instanz bearbeiten",
   "Add new device": "Neues Gerät hinzufügen",
   "1. Select a channel to map to homekit": "1. Wähle einen Kanal aus um ihn zu Homekit hinzuzufügen",
   "Please setup the service for %s  (%s)": "Einstellungen für den Service für %s (%s)",
