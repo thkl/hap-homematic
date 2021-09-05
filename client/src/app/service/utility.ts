@@ -5,11 +5,11 @@ export const sortObject = (a: any, b: any, field: string, dir: string) => {
 };
 
 export const filterObjects = (item: any, filter: string, names: string[]) => {
-  let result = true;
+  let result = false;
   names.forEach((aName) => {
     if (item[aName]) {
-      if (item[aName].toLowerCase().indexOf(filter.toLowerCase()) === -1)
-        result = false;
+      if (item[aName].toLowerCase().indexOf(filter.toLowerCase()) !== -1)
+        result = true;
     }
   });
   return result;
