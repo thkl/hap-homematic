@@ -36,4 +36,8 @@ export class InstancedetailComponent implements OnInit {
   selectRoom($event) {
     console.log($event);
   }
+
+  doSave(): void {
+    console.log(this.selectedInstance);
+  }
 }

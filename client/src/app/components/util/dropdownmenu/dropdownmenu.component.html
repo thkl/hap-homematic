@@ -5,7 +5,7 @@
     <ng-content *ngIf="selectedLabel===undefined"></ng-content>
   </button>
   <div class="dropdown-menu" attr.aria-labelledby="{{id}}button">
-    <a class="dropdown-item" *ngFor="let item of dataSource | async"
-      (click)="_select(item[keyId])">{{item[keyLabel]}}</a>
+    <a class="dropdown-item" *ngFor="let item of dataSource | async" (click)="_select(itemData(item,keyId))">
+      {{itemData(item,keyLabel)}}</a>
   </div>
 </div>

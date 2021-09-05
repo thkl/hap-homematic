@@ -8,9 +8,7 @@ import { SpeciallistComponent } from './components/appliances/special/speciallis
 import { VariablelistComponent } from './components/appliances/variables/variablelist/variablelist.component';
 import { LocalizationResolver } from './service/localization.resolver';
 import { InstancedetailComponent } from './components/instances/instancedetail/instancedetail.component';
-import { CCCUDevicelistComponent } from './components/devices/ccudevicelist/ccudevicelist.component';
 import { NewDevicewizzardComponent } from './components/devices/newdevicewizzard/newdevicewizzard.component';
-import { AppliancePropertiesComponent } from './components/appliances/applianceproperties/applianceproperties.component';
 import { ApplicanceListResolver } from './service/appliance.resolver';
 import { EditApplianceComponent } from './components/appliances/editappliance/editappliance.component';
 
@@ -27,13 +25,14 @@ const routes: Routes = [
         data: { breadcrumb: 'Devices' },
       },
 
+      { path: 'device/new', component: NewDevicewizzardComponent },
+
       {
         path: 'device/:id', component: EditApplianceComponent,
         resolve: { loaded: ApplicanceListResolver },
-        data: { breadcrumb: 'Edit Device' },
+        data: { breadcrumb: 'Edit device' },
       },
 
-      { path: 'device/new', component: NewDevicewizzardComponent },
 
       {
         path: 'variables', component: VariablelistComponent,

@@ -1,3 +1,4 @@
+import { newArray } from '@angular/compiler/src/util';
 import { Action, createReducer, on } from '@ngrx/store';
 import * as HapDeviceActionTypes from '../actions/HapDevice.action';
 import { HapAppliance } from '../models/HapAppliance.model';
@@ -35,6 +36,21 @@ const deviceLoadingReducer = createReducer(
       error: payload,
       loading: false,
     })
+  ),
+  on(HapDeviceActionTypes.SaveHapDeviceAction,
+    (state, { payload }) => {
+      const index = state.list.findIndex(appl => appl.UUID === payload.UUID); //finding index of the item
+      const newList = [...state.list]; //making a new array
+      if (index === -1) {
+        newList.push(payload);
+      } else {
+        newList[index] = payload;
+      }
+      return {
+        ...state,
+        list: newList
+      }
+    }
   )
 );
 

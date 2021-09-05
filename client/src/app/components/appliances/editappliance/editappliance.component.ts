@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import { Models, Selectors } from 'src/app/store';
 import { HapAppliance } from 'src/app/store/models';
+
 
 @Component({
   selector: 'app-editappliance',
@@ -12,6 +13,7 @@ import { HapAppliance } from 'src/app/store/models';
 export class EditApplianceComponent implements OnInit {
 
   selectedAppliance: HapAppliance;
+  public save: EventEmitter<any> = new EventEmitter();
 
   constructor(private route: ActivatedRoute, public store: Store<Models.AppState>) { }
 
@@ -24,6 +26,11 @@ export class EditApplianceComponent implements OnInit {
         }
       })
     })
+  }
+
+  doSaveAppliance() {
+    console.log(this.selectedAppliance);
+    this.save.emit('save');
   }
 
 }

@@ -36,7 +36,6 @@ export class InstancelistComponent extends AbstractTableComponent {
   }
 
   editObject(instance: HapInstance): void {
-    console.log('Edito %s', instance.id);
     this.router.navigate(['instances', 'detail', instance.id]);
   }
 }

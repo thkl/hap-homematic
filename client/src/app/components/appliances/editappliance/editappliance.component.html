@@ -3,12 +3,12 @@
     <h2>{{'Edit device' | localize}}</h2>
   </div>
   <div class="card-body">
-    <app-applianceproperties [selectedAppliance]="selectedAppliance">
+    <app-applianceproperties [selectedAppliance]="selectedAppliance" [save]="save">
     </app-applianceproperties>
   </div>
 
   <div class="card-footer" id="container_footer">
-    <button type="button" class="btn btn-success"><span
+    <button type="button" class="btn btn-success" (click)="doSaveAppliance()"><span
         class="cil-chevron-circle-right-alt btn-icon mr-2"></span>{{'Save' |
       localize}}</button>
     &nbsp;

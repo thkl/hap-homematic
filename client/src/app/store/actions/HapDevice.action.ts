@@ -21,3 +21,9 @@ export const LoadHapDevicesFailureAction = createAction(
   HapDeviceActionTypes.LOAD_DEVICE_FAILED,
   props<{ payload: Error }>()
 );
+
+
+export const SaveHapDeviceAction = createAction(
+  HapDeviceActionTypes.SAVE_DEVICE,
+  props<{ payload: HapAppliance }>()
+);

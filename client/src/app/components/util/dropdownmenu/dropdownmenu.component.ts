@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { filter, map, switchMap } from 'rxjs/operators';
 
 
@@ -27,6 +27,10 @@ export class DropdownmenuComponent implements OnInit {
     this._select(this._selected);
   }
 
+  @Input() set listSource(newList: any[]) {
+    this.dataSource = of(newList);
+  }
+
   get selected(): any {
     return this._selected;
   }
@@ -45,15 +49,26 @@ export class DropdownmenuComponent implements OnInit {
     this._select(this.selected);
   }
 
+  itemData(element: any, key: string) {
+    if (typeof element === 'object') {
+      return element[key];
+    } else {
+      return element;
+    }
+  }
+
   _select(newId: number) {
-    this.dataSource.pipe(map(items => items.filter(item => item[this.keyId] === newId))
-    ).subscribe(fItem => {
-      if (fItem.length > 0) {
-        this.selectedLabel = fItem[0][this.keyLabel];
-        this.selectedChanged.next(fItem);
-      } else {
-        this.selectedLabel = undefined;
-      }
-    })
+
+    if ((newId !== undefined) && (this.dataSource !== undefined)) {
+      this.dataSource.pipe(map(items => items.filter(item => this.itemData(item, this.keyId) === newId))
+      ).subscribe(fItem => {
+        if (fItem.length > 0) {
+          this.selectedLabel = this.itemData(fItem[0], this.keyLabel)
+          this.selectedChanged.next(fItem[0]);
+        } else {
+          this.selectedLabel = undefined;
+        }
+      })
+    }
   }
 }

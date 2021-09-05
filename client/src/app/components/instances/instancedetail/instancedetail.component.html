@@ -65,10 +65,12 @@
     </form>
   </div>
   <div class="card-footer" id="container_footer">
-    <button type="button" class="btn btn-success"><span class="cil-save btn-icon mr-2"></span>{{'Save' |
+    <button type="button" class="btn btn-success" (click)="doSave()"><span
+        class="cil-save btn-icon mr-2"></span>{{'Save' |
       localize}}</button>
     &nbsp;
-    <button type="button" class="btn btn-primary"><span class="cil-x btn-icon mr-2"></span>{{'Dismiss' |
+    <button type="button" class="btn btn-primary" routerLink="/instances"><span
+        class="cil-x btn-icon mr-2"></span>{{'Dismiss' |
       localize}}</button>
 
   </div>

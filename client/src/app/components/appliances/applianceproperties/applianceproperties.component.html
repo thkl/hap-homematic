@@ -1,6 +1,52 @@
-Property Sheet {{selectedAppliance.serviceClass}}
+<div *ngIf="selectedAppliance">
+  <div class="row">
 
+    <div class="col-6">
+      <div class="form-group">
+        <label for="appliance_name">{{'Homekit Device name' | localize}}</label>
+        <input id="appliance_name" type="text" #searchInput [(ngModel)]="selectedAppliance.name"
+          class="form-control form-control-lg" />
+      </div>
+    </div>
+    <div class="col-6 propertyDescription">
+      {{'You may change the devicename as u like.' | localize}}
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-6">
+      <div class="form-group">
+        <label for="appliance_service">{{'Service' | localize}}</label>
+        <dropdownmenu [dataSource]="serviceList" [keyLabel]="'serviceClazz'" [keyId]="'serviceClazz'"
+          [selected]="selectedAppliance.serviceClass" (selectedChanged)="selectClazz($event)" id="appliance_service">
+          {{'Select the service you want to use for this channel' | localize}}</dropdownmenu>
+      </div>
+    </div>
+    <div class="col-6 propertyDescription" *ngIf="selectedServiceClass!==undefined">
+      {{selectedServiceClass.description| localize}}
+    </div>
+  </div>
 
-<dropdownmenu [dataSource]="serviceList" [keyLabel]="'serviceClazz'" [keyId]="'serviceClazz'"
-  [selected]="selectedAppliance.serviceClass" (selectedChanged)="selectClazz($event)">
-  {{'Select a Service' | localize}}</dropdownmenu>
+  <ng-container *ngIf="selectedServiceClass!==undefined">
+
+    <div class="row" *ngFor="let prop of selectedServiceClass.settings | keyvalue">
+      <div class="col-6">
+        <div class="form-group">
+          <label for="service_prop_{{prop.key}}">{{prop.value['label'] | localize}}</label>
+
+          <dropdownmenu *ngIf="prop.value['type'] === 'option'" [listSource]="prop.value['array']"
+            [selected]="getSettings(prop.key,prop.value['default'])" (selectedChanged)="saveSetting(prop.key,$event)"
+            id="service_prop_{{prop.key}}">
+            {{prop.value['default']}}</dropdownmenu>
+
+          <input id="service_prop_{{prop.key}}" *ngIf="prop.value['type'] === 'number' || prop.value['type'] === 'text'"
+            type="text" [value]="getSettings(prop.key,prop.value['default'])" class="form-control form-control-lg"
+            (change)="saveSetting(prop.key,$event.target['value'])">
+        </div>
+      </div>
+      <div class="col-6 propertyDescription">
+        {{prop.value['hint'] | localize}}
+      </div>
+    </div>
+
+  </ng-container>
+</div>

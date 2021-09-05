@@ -16,7 +16,6 @@ export class SystemstateComponent implements OnInit {
 
   ngOnInit(): void {
     this.store.pipe(select(Selectors.configData)).subscribe((newConfig) => {
-      console.log(newConfig)
       if (newConfig) {
         this.systemState = newConfig;
       }
