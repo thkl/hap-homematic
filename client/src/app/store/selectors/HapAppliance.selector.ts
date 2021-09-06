@@ -1,7 +1,7 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { filter } from 'rxjs/operators';
 import { HapAppliance } from '../models/HapAppliance.model';
-import { HapDeviceState } from '../reducer/HapDevice.reducer';
+import { HapDeviceState } from '../reducer/HapAppliance.reducer';
 
 export const selectHapApplianceState =
   createFeatureSelector<HapDeviceState>('hapDevices');
@@ -16,9 +16,6 @@ export const appliancesLoading = createSelector(
   (state: HapDeviceState): boolean => state.loading
 );
 
-
-
-
 const getAllAppliances = (list: HapAppliance[], includeTemporary: boolean) => {
   if (includeTemporary === true) {
     return list;
@@ -26,6 +23,15 @@ const getAllAppliances = (list: HapAppliance[], includeTemporary: boolean) => {
     return list.filter(item => ((item.isTemporary === false) || item.isTemporary === undefined))
   }
 }
+
+const getTemporaryAppliances = (list: HapAppliance[]) => {
+  return list.filter(item => (item.isTemporary === true))
+}
+
+export const selectTemporaryAppliances = createSelector(
+  selectHapApplianceState,
+  (state: HapDeviceState): HapAppliance[] => ((state !== undefined) && (state.list !== undefined)) ? getTemporaryAppliances(state.list) : []
+);
 
 export const selectAppliancesCount = (includeTemporary: boolean) => createSelector(
   selectHapApplianceState,

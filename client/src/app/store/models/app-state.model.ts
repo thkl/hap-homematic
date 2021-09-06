@@ -1,4 +1,4 @@
-import { HapDeviceState } from '../reducer/HapDevice.reducer';
+import { HapDeviceState } from '../reducer/HapAppliance.reducer';
 import { HapInstanceState } from '../reducer/HapInstance.reducer';
 import { HapProgramState } from '../reducer/HapProgram.reducer';
 import { CCURoomState } from '../reducer/CCURoom.reducer';

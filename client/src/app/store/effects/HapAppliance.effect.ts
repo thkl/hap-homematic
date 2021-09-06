@@ -4,7 +4,7 @@ import { Action } from '@ngrx/store';
 import { of, pipe } from 'rxjs';
 import { map, mergeMap, catchError, switchMap } from 'rxjs/operators';
 import { HapDevicesService } from 'src/app/service/hapdevices.service';
-import { HapDeviceActionTypes } from '../actions/HapDevice.action';
+import { HapDeviceActionTypes } from '../actions/HapAppliance.action';
 
 @Injectable()
 export class HapDeviceEffects {
@@ -33,7 +33,7 @@ export class HapDeviceEffects {
 
   saveHapDevices$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(HapDeviceActionTypes.SAVE_DEVICE),
+      ofType(HapDeviceActionTypes.SAVE_DEVICE_TO_API),
       switchMap((action) =>
         this.hapDevicesService.saveHapDevice(action['payload']).pipe(
           map((data: any) => {

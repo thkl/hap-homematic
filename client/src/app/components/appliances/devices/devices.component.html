@@ -14,9 +14,9 @@
     <table cdk-table [dataSource]="dataSourceFlt" class="table table-responsive-sm table-striped table-sm" matSort
       (matSortChange)="sortData($event)">
 
-      <ng-container cdkColumnDef="serial">
-        <th cdk-header-cell *cdkHeaderCellDef mat-sort-header="serial" disableClear>{{'Address' | localize}}</th>
-        <td cdk-cell *cdkCellDef="let device"> {{device.serial}} </td>
+      <ng-container cdkColumnDef="address">
+        <th cdk-header-cell *cdkHeaderCellDef mat-sort-header="address" disableClear>{{'Address' | localize}}</th>
+        <td cdk-cell *cdkCellDef="let device"> {{device.address}} </td>
       </ng-container>
 
       <ng-container cdkColumnDef="name">

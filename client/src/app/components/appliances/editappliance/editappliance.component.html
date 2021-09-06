@@ -1,6 +1,6 @@
 <div class="card">
   <div class="card-header">
-    <h2>{{'Edit device' | localize}}</h2>
+    <h2 *ngIf="selectedAppliance!==undefined">{{'Edit device %s' | localize : [selectedAppliance.address]}}</h2>
   </div>
   <div class="card-body">
     <app-applianceproperties [selectedAppliance]="selectedAppliance" [save]="save">

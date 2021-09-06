@@ -1,4 +1,4 @@
-export * from './HapDevice.action';
+export * from './HapAppliance.action';
 export * from './HapInstance.action';
 export * from './HapProgram.action';
 export * from './HapVariable.action';

@@ -1,6 +1,5 @@
-import { newArray } from '@angular/compiler/src/util';
 import { Action, createReducer, on } from '@ngrx/store';
-import * as HapDeviceActionTypes from '../actions/HapDevice.action';
+import * as HapDeviceActionTypes from '../actions/HapAppliance.action';
 import { HapAppliance } from '../models/HapAppliance.model';
 
 export interface HapDeviceState {
@@ -13,6 +12,17 @@ export const initialState: HapDeviceState = {
   loading: false,
   error: undefined,
 };
+
+const updateApplianceList = (state: HapDeviceState, payload: HapAppliance) => {
+  const index = state.list.findIndex(appl => appl.address === payload.address); //finding index of the item
+  const newList = [...state.list]; //making a new array
+  if (index === -1) {
+    newList.push(payload);
+  } else {
+    newList[index] = payload;
+  }
+  return newList;
+}
 
 const deviceLoadingReducer = createReducer(
   initialState,
@@ -38,27 +48,32 @@ const deviceLoadingReducer = createReducer(
     })
   ),
 
-  on(HapDeviceActionTypes.SaveHapDeviceAction, (state) => ({
+  on(HapDeviceActionTypes.SaveHapDeviceToApiAction, (state) => ({
     ...state,
     loading: true,
   })),
 
-  on(HapDeviceActionTypes.SaveHapDeviceActionSuccess,
+  on(HapDeviceActionTypes.SaveHapDeviceAction,
     (state, { payload }) => {
-      const index = state.list.findIndex(appl => appl.address === payload.address); //finding index of the item
-      const newList = [...state.list]; //making a new array
-      if (index === -1) {
-        newList.push(payload);
-      } else {
-        newList[index] = payload;
-      }
+
       return {
         ...state,
         loading: false,
-        list: newList
+        list: updateApplianceList(state, payload)
       }
     }
   ),
+
+  on(HapDeviceActionTypes.SaveHapDeviceActionSuccess,
+    (state, { payload }) => {
+      return {
+        ...state,
+        loading: false,
+        list: updateApplianceList(state, payload)
+      }
+    }
+  ),
+
   on(HapDeviceActionTypes.AddHapDeviceAction,
     (state, { payload }) => {
       const newList = [...state.list]; //making a new array

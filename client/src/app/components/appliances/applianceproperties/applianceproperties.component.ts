@@ -1,22 +1,20 @@
 
-import { Component, EventEmitter, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable, of } from 'rxjs';
-import { map } from 'rxjs/operators';
 import { HapDevicesService } from 'src/app/service/hapdevices.service';
 import { Actions, Models } from 'src/app/store';
-import { HapAppliance, HapApplianceService } from 'src/app/store/models';
 
 @Component({
   selector: 'app-applianceproperties',
   templateUrl: './applianceproperties.component.html',
   styleUrls: ['./applianceproperties.component.sass']
 })
-export class AppliancePropertiesComponent implements OnInit {
+export class AppliancePropertiesComponent implements OnInit, OnDestroy {
 
-  private _selectedAppliance: HapAppliance;
+  private _selectedAppliance: Models.HapAppliance;
 
-  @Input() set selectedAppliance(newAppliance: HapAppliance) {
+  @Input() set selectedAppliance(newAppliance: Models.HapAppliance) {
     if (newAppliance !== undefined) {
       // not my proudest solution to make rw copy
       this._selectedAppliance = JSON.parse(JSON.stringify(newAppliance));
@@ -27,25 +25,30 @@ export class AppliancePropertiesComponent implements OnInit {
     }
   }
 
-  get selectedAppliance(): HapAppliance {
+  get selectedAppliance(): Models.HapAppliance {
     return this._selectedAppliance;
   }
 
   @Input() save = new EventEmitter();
 
-
-  serviceList: Observable<HapApplianceService[]>;
-  selectedServiceClass: HapApplianceService;
+  serviceList: Observable<Models.HapApplianceService[]>;
+  selectedServiceClass: Models.HapApplianceService;
 
   constructor(
     private deviceService: HapDevicesService,
     public store: Store<Models.AppState>
   ) { }
 
-  ngOnInit(): void {
-    this.save.subscribe(() => {
+
+  ngOnDestroy(): void {
+    // save on exit
+    if (this.selectedAppliance) {
       this.store.dispatch({ type: Actions.HapDeviceActionTypes.SAVE_DEVICE, payload: this._selectedAppliance });
-    })
+    }
+  }
+
+  ngOnInit(): void {
+
   }
 
   loadServices() {
@@ -72,6 +75,9 @@ export class AppliancePropertiesComponent implements OnInit {
   }
 
   saveSetting(propKey: any, newSetting: any): void {
+    if (this._selectedAppliance.settings.settings === undefined) {
+      this._selectedAppliance.settings.settings = {};
+    }
     this._selectedAppliance.settings.settings[propKey] = newSetting;
   }
 

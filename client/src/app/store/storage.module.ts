@@ -1,10 +1,10 @@
-import { ModuleWithProviders, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { StoreModule } from '@ngrx/store';
 
 import * as configReducer from './reducer/SystemConfig.reducer';
 import * as hapInstanceReducer from './reducer/HapInstance.reducer';
 import * as hapProgramsReducer from './reducer/HapProgram.reducer';
-import * as hapDevicesReducer from './reducer/HapDevice.reducer';
+import * as hapDevicesReducer from './reducer/HapAppliance.reducer';
 import * as hapVariableReducer from './reducer/HapVariableReducer';
 
 import * as hapSpecialDevicesReducer from './reducer/HapSpecial.reducer';
@@ -17,7 +17,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../../environments/environment';
 import { SystemConfigEffects } from './effects/SystemConfig.effect';
 
-import { HapDeviceEffects } from './effects/HapDevice.effect';
+import { HapDeviceEffects } from './effects/HapAppliance.effect';
 import { HapProgramEffects } from './effects/HapProgram.effect';
 import { HapInstanceEffects } from './effects/HapInstance.effect';
 import { HapVariableEffects } from './effects/HapVariable.effect';

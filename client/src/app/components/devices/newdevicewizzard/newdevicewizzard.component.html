@@ -4,13 +4,14 @@
   </div>
   <div class="card-body">
     <ng-container *ngIf="wizzardStep===0" id="container">
-      <h5 class="stepHeader">{{'1. Select a channel to map to homekit' | localize}}</h5>
+      <h5 class="stepHeader">{{'1. Select one or more channel(s) to map to homekit' | localize}}</h5>
       <div class="row">
         <div class="col-md-4 d-none d-md-block d-lg-block d-xl-block">
-          <img id="wzimage" src="./assets/img/lightbulb.svg">
+          <img class="settingsImage" src="./assets/img/lightbulb.svg">
         </div>
         <div class="col-12 col-md-8">
-          <app-ccudevicelist (selectionChanged)="deviceSelectionChanged($event)"></app-ccudevicelist>
+          <app-ccudevicelist (selectionChanged)="deviceSelectionChanged($event)"
+            [preselectedChannels]="preselectedChannels"></app-ccudevicelist>
         </div>
       </div>
 
@@ -22,8 +23,17 @@
     </ng-container>
   </div>
   <div class="card-footer" id="container_footer">
+    <button type="button" class="btn btn-success" (click)="previousStep()"
+      [attr.disabled]="canDoPrevious?null:'disabled'"><span
+        class="cil-chevron-circle-left-alt btn-icon mr-2"></span>{{'Previous' |
+      localize}}</button>
+    &nbsp;
     <button type="button" class="btn btn-success" (click)="nextStep()" [attr.disabled]="canDoNext?null:'disabled'"><span
         class="cil-chevron-circle-right-alt btn-icon mr-2"></span>{{'Next' |
+      localize}}</button>
+    &nbsp;
+    <button type="button" class="btn btn-info" (click)="finish()" [attr.disabled]="finished?null:'disabled'"><span
+        class="cil-check btn-icon mr-2"></span>{{'Finish' |
       localize}}</button>
     &nbsp;
     <button type="button" class="btn btn-primary" (click)="cancelAddNew()"><span

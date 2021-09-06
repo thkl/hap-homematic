@@ -15,7 +15,7 @@ export class DeviceListComponent extends AbstractTableComponent {
     super(store);
 
     this.displayedColumns = [
-      'serial',
+      'address',
       'name',
       'serviceClass',
       'instanceID',
@@ -24,6 +24,6 @@ export class DeviceListComponent extends AbstractTableComponent {
 
     this.dataSourceSelector = Selectors.selectAllAppliances(false);
     this.loadingSelector = Selectors.appliancesLoading;
-    this.searchFields = ['serial', 'name'];
+    this.searchFields = ['address', 'name'];
   }
 }

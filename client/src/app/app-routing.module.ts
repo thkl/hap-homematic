@@ -25,7 +25,10 @@ const routes: Routes = [
         data: { breadcrumb: 'Devices' },
       },
 
-      { path: 'device/new', component: NewDevicewizzardComponent },
+      {
+        path: 'device/new', component: NewDevicewizzardComponent,
+        data: { breadcrumb: 'Add new device' }
+      },
 
       {
         path: 'device/:address', component: EditApplianceComponent,

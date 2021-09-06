@@ -6,6 +6,7 @@ export enum HapDeviceActionTypes {
   LOAD_DEVICE_SUCCESS = '[HAP Device] Load List Success',
   LOAD_DEVICE_FAILED = '[HAP Device] Load List Failed',
   SAVE_DEVICE = '[HAP Device] Save Device',
+  SAVE_DEVICE_TO_API = '[HAP Device] Save Device To Api',
   SAVE_DEVICE_SUCCESS = '[HAP Device] Save Device Success',
   SAVE_DEVICE_FAILED = '[HAP Device] Save Device Failed',
   ADD_DEVICE = '[HAP Device] Add Device',
@@ -27,6 +28,11 @@ export const LoadHapDevicesFailureAction = createAction(
 
 export const SaveHapDeviceAction = createAction(
   HapDeviceActionTypes.SAVE_DEVICE,
+  props<{ payload: HapAppliance }>()
+);
+
+export const SaveHapDeviceToApiAction = createAction(
+  HapDeviceActionTypes.SAVE_DEVICE_TO_API,
   props<{ payload: HapAppliance }>()
 );
 

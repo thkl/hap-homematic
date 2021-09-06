@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { NestedTreeControl } from '@angular/cdk/tree';
 import { ArrayDataSource } from '@angular/cdk/collections';
 import { CCUChannel, CCUDevice } from 'src/app/store/models/CCUDevice.model';
@@ -25,6 +25,8 @@ const TREE_DATA: TreeNode[] = [];
 })
 export class CCCUDevicelistComponent implements OnInit {
 
+  @Input() preselectedChannels: string[];
+
   treeControl = new NestedTreeControl<TreeNode>(node => node.children);
   dataSource = new ArrayDataSource(TREE_DATA);
   filterText = '';
@@ -38,14 +40,18 @@ export class CCCUDevicelistComponent implements OnInit {
   constructor(public store: Store<Models.AppState>) { }
 
   ngOnInit(): void {
+    if (this.preselectedChannels === undefined) {
+      this.preselectedChannels = [];
+    }
     this.store.pipe(select(Selectors.selectAllAppliances(false))).subscribe(hapdevices => {
       this.store.pipe(select(Selectors.selectAllCCUDevices)).subscribe(ccudeviceList => {
         this.treeList = [];
         ccudeviceList.forEach(device => {
           let dcl = [];
           device.channels.forEach(channel => {
-            let exists = (hapdevices.filter(device => `${device.serial}:${device.channel}` === channel.address).length > 0);
-            let node: TreeNode = ({ name: channel.name, id: channel.address, pl1: channel.type, children: [], active: false, exists: exists });
+            const exists = (hapdevices.filter(device => `${device.serial}:${device.channel}` === channel.address).length > 0);
+            const active = (this.preselectedChannels.indexOf(channel.address) !== -1);
+            let node: TreeNode = ({ name: channel.name, id: channel.address, pl1: channel.type, children: [], active, exists });
             dcl.push(node);
           })
           this.treeList.push({ name: device.name, id: device.device, children: dcl, active: false, exists: false });
