@@ -48,9 +48,9 @@
 		"postversion": "git push && git push --tags"
 	},
 	"devDependencies": {
-		"mocha": "^7.0.1",
 		"expect.js": "0.3.1",
-		"husky": "^4.2.5"
+		"husky": "^4.2.5",
+		"mocha": "^7.0.1"
 	},
 	"mocha": {
 		"bail": true,
