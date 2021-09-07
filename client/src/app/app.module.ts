@@ -31,10 +31,11 @@ import { InstancedetailComponent } from './components/instances/instancedetail/i
 import { QrCodeModule } from 'ng-qrcode';
 import { DropdownmenuComponent } from './components/util/dropdownmenu/dropdownmenu.component';
 import { CCCUDevicelistComponent } from './components/devices/ccudevicelist/ccudevicelist.component';
-import { NewDevicewizzardComponent } from './components/devices/newdevicewizzard/newdevicewizzard.component';
 import { AppliancePropertiesComponent } from './components/appliances/applianceproperties/applianceproperties.component';
 import { ApplicanceListResolver } from './service/appliance.resolver';
 import { EditApplianceComponent } from './components/appliances/editappliance/editappliance.component';
+import { NewApplianceWizzardFrameComponent } from './components/appliances/newappliancewizzard/wizzardframe/wizzardframe.component';
+import { NewApplianceWizzardFinishComponent } from './components/appliances/newappliancewizzard/finish/finish.component';
 
 
 @NgModule({
@@ -51,9 +52,10 @@ import { EditApplianceComponent } from './components/appliances/editappliance/ed
     InstancedetailComponent,
     DropdownmenuComponent,
     CCCUDevicelistComponent,
-    NewDevicewizzardComponent,
+    NewApplianceWizzardFrameComponent,
     AppliancePropertiesComponent,
-    EditApplianceComponent
+    EditApplianceComponent,
+    NewApplianceWizzardFinishComponent
   ],
   imports: [
     HttpClientModule,

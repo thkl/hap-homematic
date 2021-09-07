@@ -17,10 +17,11 @@
 
       <br />
     </ng-container>
-    <ng-container *ngIf="wizzardStep > 0" id="container">
+    <ng-container *ngIf="((wizzardStep > 0) && (finishWizzard===false))" id="container">
       <app-applianceproperties [selectedAppliance]="selectedAppliance" [save]="save">
       </app-applianceproperties>
     </ng-container>
+    <app-newappliancewizzard-finish *ngIf="finishWizzard===true"></app-newappliancewizzard-finish>
   </div>
   <div class="card-footer" id="container_footer">
     <button type="button" class="btn btn-success" (click)="previousStep()"
@@ -32,7 +33,8 @@
         class="cil-chevron-circle-right-alt btn-icon mr-2"></span>{{'Next' |
       localize}}</button>
     &nbsp;
-    <button type="button" class="btn btn-info" (click)="finish()" [attr.disabled]="finished?null:'disabled'"><span
+    <button type="button" class="btn btn-info" (click)="finish()"
+      [attr.disabled]="((canDoNext===false) && (wizzardStep>0))?null:'disabled'"><span
         class="cil-check btn-icon mr-2"></span>{{'Finish' |
       localize}}</button>
     &nbsp;

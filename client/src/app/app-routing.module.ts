@@ -8,9 +8,9 @@ import { SpeciallistComponent } from './components/appliances/special/speciallis
 import { VariablelistComponent } from './components/appliances/variables/variablelist/variablelist.component';
 import { LocalizationResolver } from './service/localization.resolver';
 import { InstancedetailComponent } from './components/instances/instancedetail/instancedetail.component';
-import { NewDevicewizzardComponent } from './components/devices/newdevicewizzard/newdevicewizzard.component';
 import { ApplicanceListResolver } from './service/appliance.resolver';
 import { EditApplianceComponent } from './components/appliances/editappliance/editappliance.component';
+import { NewApplianceWizzardFrameComponent } from './components/appliances/newappliancewizzard/wizzardframe/wizzardframe.component';
 
 const routes: Routes = [
   {
@@ -26,7 +26,7 @@ const routes: Routes = [
       },
 
       {
-        path: 'device/new', component: NewDevicewizzardComponent,
+        path: 'device/new', component: NewApplianceWizzardFrameComponent,
         data: { breadcrumb: 'Add new device' }
       },
 

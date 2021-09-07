@@ -5,17 +5,17 @@ import { Actions, Models, Selectors } from 'src/app/store';
 import { HapAppliance, HapApplicanceType } from 'src/app/store/models';
 
 @Component({
-  selector: 'app-newdevicewizzard',
-  templateUrl: './newdevicewizzard.component.html',
-  styleUrls: ['./newdevicewizzard.component.sass']
+  selector: 'app-wizzardframe',
+  templateUrl: './wizzardframe.component.html',
+  styleUrls: ['./wizzardframe.component.sass']
 })
-export class NewDevicewizzardComponent implements OnInit, OnDestroy {
+export class NewApplianceWizzardFrameComponent implements OnInit, OnDestroy {
 
   private channelAdressList: string[] = [];
   public wizzardStep: number = 0;
   public canDoNext: boolean = false;
   public canDoPrevious: boolean = false;
-  public finished: boolean = false;
+  public finishWizzard: boolean = false;
   public selectedAppliance: HapAppliance;
   public save: EventEmitter<any> = new EventEmitter();
   public preselectedChannels: string[];
@@ -58,7 +58,6 @@ export class NewDevicewizzardComponent implements OnInit, OnDestroy {
 
   nextStep(): void {
     if (this.wizzardStep < this.channelAdressList.length) {
-      this.finished = false;
       this.saveApplianceLocaly();
       this.wizzardStep = this.wizzardStep + 1;
       this.canDoNext = this.channelAdressList.length > this.wizzardStep;
@@ -66,14 +65,12 @@ export class NewDevicewizzardComponent implements OnInit, OnDestroy {
       const chnlAddress = this.channelAdressList[this.wizzardStep - 1];
       this.openPrefrences(chnlAddress);
     } else {
-      this.finished = true;
       this.canDoNext = false;
     }
   }
 
   previousStep() {
     if (this.wizzardStep > 0) {
-      this.finished = false;
       this.saveApplianceLocaly();
       this.wizzardStep = this.wizzardStep - 1;
       this.canDoNext = this.channelAdressList.length > this.wizzardStep;
@@ -91,7 +88,6 @@ export class NewDevicewizzardComponent implements OnInit, OnDestroy {
         })
       }
     } else {
-      this.finished = true;
       this.canDoNext = true;
       this.canDoPrevious = false;
     }
@@ -129,6 +125,6 @@ export class NewDevicewizzardComponent implements OnInit, OnDestroy {
   }
 
   finish(): void {
-
+    this.finishWizzard = true;
   }
 }
