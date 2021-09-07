@@ -16,18 +16,18 @@ export class AppliancelistHeaderComponent implements OnInit {
   constructor(private store: Store<Models.AppState>) { }
 
   ngOnInit(): void {
-    this.store.pipe(select(Selectors.selectAppliancesCount(false, Models.HapApplicanceType.Device))).subscribe((devcount) => {
+    this.store.pipe(select(Selectors.selectAppliancesCount(Models.HapApplicanceType.Device))).subscribe((devcount) => {
       this.hapDeviceCount = devcount;
     });
-    this.store.pipe(select(Selectors.selectAppliancesCount(false, Models.HapApplicanceType.Program))).subscribe((prgcount) => {
+    this.store.pipe(select(Selectors.selectAppliancesCount(Models.HapApplicanceType.Program))).subscribe((prgcount) => {
       this.hapProgramCount = prgcount;
     });
 
-    this.store.pipe(select(Selectors.selectAppliancesCount(false, Models.HapApplicanceType.Variable))).subscribe((varcount) => {
+    this.store.pipe(select(Selectors.selectAppliancesCount(Models.HapApplicanceType.Variable))).subscribe((varcount) => {
       this.hapVariableCount = varcount;
     });
 
-    this.store.pipe(select(Selectors.selectAppliancesCount(false, Models.HapApplicanceType.Special))).subscribe((spdcount) => {
+    this.store.pipe(select(Selectors.selectAppliancesCount(Models.HapApplicanceType.Special))).subscribe((spdcount) => {
       this.hapSpecialDeviceCount = spdcount;
     });
 

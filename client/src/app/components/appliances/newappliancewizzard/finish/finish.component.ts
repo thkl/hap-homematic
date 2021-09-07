@@ -20,7 +20,7 @@ export class NewApplianceWizzardFinishComponent implements OnInit, AfterViewInit
   }
 
   ngOnInit(): void {
-    this.store.pipe(select(Selectors.selectTemporaryAppliances)).subscribe(applList => {
+    this.store.pipe(select(Selectors.selectAllTemporaryAppliances(Models.HapApplicanceType.All))).subscribe(applList => {
       if (applList !== undefined) {
         this.list = applList;
         if (!this.saving) {

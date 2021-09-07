@@ -12,4 +12,5 @@ export interface AppState {
   readonly localizationData: LocalizationState;
   readonly ccuRooms: CCURoomState;
   readonly ccuDevices: CCUDeviceState;
+  readonly hapTemporaryAppliances: HapApplianceState;
 }

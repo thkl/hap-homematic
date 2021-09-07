@@ -4,7 +4,8 @@ export enum HapApplicanceType {
   Device = 'HapDevice',
   Variable = 'HapVariable',
   Program = 'HapProgram',
-  Special = 'HapSpecial'
+  Special = 'HapSpecial',
+  All = '*'
 }
 
 export interface HapAppliance {
@@ -20,7 +21,6 @@ export interface HapAppliance {
   isPublished: boolean;
   nameInCCU: string;
   instanceNames: string;
-  isTemporary: boolean;
   applianceType: HapApplicanceType;
 }
 

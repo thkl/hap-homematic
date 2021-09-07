@@ -4,6 +4,7 @@ import { StoreModule } from '@ngrx/store';
 import * as configReducer from './reducer/SystemConfig.reducer';
 import * as hapInstanceReducer from './reducer/HapInstance.reducer';
 import * as hapApplianceReducer from './reducer/HapAppliance.reducer';
+import * as hapTemporaryApplianceReducer from './reducer/HapTemporaryAppliance.reducer';
 
 import * as localizationReducer from './reducer/Localization.reducer';
 import * as roomLoadingReducer from './reducer/CCURoom.reducer';
@@ -28,6 +29,7 @@ import { CCUDevicesEffects } from './effects/CCUDevice.effect';
       systemConfigState: configReducer.reducer,
       hapInstances: hapInstanceReducer.reducer,
       hapAppliances: hapApplianceReducer.reducer,
+      hapTemporaryAppliances: hapTemporaryApplianceReducer.reducer,
       localizationData: localizationReducer.reducer,
       ccuRooms: roomLoadingReducer.reducer,
       ccuDevices: ccuDeviceLoadingReducer.reducer

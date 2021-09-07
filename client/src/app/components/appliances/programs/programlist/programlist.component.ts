@@ -17,7 +17,7 @@ export class ProgramlistComponent extends AbstractTableComponent {
       'nameInCCU', 'name', 'instanceID', 'control'
     ];
 
-    this.dataSourceSelector = Selectors.selectAllAppliances(false, Models.HapApplicanceType.Program);
+    this.dataSourceSelector = Selectors.selectAllAppliances(Models.HapApplicanceType.Program);
     this.loadingSelector = Selectors.appliancesLoading;
     this.searchFields = ['nameInCCU', 'name'];
   }

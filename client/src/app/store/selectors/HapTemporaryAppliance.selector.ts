@@ -3,18 +3,8 @@ import { filter } from 'rxjs/operators';
 import { HapAppliance, HapApplicanceType } from '../models/HapAppliance.model';
 import { HapApplianceState } from '../reducer/HapAppliance.reducer';
 
-export const selectHapApplianceState =
-  createFeatureSelector<HapApplianceState>('hapAppliances');
-
-export const applianceLoadingError = createSelector(
-  selectHapApplianceState,
-  (state: HapApplianceState): boolean => state.error !== undefined
-);
-
-export const appliancesLoading = createSelector(
-  selectHapApplianceState,
-  (state: HapApplianceState): boolean => state.loading
-);
+export const selectHapTemporaryApplianceState =
+  createFeatureSelector<HapApplianceState>('hapTemporaryAppliances');
 
 const getAllAppliances = (list: HapAppliance[], type: HapApplicanceType) => {
   if (type === HapApplicanceType.All) {
@@ -24,30 +14,23 @@ const getAllAppliances = (list: HapAppliance[], type: HapApplicanceType) => {
   }
 }
 
-export const selectAppliancesCount = (type: HapApplicanceType) => createSelector(
-  selectHapApplianceState,
+export const selectTemporaryAppliancesCount = (type: HapApplicanceType) => createSelector(
+  selectHapTemporaryApplianceState,
   (state: HapApplianceState): number =>
     ((state !== undefined) && (state.list !== undefined)) ? getAllAppliances(state.list, type).length : 0
 );
 
-export const selectAllAppliances = (type: HapApplicanceType) => createSelector(
-  selectHapApplianceState,
+export const selectAllTemporaryAppliances = (type: HapApplicanceType) => createSelector(
+  selectHapTemporaryApplianceState,
   (state: HapApplianceState): HapAppliance[] => ((state !== undefined) && (state.list !== undefined)) ? getAllAppliances(state.list, type) : []
 );
 
-export const appliancesLoaded = createSelector(
-  selectHapApplianceState,
-  (state: HapApplianceState): boolean =>
-    ((state !== undefined) && (state.list !== undefined) && (state.list.length > 0))
-);
-
-
-export const selectApplianceById = (id: string) => createSelector(
-  selectHapApplianceState,
+export const selectTemporaryApplianceById = (id: string) => createSelector(
+  selectHapTemporaryApplianceState,
   (state: HapApplianceState): HapAppliance => ((state !== undefined) && (state.list !== undefined)) ? state.list.filter(item => (item.UUID === id))[0] : undefined
 );
 
-export const selectApplianceByAddress = (address: string) => createSelector(
-  selectHapApplianceState,
+export const selectTemporaryApplianceByAddress = (address: string) => createSelector(
+  selectHapTemporaryApplianceState,
   (state: HapApplianceState): HapAppliance => ((state !== undefined) && (state.list !== undefined)) ? state.list.filter(item => (item.address === address))[0] : undefined
 );

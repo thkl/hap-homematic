@@ -4,3 +4,4 @@ export * from './HapConfig.selector';
 export * from './Localization.selector';
 export * from './CCURoom.selector';
 export * from './CCUDevice.selector';
+export * from './HapTemporaryAppliance.selector';

@@ -40,34 +40,27 @@ export class CCCUDevicelistComponent implements OnInit {
 
   constructor(public store: Store<Models.AppState>) { }
 
-  getApplianceList(selector: any): Models.HapAppliance[] {
-    let appliance: Models.HapAppliance[];
-    this.store.select(selector).pipe(take(1)).subscribe(
-      s => appliance = s
-    );
-    return appliance;
-  }
-
   ngOnInit(): void {
     if (this.preselectedChannels === undefined) {
       this.preselectedChannels = [];
     }
     // we have to do this once cause the store will change on every selection
-    const hapdevices = this.getApplianceList(Selectors.selectAllAppliances(false, Models.HapApplicanceType.Device));
+    this.store.select(Selectors.selectAllAppliances(Models.HapApplicanceType.Device)).subscribe(hapdevices => {
 
-    this.store.pipe(select(Selectors.selectAllCCUDevices)).subscribe(ccudeviceList => {
-      this.treeList = [];
-      ccudeviceList.forEach(device => {
-        let dcl = [];
-        device.channels.forEach(channel => {
-          const exists = (hapdevices.filter(device => `${device.serial}:${device.channel}` === channel.address).length > 0);
-          const active = (this.preselectedChannels.indexOf(channel.address) !== -1);
-          let node: TreeNode = ({ name: channel.name, id: channel.address, pl1: channel.type, children: [], active, exists });
-          dcl.push(node);
+      this.store.pipe(select(Selectors.selectAllCCUDevices)).subscribe(ccudeviceList => {
+        this.treeList = [];
+        ccudeviceList.forEach(device => {
+          let dcl = [];
+          device.channels.forEach(channel => {
+            const exists = (hapdevices.filter(device => `${device.serial}:${device.channel}` === channel.address).length > 0);
+            const active = (this.preselectedChannels.indexOf(channel.address) !== -1);
+            let node: TreeNode = ({ name: channel.name, id: channel.address, pl1: channel.type, children: [], active, exists });
+            dcl.push(node);
+          })
+          this.treeList.push({ name: device.name, id: device.device, children: dcl, active: false, exists: false });
         })
-        this.treeList.push({ name: device.name, id: device.device, children: dcl, active: false, exists: false });
+        this.rebuildTree()
       })
-      this.rebuildTree()
     })
   }
 

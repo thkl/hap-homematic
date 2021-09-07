@@ -31,7 +31,7 @@ export class NewApplianceWizzardFrameComponent implements OnInit, OnDestroy {
 
 
   ngOnInit(): void {
-    this.store.pipe(select(Selectors.selectTemporaryAppliances)).subscribe(applList => {
+    this.store.pipe(select(Selectors.selectAllTemporaryAppliances(Models.HapApplicanceType.All))).subscribe(applList => {
       this.channelAdressList = [];
       applList.forEach(tmpHapAppliance => {
         this.channelAdressList.push(tmpHapAppliance.address);
@@ -62,7 +62,7 @@ export class NewApplianceWizzardFrameComponent implements OnInit, OnDestroy {
     const serial = ccuChannel.address.split(':')[0];
     const channel = ccuChannel.address.split(':')[1];
     const name = ccuChannel.name;
-    let usedAppliance = this.getAppliance(Selectors.selectApplianceByAddress(channelAddress));
+    let usedAppliance = this.getAppliance(Selectors.selectTemporaryApplianceByAddress(channelAddress));
     if (usedAppliance === undefined) {
       usedAppliance = ({
         name,
@@ -74,7 +74,6 @@ export class NewApplianceWizzardFrameComponent implements OnInit, OnDestroy {
         instanceNames: '',
         isPublished: false,
         address: ccuChannel.address,
-        isTemporary: true,
         applianceType: HapApplicanceType.Device
       });
       // Save it to the store
@@ -83,10 +82,10 @@ export class NewApplianceWizzardFrameComponent implements OnInit, OnDestroy {
   }
 
   removeChannelFromWizzard(channelAddress: string): void {
-    let usedAppliance = this.getAppliance(Selectors.selectApplianceByAddress(channelAddress));
+    let usedAppliance = this.getAppliance(Selectors.selectTemporaryApplianceByAddress(channelAddress));
     if (usedAppliance !== undefined) {
       // dispatch a delete list will be updated by the store selector
-      this.store.dispatch({ type: Actions.HapApplianceActionTypes.DELETE_APPLIANCE, payload: usedAppliance });
+      this.store.dispatch({ type: Actions.HapApplianceActionTypes.DELETE_TMP_APPLIANCE, payload: usedAppliance });
     }
   }
 
@@ -133,7 +132,7 @@ export class NewApplianceWizzardFrameComponent implements OnInit, OnDestroy {
       } else {
         //update tmp list
         this.preselectedChannels = [];
-        this.store.pipe(select(Selectors.selectTemporaryAppliances)).subscribe(list => {
+        this.store.pipe(select(Selectors.selectAllTemporaryAppliances(Models.HapApplicanceType.Device))).subscribe(list => {
           list.forEach(appliance => {
             this.preselectedChannels.push(appliance.address);
           })
@@ -147,7 +146,7 @@ export class NewApplianceWizzardFrameComponent implements OnInit, OnDestroy {
   }
 
   openPrefrences(channelAddress: string) {
-    this.store.pipe(select(Selectors.selectApplianceByAddress(channelAddress))).subscribe(usedAppliance => {
+    this.store.pipe(select(Selectors.selectTemporaryApplianceByAddress(channelAddress))).subscribe(usedAppliance => {
       // set it as current appliance to edit
       this.selectedAppliance = usedAppliance;
     });

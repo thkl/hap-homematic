@@ -2,14 +2,8 @@ import { Action, createReducer, on } from '@ngrx/store';
 import * as HapApplianceActionTypes from '../actions/HapAppliance.action';
 import { HapApplianceService } from '../models';
 import { HapAppliance } from '../models/HapAppliance.model';
+import { HapApplianceState } from './HapAppliance.reducer';
 
-export interface HapApplianceState {
-  list: HapAppliance[];
-  loading: boolean;
-  varTrigger: string;
-  varServices: HapApplianceService[];
-  error?: Error;
-}
 export const initialState: HapApplianceState = {
   list: [],
   loading: false,
@@ -31,37 +25,10 @@ const updateApplianceList = (state: HapApplianceState, payload: HapAppliance) =>
 
 const applianceLoadingReducer = createReducer(
   initialState,
-  on(HapApplianceActionTypes.LoadHapAppliancesAction, (state) => ({
-    ...state,
-    loading: true,
-  })),
 
-  on(
-    HapApplianceActionTypes.LoadHapAppliancesSuccessAction,
-    (state, { payload }) => ({
-      ...state,
-      list: payload.appliances,
-      varTrigger: payload.varTrigger,
-      varServices: payload.varServices,
-      loading: false,
-    })
-  ),
-  on(
-    HapApplianceActionTypes.LoadHapAppliancesFailureAction,
-    (state, { payload }) => ({
-      ...state,
-      error: payload,
-      loading: false,
-    })
-  ),
-
-  on(HapApplianceActionTypes.SaveHapApplianceToApiAction, (state) => ({
-    ...state,
-    loading: true,
-  })),
-
-  on(HapApplianceActionTypes.SaveHapApplianceActionSuccess,
+  on(HapApplianceActionTypes.SaveHapApplianceAction,
     (state, { payload }) => {
+
       return {
         ...state,
         loading: false,
@@ -70,7 +37,19 @@ const applianceLoadingReducer = createReducer(
     }
   ),
 
-  on(HapApplianceActionTypes.DeleteHapApplianceAction,
+  on(HapApplianceActionTypes.AddHapApplianceAction,
+    (state, { payload }) => {
+      const newList = [...state.list]; //making a new array
+      newList.push(payload);
+      return {
+        ...state,
+        loading: false,
+        list: newList
+      }
+    }
+  ),
+
+  on(HapApplianceActionTypes.DeleteTemporaryHapApplianceAction,
     (state, { payload }) => {
       const newList = [...state.list].filter(tmpAp => (tmpAp.address !== payload.address)); //making a new array and remove the item in payload
       return {
@@ -79,6 +58,13 @@ const applianceLoadingReducer = createReducer(
       }
     }
   ),
+
+  on(HapApplianceActionTypes.CleanHapApplianceStore, (state) => {
+    return {
+      ...state,
+      list: []
+    }
+  })
 
 );
 
