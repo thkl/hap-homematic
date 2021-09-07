@@ -33,7 +33,7 @@ export const SaveHapApplianceAction = createAction(
 
 export const SaveHapApplianceToApiAction = createAction(
   HapApplianceActionTypes.SAVE_APPLIANCE_TO_API,
-  props<{ payload: HapAppliance }>()
+  props<{ payload: HapAppliance[] }>()
 );
 
 export const SaveHapApplianceActionSuccess = createAction(

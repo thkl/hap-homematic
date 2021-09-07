@@ -24,7 +24,6 @@ const getAllAppliances = (list: HapAppliance[], type: HapApplicanceType, include
       const df = (((item.isTemporary === undefined) || (item.isTemporary === false)) && (item.applianceType === type))
       return df;
     })
-    console.log(result);
     return result;
   }
 }
