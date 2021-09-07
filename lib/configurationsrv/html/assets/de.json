@@ -27,6 +27,8 @@
   "Yes, kick it baby": "Yolo, weg damit!",
   "Remove ...": "Entfernen ...",
   "No data": "Keine Daten",
+  "already exists": "existiert schon",
+  "Previous": "Zurück",
   "Are you sure you want to remove %s from HomeKit?": "Sicher, das %s aus HomeKit entfernt werden soll.",
   "Are you sure you want to remove %s? All your devices will be reassigned to the default Instance.": "Sicher das %s entfernt werden soll? Alle Geräte werden der default Instanz zugeordnet",
   "Finish": "Fertigstellen",

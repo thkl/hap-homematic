@@ -1,8 +1,10 @@
 import { Component, EventEmitter, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { select, Store } from '@ngrx/store';
+import { select, Selector, Store } from '@ngrx/store';
+import { take } from 'rxjs/operators';
 import { Actions, Models, Selectors } from 'src/app/store';
 import { HapAppliance, HapApplicanceType } from 'src/app/store/models';
+import { CCUChannel } from 'src/app/store/models/CCUDevice.model';
 
 @Component({
   selector: 'app-wizzardframe',
@@ -34,16 +36,66 @@ export class NewApplianceWizzardFrameComponent implements OnInit, OnDestroy {
       applList.forEach(tmpHapAppliance => {
         this.channelAdressList.push(tmpHapAppliance.address);
       })
+      this.canDoNext = (this.channelAdressList.length > 0);
     });
+  }
+
+  getChannel(selector: any): CCUChannel {
+    let channel: CCUChannel;
+    this.store.select(selector).pipe(take(1)).subscribe(
+      s => channel = s
+    );
+    return channel;
+  }
+
+  getAppliance(selector: any): HapAppliance {
+    let appliance: HapAppliance;
+    this.store.select(selector).pipe(take(1)).subscribe(
+      s => appliance = s
+    );
+    return appliance;
+  }
+
+  addChannelToWizzard(channelAddress: string): void {
+
+    const ccuChannel = this.getChannel(Selectors.selectChannelByAddress(channelAddress));
+    const serial = ccuChannel.address.split(':')[0];
+    const channel = ccuChannel.address.split(':')[1];
+    const name = ccuChannel.name;
+    let usedAppliance = this.getAppliance(Selectors.selectApplianceByAddress(channelAddress));
+    if (usedAppliance === undefined) {
+      usedAppliance = ({
+        name,
+        serial,
+        channel,
+        serviceClass: null,
+        settings: {},
+        nameInCCU: name,
+        instanceNames: '',
+        isPublished: false,
+        address: ccuChannel.address,
+        isTemporary: true,
+        applianceType: HapApplicanceType.Device
+      });
+      // Save it to the store
+      this.store.dispatch({ type: Actions.HapApplianceActionTypes.ADD_APPLIANCE, payload: usedAppliance });
+    }
+  }
+
+  removeChannelFromWizzard(channelAddress: string): void {
+    let usedAppliance = this.getAppliance(Selectors.selectApplianceByAddress(channelAddress));
+    if (usedAppliance !== undefined) {
+      // dispatch a delete list will be updated by the store selector
+      this.store.dispatch({ type: Actions.HapApplianceActionTypes.DELETE_APPLIANCE, payload: usedAppliance });
+    }
   }
 
   deviceSelectionChanged(data: any): void {
     if (data.active === true) {
-      this.channelAdressList.push(data.id);
+      this.addChannelToWizzard(data.id);
     } else {
-      this.channelAdressList = this.channelAdressList.filter(channel => channel != data.id);
+      this.removeChannelFromWizzard(data.id);
     }
-    this.canDoNext = (this.channelAdressList.length > 0);
   }
 
   cancelAddNew(): void {
@@ -94,33 +146,10 @@ export class NewApplianceWizzardFrameComponent implements OnInit, OnDestroy {
 
   }
 
-  openPrefrences(chnlAddress: string) {
-    this.store.pipe(select(Selectors.selectChannelByAddress(chnlAddress))).subscribe(ccuChannel => {
-      const serial = ccuChannel.address.split(':')[0];
-      const channel = ccuChannel.address.split(':')[1];
-      const name = ccuChannel.name;
-      // try to get the evtl. prevoiusly saved temp appliance from the store
-      this.store.pipe(select(Selectors.selectApplianceByAddress(ccuChannel.address))).subscribe(usedAppliance => {
-        if (usedAppliance === undefined) {
-          usedAppliance = ({
-            name,
-            serial,
-            channel,
-            serviceClass: null,
-            settings: {},
-            nameInCCU: name,
-            instanceNames: '',
-            isPublished: false,
-            address: ccuChannel.address,
-            isTemporary: true,
-            applianceType: HapApplicanceType.Device
-          });
-          // Save it to the store
-          this.store.dispatch({ type: Actions.HapApplianceActionTypes.ADD_APPLIANCE, payload: usedAppliance });
-        }
-        // set it as current appliance to edit
-        this.selectedAppliance = usedAppliance;
-      });
+  openPrefrences(channelAddress: string) {
+    this.store.pipe(select(Selectors.selectApplianceByAddress(channelAddress))).subscribe(usedAppliance => {
+      // set it as current appliance to edit
+      this.selectedAppliance = usedAppliance;
     });
   }
 

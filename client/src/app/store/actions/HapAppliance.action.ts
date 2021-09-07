@@ -10,6 +10,7 @@ export enum HapApplianceActionTypes {
   SAVE_APPLIANCE_SUCCESS = '[HAP Appliance] Save Appliance Success',
   SAVE_APPLIANCE_FAILED = '[HAP Appliance] Save Appliance Failed',
   ADD_APPLIANCE = '[HAP Appliance] Add Appliance',
+  DELETE_APPLIANCE = '[HAP Appliance] Delete Appliance',
   CLEAN_APPLIANCE_STORE = '[HAP Appliance] Clean Store'
 }
 
@@ -30,6 +31,12 @@ export const SaveHapApplianceAction = createAction(
   HapApplianceActionTypes.SAVE_APPLIANCE,
   props<{ payload: HapAppliance }>()
 );
+
+export const DeleteHapApplianceAction = createAction(
+  HapApplianceActionTypes.DELETE_APPLIANCE,
+  props<{ payload: HapAppliance }>()
+);
+
 
 export const SaveHapApplianceToApiAction = createAction(
   HapApplianceActionTypes.SAVE_APPLIANCE_TO_API,
