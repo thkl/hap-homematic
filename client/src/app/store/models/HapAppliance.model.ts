@@ -1,3 +1,12 @@
+import { HapApplianceService } from ".";
+
+export enum HapApplicanceType {
+  Device = 'HapDevice',
+  Variable = 'HapVariable',
+  Program = 'HapProgram',
+  Special = 'HapSpecial'
+}
+
 export interface HapAppliance {
   UUID?: string;
   name: string;
@@ -12,4 +21,11 @@ export interface HapAppliance {
   nameInCCU: string;
   instanceNames: string;
   isTemporary: boolean;
+  applianceType: HapApplicanceType;
+}
+
+export interface HapAppllianceApiCallResult {
+  appliances: HapAppliance[];
+  varTrigger: string;
+  varServices: HapApplianceService[];
 }

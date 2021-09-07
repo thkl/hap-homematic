@@ -2,7 +2,7 @@
 import { Component, EventEmitter, Input, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable, of } from 'rxjs';
-import { HapDevicesService } from 'src/app/service/hapdevices.service';
+import { HapApplianceApiService } from 'src/app/service/hapappliance.service';
 import { Actions, Models } from 'src/app/store';
 
 @Component({
@@ -35,7 +35,7 @@ export class AppliancePropertiesComponent implements OnInit, OnDestroy {
   selectedServiceClass: Models.HapApplianceService;
 
   constructor(
-    private deviceService: HapDevicesService,
+    private apiService: HapApplianceApiService,
     public store: Store<Models.AppState>
   ) { }
 
@@ -43,7 +43,7 @@ export class AppliancePropertiesComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     // save on exit
     if (this.selectedAppliance) {
-      this.store.dispatch({ type: Actions.HapDeviceActionTypes.SAVE_DEVICE, payload: this._selectedAppliance });
+      this.store.dispatch({ type: Actions.HapApplianceActionTypes.SAVE_APPLIANCE, payload: this._selectedAppliance });
     }
   }
 
@@ -53,7 +53,7 @@ export class AppliancePropertiesComponent implements OnInit, OnDestroy {
 
   loadServices() {
     if (this.selectedAppliance !== undefined) {
-      this.deviceService.loadServiceData(this.selectedAppliance.address).subscribe(serviceResponse => {
+      this.apiService.loadServiceData(this.selectedAppliance.address).subscribe(serviceResponse => {
         this.serviceList = of(serviceResponse.service);
 
         if (this.selectedAppliance.serviceClass) {

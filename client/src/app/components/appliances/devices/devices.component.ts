@@ -22,7 +22,7 @@ export class DeviceListComponent extends AbstractTableComponent {
       'control',
     ];
 
-    this.dataSourceSelector = Selectors.selectAllAppliances(false);
+    this.dataSourceSelector = Selectors.selectAllAppliances(false, Models.HapApplicanceType.Device);
     this.loadingSelector = Selectors.appliancesLoading;
     this.searchFields = ['address', 'name'];
   }

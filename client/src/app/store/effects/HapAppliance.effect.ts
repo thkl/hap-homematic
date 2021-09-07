@@ -3,25 +3,26 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Action } from '@ngrx/store';
 import { of, pipe } from 'rxjs';
 import { map, mergeMap, catchError, switchMap } from 'rxjs/operators';
-import { HapDevicesService } from 'src/app/service/hapdevices.service';
-import { HapDeviceActionTypes } from '../actions/HapAppliance.action';
+import { HapApplianceApiService } from 'src/app/service/hapappliance.service';
+import { HapApplianceActionTypes } from '../actions';
+
 
 @Injectable()
-export class HapDeviceEffects {
-  loadHapDevices$ = createEffect(() =>
+export class HapApplianceEffects {
+  loadHapAppliances$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(HapDeviceActionTypes.LOAD_DEVICE),
+      ofType(HapApplianceActionTypes.LOAD_APPLIANCES),
       mergeMap(() =>
-        this.hapDevicesService.loadHapDevices().pipe(
+        this.hapApplianceService.loadHapAppliances().pipe(
           map((data: any) => {
             return {
-              type: HapDeviceActionTypes.LOAD_DEVICE_SUCCESS,
-              payload: data.devices,
+              type: HapApplianceActionTypes.LOAD_APPLIANCES_SUCCESS,
+              payload: data,
             };
           }),
           catchError((error) =>
             of({
-              type: HapDeviceActionTypes.LOAD_DEVICE_FAILED,
+              type: HapApplianceActionTypes.LOAD_APPLIANCES_FAILED,
               payload: error,
             })
           )
@@ -31,20 +32,20 @@ export class HapDeviceEffects {
   );
 
 
-  saveHapDevices$ = createEffect(() =>
+  saveHapAppliance$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(HapDeviceActionTypes.SAVE_DEVICE_TO_API),
+      ofType(HapApplianceActionTypes.SAVE_APPLIANCE_TO_API),
       switchMap((action) =>
-        this.hapDevicesService.saveHapDevice(action['payload']).pipe(
+        this.hapApplianceService.saveHapAppliance(action['payload']).pipe(
           map((data: any) => {
             return {
-              type: HapDeviceActionTypes.SAVE_DEVICE_SUCCESS,
+              type: HapApplianceActionTypes.SAVE_APPLIANCE_SUCCESS,
               payload: data.device,
             };
           }),
           catchError((error) =>
             of({
-              type: HapDeviceActionTypes.SAVE_DEVICE_FAILED,
+              type: HapApplianceActionTypes.SAVE_APPLIANCE_FAILED,
               payload: error,
             })
           )
@@ -55,6 +56,6 @@ export class HapDeviceEffects {
 
   constructor(
     private actions$: Actions,
-    private hapDevicesService: HapDevicesService
+    private hapApplianceService: HapApplianceApiService
   ) { }
 }

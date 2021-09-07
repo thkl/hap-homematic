@@ -6,6 +6,9 @@ export const sortObject = (a: any, b: any, field: string, dir: string) => {
 
 export const filterObjects = (item: any, filter: string, names: string[]) => {
   let result = false;
+  if (names.length === 0) {
+    return true;
+  }
   names.forEach((aName) => {
     if (item[aName]) {
       if (item[aName].toLowerCase().indexOf(filter.toLowerCase()) !== -1)

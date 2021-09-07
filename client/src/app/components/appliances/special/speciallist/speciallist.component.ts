@@ -20,8 +20,8 @@ export class SpeciallistComponent extends AbstractTableComponent {
       'control',
     ];
 
-    this.dataSourceSelector = Selectors.selectAllSpecialDevices;
-    this.loadingSelector = Selectors.specialDeviceLoading;
+    this.dataSourceSelector = Selectors.selectAllAppliances(false, Models.HapApplicanceType.Special);
+    this.loadingSelector = Selectors.appliancesLoading;
   }
 
 

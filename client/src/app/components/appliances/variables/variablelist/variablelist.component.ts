@@ -21,8 +21,8 @@ export class VariablelistComponent extends AbstractTableComponent {
       'control',
     ];
 
-    this.dataSourceSelector = Selectors.selectAllVariables;
-    this.loadingSelector = Selectors.variablesLoading;
+    this.dataSourceSelector = Selectors.selectAllAppliances(false, Models.HapApplicanceType.Variable);
+    this.loadingSelector = Selectors.appliancesLoading;
     this.searchFields = ['nameInCCU', 'name'];
   }
 }

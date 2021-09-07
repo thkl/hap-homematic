@@ -1,56 +1,56 @@
 import { createAction, props } from '@ngrx/store';
-import { HapAppliance } from '../models/HapAppliance.model';
+import { HapAppliance, HapAppllianceApiCallResult } from '../models/HapAppliance.model';
 
-export enum HapDeviceActionTypes {
-  LOAD_DEVICE = '[HAP Device] Load List',
-  LOAD_DEVICE_SUCCESS = '[HAP Device] Load List Success',
-  LOAD_DEVICE_FAILED = '[HAP Device] Load List Failed',
-  SAVE_DEVICE = '[HAP Device] Save Device',
-  SAVE_DEVICE_TO_API = '[HAP Device] Save Device To Api',
-  SAVE_DEVICE_SUCCESS = '[HAP Device] Save Device Success',
-  SAVE_DEVICE_FAILED = '[HAP Device] Save Device Failed',
-  ADD_DEVICE = '[HAP Device] Add Device',
-  CLEAN_DEVICE_STORE = '[HAP Device] Clean Store'
+export enum HapApplianceActionTypes {
+  LOAD_APPLIANCES = '[HAP Appliance] Load List',
+  LOAD_APPLIANCES_SUCCESS = '[HAP Appliance] Load List Success',
+  LOAD_APPLIANCES_FAILED = '[HAP Appliance] Load List Failed',
+  SAVE_APPLIANCE = '[HAP Appliance] Save Appliance',
+  SAVE_APPLIANCE_TO_API = '[HAP Appliance] Save Appliance To Api',
+  SAVE_APPLIANCE_SUCCESS = '[HAP Appliance] Save Appliance Success',
+  SAVE_APPLIANCE_FAILED = '[HAP Appliance] Save Appliance Failed',
+  ADD_APPLIANCE = '[HAP Appliance] Add Appliance',
+  CLEAN_APPLIANCE_STORE = '[HAP Appliance] Clean Store'
 }
 
-export const LoadHapDevicesAction = createAction(
-  HapDeviceActionTypes.LOAD_DEVICE
+export const LoadHapAppliancesAction = createAction(
+  HapApplianceActionTypes.LOAD_APPLIANCES
 );
-export const LoadHapDevicesSuccessAction = createAction(
-  HapDeviceActionTypes.LOAD_DEVICE_SUCCESS,
-  props<{ payload: HapAppliance[] }>()
+export const LoadHapAppliancesSuccessAction = createAction(
+  HapApplianceActionTypes.LOAD_APPLIANCES_SUCCESS,
+  props<{ payload: HapAppllianceApiCallResult }>()
 );
-export const LoadHapDevicesFailureAction = createAction(
-  HapDeviceActionTypes.LOAD_DEVICE_FAILED,
+export const LoadHapAppliancesFailureAction = createAction(
+  HapApplianceActionTypes.LOAD_APPLIANCES_FAILED,
   props<{ payload: Error }>()
 );
 
 
-export const SaveHapDeviceAction = createAction(
-  HapDeviceActionTypes.SAVE_DEVICE,
+export const SaveHapApplianceAction = createAction(
+  HapApplianceActionTypes.SAVE_APPLIANCE,
   props<{ payload: HapAppliance }>()
 );
 
-export const SaveHapDeviceToApiAction = createAction(
-  HapDeviceActionTypes.SAVE_DEVICE_TO_API,
+export const SaveHapApplianceToApiAction = createAction(
+  HapApplianceActionTypes.SAVE_APPLIANCE_TO_API,
   props<{ payload: HapAppliance }>()
 );
 
-export const SaveHapDeviceActionSuccess = createAction(
-  HapDeviceActionTypes.SAVE_DEVICE_SUCCESS,
+export const SaveHapApplianceActionSuccess = createAction(
+  HapApplianceActionTypes.SAVE_APPLIANCE_SUCCESS,
   props<{ payload: HapAppliance }>()
 );
 
-export const SaveHapDeviceFailureAction = createAction(
-  HapDeviceActionTypes.SAVE_DEVICE_FAILED,
+export const SaveHapApplianceailureAction = createAction(
+  HapApplianceActionTypes.SAVE_APPLIANCE_FAILED,
   props<{ payload: Error }>()
 );
 
-export const AddHapDeviceAction = createAction(
-  HapDeviceActionTypes.ADD_DEVICE,
+export const AddHapApplianceAction = createAction(
+  HapApplianceActionTypes.ADD_APPLIANCE,
   props<{ payload: HapAppliance }>()
 );
 
 export const CleanHapApplianceStore = createAction(
-  HapDeviceActionTypes.CLEAN_DEVICE_STORE
+  HapApplianceActionTypes.CLEAN_APPLIANCE_STORE
 );

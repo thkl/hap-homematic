@@ -13,11 +13,8 @@ export class ShellComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.store.dispatch({ type: Actions.HapProgramActionTypes.LOAD_PROGRAM });
-    this.store.dispatch({ type: Actions.HapDeviceActionTypes.LOAD_DEVICE });
-    this.store.dispatch({ type: Actions.HapVariableActionTypes.LOAD_VARIABLE });
     this.store.dispatch({ type: Actions.HapInstanceActionTypes.LOAD_INSTANCES });
-    this.store.dispatch({ type: Actions.HapSpecialDevicesActionTypes.LOAD_DEVICE });
+    this.store.dispatch({ type: Actions.HapApplianceActionTypes.LOAD_APPLIANCES });
     this.store.dispatch({ type: Actions.CCURoomActionTypes.LOAD_ROOMS });
     this.store.dispatch({ type: Actions.CCUDeviceActionTypes.LOAD_CCUDEVICES });
   }

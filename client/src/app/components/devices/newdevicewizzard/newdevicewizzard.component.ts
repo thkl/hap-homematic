@@ -2,7 +2,7 @@ import { Component, EventEmitter, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import { Actions, Models, Selectors } from 'src/app/store';
-import { HapAppliance } from 'src/app/store/models';
+import { HapAppliance, HapApplicanceType } from 'src/app/store/models';
 
 @Component({
   selector: 'app-newdevicewizzard',
@@ -24,12 +24,17 @@ export class NewDevicewizzardComponent implements OnInit, OnDestroy {
 
 
   ngOnDestroy(): void {
-    this.store.dispatch({ type: Actions.HapDeviceActionTypes.CLEAN_DEVICE_STORE });
+    this.store.dispatch({ type: Actions.HapApplianceActionTypes.CLEAN_APPLIANCE_STORE });
   }
 
 
   ngOnInit(): void {
-
+    this.store.pipe(select(Selectors.selectTemporaryAppliances)).subscribe(applList => {
+      this.channelAdressList = [];
+      applList.forEach(tmpHapAppliance => {
+        this.channelAdressList.push(tmpHapAppliance.address);
+      })
+    });
   }
 
   deviceSelectionChanged(data: any): void {
@@ -111,10 +116,11 @@ export class NewDevicewizzardComponent implements OnInit, OnDestroy {
             instanceNames: '',
             isPublished: false,
             address: ccuChannel.address,
-            isTemporary: true
+            isTemporary: true,
+            applianceType: HapApplicanceType.Device
           });
           // Save it to the store
-          this.store.dispatch({ type: Actions.HapDeviceActionTypes.ADD_DEVICE, payload: usedAppliance });
+          this.store.dispatch({ type: Actions.HapApplianceActionTypes.ADD_APPLIANCE, payload: usedAppliance });
         }
         // set it as current appliance to edit
         this.selectedAppliance = usedAppliance;

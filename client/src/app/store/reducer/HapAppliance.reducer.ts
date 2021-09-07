@@ -1,19 +1,24 @@
 import { Action, createReducer, on } from '@ngrx/store';
-import * as HapDeviceActionTypes from '../actions/HapAppliance.action';
+import * as HapApplianceActionTypes from '../actions/HapAppliance.action';
+import { HapApplianceService } from '../models';
 import { HapAppliance } from '../models/HapAppliance.model';
 
-export interface HapDeviceState {
+export interface HapApplianceState {
   list: HapAppliance[];
   loading: boolean;
+  varTrigger: string;
+  varServices: HapApplianceService[];
   error?: Error;
 }
-export const initialState: HapDeviceState = {
+export const initialState: HapApplianceState = {
   list: [],
   loading: false,
+  varTrigger: undefined,
+  varServices: [],
   error: undefined,
 };
 
-const updateApplianceList = (state: HapDeviceState, payload: HapAppliance) => {
+const updateApplianceList = (state: HapApplianceState, payload: HapAppliance) => {
   const index = state.list.findIndex(appl => appl.address === payload.address); //finding index of the item
   const newList = [...state.list]; //making a new array
   if (index === -1) {
@@ -24,23 +29,25 @@ const updateApplianceList = (state: HapDeviceState, payload: HapAppliance) => {
   return newList;
 }
 
-const deviceLoadingReducer = createReducer(
+const applianceLoadingReducer = createReducer(
   initialState,
-  on(HapDeviceActionTypes.LoadHapDevicesAction, (state) => ({
+  on(HapApplianceActionTypes.LoadHapAppliancesAction, (state) => ({
     ...state,
     loading: true,
   })),
 
   on(
-    HapDeviceActionTypes.LoadHapDevicesSuccessAction,
+    HapApplianceActionTypes.LoadHapAppliancesSuccessAction,
     (state, { payload }) => ({
       ...state,
-      list: payload,
+      list: payload.appliances,
+      varTrigger: payload.varTrigger,
+      varServices: payload.varServices,
       loading: false,
     })
   ),
   on(
-    HapDeviceActionTypes.LoadHapDevicesFailureAction,
+    HapApplianceActionTypes.LoadHapAppliancesFailureAction,
     (state, { payload }) => ({
       ...state,
       error: payload,
@@ -48,12 +55,12 @@ const deviceLoadingReducer = createReducer(
     })
   ),
 
-  on(HapDeviceActionTypes.SaveHapDeviceToApiAction, (state) => ({
+  on(HapApplianceActionTypes.SaveHapApplianceToApiAction, (state) => ({
     ...state,
     loading: true,
   })),
 
-  on(HapDeviceActionTypes.SaveHapDeviceAction,
+  on(HapApplianceActionTypes.SaveHapApplianceAction,
     (state, { payload }) => {
 
       return {
@@ -64,7 +71,7 @@ const deviceLoadingReducer = createReducer(
     }
   ),
 
-  on(HapDeviceActionTypes.SaveHapDeviceActionSuccess,
+  on(HapApplianceActionTypes.SaveHapApplianceActionSuccess,
     (state, { payload }) => {
       return {
         ...state,
@@ -74,7 +81,7 @@ const deviceLoadingReducer = createReducer(
     }
   ),
 
-  on(HapDeviceActionTypes.AddHapDeviceAction,
+  on(HapApplianceActionTypes.AddHapApplianceAction,
     (state, { payload }) => {
       const newList = [...state.list]; //making a new array
       newList.push(payload);
@@ -85,7 +92,7 @@ const deviceLoadingReducer = createReducer(
       }
     }
   ),
-  on(HapDeviceActionTypes.CleanHapApplianceStore, (state) => {
+  on(HapApplianceActionTypes.CleanHapApplianceStore, (state) => {
     const newList = [...state.list].filter(tmpAp => (tmpAp.isTemporary === false || tmpAp.isTemporary === undefined)); //making a new array
 
     return {
@@ -96,6 +103,6 @@ const deviceLoadingReducer = createReducer(
 
 );
 
-export function reducer(state: HapDeviceState | undefined, action: Action) {
-  return deviceLoadingReducer(state, action);
+export function reducer(state: HapApplianceState | undefined, action: Action) {
+  return applianceLoadingReducer(state, action);
 }

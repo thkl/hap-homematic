@@ -43,7 +43,7 @@ export class CCCUDevicelistComponent implements OnInit {
     if (this.preselectedChannels === undefined) {
       this.preselectedChannels = [];
     }
-    this.store.pipe(select(Selectors.selectAllAppliances(false))).subscribe(hapdevices => {
+    this.store.pipe(select(Selectors.selectAllAppliances(false, Models.HapApplicanceType.Device))).subscribe(hapdevices => {
       this.store.pipe(select(Selectors.selectAllCCUDevices)).subscribe(ccudeviceList => {
         this.treeList = [];
         ccudeviceList.forEach(device => {
