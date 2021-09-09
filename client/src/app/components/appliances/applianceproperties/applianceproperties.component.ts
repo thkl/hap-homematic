@@ -53,7 +53,7 @@ export class AppliancePropertiesComponent implements OnInit, OnDestroy {
 
   loadServices() {
     if (this.selectedAppliance !== undefined) {
-      this.apiService.loadServiceData(this.selectedAppliance.address).subscribe(serviceResponse => {
+      this.apiService.loadServiceData(this.selectedAppliance.address, this.selectedAppliance.applianceType).subscribe(serviceResponse => {
         this.serviceList = of(serviceResponse.service);
 
         if (this.selectedAppliance.serviceClass) {

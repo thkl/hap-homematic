@@ -24,8 +24,8 @@ export class HapApplianceApiService {
     return this.http.get<HapAppliance[]>(`${this.api}/ccudevices`);
   }
 
-  loadServiceData(channelAddress: string) {
-    return this.http.get<HapApplianceServiceResponse>(`${this.api}/service/${channelAddress}`);
+  loadServiceData(channelAddress: string, applianceType: string) {
+    return this.http.get<HapApplianceServiceResponse>(`${this.api}/service/${applianceType}/${channelAddress}`);
   }
 
   saveHapAppliance(appliance: HapAppliance) {

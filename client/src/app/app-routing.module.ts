@@ -31,9 +31,9 @@ const routes: Routes = [
       },
 
       {
-        path: 'device/:address', component: EditApplianceComponent,
+        path: 'appliance/:address', component: EditApplianceComponent,
         resolve: { loaded: ApplicanceListResolver },
-        data: { breadcrumb: 'Edit device' },
+        data: { breadcrumb: 'Edit appliance' },
       },
 
 

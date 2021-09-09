@@ -7,7 +7,6 @@ export const initialState: HapApplianceState = {
   list: [],
   loading: false,
   varTrigger: undefined,
-  varServices: [],
   error: undefined,
 };
 

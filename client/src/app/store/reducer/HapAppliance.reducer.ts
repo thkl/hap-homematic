@@ -7,14 +7,12 @@ export interface HapApplianceState {
   list: HapAppliance[];
   loading: boolean;
   varTrigger: string;
-  varServices: HapApplianceService[];
   error?: Error;
 }
 export const initialState: HapApplianceState = {
   list: [],
   loading: false,
   varTrigger: undefined,
-  varServices: [],
   error: undefined,
 };
 
@@ -42,7 +40,6 @@ const applianceLoadingReducer = createReducer(
       ...state,
       list: payload.appliances,
       varTrigger: payload.varTrigger,
-      varServices: payload.varServices,
       loading: false,
     })
   ),

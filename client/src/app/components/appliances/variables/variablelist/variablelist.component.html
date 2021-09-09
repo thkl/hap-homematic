@@ -38,7 +38,8 @@
       <ng-container cdkColumnDef="control">
         <th cdk-header-cell *cdkHeaderCellDef width="25%"></th>
         <td cdk-cell *cdkCellDef="let variable">
-          <button type="button" class="btn btn-success">{{'Edit' | localize}}</button>
+          <button type="button" class="btn btn-success" routerLink='/appliance/{{variable.address}}'>{{'Edit' |
+            localize}}</button>
           &nbsp;
           <button type="button" class="btn btn-danger">{{'Delete' | localize}}</button>
         </td>

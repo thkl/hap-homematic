@@ -1,6 +1,6 @@
 <div class="card">
   <div class="card-header">
-    <h2 *ngIf="selectedAppliance!==undefined">{{'Edit device %s' | localize : [selectedAppliance.address]}}</h2>
+    <h2 *ngIf="selectedAppliance!==undefined">{{title | localize : [selectedAppliance.address]}}</h2>
   </div>
   <div class="card-body">
     <app-applianceproperties [selectedAppliance]="selectedAppliance" *ngIf="saveApplianceState === false">
@@ -16,7 +16,7 @@
         class="cil-chevron-circle-right-alt btn-icon mr-2"></span>{{'Save' |
       localize}}</button>
     &nbsp;
-    <button type="button" class="btn btn-primary" routerLink="/devices"><span
+    <button type="button" class="btn btn-primary" (click)="goBack()"><span
         class="cil-x btn-icon mr-2"></span>{{'Dismiss' |
       localize}}</button>
 
