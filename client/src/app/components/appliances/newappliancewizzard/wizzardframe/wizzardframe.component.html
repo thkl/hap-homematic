@@ -18,7 +18,7 @@
       <br />
     </ng-container>
     <ng-container *ngIf="((wizzardStep > 0) && (finishWizzard===false))" id="container">
-      <app-applianceproperties [selectedAppliance]="selectedAppliance" [save]="save">
+      <app-applianceproperties [selectedAppliance]="selectedAppliance">
       </app-applianceproperties>
     </ng-container>
     <app-newappliancewizzard-finish *ngIf="finishWizzard===true"></app-newappliancewizzard-finish>

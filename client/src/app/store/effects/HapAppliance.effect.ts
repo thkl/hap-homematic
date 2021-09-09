@@ -1,10 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { Action } from '@ngrx/store';
+import { Action, Store } from '@ngrx/store';
 import { of, pipe } from 'rxjs';
 import { map, mergeMap, catchError, switchMap } from 'rxjs/operators';
 import { HapApplianceApiService } from 'src/app/service/hapappliance.service';
+import { Models, Selectors } from '..';
 import { HapApplianceActionTypes } from '../actions';
+import { HapAppliance } from '../models';
 
 
 @Injectable()
@@ -54,8 +56,26 @@ export class HapApplianceEffects {
     )
   );
 
+  editHapAppliance$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(HapApplianceActionTypes.EDIT_APPLIANCE),
+      switchMap((action) =>
+        this.store.select(Selectors.selectApplianceByAddress(action['payload'])).pipe(
+          map((appl: HapAppliance) => {
+            return {
+              type: HapApplianceActionTypes.ADD_APPLIANCE,
+              payload: appl,
+            }
+          }
+          )
+        )
+      )
+    )
+  );
+
   constructor(
     private actions$: Actions,
+    public store: Store<Models.AppState>,
     private hapApplianceService: HapApplianceApiService
   ) { }
 }

@@ -1,7 +1,7 @@
-import { Component, EventEmitter, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { select, Store } from '@ngrx/store';
-import { Models, Selectors } from 'src/app/store';
+import { Actions, Models, Selectors } from 'src/app/store';
 import { HapAppliance } from 'src/app/store/models';
 
 
@@ -10,27 +10,38 @@ import { HapAppliance } from 'src/app/store/models';
   templateUrl: './editappliance.component.html',
   styleUrls: ['./editappliance.component.sass']
 })
-export class EditApplianceComponent implements OnInit {
+export class EditApplianceComponent implements OnInit, OnDestroy {
 
   selectedAppliance: HapAppliance;
-  public save: EventEmitter<any> = new EventEmitter();
+  saveApplianceState: boolean = false;
 
   constructor(private route: ActivatedRoute, public store: Store<Models.AppState>) { }
 
   ngOnInit(): void {
+
+
+
     this.route.params.subscribe(params => {
       const address = params['address'];
-      this.store.pipe(select(Selectors.selectApplianceByAddress(address))).subscribe(appliance => {
+      // copy the appliance to the tmp store
+      this.store.dispatch({ type: Actions.HapApplianceActionTypes.EDIT_APPLIANCE, payload: address });
+
+      this.store.pipe(select(Selectors.selectTemporaryApplianceByAddress(address))).subscribe(appliance => {
         if (appliance !== undefined) {
           this.selectedAppliance = appliance;
         }
       })
+
     })
   }
 
+  ngOnDestroy(): void {
+    this.store.dispatch({ type: Actions.HapApplianceActionTypes.CLEAN_APPLIANCE_STORE });
+  }
+
+
   doSaveAppliance() {
-    console.log(this.selectedAppliance);
-    this.save.emit('save');
+    this.saveApplianceState = true;
   }
 
 }

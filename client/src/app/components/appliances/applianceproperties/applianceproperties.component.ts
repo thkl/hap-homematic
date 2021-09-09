@@ -3,7 +3,8 @@ import { Component, EventEmitter, Input, OnDestroy, OnInit } from '@angular/core
 import { Store } from '@ngrx/store';
 import { Observable, of } from 'rxjs';
 import { HapApplianceApiService } from 'src/app/service/hapappliance.service';
-import { Actions, Models } from 'src/app/store';
+import { Actions, Models, Selectors } from 'src/app/store';
+import { HapInstance } from 'src/app/store/models';
 
 @Component({
   selector: 'app-applianceproperties',
@@ -29,10 +30,9 @@ export class AppliancePropertiesComponent implements OnInit, OnDestroy {
     return this._selectedAppliance;
   }
 
-  @Input() save = new EventEmitter();
-
   serviceList: Observable<Models.HapApplianceService[]>;
   selectedServiceClass: Models.HapApplianceService;
+  instanceList: Observable<Models.HapInstance[]>;
 
   constructor(
     private apiService: HapApplianceApiService,
@@ -62,6 +62,8 @@ export class AppliancePropertiesComponent implements OnInit, OnDestroy {
           this.selectedServiceClass = serviceResponse.service.filter(sc => sc.priority === 0)[0];
         }
       })
+
+      this.instanceList = this.store.select(Selectors.selectAllInstances);
     }
   }
 
@@ -83,5 +85,10 @@ export class AppliancePropertiesComponent implements OnInit, OnDestroy {
 
   selectClazz(newClazz: any) {
     this.selectedServiceClass = newClazz;
+    this.selectedAppliance.serviceClass = newClazz.serviceClazz;
+  }
+
+  selectInstance(newInstance: HapInstance) {
+    this.selectedAppliance.instanceID = newInstance.id;
   }
 }

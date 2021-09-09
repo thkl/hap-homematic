@@ -32,5 +32,9 @@ export const selectTemporaryApplianceById = (id: string) => createSelector(
 
 export const selectTemporaryApplianceByAddress = (address: string) => createSelector(
   selectHapTemporaryApplianceState,
-  (state: HapApplianceState): HapAppliance => ((state !== undefined) && (state.list !== undefined)) ? state.list.filter(item => (item.address === address))[0] : undefined
+  (state: HapApplianceState): HapAppliance => (
+    (state !== undefined) &&
+    (address !== undefined) &&
+    (state.list !== undefined)
+  ) ? state.list.filter(item => ((item !== undefined) && item.address === address))[0] : undefined
 );

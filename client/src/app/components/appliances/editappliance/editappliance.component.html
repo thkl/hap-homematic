@@ -3,8 +3,12 @@
     <h2 *ngIf="selectedAppliance!==undefined">{{'Edit device %s' | localize : [selectedAppliance.address]}}</h2>
   </div>
   <div class="card-body">
-    <app-applianceproperties [selectedAppliance]="selectedAppliance" [save]="save">
+    <app-applianceproperties [selectedAppliance]="selectedAppliance" *ngIf="saveApplianceState === false">
     </app-applianceproperties>
+
+
+    <app-newappliancewizzard-finish *ngIf="saveApplianceState===true"></app-newappliancewizzard-finish>
+
   </div>
 
   <div class="card-footer" id="container_footer">

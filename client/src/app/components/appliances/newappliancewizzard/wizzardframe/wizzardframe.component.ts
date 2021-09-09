@@ -69,7 +69,7 @@ export class NewApplianceWizzardFrameComponent implements OnInit, OnDestroy {
         serial,
         channel,
         serviceClass: null,
-        settings: {},
+        settings: { settings: {} }, // this is weird but here we are
         nameInCCU: name,
         instanceNames: '',
         isPublished: false,
