@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { Models, Selectors } from 'src/app/store';
+import { Actions, Models, Selectors } from 'src/app/store';
 import { HapInstance, CCURoom } from 'src/app/store/models';
 
 @Component({
@@ -13,9 +13,13 @@ import { HapInstance, CCURoom } from 'src/app/store/models';
 export class InstancedetailComponent implements OnInit {
 
   selectedInstance: HapInstance;
+  title = 'Edit instance %s';
   roomList: Observable<CCURoom[]>;
   public iconPin: string;
-  constructor(private route: ActivatedRoute, public store: Store<Models.AppState>) { }
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    public store: Store<Models.AppState>) { }
 
   ngOnInit(): void {
 
@@ -23,21 +27,47 @@ export class InstancedetailComponent implements OnInit {
 
     this.route.params.subscribe(params => {
       const id = params['id'];
-      this.store.pipe(select(Selectors.selectInstancesById(id))).subscribe(instance => {
-        this.selectedInstance = instance;
-        if (this.selectedInstance) {
-          this.iconPin = this.selectedInstance.pincode.replace(/-/g, '')
-        }
-      })
+      if (id !== undefined) {
+        this.store.pipe(select(Selectors.selectInstancesById(id))).subscribe(instance => {
+          if (instance !== undefined) {
+            this.selectedInstance = JSON.parse(JSON.stringify(instance));
+            if (this.selectedInstance) {
+              this.iconPin = this.selectedInstance.pincode.replace(/-/g, '')
+            }
+          }
+        })
+      }
     });
+
+    this.route.url.subscribe(url => {
+      if ((url.length > 1) && (url[1].path === 'new')) {
+        this.title = 'New Instance';
+        this.selectedInstance = { id: 'new', user: '', displayName: '', roomId: 0, canDelete: true }
+      }
+    })
 
   }
 
-  selectRoom($event) {
-    console.log($event);
+  rebuildInstanceName(displayName: string): string {
+    if (displayName.indexOf('HomeMatic') !== -1) {
+      return displayName.substr(10);
+    }
+    return displayName;
+  }
+
+  setInstanceName(dta: any): void {
+    this.selectedInstance.displayName = dta.value;
+  }
+
+  selectRoom(roomObject: CCURoom) {
+    this.selectedInstance.roomId = roomObject.id;
+    if ((this.selectedInstance.displayName === undefined) || (this.selectedInstance.displayName === '')) {
+      this.selectedInstance.displayName = roomObject.name;
+    }
   }
 
   doSave(): void {
-    console.log(this.selectedInstance);
+    this.store.dispatch({ type: Actions.HapInstanceActionTypes.SAVE_INSTANCE_TO_API, payload: [this.selectedInstance] });
+    this.router.navigate(['/instances']);
   }
 }

@@ -1,6 +1,6 @@
 <div class="card">
   <div class="card-header">
-    <h2>{{'Edit instance %s' | localize : [selectedInstance?selectedInstance.displayName:'']}}</h2>
+    <h2>{{title | localize : [selectedInstance?selectedInstance.displayName:'']}}</h2>
   </div>
   <div class="card-body" id="container">
     <form *ngIf="selectedInstance">
@@ -16,13 +16,14 @@
                 <div class="input-group-prepend">
                   <div class="input-group-text">HomeMatic</div>
                 </div>
-                <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="default">
+                <input type="text" class="form-control" id="inlineFormInputGroup"
+                  [value]="rebuildInstanceName(selectedInstance.displayName)" (change)="setInstanceName($event.target)">
               </div>
             </div>
           </div>
           <div class="row">
             <div class="col-12">
-              <div>
+              <div *ngIf="selectedInstance.pincode">
                 <label for="inlineFormInputGroup">{{'PinCode' | localize}}</label>
                 <div class="input-group mb-2">
                   <h1>{{selectedInstance.pincode}}</h1>
@@ -32,7 +33,7 @@
               <div>
                 <label for="inlineFormInputGroup">{{'Room' | localize}}</label>
                 <dropdownmenu [dataSource]="roomList" [keyLabel]="'name'" [keyId]="'id'"
-                  [selected]="selectedInstance.roomid" (selectedChanged)="selectRoom($event)">
+                  [selected]="selectedInstance.roomId" (selectedChanged)="selectRoom($event)">
                   {{'Select a room' | localize}}</dropdownmenu>
               </div>
               <br />
@@ -54,7 +55,7 @@
           </div>
 
         </div>
-        <div class="col-md-6 col-sm-4 col-lg-4 col-xl-3" id="qrcontainer">
+        <div *ngIf="selectedInstance.pincode" class="col-md-6 col-sm-4 col-lg-4 col-xl-3" id="qrcontainer">
           <div class="homekitcode">
             <span>{{iconPin.substr(0,4)}}<br />{{iconPin.substr(4,8)}}</span>
             <qr-code id="setupQR" value="{{selectedInstance.setupURI}}" size="240" errorCorrectionLevel="H">
@@ -65,11 +66,11 @@
     </form>
   </div>
   <div class="card-footer" id="container_footer">
-    <button type="button" class="btn btn-success" (click)="doSave()"><span
+    <button type="button" class="btn btn-sm btn-success" (click)="doSave()"><span
         class="cil-save btn-icon mr-2"></span>{{'Save' |
       localize}}</button>
     &nbsp;
-    <button type="button" class="btn btn-primary" routerLink="/instances"><span
+    <button type="button" class="btn btn-sm btn-primary" routerLink="/instances"><span
         class="cil-x btn-icon mr-2"></span>{{'Dismiss' |
       localize}}</button>
 

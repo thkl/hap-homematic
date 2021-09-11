@@ -16,7 +16,7 @@
 
       <ng-container cdkColumnDef="room">
         <th cdk-header-cell *cdkHeaderCellDef mat-sort-header="room" disableClear>{{'Room' | localize}}</th>
-        <td cdk-cell *cdkCellDef="let instance"> {{instance.roomid}} </td>
+        <td cdk-cell *cdkCellDef="let instance"> {{roomNamefromInstance(instance)}} </td>
       </ng-container>
 
       <ng-container cdkColumnDef="port">
@@ -38,9 +38,10 @@
       <ng-container cdkColumnDef="control">
         <th cdk-header-cell *cdkHeaderCellDef width="25%"></th>
         <td cdk-cell *cdkCellDef="let instance">
-          <button type="button" class="btn btn-success" (click)="editObject(instance)">{{'Edit' | localize}}</button>
+          <button type="button" class="btn btn-sm btn-success" (click)="editObject(instance)">{{'Edit' |
+            localize}}</button>
           &nbsp;
-          <button *ngIf="instance.canDelete===true" type="button" class="btn btn-danger"
+          <button *ngIf="instance.canDelete===true" type="button" class="btn btn-sm btn-danger"
             (click)="selectObject(instance)" data-toggle="modal" data-target="#deleteProgramDialog">{{'Delete'
             | localize}}</button>
         </td>
@@ -55,6 +56,9 @@
     </span>
   </div>
   <div class="card-footer" id="container_footer">
+    <button type="button" class="btn btn-sm btn-primary" routerLink="/instances/new"><span
+        class="cil-plus btn-icon mr-2"></span>{{'Add new instance' |
+      localize}}</button>
   </div>
 </div>
 
@@ -75,8 +79,10 @@
           localize : [selectedObject.displayName]}}</span>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">{{'Dismiss' | localize}}</button>
-        <button type="button" class="btn btn-danger" data-dismiss="modal">{{'Yes, kick it baby' | localize}}</button>
+        <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">{{'Dismiss' | localize}}</button>
+        <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal"
+          (click)="deleteInstance(selectedObject)">{{'Yes, kick it baby' |
+          localize}}</button>
       </div>
     </div>
   </div>

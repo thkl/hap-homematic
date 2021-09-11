@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { HapInstance } from '../store/models/HapInstance.model';
+import { HapInstance, HapInstanceDeletingResult, HapInstanceSavingResult } from '../store/models/HapInstance.model';
 import { ApplicationService } from './application.service';
 
 @Injectable({
@@ -16,5 +16,13 @@ export class HapinstanceService {
 
   loadHapInstances() {
     return this.http.get<HapInstance[]>(`${this.api}/bridges`);
+  }
+
+  saveHapInstance(instance: HapInstance[]) {
+    return this.http.patch<HapInstanceSavingResult>(`${this.api}/bridges`, instance);
+  }
+
+  deleteHapInstance(instance: HapInstance) {
+    return this.http.delete<HapInstanceDeletingResult>(`${this.api}/bridges/${instance.id}`);
   }
 }

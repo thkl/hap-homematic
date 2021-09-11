@@ -64,6 +64,11 @@ const routes: Routes = [
       {
         path: 'instances/detail/:id', component: InstancedetailComponent,
         data: { breadcrumb: 'Edit Instance' }
+      },
+
+      {
+        path: 'instances/new', component: InstancedetailComponent,
+        data: { breadcrumb: 'New Instance' }
       }
     ],
   },

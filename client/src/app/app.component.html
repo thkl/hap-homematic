@@ -1,31 +1,31 @@
 <div class="c-sidebar c-sidebar-dark c-sidebar-fixed c-sidebar-lg-show" id="sidebar">
   <app-menu *ngIf="phraseLoaded===true"></app-menu>
   <button class="c-sidebar-minimizer c-class-toggler" type="button" data-target="_parent" id="sidebartoggler"
-      data-class="c-sidebar-minimized"></button>
+    data-class="c-sidebar-minimized"></button>
 </div>
 <div class="c-wrapper">
 
   <div style="position: absolute; top: 0; right: 0;z-index: 2000;">
-      <div class="toast fade hide info" id="toast" role="alert" aria-live="assertive" aria-atomic="true">
-          <div class="toast-header">
-              <strong class="mr-auto">Info</strong>
-              <button type="button" class="ml-2 mb-1 close info" data-dismiss="toast" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-              </button>
-          </div>
-          <div class="toast-body" id="toastMessage">
-              Oh, hi there
-          </div>
+    <div class="toast fade hide info" id="toast" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="toast-header">
+        <strong class="mr-auto">Info</strong>
+        <button type="button" class="ml-2 mb-1 close info" data-dismiss="toast" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
       </div>
+      <div class="toast-body" id="toastMessage">
+        Oh, hi there
+      </div>
+    </div>
   </div>
 
   <header class="c-header c-header-light c-header-fixed c-header-with-subheader">
-      <!-- c-sidebar-show -->
-      <button class="c-header-toggler c-class-toggler d-lg-none mfe-auto" type="button" data-target="#sidebar"
-          data-class="c-sidebar-show">
-          <i class="c-icon c-icon-lg mt-2 ml-1 mr-3 mb-2 cil-burger"></i>
-      </button>
-      <app-breadcrumbs *ngIf="phraseLoaded===true"></app-breadcrumbs>
+    <!-- c-sidebar-show -->
+    <button class="c-header-toggler c-class-toggler d-lg-none mfe-auto" type="button" data-target="#sidebar"
+      data-class="c-sidebar-show">
+      <i class="c-icon c-icon-lg mt-2 ml-1 mr-3 mb-2 cil-burger"></i>
+    </button>
+    <app-breadcrumbs *ngIf="phraseLoaded===true"></app-breadcrumbs>
   </header>
 
   <div class="c-body">
@@ -33,7 +33,7 @@
   </div>
 
   <footer class="c-footer">
-      <span>&copy; {{todayDate | date : 'yyyy'}}</span> by thkl | <a target="_blank"
-          href="https://github.com/thkl/hap-homematic">https://github.com/thkl/hap-homematic</a>
-    </footer>
+    <span>&copy; {{todayDate | date : 'yyyy'}}</span> by thkl | <a target="_blank"
+      href="https://github.com/thkl/hap-homematic">https://github.com/thkl/hap-homematic</a>
+  </footer>
 </div>

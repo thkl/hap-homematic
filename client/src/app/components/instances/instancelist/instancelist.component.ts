@@ -5,8 +5,8 @@ import { select, Store } from '@ngrx/store';
 import { fromEvent, merge, Observable, Subject } from 'rxjs';
 import { map, startWith, switchMap } from 'rxjs/operators';
 import { filterObjects, sortObject } from 'src/app/service/utility';
-import { Models, Selectors } from 'src/app/store';
-import { HapInstance } from 'src/app/store/models';
+import { Actions, Models, Selectors } from 'src/app/store';
+import { CCURoom, HapInstance } from 'src/app/store/models';
 import { AbstractTableComponent } from '../../abstracttable/abstracttable';
 
 @Component({
@@ -17,6 +17,7 @@ import { AbstractTableComponent } from '../../abstracttable/abstracttable';
 export class InstancelistComponent extends AbstractTableComponent {
 
   private dataSource: Observable<Models.HapInstance[]>;
+  private roomList: CCURoom[] = [];
 
   constructor(public store: Store<Models.AppState>, public router: Router) {
     super(store);
@@ -29,6 +30,15 @@ export class InstancelistComponent extends AbstractTableComponent {
     this.loadingSelector = Selectors.instanceLoadingError;
     this.searchFields = ['displayName', 'name'];
     this.dataSource = this.store.pipe(select(Selectors.selectAllInstances));
+    this.store.pipe(select(Selectors.selectAllRooms)).subscribe(roomList => {
+      this.roomList = roomList;
+    })
+
+  }
+
+  roomNamefromInstance(instance: HapInstance): string {
+    const room = this.roomList.filter(room => room.id === instance.roomId)[0];
+    return room ? room.name : '';
   }
 
   getDataSource(): Observable<any> {
@@ -37,5 +47,9 @@ export class InstancelistComponent extends AbstractTableComponent {
 
   editObject(instance: HapInstance): void {
     this.router.navigate(['instances', 'detail', instance.id]);
+  }
+
+  deleteInstance(instance: HapInstance): void {
+    this.store.dispatch({ type: Actions.HapInstanceActionTypes.DELETE_INSTANCE_FROM_API, payload: instance });
   }
 }

@@ -69,7 +69,7 @@
           <div class="form-group">
             <label for="appliance_service">{{'Instance' | localize}}</label>
             <dropdownmenu [dataSource]="instanceList" [keyLabel]="'displayName'" [keyId]="'id'"
-              (selectedChanged)="selectInstance($event)">{{'Please
+              [selected]="selectedAppliance.instanceID" (selectedChanged)="selectInstance($event)">{{'Please
               choose a HAP instance' | localize}}</dropdownmenu>
           </div>
         </div>
