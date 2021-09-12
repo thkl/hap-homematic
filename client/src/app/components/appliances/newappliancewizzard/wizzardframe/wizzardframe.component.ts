@@ -47,6 +47,9 @@ export class NewApplianceWizzardFrameComponent implements OnInit, OnDestroy {
           case 'variable':
             this.wizzardFor = Models.HapApplicanceType.Variable;
             break;
+          case 'program':
+            this.wizzardFor = Models.HapApplicanceType.Program;
+            break;
           default:
             break;
         }
@@ -63,6 +66,15 @@ export class NewApplianceWizzardFrameComponent implements OnInit, OnDestroy {
   }
 
   getVariable(selector: any): CCUVariable {
+    let variable: CCUVariable;
+    this.store.select(selector).pipe(take(1)).subscribe(
+      s => variable = s
+    );
+    return variable;
+  }
+
+
+  getProgram(selector: any): CCUVariable {
     let variable: CCUVariable;
     this.store.select(selector).pipe(take(1)).subscribe(
       s => variable = s
@@ -150,6 +162,9 @@ export class NewApplianceWizzardFrameComponent implements OnInit, OnDestroy {
         break;
       case Models.HapApplicanceType.Variable:
         this.router.navigate(['/variables']);
+        break;
+      case Models.HapApplicanceType.Program:
+        this.router.navigate(['/programs']);
         break;
     }
   }

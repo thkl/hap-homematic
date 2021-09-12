@@ -9,7 +9,7 @@
   (matSortChange)="sortData($event)">
 
   <ng-container cdkColumnDef="active">
-    <th cdk-header-cell *cdkHeaderCellDef></th>
+    <th cdk-header-cell *cdkHeaderCellDef width="40px"></th>
     <td cdk-cell *cdkCellDef="let row"><input class="form-check-input table_check" type="checkbox" id="{{row.id}}_check"
         [(ngModel)]="row.active" *ngIf="row.exists===false" (ngModelChange)="select(row)"></td>
   </ng-container>

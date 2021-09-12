@@ -6,23 +6,33 @@
     <h2 *ngIf="this.wizzardFor==='HapVariable'">
       {{'Add new Variable' | localize}}
     </h2>
+    <h2 *ngIf="this.wizzardFor==='HapProgram'">
+      {{'Add new Program' | localize}}
+    </h2>
   </div>
 
   <div class="card-body">
     <ng-container *ngIf="wizzardStep===0" id="container">
 
       <h5 *ngIf="this.wizzardFor==='HapDevice'" class="stepHeader">
-        {{'1. Select one or more channel(s) to map to homekit' | localize}}
+        {{'Select one or more channel(s) to map to homekit' | localize}}
       </h5>
 
       <h5 *ngIf="this.wizzardFor==='HapVariable'" class="stepHeader">
-        {{'1. Select one or more variables to map to homekit' | localize}}
+        {{'Select one or more variable(s) to map to homekit' | localize}}
+      </h5>
+
+      <h5 *ngIf="this.wizzardFor==='HapProgram'" class="stepHeader">
+        {{'Select one or more program(s) to map to homekit' | localize}}
       </h5>
 
       <div class="row">
         <div class="col-md-4 d-none d-md-block d-lg-block d-xl-block">
-          <img class="settingsImage" src="./assets/img/lightbulb.svg">
+          <img *ngIf="this.wizzardFor==='HapDevice'" class="settingsImage" src="./assets/img/lightbulb.svg">
+          <img *ngIf="this.wizzardFor==='HapVariable'" class="settingsImage" src="./assets/img/variable.svg">
+          <img *ngIf="this.wizzardFor==='HapProgram'" class="settingsImage" src="./assets/img/program.svg">
         </div>
+
         <div class="col-12 col-md-8">
           <app-ccudevicelist *ngIf="this.wizzardFor==='HapDevice'" (selectionChanged)="deviceSelectionChanged($event)"
             [preselectedChannels]="preselectedChannels">

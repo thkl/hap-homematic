@@ -54,6 +54,10 @@ const routes: Routes = [
       },
 
       { path: 'programs/:id', component: ProgramlistComponent },
+      {
+        path: 'program/new', component: NewApplianceWizzardFrameComponent,
+        data: { breadcrumb: 'Add new Program' },
+      },
 
       {
         path: 'special', component: SpeciallistComponent,
