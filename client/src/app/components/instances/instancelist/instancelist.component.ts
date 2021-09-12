@@ -18,6 +18,7 @@ export class InstancelistComponent extends AbstractTableComponent {
 
   private dataSource: Observable<Models.HapInstance[]>;
   private roomList: CCURoom[] = [];
+  confirmId = "deleteInstance";
 
   constructor(public store: Store<Models.AppState>, public router: Router) {
     super(store);

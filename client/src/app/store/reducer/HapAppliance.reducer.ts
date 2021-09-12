@@ -83,6 +83,20 @@ const applianceLoadingReducer = createReducer(
     }
   ),
 
+  on(
+    HapApplianceActionTypes.DeleteHapApplianceFromApiActionSuccess,
+    (state, { payload }) => {
+
+      const newList = [...state.list].filter(appliance => (appliance.address !== payload.deleted)); //making a new array and remove the item in payload
+
+      return {
+        ...state,
+        loading: false,
+        error: null,
+        list: newList
+      }
+    }
+  )
 );
 
 export function reducer(state: HapApplianceState | undefined, action: Action) {

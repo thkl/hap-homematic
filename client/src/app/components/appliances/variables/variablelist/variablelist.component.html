@@ -41,7 +41,8 @@
           <button type="button" class="btn btn-sm btn-success" routerLink='/appliance/{{variable.address}}'>{{'Edit' |
             localize}}</button>
           &nbsp;
-          <button type="button" class="btn btn-sm btn-danger">{{'Delete' | localize}}</button>
+          <button type="button" class="btn btn-sm btn-danger" (click)="selectObject(variable)" data-toggle="modal"
+            attr.data-target="#{{confirmId}}">{{'Delete' | localize}}</button>
         </td>
       </ng-container>
 
@@ -69,3 +70,9 @@
       localize}}</button>
   </div>
 </div>
+
+
+
+<app-confirmation [dialogId]="confirmId" (confirm)="deleteVariable(selectedObject)">
+  {{'Are you sure you want to remove %s from HomeKit?' |
+  localize : [selectedObject ? selectedObject.name:'']}}</app-confirmation>

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Models, Selectors } from 'src/app/store'
+import { HapAppliance } from 'src/app/store/models';
 import { AbstractTableComponent } from '../../abstracttable/abstracttable';
 
 
@@ -10,6 +11,7 @@ import { AbstractTableComponent } from '../../abstracttable/abstracttable';
   styleUrls: ['./devices.component.sass'],
 })
 export class DeviceListComponent extends AbstractTableComponent {
+  confirmId = 'deleteDevice';
 
   constructor(public store: Store<Models.AppState>) {
     super(store);
@@ -25,5 +27,10 @@ export class DeviceListComponent extends AbstractTableComponent {
     this.dataSourceSelector = Selectors.selectAllAppliances(Models.HapApplicanceType.Device);
     this.loadingSelector = Selectors.appliancesLoading;
     this.searchFields = ['address', 'name'];
+  }
+
+
+  deleteDevice(device: HapAppliance) {
+
   }
 }

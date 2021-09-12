@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { HapAppliance, HapApplianceLoadResult, HapApplianceSaveResult } from '../models/HapAppliance.model';
+import { HapAppliance, HapApplianceDeletingResult, HapApplianceLoadResult, HapApplianceSaveResult } from '../models/HapAppliance.model';
 
 export enum HapApplianceActionTypes {
   LOAD_APPLIANCES = '[HAP Appliance] Load List',
@@ -15,6 +15,11 @@ export enum HapApplianceActionTypes {
 
   DELETE_TMP_APPLIANCE = '[HAP Appliance] Delete Temporary Appliance',
   DELETE_APPLIANCE = '[HAP Appliance] Delete Appliance',
+
+  DELETE_APPLIANCE_FROM_API = '[HAP Appliance] Delete Appliance from API',
+  DELETE_APPLIANCE_FROM_API_SUCCESS = '[HAP Appliance] Delete Appliance from API Success',
+  DELETE_APPLIANCE_FROM_API_FAILED = '[HAP Appliance] Delete Appliance from API Failed',
+
   CLEAN_APPLIANCE_STORE = '[HAP Appliance] Clean Store'
 }
 
@@ -39,6 +44,22 @@ export const SaveHapApplianceAction = createAction(
 export const DeleteHapApplianceAction = createAction(
   HapApplianceActionTypes.DELETE_APPLIANCE,
   props<{ payload: HapAppliance }>()
+);
+
+export const DeleteHapApplianceFromApiAction = createAction(
+  HapApplianceActionTypes.DELETE_APPLIANCE_FROM_API,
+  props<{ payload: HapAppliance }>()
+);
+
+
+export const DeleteHapApplianceFromApiActionSuccess = createAction(
+  HapApplianceActionTypes.DELETE_APPLIANCE_FROM_API_SUCCESS,
+  props<{ payload: HapApplianceDeletingResult }>()
+);
+
+export const DeleteHapApplianceFromApiFailureAction = createAction(
+  HapApplianceActionTypes.DELETE_APPLIANCE_FROM_API_FAILED,
+  props<{ payload: Error }>()
 );
 
 export const DeleteTemporaryHapApplianceAction = createAction(
@@ -79,3 +100,8 @@ export const EditHapApplianceAction = createAction(
 export const CleanHapApplianceStore = createAction(
   HapApplianceActionTypes.CLEAN_APPLIANCE_STORE
 );
+
+
+
+
+

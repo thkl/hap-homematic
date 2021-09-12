@@ -32,3 +32,8 @@ export interface HapApplianceLoadResult {
 export interface HapApplianceSaveResult {
   appliances: HapAppliance[];
 }
+
+export interface HapApplianceDeletingResult {
+  deleted: string;
+  error: string;
+}

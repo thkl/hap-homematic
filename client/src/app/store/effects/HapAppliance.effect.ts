@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { Action, Store } from '@ngrx/store';
+import { Store } from '@ngrx/store';
 import { of, pipe } from 'rxjs';
 import { map, mergeMap, catchError, switchMap } from 'rxjs/operators';
 import { HapApplianceApiService } from 'src/app/service/hapappliance.service';
@@ -67,6 +67,28 @@ export class HapApplianceEffects {
               payload: appl,
             }
           }
+          )
+        )
+      )
+    )
+  );
+
+  deleteHapAppliance$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(HapApplianceActionTypes.DELETE_APPLIANCE_FROM_API),
+      switchMap((action) =>
+        this.hapApplianceService.deleteHapAppliance(action['payload']).pipe(
+          map((data: any) => {
+            return {
+              type: HapApplianceActionTypes.DELETE_APPLIANCE_FROM_API_SUCCESS,
+              payload: data,
+            };
+          }),
+          catchError((error) =>
+            of({
+              type: HapApplianceActionTypes.DELETE_APPLIANCE_FROM_API_FAILED,
+              payload: error,
+            })
           )
         )
       )

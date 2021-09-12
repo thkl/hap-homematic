@@ -42,7 +42,7 @@
             localize}}</button>
           &nbsp;
           <button *ngIf="instance.canDelete===true" type="button" class="btn btn-sm btn-danger"
-            (click)="selectObject(instance)" data-toggle="modal" data-target="#deleteProgramDialog">{{'Delete'
+            (click)="selectObject(instance)" data-toggle="modal" attr.data-target="#{{confirmId}}">{{'Delete'
             | localize}}</button>
         </td>
       </ng-container>
@@ -63,27 +63,6 @@
 </div>
 
 
-<div class="modal fade" id="deleteProgramDialog" tabindex="-1" role="dialog" aria-labelledby="deleteInstanceDialogLabel"
-  aria-hidden="true">
-  <div class="modal-dialog modal-danger" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="deleteIntanceDialogLabel">{{'Delete' | localize}}</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <span *ngIf="selectedObject">
-          {{'Are you sure you want to remove %s? All your devices will be reassigned to the default Instance.' |
-          localize : [selectedObject.displayName]}}</span>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">{{'Dismiss' | localize}}</button>
-        <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal"
-          (click)="deleteInstance(selectedObject)">{{'Yes, kick it baby' |
-          localize}}</button>
-      </div>
-    </div>
-  </div>
-</div>
+<app-confirmation [dialogId]="confirmId" (confirm)="deleteInstance(selectedObject)">
+  {{'Are you sure you want to remove %s? All your devices will be reassigned to the default Instance.' |
+  localize : [selectedObject ? selectedObject.displayName:'']}}</app-confirmation>
