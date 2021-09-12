@@ -17,6 +17,7 @@ export class ShellComponent implements OnInit {
     this.store.dispatch({ type: Actions.HapApplianceActionTypes.LOAD_APPLIANCES });
     this.store.dispatch({ type: Actions.CCURoomActionTypes.LOAD_ROOMS });
     this.store.dispatch({ type: Actions.CCUDeviceActionTypes.LOAD_CCUDEVICES });
+    this.store.dispatch({ type: Actions.CCUVariableActionTypes.LOAD_CCUVARIABLES });
   }
 
 }

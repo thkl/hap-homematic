@@ -30,13 +30,14 @@ import { SpeciallistComponent } from './components/appliances/special/speciallis
 import { InstancedetailComponent } from './components/instances/instancedetail/instancedetail.component';
 import { QrCodeModule } from 'ng-qrcode';
 import { DropdownmenuComponent } from './components/util/dropdownmenu/dropdownmenu.component';
-import { CCCUDevicelistComponent } from './components/devices/ccudevicelist/ccudevicelist.component';
+import { CCCUDevicelistComponent } from './components/ccuobjects/ccudevicelist/ccudevicelist.component';
 import { AppliancePropertiesComponent } from './components/appliances/applianceproperties/applianceproperties.component';
 import { ApplicanceListResolver } from './service/appliance.resolver';
 import { EditApplianceComponent } from './components/appliances/editappliance/editappliance.component';
 import { NewApplianceWizzardFrameComponent } from './components/appliances/newappliancewizzard/wizzardframe/wizzardframe.component';
 import { NewApplianceWizzardFinishComponent } from './components/appliances/newappliancewizzard/finish/finish.component';
 import { PaginationComponent } from './components/util/pagination/pagination.component';
+import { CcuvariablelistComponent } from './components/ccuobjects/ccuvariablelist/ccuvariablelist.component';
 
 
 @NgModule({
@@ -57,7 +58,8 @@ import { PaginationComponent } from './components/util/pagination/pagination.com
     AppliancePropertiesComponent,
     EditApplianceComponent,
     NewApplianceWizzardFinishComponent,
-    PaginationComponent
+    PaginationComponent,
+    CcuvariablelistComponent
   ],
   imports: [
     HttpClientModule,

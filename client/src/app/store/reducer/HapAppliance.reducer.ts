@@ -18,14 +18,18 @@ export const initialState: HapApplianceState = {
   error: undefined,
 };
 
-const updateApplianceList = (state: HapApplianceState, payload: HapAppliance) => {
-  const index = state.list.findIndex(appl => appl.address === payload.address); //finding index of the item
+const updateApplianceList = (state: HapApplianceState, payload: HapAppliance[]) => {
   const newList = [...state.list]; //making a new array
-  if (index === -1) {
-    newList.push(payload);
-  } else {
-    newList[index] = payload;
-  }
+  payload.forEach(appliance => {
+
+    const index = state.list.findIndex(appl => appl.address === appliance.address); //finding index of the item
+    if (index === -1) {
+      newList.push(appliance);
+    } else {
+      newList[index] = appliance;
+    }
+  })
+
   return newList;
 }
 
@@ -64,7 +68,7 @@ const applianceLoadingReducer = createReducer(
       return {
         ...state,
         saving: false,
-        list: updateApplianceList(state, payload)
+        list: updateApplianceList(state, payload.appliances)
       }
     }
   ),

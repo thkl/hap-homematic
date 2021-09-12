@@ -42,7 +42,7 @@ export class HapApplianceEffects {
           map((data: any) => {
             return {
               type: HapApplianceActionTypes.SAVE_APPLIANCE_SUCCESS,
-              payload: data.device,
+              payload: data,
             };
           }),
           catchError((error) =>

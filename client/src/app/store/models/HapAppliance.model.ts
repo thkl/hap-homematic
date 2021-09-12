@@ -28,3 +28,7 @@ export interface HapApplianceLoadResult {
   appliances: HapAppliance[];
   varTrigger: string;
 }
+
+export interface HapApplianceSaveResult {
+  appliances: HapAppliance[];
+}

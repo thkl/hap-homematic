@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { HapAppliance, HapApplianceServiceResponse, HapApplianceLoadResult } from '../store/models';
+import { HapAppliance, HapApplianceServiceResponse, HapApplianceLoadResult, HapApplianceSaveResult } from '../store/models';
 import { ApplicationService } from './application.service';
 
 @Injectable({
@@ -25,6 +25,6 @@ export class HapApplianceApiService {
   }
 
   saveHapAppliance(appliance: HapAppliance) {
-    return this.http.patch<HapAppliance>(`${this.api}/appliance`, appliance);
+    return this.http.patch<HapApplianceSaveResult>(`${this.api}/appliance`, appliance);
   }
 }

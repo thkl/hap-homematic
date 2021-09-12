@@ -22,6 +22,7 @@ export class NewApplianceWizzardFrameComponent implements OnInit, OnDestroy {
   public save: EventEmitter<any> = new EventEmitter();
   public preselectedChannels: string[];
   public wizzardFor: Models.HapApplicanceType;
+  private saving = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -104,25 +105,25 @@ export class NewApplianceWizzardFrameComponent implements OnInit, OnDestroy {
         channel = "0";
         break;
     }
-
-
-    const name = ccuObject.name;
-    let usedAppliance = this.getAppliance(Selectors.selectTemporaryApplianceByAddress(channelAddress));
-    if (usedAppliance === undefined) {
-      usedAppliance = ({
-        name,
-        serial,
-        channel,
-        serviceClass: null,
-        settings: { settings: {} }, // this is weird but here we are
-        nameInCCU: name,
-        instanceNames: '',
-        isPublished: false,
-        address: address,
-        applianceType: this.wizzardFor
-      });
-      // Save it to the store
-      this.store.dispatch({ type: Actions.HapApplianceActionTypes.ADD_APPLIANCE, payload: usedAppliance });
+    if (ccuObject) {
+      const name = ccuObject.name;
+      let usedAppliance = this.getAppliance(Selectors.selectTemporaryApplianceByAddress(channelAddress));
+      if (usedAppliance === undefined) {
+        usedAppliance = ({
+          name,
+          serial,
+          channel,
+          serviceClass: null,
+          settings: { settings: {} }, // this is weird but here we are
+          nameInCCU: name,
+          instanceNames: '',
+          isPublished: false,
+          address: address,
+          applianceType: this.wizzardFor
+        });
+        // Save it to the store
+        this.store.dispatch({ type: Actions.HapApplianceActionTypes.ADD_APPLIANCE, payload: usedAppliance });
+      }
     }
   }
 
@@ -142,7 +143,7 @@ export class NewApplianceWizzardFrameComponent implements OnInit, OnDestroy {
     }
   }
 
-  cancelAddNew(): void {
+  dismissAddNew(): void {
     switch (this.wizzardFor) {
       case Models.HapApplicanceType.Device:
         this.router.navigate(['/devices']);
@@ -153,7 +154,7 @@ export class NewApplianceWizzardFrameComponent implements OnInit, OnDestroy {
     }
   }
 
-  saveApplianceLocaly() {
+  saveApplianceLocaly(): void {
     if (this.selectedAppliance) {
       this.save.emit();
     }
@@ -172,7 +173,7 @@ export class NewApplianceWizzardFrameComponent implements OnInit, OnDestroy {
     }
   }
 
-  previousStep() {
+  previousStep(): void {
     if (this.wizzardStep > 0) {
       this.saveApplianceLocaly();
       this.wizzardStep = this.wizzardStep - 1;
@@ -197,7 +198,7 @@ export class NewApplianceWizzardFrameComponent implements OnInit, OnDestroy {
 
   }
 
-  openPrefrences(channelAddress: string) {
+  openPrefrences(channelAddress: string): void {
     this.store.pipe(select(Selectors.selectTemporaryApplianceByAddress(channelAddress))).subscribe(usedAppliance => {
       // set it as current appliance to edit
       this.selectedAppliance = usedAppliance;
@@ -206,5 +207,13 @@ export class NewApplianceWizzardFrameComponent implements OnInit, OnDestroy {
 
   finish(): void {
     this.finishWizzard = true;
+    this.store.pipe(select(Selectors.appliancesSaving)).subscribe(isSaving => {
+      if ((this.saving === true) && (isSaving === false)) {
+        this.dismissAddNew();
+      } else {
+        this.saving = isSaving;
+      }
+    })
   }
+
 }

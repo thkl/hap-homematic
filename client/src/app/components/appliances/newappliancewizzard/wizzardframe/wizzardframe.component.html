@@ -1,17 +1,36 @@
 <div class="card">
   <div class="card-header">
-    <h2>{{'Add new device' | localize}}</h2>
+    <h2 *ngIf="this.wizzardFor==='HapDevice'">
+      {{'Add new device' | localize}}
+    </h2>
+    <h2 *ngIf="this.wizzardFor==='HapVariable'">
+      {{'Add new Variable' | localize}}
+    </h2>
   </div>
+
   <div class="card-body">
     <ng-container *ngIf="wizzardStep===0" id="container">
-      <h5 class="stepHeader">{{'1. Select one or more channel(s) to map to homekit' | localize}}</h5>
+
+      <h5 *ngIf="this.wizzardFor==='HapDevice'" class="stepHeader">
+        {{'1. Select one or more channel(s) to map to homekit' | localize}}
+      </h5>
+
+      <h5 *ngIf="this.wizzardFor==='HapVariable'" class="stepHeader">
+        {{'1. Select one or more variables to map to homekit' | localize}}
+      </h5>
+
       <div class="row">
         <div class="col-md-4 d-none d-md-block d-lg-block d-xl-block">
           <img class="settingsImage" src="./assets/img/lightbulb.svg">
         </div>
         <div class="col-12 col-md-8">
-          <app-ccudevicelist (selectionChanged)="deviceSelectionChanged($event)"
-            [preselectedChannels]="preselectedChannels"></app-ccudevicelist>
+          <app-ccudevicelist *ngIf="this.wizzardFor==='HapDevice'" (selectionChanged)="deviceSelectionChanged($event)"
+            [preselectedChannels]="preselectedChannels">
+          </app-ccudevicelist>
+
+          <app-ccuvariablelist *ngIf="this.wizzardFor==='HapVariable'"
+            (selectionChanged)="deviceSelectionChanged($event)" [preselectedVariables]="preselectedChannels">
+          </app-ccuvariablelist>
         </div>
       </div>
 
@@ -38,7 +57,7 @@
         class="cil-check btn-icon mr-2"></span>{{'Finish' |
       localize}}</button>
     &nbsp;
-    <button type="button" class="btn btn-primary" (click)="cancelAddNew()"><span
+    <button type="button" class="btn btn-primary" (click)="dismissAddNew()"><span
         class="cil-x btn-icon mr-2"></span>{{'Dismiss' |
       localize}}</button>
 

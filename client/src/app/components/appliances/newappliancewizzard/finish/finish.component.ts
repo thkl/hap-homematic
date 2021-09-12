@@ -31,6 +31,10 @@ export class NewApplianceWizzardFinishComponent implements OnInit, AfterViewInit
         }
       }
     });
+
+
   }
+
+
 
 }
