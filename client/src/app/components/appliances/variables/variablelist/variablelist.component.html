@@ -73,6 +73,6 @@
 
 
 
-<app-confirmation [dialogId]="confirmId" (confirm)="deleteVariable(selectedObject)">
+<app-confirmation [dialogId]="confirmId" img="./assets/img/delete.svg" (confirm)="deleteVariable(selectedObject)">
   {{'Are you sure you want to remove %s from HomeKit?' |
   localize : [selectedObject ? selectedObject.name:'']}}</app-confirmation>

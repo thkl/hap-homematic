@@ -63,6 +63,6 @@
 </div>
 
 
-<app-confirmation [dialogId]="confirmId" (confirm)="deleteInstance(selectedObject)">
+<app-confirmation [dialogId]="confirmId" img="./assets/img/delete.svg" (confirm)="deleteInstance(selectedObject)">
   {{'Are you sure you want to remove %s? All your devices will be reassigned to the default Instance.' |
   localize : [selectedObject ? selectedObject.displayName:'']}}</app-confirmation>

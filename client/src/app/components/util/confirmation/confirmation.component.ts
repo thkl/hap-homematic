@@ -12,6 +12,8 @@ export class ConfirmationDialogComponent implements OnInit {
   @Input() title: string;
   @Input() dialogId: string;
   @Input() confirmText: string;
+  @Input() dialogType: string;
+  @Input() img: string;
 
   @Output() confirm: EventEmitter<any> = new EventEmitter();
 
