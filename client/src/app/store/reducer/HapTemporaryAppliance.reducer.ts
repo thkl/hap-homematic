@@ -6,6 +6,7 @@ import { HapApplianceState } from './HapAppliance.reducer';
 export const initialState: HapApplianceState = {
   list: [],
   loading: false,
+  saving: false,
   varTrigger: undefined,
   error: undefined,
 };

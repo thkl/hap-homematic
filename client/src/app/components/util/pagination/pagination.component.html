@@ -1,0 +1,15 @@
+<nav aria-label="..." *ngIf="numRecords>maxRecords">
+  <ul class="pagination">
+    <li class="page-item" [class.disabled]="prevDisabled()">
+      <a class="page-link" href="#" tabindex="-1">{{'Previous' | localize}}</a>
+    </li>
+
+    <li class="page-item" [class.active]="currentPage===(pageNumber(index))"
+      *ngFor="let a of createRange(pages);let index=index"><a (click)="setPage(index)"
+        class="page-link">{{pageNumber(index)}}</a></li>
+
+    <li class="page-item" [class.disabled]="nextDisabled()">
+      <a class="page-link" href="#">{{'Next' | localize}}</a>
+    </li>
+  </ul>
+</nav>

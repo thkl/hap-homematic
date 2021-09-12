@@ -15,6 +15,7 @@ export class EditApplianceComponent implements OnInit, OnDestroy {
   selectedAppliance: HapAppliance;
   saveApplianceState: boolean = false;
   title: string = 'Edit';
+  saving: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -63,6 +64,15 @@ export class EditApplianceComponent implements OnInit, OnDestroy {
 
   doSaveAppliance() {
     this.saveApplianceState = true;
+
+    this.store.pipe(select(Selectors.appliancesSaving)).subscribe(isSaving => {
+      if ((this.saving === true) && (isSaving === false)) {
+        this.goBack();
+      } else {
+        this.saving = isSaving;
+      }
+    })
+
   }
 
 }

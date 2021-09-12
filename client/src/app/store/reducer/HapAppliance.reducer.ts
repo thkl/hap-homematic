@@ -6,12 +6,14 @@ import { HapAppliance } from '../models/HapAppliance.model';
 export interface HapApplianceState {
   list: HapAppliance[];
   loading: boolean;
+  saving: boolean;
   varTrigger: string;
   error?: Error;
 }
 export const initialState: HapApplianceState = {
   list: [],
   loading: false,
+  saving: false,
   varTrigger: undefined,
   error: undefined,
 };
@@ -54,14 +56,14 @@ const applianceLoadingReducer = createReducer(
 
   on(HapApplianceActionTypes.SaveHapApplianceToApiAction, (state) => ({
     ...state,
-    loading: true,
+    saving: true,
   })),
 
   on(HapApplianceActionTypes.SaveHapApplianceActionSuccess,
     (state, { payload }) => {
       return {
         ...state,
-        loading: false,
+        saving: false,
         list: updateApplianceList(state, payload)
       }
     }

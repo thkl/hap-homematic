@@ -5,6 +5,7 @@ import { fromEvent, merge, Observable, Subject, Subscription } from "rxjs";
 import { map, startWith, switchMap } from "rxjs/operators";
 import { filterObjects, sortObject } from "src/app/service/utility";
 import { Models } from "src/app/store";
+import { PaginationComponent } from "../util/pagination/pagination.component";
 
 @Component({
   selector: 'app-abstracttable',
@@ -18,12 +19,18 @@ export class AbstractTableComponent implements OnInit {
   private _loadingSelector: any;
   private _dataSourceSelector: any;
   private _searchFields: string[] = [];
+  private _maxRecords: number = 10;
   public dataSourceFlt: MatTableDataSource<any> = new MatTableDataSource([]);
+  public recordCount: number;
+
   private _selectedObject: any;
   private searchChanged: EventEmitter<number> = new EventEmitter();
+  public pageChanged: EventEmitter<number> = new EventEmitter();
+
   private sortChanged: Subject<any> = new Subject();
   private sortDir: string = 'asc';
   private sortField: string = 'name';
+  private initialized = false;
 
   public loading: boolean;
   private subscription: Subscription = new Subscription();
@@ -32,6 +39,7 @@ export class AbstractTableComponent implements OnInit {
   public searchText: string = '';
 
   @ViewChild('searchInput') input: ElementRef;
+  @ViewChild(PaginationComponent) paginator: PaginationComponent;
 
   constructor(public store: Store<Models.AppState>) { }
 
@@ -92,13 +100,14 @@ export class AbstractTableComponent implements OnInit {
   ngAfterViewInit(): void {
     if (this.hasSearchOption() === true) {
       fromEvent(this.input.nativeElement, 'keyup').subscribe(() => {
+        console.log('search changed')
         this.searchChanged.emit(0);
       });
     }
   }
 
   ngAfterContentChecked(): void {
-    merge(this.searchChanged, this.sortChanged)
+    merge(this.searchChanged, this.sortChanged, this.pageChanged)
       .pipe(
         startWith({}),
         switchMap(() => {
@@ -109,13 +118,16 @@ export class AbstractTableComponent implements OnInit {
             filterObjects(item, this.searchText, this._searchFields)
           )
         ),
-
         map((items) =>
           items.sort((a, b) => sortObject(a, b, this.sortField, this.sortDir))
+        ),
+        map((items) =>
+          (this.paginator !== undefined) ? this.paginator.paginate(items) : items
         )
       )
-      .subscribe((list) => {
+      .subscribe((list: any[]) => {
         this.dataSourceFlt = new MatTableDataSource(list);
+        this.recordCount = this.dataSourceFlt.data.length;
         this.noData = this.dataSourceFlt.data.length === 0;
       });
   }

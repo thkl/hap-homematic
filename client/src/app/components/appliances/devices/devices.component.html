@@ -49,6 +49,9 @@
       <tr cdk-row *cdkRowDef="let row; columns: displayedColumns;"></tr>
     </table>
 
+    <app-pagination [maxRecords]="10" (pageChanged)="pageChanged">
+    </app-pagination>
+
     <span *ngIf="noData===true">
       {{'No data' | localize}}
     </span>

@@ -36,6 +36,7 @@ import { ApplicanceListResolver } from './service/appliance.resolver';
 import { EditApplianceComponent } from './components/appliances/editappliance/editappliance.component';
 import { NewApplianceWizzardFrameComponent } from './components/appliances/newappliancewizzard/wizzardframe/wizzardframe.component';
 import { NewApplianceWizzardFinishComponent } from './components/appliances/newappliancewizzard/finish/finish.component';
+import { PaginationComponent } from './components/util/pagination/pagination.component';
 
 
 @NgModule({
@@ -55,7 +56,8 @@ import { NewApplianceWizzardFinishComponent } from './components/appliances/newa
     NewApplianceWizzardFrameComponent,
     AppliancePropertiesComponent,
     EditApplianceComponent,
-    NewApplianceWizzardFinishComponent
+    NewApplianceWizzardFinishComponent,
+    PaginationComponent
   ],
   imports: [
     HttpClientModule,
