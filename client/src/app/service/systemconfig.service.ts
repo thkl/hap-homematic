@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { SystemConfig } from '../store/models/SystemConfig.model';
 import { ApplicationService } from './application.service';
-import { CCURoom } from '../store/models';
+import { CCUDeviceLoadingResult, CCURoom, CCURoomLoadingResult, CCUVariableLoadingResult } from '../store/models';
 
 @Injectable({
   providedIn: 'root'
@@ -21,6 +21,16 @@ export class SystemconfigService {
   }
 
   loadRooms() {
-    return this.http.get<CCURoom[]>(`${this.api}/rooms`);
+    return this.http.get<CCURoomLoadingResult>(`${this.api}/ccurooms`);
   }
+
+  loadCompatibleCCUDevices() {
+    return this.http.get<CCUDeviceLoadingResult>(`${this.api}/ccudevices`);
+  }
+
+
+  loadCompatibleCCUVariables() {
+    return this.http.get<CCUVariableLoadingResult>(`${this.api}/ccuvariables`);
+  }
+
 }

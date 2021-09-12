@@ -83,6 +83,10 @@ export class PaginationComponent implements OnInit {
     return new Array(number);
   }
 
+  reset() {
+    this.currentPage = 1;
+  }
+
   paginate(items: any[]): any[] {
     this.numRecords = items.length;
     let result: any[] = [];

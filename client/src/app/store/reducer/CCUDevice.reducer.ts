@@ -1,6 +1,6 @@
 import { Action, createReducer, on } from '@ngrx/store';
 import * as CCUDeviceActionTypes from '../actions/CCUDevice.action';
-import { CCUDevice } from '../models/CCUDevice.model';
+import { CCUDevice } from '../models/CCUObjects.model';
 
 export interface CCUDeviceState {
   list: CCUDevice[];
@@ -24,7 +24,7 @@ const ccuDeviceLoadingReducer = createReducer(
     CCUDeviceActionTypes.LoadCCUDevicesSuccessAction,
     (state, { payload }) => ({
       ...state,
-      list: payload,
+      list: payload.devices,
       loading: false,
     })
   ),

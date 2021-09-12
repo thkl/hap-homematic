@@ -1,6 +1,6 @@
 import { Action, createReducer, on } from '@ngrx/store';
 import * as CCURoomActionTypes from '../actions/CCURoom.action';
-import { CCURoom } from '../models/CCURoom.model';
+import { CCURoom } from '../models/CCUObjects.model';
 
 export interface CCURoomState {
   list: CCURoom[];
@@ -24,7 +24,7 @@ const roomLoadingReducer = createReducer(
     CCURoomActionTypes.LoadCCURoomsSuccessAction,
     (state, { payload }) => ({
       ...state,
-      list: payload,
+      list: payload.rooms,
       loading: false,
     })
   ),

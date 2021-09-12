@@ -9,6 +9,7 @@ import * as hapTemporaryApplianceReducer from './reducer/HapTemporaryAppliance.r
 import * as localizationReducer from './reducer/Localization.reducer';
 import * as roomLoadingReducer from './reducer/CCURoom.reducer';
 import * as ccuDeviceLoadingReducer from './reducer/CCUDevice.reducer';
+import * as ccuVariableLoadingReducer from './reducer/CCUVariables.reducer';
 
 import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
@@ -18,8 +19,7 @@ import { SystemConfigEffects } from './effects/SystemConfig.effect';
 import { HapApplianceEffects } from './effects/HapAppliance.effect';
 import { HapInstanceEffects } from './effects/HapInstance.effect';
 import { LocalizationEffects } from './effects/Localization.effect';
-import { CCURoomEffects } from './effects/CCURoom.effect';
-import { CCUDevicesEffects } from './effects/CCUDevice.effect';
+import { CCUObjectEffects } from './effects/CCUObjects.effect';
 
 @NgModule({
   declarations: [],
@@ -32,7 +32,8 @@ import { CCUDevicesEffects } from './effects/CCUDevice.effect';
       hapTemporaryAppliances: hapTemporaryApplianceReducer.reducer,
       localizationData: localizationReducer.reducer,
       ccuRooms: roomLoadingReducer.reducer,
-      ccuDevices: ccuDeviceLoadingReducer.reducer
+      ccuDevices: ccuDeviceLoadingReducer.reducer,
+      ccuVariables: ccuVariableLoadingReducer.reducer
     }),
 
     EffectsModule.forRoot([
@@ -40,8 +41,7 @@ import { CCUDevicesEffects } from './effects/CCUDevice.effect';
       HapInstanceEffects,
       HapApplianceEffects,
       LocalizationEffects,
-      CCURoomEffects,
-      CCUDevicesEffects
+      CCUObjectEffects
     ]),
     StoreDevtoolsModule.instrument({
       maxAge: 25,

@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { HapAppliance, HapAppllianceApiCallResult } from '../models/HapAppliance.model';
+import { HapAppliance, HapApplianceLoadResult } from '../models/HapAppliance.model';
 
 export enum HapApplianceActionTypes {
   LOAD_APPLIANCES = '[HAP Appliance] Load List',
@@ -23,7 +23,7 @@ export const LoadHapAppliancesAction = createAction(
 );
 export const LoadHapAppliancesSuccessAction = createAction(
   HapApplianceActionTypes.LOAD_APPLIANCES_SUCCESS,
-  props<{ payload: HapAppllianceApiCallResult }>()
+  props<{ payload: HapApplianceLoadResult }>()
 );
 export const LoadHapAppliancesFailureAction = createAction(
   HapApplianceActionTypes.LOAD_APPLIANCES_FAILED,

@@ -1,5 +1,5 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { CCURoom } from '../models/CCURoom.model';
+import { CCURoom } from '../models/CCUObjects.model';
 import { CCURoomState } from '../reducer/CCURoom.reducer';
 
 export const selectCCURoomState =

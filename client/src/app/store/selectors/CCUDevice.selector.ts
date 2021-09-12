@@ -1,5 +1,5 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { CCUChannel, CCUDevice } from '../models/CCUDevice.model';
+import { CCUChannel, CCUDevice } from '../models/CCUObjects.model';
 import { CCUDeviceState } from '../reducer/CCUDevice.reducer';
 
 export const selectCCUDeviceState =

@@ -101,7 +101,9 @@ export class AbstractTableComponent implements OnInit {
     if (this.hasSearchOption() === true) {
       fromEvent(this.input.nativeElement, 'keyup').subscribe(() => {
         console.log('search changed')
+        this.paginator.reset();
         this.searchChanged.emit(0);
+
       });
     }
   }

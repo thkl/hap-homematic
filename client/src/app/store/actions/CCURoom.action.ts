@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { CCURoom } from '../models/CCURoom.model';
+import { CCURoomLoadingResult } from '../models/CCUObjects.model';
 
 export enum CCURoomActionTypes {
   LOAD_ROOMS = '[CCU Room] Load List',
@@ -12,7 +12,7 @@ export const LoadCCURoomsAction = createAction(
 );
 export const LoadCCURoomsSuccessAction = createAction(
   CCURoomActionTypes.LOAD_ROOMS_SUCCESS,
-  props<{ payload: CCURoom[] }>()
+  props<{ payload: CCURoomLoadingResult }>()
 );
 export const LoadCCURoomsFailureAction = createAction(
   CCURoomActionTypes.LOAD_ROOMS_FAILED,

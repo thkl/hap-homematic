@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { CCUDevice } from '../models/CCUDevice.model';
+import { CCUDeviceLoadingResult } from '../models/CCUObjects.model';
 
 export enum CCUDeviceActionTypes {
   LOAD_CCUDEVICES = '[CCU Devices] Load List',
@@ -12,7 +12,7 @@ export const LoadCCUDevicesAction = createAction(
 );
 export const LoadCCUDevicesSuccessAction = createAction(
   CCUDeviceActionTypes.LOAD_CCUDEVICES_SUCCESS,
-  props<{ payload: CCUDevice[] }>()
+  props<{ payload: CCUDeviceLoadingResult }>()
 );
 export const LoadCCUDevicesFailureAction = createAction(
   CCUDeviceActionTypes.LOAD_CCUDEVICES_FAILED,

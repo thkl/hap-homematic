@@ -24,7 +24,7 @@ export interface HapAppliance {
   applianceType: HapApplicanceType;
 }
 
-export interface HapAppllianceApiCallResult {
+export interface HapApplianceLoadResult {
   appliances: HapAppliance[];
   varTrigger: string;
 }

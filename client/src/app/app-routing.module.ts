@@ -43,6 +43,10 @@ const routes: Routes = [
       },
 
       { path: 'variables/:id', component: VariablelistComponent },
+      {
+        path: 'variable/new', component: NewApplianceWizzardFrameComponent,
+        data: { breadcrumb: 'Add new Variable' }
+      },
 
       {
         path: 'programs', component: ProgramlistComponent,
