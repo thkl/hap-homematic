@@ -24,7 +24,7 @@ export class CCUObjectEffects {
     ofType(CCURoomActionTypes.LOAD_ROOMS),
     mergeMap(() => this.systemconfigService.loadRooms()
       .pipe(
-        map((data: any) => ({ type: CCURoomActionTypes.LOAD_ROOMS_SUCCESS, payload: data.rooms })),
+        map((data: any) => ({ type: CCURoomActionTypes.LOAD_ROOMS_SUCCESS, payload: data })),
         catchError(error => of({ type: CCURoomActionTypes.LOAD_ROOMS_FAILED, payload: error }))
       ))
   )
