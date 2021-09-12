@@ -1,0 +1,28 @@
+<div class="modal fade" id="{{dialogId}}" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-danger" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="{{dialogId}}DialogLabel">{{title || 'Delete' | localize}}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-5">
+            <img src="./assets/img/delete.svg" class="image" alt="">
+          </div>
+          <div class="col-7">
+            <ng-content></ng-content>
+          </div>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">{{'Dismiss' | localize}}</button>
+        <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal" (click)="doConfirm()">
+          {{confirmText || 'Yes, kickit baby' | localize}}</button>
+      </div>
+    </div>
+  </div>
+</div>

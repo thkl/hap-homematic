@@ -38,6 +38,7 @@ import { NewApplianceWizzardFrameComponent } from './components/appliances/newap
 import { NewApplianceWizzardFinishComponent } from './components/appliances/newappliancewizzard/finish/finish.component';
 import { PaginationComponent } from './components/util/pagination/pagination.component';
 import { CcuvariablelistComponent } from './components/ccuobjects/ccuvariablelist/ccuvariablelist.component';
+import { ConfirmationDialogComponent } from './components/util/confirmation/confirmation.component';
 
 
 @NgModule({
@@ -59,7 +60,8 @@ import { CcuvariablelistComponent } from './components/ccuobjects/ccuvariablelis
     EditApplianceComponent,
     NewApplianceWizzardFinishComponent,
     PaginationComponent,
-    CcuvariablelistComponent
+    CcuvariablelistComponent,
+    ConfirmationDialogComponent
   ],
   imports: [
     HttpClientModule,
