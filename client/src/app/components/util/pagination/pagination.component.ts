@@ -76,7 +76,6 @@ export class PaginationComponent implements OnInit {
 
   build(): void {
     this.pages = Math.round(this.numRecords / this.maxRecords);
-    console.log(`Num: ${this.numRecords} Max:${this.maxRecords} Pages:${this.pages}`);
   }
 
   createRange(number: number) {

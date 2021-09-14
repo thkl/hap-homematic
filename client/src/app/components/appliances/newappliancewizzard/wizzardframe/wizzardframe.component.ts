@@ -1,10 +1,11 @@
-import { Component, EventEmitter, OnDestroy, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { select, Selector, Store } from '@ngrx/store';
 import { take } from 'rxjs/operators';
 import { Actions, Models, Selectors } from 'src/app/store';
 import { HapAppliance, HapApplicanceType } from 'src/app/store/models';
 import { CCUChannel, CCUVariable } from 'src/app/store/models/CCUObjects.model';
+import { AppliancePropertiesComponent } from '../../applianceproperties/applianceproperties.component';
 
 @Component({
   selector: 'app-wizzardframe',
@@ -23,6 +24,8 @@ export class NewApplianceWizzardFrameComponent implements OnInit, OnDestroy {
   public preselectedChannels: string[];
   public wizzardFor: Models.HapApplicanceType;
   private saving = false;
+
+  @ViewChild(AppliancePropertiesComponent) properties: AppliancePropertiesComponent;
 
   constructor(
     private route: ActivatedRoute,
@@ -171,7 +174,7 @@ export class NewApplianceWizzardFrameComponent implements OnInit, OnDestroy {
 
   saveApplianceLocaly(): void {
     if (this.selectedAppliance) {
-      this.save.emit();
+      this.properties.save();
     }
   }
 
@@ -221,6 +224,7 @@ export class NewApplianceWizzardFrameComponent implements OnInit, OnDestroy {
   }
 
   finish(): void {
+    this.saveApplianceLocaly();
     this.finishWizzard = true;
     this.store.pipe(select(Selectors.appliancesSaving)).subscribe(isSaving => {
       if ((this.saving === true) && (isSaving === false)) {

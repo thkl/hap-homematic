@@ -1,7 +1,7 @@
 
 import { Component, EventEmitter, Input, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Observable, of } from 'rxjs';
+import { Observable, of, Subject } from 'rxjs';
 import { HapApplianceApiService } from 'src/app/service/hapappliance.service';
 import { Actions, Models, Selectors } from 'src/app/store';
 import { HapInstance } from 'src/app/store/models';
@@ -22,6 +22,7 @@ export class AppliancePropertiesComponent implements OnInit, OnDestroy {
       if (this._selectedAppliance.settings === undefined) {
         this._selectedAppliance.settings = {};
       }
+
       this.loadServices();
     }
   }
@@ -42,13 +43,10 @@ export class AppliancePropertiesComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     // save on exit
-    if (this.selectedAppliance) {
-      this.store.dispatch({ type: Actions.HapApplianceActionTypes.SAVE_APPLIANCE, payload: this._selectedAppliance });
-    }
+    this.save();
   }
 
   ngOnInit(): void {
-
   }
 
   loadServices() {
@@ -63,7 +61,16 @@ export class AppliancePropertiesComponent implements OnInit, OnDestroy {
         }
       })
 
-      this.instanceList = this.store.select(Selectors.selectAllInstances);
+      this.instanceList = this.store.select(Selectors.selectAllInstances)
+
+
+      this.instanceList.subscribe(list => {
+        if (list.length > 0) {
+          if (this._selectedAppliance.instanceID === undefined) {
+            this._selectedAppliance.instanceID = list[0].id;
+          }
+        }
+      })
     }
   }
 
@@ -90,5 +97,11 @@ export class AppliancePropertiesComponent implements OnInit, OnDestroy {
 
   selectInstance(newInstance: HapInstance) {
     this.selectedAppliance.instanceID = newInstance.id;
+  }
+
+  save(): void {
+    if (this.selectedAppliance) {
+      this.store.dispatch({ type: Actions.HapApplianceActionTypes.SAVE_APPLIANCE, payload: this._selectedAppliance });
+    }
   }
 }

@@ -19,7 +19,7 @@ export class AbstractTableComponent implements OnInit {
   private _loadingSelector: any;
   private _dataSourceSelector: any;
   private _searchFields: string[] = [];
-  private _maxRecords: number = 10;
+
   public dataSourceFlt: MatTableDataSource<any> = new MatTableDataSource([]);
   public recordCount: number;
 
