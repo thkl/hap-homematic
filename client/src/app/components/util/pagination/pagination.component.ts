@@ -52,14 +52,14 @@ export class PaginationComponent implements OnInit {
   }
 
   nextDisabled(): boolean {
-    if (this.pages < this._maxPages) {
+    if ((this.pages < this._maxPages) || ((this.currentStart + this._maxPages) > this.pages)) {
       return true;
     }
     return false;
   }
 
   prevDisabled(): boolean {
-    if (this.pages < this._maxPages) {
+    if ((this.currentStart === 1) || (this.currentPage === 1)) {
       return true;
     }
     return false;
@@ -74,12 +74,42 @@ export class PaginationComponent implements OnInit {
     this.pageChanged.emit(this.currentPage);
   }
 
+  switchNextPage() {
+    if (this.currentStart + this._maxPages <= this.pages) {
+      this.currentStart = this.currentStart + 1;
+      this.rebuildIndicator();
+    }
+  }
+
+  switchPrevPage() {
+    if (this.currentStart > 1) {
+      this.currentStart = this.currentStart - 1;
+      this.rebuildIndicator();
+    }
+  }
+
+  rebuildIndicator() {
+    // check if the indicator is visible
+    // first check if we run out left wise
+    if (this.currentPage < this.currentStart) {
+      this.currentPage = this.currentStart;
+    }
+    // check if we run out on the right side
+    if (this.currentPage >= (this.currentStart + this._maxPages)) {
+      this.currentPage = (this.currentStart + this._maxPages) - 1
+    }
+  }
+
   build(): void {
-    this.pages = Math.round(this.numRecords / this.maxRecords);
+    this.pages = Math.ceil(parseFloat(this.numRecords.toFixed(2)) / parseFloat(this.maxRecords.toFixed(2))); // well
   }
 
   createRange(number: number) {
-    return new Array(number);
+    if (number > this._maxPages) {
+      return new Array(this._maxPages);
+    } else {
+      return new Array(number);
+    }
   }
 
   reset() {

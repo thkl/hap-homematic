@@ -1,7 +1,7 @@
 <nav aria-label="..." *ngIf="numRecords>maxRecords">
   <ul class="pagination">
     <li class="page-item" [class.disabled]="prevDisabled()">
-      <a class="page-link" href="#" tabindex="-1">{{'Previous' | localize}}</a>
+      <a class="page-link" (click)="switchPrevPage()" tabindex="-1">{{'Previous' | localize}}</a>
     </li>
 
     <li class="page-item" [class.active]="currentPage===(pageNumber(index))"
@@ -9,7 +9,7 @@
         class="page-link">{{pageNumber(index)}}</a></li>
 
     <li class="page-item" [class.disabled]="nextDisabled()">
-      <a class="page-link" href="#">{{'Next' | localize}}</a>
+      <a class="page-link" (click)="switchNextPage()">{{'Next' | localize}}</a>
     </li>
   </ul>
 </nav>
