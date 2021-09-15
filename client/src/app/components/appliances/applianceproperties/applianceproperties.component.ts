@@ -2,6 +2,7 @@
 import { Component, EventEmitter, Input, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable, of, Subject } from 'rxjs';
+import { ApplicationService } from 'src/app/service/application.service';
 import { HapApplianceApiService } from 'src/app/service/hapappliance.service';
 import { Actions, Models, Selectors } from 'src/app/store';
 import { HapInstance } from 'src/app/store/models';
@@ -37,7 +38,8 @@ export class AppliancePropertiesComponent implements OnInit, OnDestroy {
 
   constructor(
     private apiService: HapApplianceApiService,
-    public store: Store<Models.AppState>
+    public store: Store<Models.AppState>,
+    private applicationService: ApplicationService
   ) { }
 
 
@@ -68,6 +70,14 @@ export class AppliancePropertiesComponent implements OnInit, OnDestroy {
         if (list.length > 0) {
           if (this._selectedAppliance.instanceID === undefined) {
             this._selectedAppliance.instanceID = list[0].id;
+            const channel = this.applicationService.channelWithAddress(this._selectedAppliance.address);
+            if (channel !== undefined) {
+              const ccuRoom = this.applicationService.roomForChannel(channel);
+              if (ccuRoom) {
+                const roomifiedInstance = list.filter(instance => instance.roomId === ccuRoom.id)[0];
+                this._selectedAppliance.instanceID = roomifiedInstance ? roomifiedInstance.id : list[0].id;
+              }
+            }
           }
         }
       })
