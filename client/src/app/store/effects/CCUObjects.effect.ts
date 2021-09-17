@@ -10,7 +10,7 @@ import { CCUObjectsActionTypes, LoadCCUDevicesFailureAction, LoadCCUDevicesSucce
 export class CCUObjectEffects {
 
   loadCCUDevices$ = createEffect(() => this.actions$.pipe(
-    ofType(CCUObjectsActionTypes.LOAD_CCUDEVICES),
+    ofType(CCUObjectsActionTypes.LOAD_CCU_DEVICES),
     mergeMap(() => this.systemconfigService.loadCompatibleCCUDevices()
       .pipe(
         map((data: any) => LoadCCUDevicesSuccessAction({ result: data })),
@@ -21,7 +21,7 @@ export class CCUObjectEffects {
   );
 
   loadRooms$ = createEffect(() => this.actions$.pipe(
-    ofType(CCUObjectsActionTypes.LOAD_ROOMS),
+    ofType(CCUObjectsActionTypes.LOAD_CCU_ROOMS),
     mergeMap(() => this.systemconfigService.loadRooms()
       .pipe(
         map((data: any) => LoadCCURoomsSuccessAction({ result: data })),
@@ -32,7 +32,7 @@ export class CCUObjectEffects {
   );
 
   loadVariables$ = createEffect(() => this.actions$.pipe(
-    ofType(CCUObjectsActionTypes.LOAD_CCUVARIABLES),
+    ofType(CCUObjectsActionTypes.LOAD_CCU_VARIABLES),
     mergeMap(() => this.systemconfigService.loadCompatibleCCUVariables()
       .pipe(
         map((data: any) => LoadCCUVariablesSuccessAction({ result: data })),
