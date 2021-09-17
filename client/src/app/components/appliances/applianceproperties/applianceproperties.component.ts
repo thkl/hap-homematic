@@ -111,7 +111,7 @@ export class AppliancePropertiesComponent implements OnInit, OnDestroy {
 
   save(): void {
     if (this.selectedAppliance) {
-      this.store.dispatch({ type: Actions.HapApplianceActionTypes.SAVE_APPLIANCE, payload: this._selectedAppliance });
+      this.store.dispatch(Actions.SaveHapApplianceAction({ applianceToSave: this._selectedAppliance }));
     }
   }
 }
