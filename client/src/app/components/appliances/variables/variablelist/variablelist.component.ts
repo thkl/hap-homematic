@@ -29,7 +29,7 @@ export class VariablelistComponent extends AbstractTableComponent {
   }
 
 
-  deleteVariable(variable: HapAppliance) {
-    this.store.dispatch({ type: Actions.HapApplianceActionTypes.DELETE_APPLIANCE_FROM_API, payload: variable });
+  deleteVariable(applianceToDelete: HapAppliance) {
+    this.store.dispatch(Actions.DeleteHapApplianceFromApiAction({ applianceToDelete }));
   }
 }

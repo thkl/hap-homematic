@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Models, Selectors } from 'src/app/store'
+import { Actions, Models, Selectors } from 'src/app/store'
 import { HapAppliance } from 'src/app/store/models';
 import { AbstractTableComponent } from '../../abstracttable/abstracttable';
 
@@ -30,7 +30,7 @@ export class DeviceListComponent extends AbstractTableComponent {
   }
 
 
-  deleteDevice(device: HapAppliance) {
-
+  deleteDevice(applianceToDelete: HapAppliance) {
+    this.store.dispatch(Actions.DeleteHapApplianceFromApiAction({ applianceToDelete }));
   }
 }
