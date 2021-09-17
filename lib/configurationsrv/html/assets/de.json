@@ -382,6 +382,7 @@
   "Are you sure you want to reset %s? HomeKit will not be able to access devices in this instance anymore. You have to reconnect the instance new to HomeKit. All your settings, automations using devices from this instance will be lost. Only perfom this in case you removed a instance allready and now you are note able to add it again to HomeKit.": "Bist Du sicher, das Du die Instanz %s zurücksetzen möchtest ? HomeKit wird dann nicht mehr in der Lage sein, Geräte dieser Instanz zu steuern. Nach dem Rücksetzen muss die Instanz neu mit HomeKit verbunden werden. Alle Einstellungen und Automationen welche Geräte dieser Instanz beinhalten werden gelöscht. Führe den Reset nur aus, wenn Du die Instanz schon aus HomeKit gelöscht hast und sie jetzt nicht wieder hinzufügen kannst.",
   "Reset ?": "Zurücksetzen ?",
   "Yes, reset the instance": "JA, die Instanz zurücksetzen.",
+  "Yes, kickit baby": "Ja, wirf es weg",
   "Apple Home Compatibility": "Apple Home-App kompatibel",
   "This will disable the eve history. Due to the fact that Apples Home App is not able to show custom devices using this option will not generate custom devices.": "Dies wird die Eve History abschalten. Dadurch das Apples Home App keine custom Geräte anzeigen kann, wird diese Option vermeiden solche Geräte zu erzeugen.",
   "This service provides a motion sensor based on a short press event in HomeKit": "Dieser Service stellt einen Bewegungsmelder auf Basis eines kurzen Tastendruck Events zur Verfügung",
