@@ -101,7 +101,9 @@ export class PaginationComponent implements OnInit {
   }
 
   build(): void {
-    this.pages = Math.ceil(parseFloat(this.numRecords.toFixed(2)) / parseFloat(this.maxRecords.toFixed(2))); // well
+    if ((this.numRecords) && (this.maxRecords)) {
+      this.pages = Math.ceil(parseFloat(this.numRecords.toFixed(2)) / parseFloat(this.maxRecords.toFixed(2))); // well
+    }
   }
 
   createRange(number: number) {
