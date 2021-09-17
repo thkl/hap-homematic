@@ -1,5 +1,5 @@
 import { Action, createReducer, on } from '@ngrx/store';
-import * as CCUVariableActionTypes from '../actions/CCUVariable.action';
+import * as CCUVariableActionTypes from '../actions/CCUObjects.action';
 import { CCUVariable } from '../models/CCUObjects.model';
 
 export interface CCUVariableState {
@@ -22,17 +22,17 @@ const ccuVariableLoadingReducer = createReducer(
 
   on(
     CCUVariableActionTypes.LoadCCUVariablesSuccessAction,
-    (state, { payload }) => ({
+    (state, { result }) => ({
       ...state,
-      list: payload.variables,
+      list: result.variables,
       loading: false,
     })
   ),
   on(
     CCUVariableActionTypes.LoadCCUVariablesFailureAction,
-    (state, { payload }) => ({
+    (state, { error }) => ({
       ...state,
-      error: payload,
+      error: error,
       loading: false,
     })
   )

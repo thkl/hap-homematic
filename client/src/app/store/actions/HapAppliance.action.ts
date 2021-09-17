@@ -38,17 +38,17 @@ export const LoadHapAppliancesFailureAction = createAction(
 
 export const SaveHapApplianceAction = createAction(
   HapApplianceActionTypes.SAVE_APPLIANCE,
-  props<{ payload: HapAppliance }>()
+  props<{ applianceToSave: HapAppliance }>()
 );
 
 export const DeleteHapApplianceAction = createAction(
   HapApplianceActionTypes.DELETE_APPLIANCE,
-  props<{ payload: HapAppliance }>()
+  props<{ applianceToDelete: HapAppliance }>()
 );
 
 export const DeleteHapApplianceFromApiAction = createAction(
   HapApplianceActionTypes.DELETE_APPLIANCE_FROM_API,
-  props<{ payload: HapAppliance }>()
+  props<{ applianceToDelete: HapAppliance }>()
 );
 
 

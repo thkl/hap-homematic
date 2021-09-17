@@ -1,5 +1,5 @@
 import { Action, createReducer, on } from '@ngrx/store';
-import * as CCUDeviceActionTypes from '../actions/CCUDevice.action';
+import * as CCUDeviceActionTypes from '../actions/CCUObjects.action';
 import { CCUDevice } from '../models/CCUObjects.model';
 
 export interface CCUDeviceState {
@@ -22,17 +22,17 @@ const ccuDeviceLoadingReducer = createReducer(
 
   on(
     CCUDeviceActionTypes.LoadCCUDevicesSuccessAction,
-    (state, { payload }) => ({
+    (state, { result }) => ({
       ...state,
-      list: payload.devices,
+      list: result.devices,
       loading: false,
     })
   ),
   on(
     CCUDeviceActionTypes.LoadCCUDevicesFailureAction,
-    (state, { payload }) => ({
+    (state, { error }) => ({
       ...state,
-      error: payload,
+      error: error,
       loading: false,
     })
   )

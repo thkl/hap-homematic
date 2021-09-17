@@ -74,8 +74,8 @@ const applianceLoadingReducer = createReducer(
   ),
 
   on(HapApplianceActionTypes.DeleteHapApplianceAction,
-    (state, { payload }) => {
-      const newList = [...state.list].filter(tmpAp => (tmpAp.address !== payload.address)); //making a new array and remove the item in payload
+    (state, { applianceToDelete }) => {
+      const newList = [...state.list].filter(tmpAp => (tmpAp.address !== applianceToDelete.address)); //making a new array and remove the item in payload
       return {
         ...state,
         list: newList,

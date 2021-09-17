@@ -26,12 +26,12 @@ const applianceLoadingReducer = createReducer(
   initialState,
 
   on(HapApplianceActionTypes.SaveHapApplianceAction,
-    (state, { payload }) => {
+    (state, { applianceToSave }) => {
 
       return {
         ...state,
         loading: false,
-        list: updateApplianceList(state, payload)
+        list: updateApplianceList(state, applianceToSave)
       }
     }
   ),

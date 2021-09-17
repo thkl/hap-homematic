@@ -77,7 +77,7 @@ export class HapApplianceEffects {
     this.actions$.pipe(
       ofType(HapApplianceActionTypes.DELETE_APPLIANCE_FROM_API),
       switchMap((action) =>
-        this.hapApplianceService.deleteHapAppliance(action['payload']).pipe(
+        this.hapApplianceService.deleteHapAppliance(action['applianceToDelete']).pipe(
           map((data: any) => {
             return {
               type: HapApplianceActionTypes.DELETE_APPLIANCE_FROM_API_SUCCESS,
