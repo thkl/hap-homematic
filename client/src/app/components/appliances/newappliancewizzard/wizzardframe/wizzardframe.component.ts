@@ -4,7 +4,7 @@ import { select, Selector, Store } from '@ngrx/store';
 import { take } from 'rxjs/operators';
 import { Actions, Models, Selectors } from 'src/app/store';
 import { HapAppliance, HapApplicanceType } from 'src/app/store/models';
-import { CCUChannel, CCUVariable } from 'src/app/store/models/CCUObjects.model';
+import { CCUChannel, CCUProgram, CCUVariable } from 'src/app/store/models/CCUObjects.model';
 import { AppliancePropertiesComponent } from '../../applianceproperties/applianceproperties.component';
 
 @Component({
@@ -62,7 +62,9 @@ export class NewApplianceWizzardFrameComponent implements OnInit, OnDestroy {
     this.store.pipe(select(Selectors.selectAllTemporaryAppliances(Models.HapApplicanceType.All))).subscribe(applList => {
       this.channelAdressList = [];
       applList.forEach(tmpHapAppliance => {
-        this.channelAdressList.push(tmpHapAppliance.address);
+        if (tmpHapAppliance !== undefined) {
+          this.channelAdressList.push(tmpHapAppliance.address);
+        }
       })
       this.canDoNext = (this.channelAdressList.length > 0);
     });
@@ -77,12 +79,12 @@ export class NewApplianceWizzardFrameComponent implements OnInit, OnDestroy {
   }
 
 
-  getProgram(selector: any): CCUVariable {
-    let variable: CCUVariable;
+  getProgram(selector: any): CCUProgram {
+    let program: CCUProgram;
     this.store.select(selector).pipe(take(1)).subscribe(
-      s => variable = s
+      s => program = s
     );
-    return variable;
+    return program;
   }
 
   getChannel(selector: any): CCUChannel {
@@ -119,6 +121,13 @@ export class NewApplianceWizzardFrameComponent implements OnInit, OnDestroy {
         serial = channelAddress;
         channel = "0";
         break;
+      case Models.HapApplicanceType.Program:
+        ccuObject = this.getProgram(Selectors.selectProgramByName(channelAddress));
+        address = `${channelAddress}:0`;
+        serial = channelAddress;
+        channel = "0";
+        break;
+
     }
     if (ccuObject) {
       const name = ccuObject.name;

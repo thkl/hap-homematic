@@ -20,16 +20,17 @@ export const initialState: HapApplianceState = {
 
 const updateApplianceList = (state: HapApplianceState, payload: HapAppliance[]) => {
   const newList = [...state.list]; //making a new array
-  payload.forEach(appliance => {
+  if (payload !== undefined) {
+    payload.forEach(appliance => {
 
-    const index = state.list.findIndex(appl => appl.address === appliance.address); //finding index of the item
-    if (index === -1) {
-      newList.push(appliance);
-    } else {
-      newList[index] = appliance;
-    }
-  })
-
+      const index = state.list.findIndex(appl => appl.address === appliance.address); //finding index of the item
+      if (index === -1) {
+        newList.push(appliance);
+      } else {
+        newList[index] = appliance;
+      }
+    })
+  }
   return newList;
 }
 

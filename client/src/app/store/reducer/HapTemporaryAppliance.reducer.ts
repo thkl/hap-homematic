@@ -12,7 +12,8 @@ export const initialState: HapApplianceState = {
 };
 
 const updateApplianceList = (state: HapApplianceState, payload: HapAppliance) => {
-  const index = state.list.findIndex(appl => ((appl !== undefined) && (appl.address === payload.address))); //finding index of the item
+  console.log(payload);
+  const index = state.list.findIndex(appl => ((appl !== undefined) && (payload !== undefined) && (appl.address === payload.address))); //finding index of the item
   const newList = [...state.list]; //making a new array
   if (index === -1) {
     newList.push(payload);

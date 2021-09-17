@@ -36,3 +36,12 @@ export interface CCURoom {
 export interface CCURoomLoadingResult {
   rooms: CCURoom[];
 }
+
+export interface CCUProgram {
+  id: number;
+  name: string;
+}
+
+export interface CCUProgramLoadingResult {
+  programs: CCUProgram[];
+}

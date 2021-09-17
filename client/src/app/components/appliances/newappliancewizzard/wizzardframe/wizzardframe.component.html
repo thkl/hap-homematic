@@ -41,6 +41,11 @@
           <app-ccuvariablelist *ngIf="this.wizzardFor==='HapVariable'"
             (selectionChanged)="deviceSelectionChanged($event)" [preselectedVariables]="preselectedChannels">
           </app-ccuvariablelist>
+
+          <app-ccuprogramlist *ngIf="this.wizzardFor==='HapProgram'" (selectionChanged)="deviceSelectionChanged($event)"
+            [preselectedVariables]="preselectedChannels">
+          </app-ccuprogramlist>
+
         </div>
       </div>
 

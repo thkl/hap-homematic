@@ -1,5 +1,5 @@
 import { createAction, props } from "@ngrx/store";
-import { CCUDeviceLoadingResult, CCURoomLoadingResult, CCUVariableLoadingResult } from "../models";
+import { CCUDeviceLoadingResult, CCUProgramLoadingResult, CCURoomLoadingResult, CCUVariableLoadingResult } from "../models";
 
 export enum CCUObjectsActionTypes {
   LOAD_CCU_DEVICES = '[CCU Devices] Load List',
@@ -12,7 +12,11 @@ export enum CCUObjectsActionTypes {
 
   LOAD_CCU_VARIABLES = '[CCU Variables] Load List',
   LOAD_CCU_VARIABLES_SUCCESS = '[CCU Variables] Load List Success',
-  LOAD_CCU_VARIABLES_FAILED = '[CCU Variables] Load List Failed'
+  LOAD_CCU_VARIABLES_FAILED = '[CCU Variables] Load List Failed',
+
+  LOAD_CCU_PROGRAMS = '[CCU Programs] Load List',
+  LOAD_CCU_PROGRAMS_SUCCESS = '[CCU Programs] Load List Success',
+  LOAD_CCU_PROGRAMS_FAILED = '[CCU Programs] Load List Failed',
 }
 
 export const LoadCCUDevicesAction = createAction(
@@ -54,3 +58,14 @@ export const LoadCCUVariablesFailureAction = createAction(
   props<{ error: Error }>()
 );
 
+export const LoadCCUProgramsAction = createAction(
+  CCUObjectsActionTypes.LOAD_CCU_PROGRAMS
+);
+export const LoadCCUProgramsSuccessAction = createAction(
+  CCUObjectsActionTypes.LOAD_CCU_PROGRAMS_SUCCESS,
+  props<{ result: CCUProgramLoadingResult }>()
+);
+export const LoadCCUProgramsFailureAction = createAction(
+  CCUObjectsActionTypes.LOAD_CCU_PROGRAMS_FAILED,
+  props<{ error: Error }>()
+);

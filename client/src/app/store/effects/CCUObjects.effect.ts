@@ -3,7 +3,7 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of, pipe } from 'rxjs';
 import { map, mergeMap, catchError } from 'rxjs/operators';
 import { SystemconfigService } from 'src/app/service/systemconfig.service';
-import { CCUObjectsActionTypes, LoadCCUDevicesFailureAction, LoadCCUDevicesSuccessAction, LoadCCURoomsFailureAction, LoadCCURoomsSuccessAction, LoadCCUVariablesFailureAction, LoadCCUVariablesSuccessAction } from '../actions';
+import { CCUObjectsActionTypes, LoadCCUDevicesFailureAction, LoadCCUDevicesSuccessAction, LoadCCUProgramsFailureAction, LoadCCUProgramsSuccessAction, LoadCCURoomsFailureAction, LoadCCURoomsSuccessAction, LoadCCUVariablesFailureAction, LoadCCUVariablesSuccessAction } from '../actions';
 
 
 @Injectable()
@@ -41,6 +41,15 @@ export class CCUObjectEffects {
   )
   );
 
+  loadPrograms$ = createEffect(() => this.actions$.pipe(
+    ofType(CCUObjectsActionTypes.LOAD_CCU_PROGRAMS),
+    mergeMap(() => this.systemconfigService.loadCompatibleCCUPrograms()
+      .pipe(
+        map((data: any) => LoadCCUProgramsSuccessAction({ result: data })),
+        catchError(error => of(LoadCCUProgramsFailureAction({ error: error })))
+      ))
+  )
+  );
 
   constructor(
     private actions$: Actions,

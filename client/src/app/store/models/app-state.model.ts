@@ -5,6 +5,7 @@ import { ConfigState } from '../reducer/SystemConfig.reducer';
 import { CCUDeviceState } from '../reducer/CCUDevice.reducer';
 import { HapApplianceState } from '../reducer/HapAppliance.reducer';
 import { CCUVariableState } from '../reducer/CCUVariables.reducer';
+import { CCUProgramState } from '../reducer/CCUProgram.reducer';
 
 export interface AppState {
   readonly systemConfigState: ConfigState;
@@ -14,5 +15,6 @@ export interface AppState {
   readonly ccuRooms: CCURoomState;
   readonly ccuDevices: CCUDeviceState;
   readonly ccuVariables: CCUVariableState;
+  readonly ccuPrograms: CCUProgramState;
   readonly hapTemporaryAppliances: HapApplianceState;
 }

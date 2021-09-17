@@ -37,8 +37,9 @@ import { EditApplianceComponent } from './components/appliances/editappliance/ed
 import { NewApplianceWizzardFrameComponent } from './components/appliances/newappliancewizzard/wizzardframe/wizzardframe.component';
 import { NewApplianceWizzardFinishComponent } from './components/appliances/newappliancewizzard/finish/finish.component';
 import { PaginationComponent } from './components/util/pagination/pagination.component';
-import { CcuvariablelistComponent } from './components/ccuobjects/ccuvariablelist/ccuvariablelist.component';
+import { CCUVariablelistComponent } from './components/ccuobjects/ccuvariablelist/ccuvariablelist.component';
 import { ConfirmationDialogComponent } from './components/util/confirmation/confirmation.component';
+import { CCUProgramlistComponent } from './components/ccuobjects/ccuprogramlist/ccuprogramlist.component';
 
 
 @NgModule({
@@ -60,8 +61,9 @@ import { ConfirmationDialogComponent } from './components/util/confirmation/conf
     EditApplianceComponent,
     NewApplianceWizzardFinishComponent,
     PaginationComponent,
-    CcuvariablelistComponent,
-    ConfirmationDialogComponent
+    CCUVariablelistComponent,
+    ConfirmationDialogComponent,
+    CCUProgramlistComponent
   ],
   imports: [
     HttpClientModule,

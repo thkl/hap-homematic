@@ -14,12 +14,13 @@ interface ListNode {
 
 const LIST_DATA: ListNode[] = [];
 
+
 @Component({
-  selector: 'app-ccuvariablelist',
-  templateUrl: './ccuvariablelist.component.html',
-  styleUrls: ['./ccuvariablelist.component.sass']
+  selector: 'app-ccuprogramlist',
+  templateUrl: './ccuprogramlist.component.html',
+  styleUrls: ['./ccuprogramlist.component.sass']
 })
-export class CCUVariablelistComponent implements OnInit {
+export class CCUProgramlistComponent implements OnInit {
 
   @Output() selectionChanged: EventEmitter<ListNode> = new EventEmitter();
   @Input() preselectedVariables: string[];
@@ -37,13 +38,13 @@ export class CCUVariablelistComponent implements OnInit {
       this.preselectedVariables = [];
     }
     // we have to do this once cause the store will change on every selection
-    this.store.select(Selectors.selectAllAppliances(Models.HapApplicanceType.Variable)).subscribe(hapdevices => {
-      this.store.pipe(select(Selectors.selectAllCCUVariables)).subscribe(ccuvariableList => {
+    this.store.select(Selectors.selectAllAppliances(Models.HapApplicanceType.Program)).subscribe(hapdevices => {
+      this.store.pipe(select(Selectors.selectAllCCUPrograms)).subscribe(ccuProgramList => {
         this.listData = [];
-        ccuvariableList.forEach(variable => {
-          const exists = (hapdevices.filter(device => `${device.address}` === `${variable.name}:0`).length > 0);
-          const active = (this.preselectedVariables.indexOf(variable.name) !== -1);
-          this.listData.push({ id: variable.name, name: variable.name, active, exists })
+        ccuProgramList.forEach(program => {
+          const exists = (hapdevices.filter(device => `${device.address}` === `${program.name}:0`).length > 0);
+          const active = (this.preselectedVariables.indexOf(program.name) !== -1);
+          this.listData.push({ id: program.name, name: program.name, active, exists })
         })
         this.fillList();
       })
@@ -61,4 +62,5 @@ export class CCUVariablelistComponent implements OnInit {
   sortData(event): void {
 
   }
+
 }

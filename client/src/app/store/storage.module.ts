@@ -10,6 +10,7 @@ import * as localizationReducer from './reducer/Localization.reducer';
 import * as roomLoadingReducer from './reducer/CCURoom.reducer';
 import * as ccuDeviceLoadingReducer from './reducer/CCUDevice.reducer';
 import * as ccuVariableLoadingReducer from './reducer/CCUVariables.reducer';
+import * as ccuProgramLoadingReducer from './reducer/CCUProgram.reducer';
 
 import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
@@ -33,7 +34,8 @@ import { CCUObjectEffects } from './effects/CCUObjects.effect';
       localizationData: localizationReducer.reducer,
       ccuRooms: roomLoadingReducer.reducer,
       ccuDevices: ccuDeviceLoadingReducer.reducer,
-      ccuVariables: ccuVariableLoadingReducer.reducer
+      ccuVariables: ccuVariableLoadingReducer.reducer,
+      ccuPrograms: ccuProgramLoadingReducer.reducer
     }),
 
     EffectsModule.forRoot([

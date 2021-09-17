@@ -1,0 +1,29 @@
+<div class="input-group mb-2">
+  <div class="input-group-prepend">
+    <div class="input-group-text">{{'Search' | localize}}</div>
+  </div>
+  <input type="text" #searchInput [(ngModel)]="searchText" class="form-control form-control-lg" />
+</div>
+
+<table cdk-table [dataSource]="dataSource" class="table table-responsive-sm table-striped table-sm" matSort
+  (matSortChange)="sortData($event)">
+
+  <ng-container cdkColumnDef="active">
+    <th cdk-header-cell *cdkHeaderCellDef width="40px"></th>
+    <td cdk-cell *cdkCellDef="let row"><input class="form-check-input table_check" type="checkbox" id="{{row.id}}_check"
+        [(ngModel)]="row.active" *ngIf="row.exists===false" (ngModelChange)="select(row)"></td>
+  </ng-container>
+
+  <ng-container cdkColumnDef="name">
+    <th cdk-header-cell *cdkHeaderCellDef mat-sort-header="name" disableClear>{{'Name' | localize}}</th>
+    <td cdk-cell *cdkCellDef="let row"> {{row.name}} </td>
+  </ng-container>
+
+  <ng-container cdkColumnDef="exists">
+    <th cdk-header-cell *cdkHeaderCellDef></th>
+    <td cdk-cell *cdkCellDef="let row"><span *ngIf="row.exists===true">{{'already exists'|localize}}</span></td>
+  </ng-container>
+
+  <tr cdk-header-row *cdkHeaderRowDef="['active','name','exists']"></tr>
+  <tr cdk-row *cdkRowDef="let row; columns: ['active','name','exists'];"></tr>
+</table>

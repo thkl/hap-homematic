@@ -22,12 +22,10 @@ export class NewApplianceWizzardFinishComponent implements OnInit, AfterViewInit
   ngOnInit(): void {
     this.store.pipe(select(Selectors.selectAllTemporaryAppliances(Models.HapApplicanceType.All))).subscribe(applList => {
       if (applList !== undefined) {
-        this.list = applList;
+        this.list = applList.filter(app => ((app !== null) && (app !== undefined)));
         if (!this.saving) {
           this.saving = true;
-          console.log('saving to api')
           setTimeout(() => { this.store.dispatch({ type: Actions.HapApplianceActionTypes.SAVE_APPLIANCE_TO_API, payload: this.list }); }, 500);
-          //
         }
       }
     });

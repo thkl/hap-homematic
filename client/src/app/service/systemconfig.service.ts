@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { SystemConfig } from '../store/models/SystemConfig.model';
 import { ApplicationService } from './application.service';
-import { CCUDeviceLoadingResult, CCURoom, CCURoomLoadingResult, CCUVariableLoadingResult } from '../store/models';
+import { CCUDeviceLoadingResult, CCUProgramLoadingResult, CCURoom, CCURoomLoadingResult, CCUVariableLoadingResult } from '../store/models';
 
 @Injectable({
   providedIn: 'root'
@@ -33,4 +33,7 @@ export class SystemconfigService {
     return this.http.get<CCUVariableLoadingResult>(`${this.api}/ccuvariables`);
   }
 
+  loadCompatibleCCUPrograms() {
+    return this.http.get<CCUProgramLoadingResult>(`${this.api}/ccuprograms`);
+  }
 }

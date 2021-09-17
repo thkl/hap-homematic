@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CCUVariablelistComponent } from './ccuvariablelist.component';
+import { CCUProgramlistComponent } from './ccuprogramlist.component';
 
-describe('CCUVariablelistComponent', () => {
-  let component: CCUVariablelistComponent;
-  let fixture: ComponentFixture<CCUVariablelistComponent>;
+describe('CCUProgramlistComponent', () => {
+  let component: CCUProgramlistComponent;
+  let fixture: ComponentFixture<CCUProgramlistComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [CCUVariablelistComponent]
+      declarations: [CCUProgramlistComponent]
     })
       .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CCUVariablelistComponent);
+    fixture = TestBed.createComponent(CCUProgramlistComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
