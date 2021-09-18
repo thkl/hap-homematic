@@ -25,7 +25,7 @@ export class ProgramlistComponent extends AbstractTableComponent {
   }
 
 
-  deleteProgram(applianceToDelete: HapAppliance) {
+  deleteProgram(applianceToDelete: HapAppliance): void {
     this.store.dispatch(Actions.DeleteHapApplianceFromApiAction({ applianceToDelete }));
   }
 }

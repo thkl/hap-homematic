@@ -1,7 +1,7 @@
 
-import { Component, EventEmitter, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Observable, of, Subject } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { ApplicationService } from 'src/app/service/application.service';
 import { HapApplianceApiService } from 'src/app/service/hapappliance.service';
 import { Actions, Models, Selectors } from 'src/app/store';
@@ -12,7 +12,7 @@ import { HapInstance } from 'src/app/store/models';
   templateUrl: './applianceproperties.component.html',
   styleUrls: ['./applianceproperties.component.sass']
 })
-export class AppliancePropertiesComponent implements OnInit, OnDestroy {
+export class AppliancePropertiesComponent implements OnDestroy {
 
   private _selectedAppliance: Models.HapAppliance;
 
@@ -42,16 +42,12 @@ export class AppliancePropertiesComponent implements OnInit, OnDestroy {
     private applicationService: ApplicationService
   ) { }
 
-
   ngOnDestroy(): void {
     // save on exit
     this.save();
   }
 
-  ngOnInit(): void {
-  }
-
-  loadServices() {
+  loadServices(): void {
     if (this.selectedAppliance !== undefined) {
       this.apiService.loadServiceData(this.selectedAppliance.address, this.selectedAppliance.applianceType).subscribe(serviceResponse => {
         this.serviceList = of(serviceResponse.service);
@@ -85,7 +81,7 @@ export class AppliancePropertiesComponent implements OnInit, OnDestroy {
   }
 
   getSettings(propKey: any, defaultData: any): any {
-    let settings = this._selectedAppliance.settings.settings; // this is a little weird
+    const settings = this._selectedAppliance.settings.settings; // this is a little weird
     if (settings !== undefined) {
       return settings[propKey] || defaultData;
     } else {
@@ -100,12 +96,12 @@ export class AppliancePropertiesComponent implements OnInit, OnDestroy {
     this._selectedAppliance.settings.settings[propKey] = newSetting;
   }
 
-  selectClazz(newClazz: any) {
+  selectClazz(newClazz: any): void {
     this.selectedServiceClass = newClazz;
     this.selectedAppliance.serviceClass = newClazz.serviceClazz;
   }
 
-  selectInstance(newInstance: HapInstance) {
+  selectInstance(newInstance: HapInstance): void {
     this.selectedAppliance.instanceID = newInstance.id;
   }
 

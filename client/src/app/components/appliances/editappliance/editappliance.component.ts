@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import { Actions, Models, Selectors } from 'src/app/store';
@@ -13,9 +13,9 @@ import { HapAppliance, HapApplicanceType } from 'src/app/store/models';
 export class EditApplianceComponent implements OnInit, OnDestroy {
 
   selectedAppliance: HapAppliance;
-  saveApplianceState: boolean = false;
-  title: string = 'Edit';
-  saving: boolean = false;
+  saveApplianceState = false;
+  title = 'Edit';
+  saving = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -66,7 +66,7 @@ export class EditApplianceComponent implements OnInit, OnDestroy {
     }
   }
 
-  doSaveAppliance() {
+  doSaveAppliance(): void {
     this.saveApplianceState = true;
 
     this.store.pipe(select(Selectors.appliancesSaving)).subscribe(isSaving => {
