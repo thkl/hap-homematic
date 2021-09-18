@@ -14,6 +14,7 @@ export class InstancedetailComponent implements OnInit {
 
   selectedInstance: HapInstance;
   title = 'Edit instance %s';
+  errorMessage = undefined;
   roomList: Observable<CCURoom[]>;
   public iconPin: string;
   constructor(
@@ -66,8 +67,20 @@ export class InstancedetailComponent implements OnInit {
     }
   }
 
+  validate(): boolean {
+    // Check if we have a name
+    if ((this.selectedInstance.displayName === undefined) || (this.selectedInstance.displayName.length === 0)) {
+      this.errorMessage = 'Instance must have a name';
+      return false;
+    }
+    this.errorMessage = undefined;
+    return true;
+  }
+
   doSave(): void {
-    this.store.dispatch({ type: Actions.HapInstanceActionTypes.SAVE_INSTANCE_TO_API, payload: [this.selectedInstance] });
-    this.router.navigate(['/instances']);
+    if (this.validate() === true) {
+      this.store.dispatch({ type: Actions.HapInstanceActionTypes.SAVE_INSTANCE_TO_API, payload: [this.selectedInstance] });
+      this.router.navigate(['/instances']);
+    }
   }
 }

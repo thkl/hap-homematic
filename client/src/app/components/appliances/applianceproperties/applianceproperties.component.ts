@@ -15,6 +15,7 @@ import { HapInstance } from 'src/app/store/models';
 export class AppliancePropertiesComponent implements OnDestroy {
 
   private _selectedAppliance: Models.HapAppliance;
+  private errorMessage: string;
 
   @Input() set selectedAppliance(newAppliance: Models.HapAppliance) {
     if (newAppliance !== undefined) {
@@ -103,6 +104,25 @@ export class AppliancePropertiesComponent implements OnDestroy {
 
   selectInstance(newInstance: HapInstance): void {
     this.selectedAppliance.instanceID = newInstance.id;
+  }
+
+  validate(): boolean {
+    // Check if we have a name
+    if ((this._selectedAppliance.name === undefined) || (this._selectedAppliance.name.length === 0)) {
+      this.errorMessage = 'Appliance must have a name';
+      return false;
+    }
+    if ((this._selectedAppliance.instanceID === undefined)) {
+      this.errorMessage = 'Appliance must have a Instance';
+      return false;
+    }
+
+    this.errorMessage = undefined;
+    return true;
+  }
+
+  getErrorMessage(): string {
+    return this.errorMessage;
   }
 
   save(): void {

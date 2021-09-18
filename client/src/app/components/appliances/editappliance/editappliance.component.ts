@@ -1,8 +1,9 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import { Actions, Models, Selectors } from 'src/app/store';
 import { HapAppliance, HapApplicanceType } from 'src/app/store/models';
+import { AppliancePropertiesComponent } from '../applianceproperties/applianceproperties.component';
 
 
 @Component({
@@ -16,6 +17,9 @@ export class EditApplianceComponent implements OnInit, OnDestroy {
   saveApplianceState = false;
   title = 'Edit';
   saving = false;
+  errorMessage: string;
+
+  @ViewChild(AppliancePropertiesComponent) properties: AppliancePropertiesComponent;
 
   constructor(
     private route: ActivatedRoute,
@@ -67,16 +71,22 @@ export class EditApplianceComponent implements OnInit, OnDestroy {
   }
 
   doSaveAppliance(): void {
-    this.saveApplianceState = true;
 
-    this.store.pipe(select(Selectors.appliancesSaving)).subscribe(isSaving => {
-      if ((this.saving === true) && (isSaving === false)) {
-        this.goBack();
-      } else {
-        this.saving = isSaving;
-      }
-    })
+    if (this.properties.validate()) {
 
+      this.saveApplianceState = true;
+
+      this.store.pipe(select(Selectors.appliancesSaving)).subscribe(isSaving => {
+        if ((this.saving === true) && (isSaving === false)) {
+          this.goBack();
+        } else {
+          this.saving = isSaving;
+        }
+      })
+
+    } else {
+      this.errorMessage = this.properties.getErrorMessage();
+    }
   }
 
 }

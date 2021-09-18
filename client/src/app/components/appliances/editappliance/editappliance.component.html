@@ -12,13 +12,18 @@
   </div>
 
   <div class="card-footer" id="container_footer">
-    <button type="button" class="btn btn-sm btn-success" (click)="doSaveAppliance()"><span
-        class="cil-chevron-circle-right-alt btn-icon mr-2"></span>{{'Save' |
-      localize}}</button>
-    &nbsp;
-    <button type="button" class="btn btn-sm btn-primary" (click)="goBack()"><span
-        class="cil-x btn-icon mr-2"></span>{{'Dismiss' |
-      localize}}</button>
-
+    <div class="row">
+      <div class="col-1">
+        <button type="button" class="btn btn-sm btn-success" (click)="doSaveAppliance()"><span
+            class="cil-chevron-circle-right-alt btn-icon mr-2"></span>{{'Save' |
+          localize}}</button>
+      </div>
+      <div class="col-1">
+        <button type="button" class="btn btn-sm btn-primary" (click)="goBack()"><span
+            class="cil-x btn-icon mr-2"></span>{{'Dismiss' |
+          localize}}</button>
+      </div>
+      <div class="col-10" *ngIf="errorMessage!==undefined">{{errorMessage | localize}}</div>
+    </div>
   </div>
 </div>

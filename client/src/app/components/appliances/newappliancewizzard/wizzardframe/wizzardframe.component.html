@@ -75,5 +75,6 @@
     <button type="button" class="btn btn-primary" (click)="dismissAddNew()"><span
         class="cil-x btn-icon mr-2"></span>{{'Dismiss' |
       localize}}</button>
-
+    &nbsp;
+    <span *ngIf="errorMessage!==undefined">{{errorMessage | localize}}</span>
   </div>

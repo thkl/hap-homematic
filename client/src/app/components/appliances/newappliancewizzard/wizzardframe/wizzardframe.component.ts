@@ -15,15 +15,16 @@ import { AppliancePropertiesComponent } from '../../applianceproperties/applianc
 export class NewApplianceWizzardFrameComponent implements OnInit, OnDestroy {
 
   private channelAdressList: string[] = [];
-  public wizzardStep: number = 0;
-  public canDoNext: boolean = false;
-  public canDoPrevious: boolean = false;
-  public finishWizzard: boolean = false;
+  public wizzardStep = 0;
+  public canDoNext = false;
+  public canDoPrevious = false;
+  public finishWizzard = false;
   public selectedAppliance: HapAppliance;
   public save: EventEmitter<any> = new EventEmitter();
   public preselectedChannels: string[];
   public wizzardFor: Models.HapApplicanceType;
   private saving = false;
+  public errorMessage: string;
 
   @ViewChild(AppliancePropertiesComponent) properties: AppliancePropertiesComponent;
 
@@ -152,7 +153,7 @@ export class NewApplianceWizzardFrameComponent implements OnInit, OnDestroy {
   }
 
   removeChannelFromWizzard(channelAddress: string): void {
-    let usedAppliance = this.getAppliance(Selectors.selectTemporaryApplianceByAddress(channelAddress));
+    const usedAppliance = this.getAppliance(Selectors.selectTemporaryApplianceByAddress(channelAddress));
     if (usedAppliance !== undefined) {
       // dispatch a delete list will be updated by the store selector
       this.store.dispatch({ type: Actions.HapApplianceActionTypes.DELETE_TMP_APPLIANCE, payload: usedAppliance });
@@ -181,20 +182,23 @@ export class NewApplianceWizzardFrameComponent implements OnInit, OnDestroy {
     }
   }
 
-  saveApplianceLocaly(): void {
-    if (this.selectedAppliance) {
+  saveApplianceLocaly(): boolean {
+    if ((this.selectedAppliance) && (this.properties.validate() === true)) {
       this.properties.save();
+      return true;
     }
+    return false;
   }
 
   nextStep(): void {
     if (this.wizzardStep < this.channelAdressList.length) {
-      this.saveApplianceLocaly();
-      this.wizzardStep = this.wizzardStep + 1;
-      this.canDoNext = this.channelAdressList.length > this.wizzardStep;
-      this.canDoPrevious = this.wizzardStep > 0;
-      const chnlAddress = this.channelAdressList[this.wizzardStep - 1];
-      this.openPrefrences(chnlAddress);
+      if ((this.saveApplianceLocaly() === true) || (this.wizzardStep === 0)) { // check if we can save / or its the first step
+        this.wizzardStep = this.wizzardStep + 1;
+        this.canDoNext = this.channelAdressList.length > this.wizzardStep;
+        this.canDoPrevious = this.wizzardStep > 0;
+        const chnlAddress = this.channelAdressList[this.wizzardStep - 1];
+        this.openPrefrences(chnlAddress);
+      }
     } else {
       this.canDoNext = false;
     }
@@ -202,13 +206,14 @@ export class NewApplianceWizzardFrameComponent implements OnInit, OnDestroy {
 
   previousStep(): void {
     if (this.wizzardStep > 0) {
-      this.saveApplianceLocaly();
-      this.wizzardStep = this.wizzardStep - 1;
-      this.canDoNext = this.channelAdressList.length > this.wizzardStep;
-      this.canDoPrevious = this.wizzardStep > 0;
-      if (this.wizzardStep > 0) {
-        const chnlAddress = this.channelAdressList[this.wizzardStep - 1];
-        this.openPrefrences(chnlAddress);
+      if (this.saveApplianceLocaly() === true) {
+        this.wizzardStep = this.wizzardStep - 1;
+        this.canDoNext = this.channelAdressList.length > this.wizzardStep;
+        this.canDoPrevious = this.wizzardStep > 0;
+        if (this.wizzardStep > 0) {
+          const chnlAddress = this.channelAdressList[this.wizzardStep - 1];
+          this.openPrefrences(chnlAddress);
+        }
       } else {
         //update tmp list
         this.preselectedChannels = [];
@@ -233,15 +238,18 @@ export class NewApplianceWizzardFrameComponent implements OnInit, OnDestroy {
   }
 
   finish(): void {
-    this.saveApplianceLocaly();
-    this.finishWizzard = true;
-    this.store.pipe(select(Selectors.appliancesSaving)).subscribe(isSaving => {
-      if ((this.saving === true) && (isSaving === false)) {
-        this.dismissAddNew();
-      } else {
-        this.saving = isSaving;
-      }
-    })
+    if (this.saveApplianceLocaly() === true) {
+      this.finishWizzard = true;
+      this.store.pipe(select(Selectors.appliancesSaving)).subscribe(isSaving => {
+        if ((this.saving === true) && (isSaving === false)) {
+          this.dismissAddNew();
+        } else {
+          this.saving = isSaving;
+        }
+      })
+    } else {
+      this.errorMessage = this.properties.getErrorMessage();
+    }
   }
 
 }
