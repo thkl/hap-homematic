@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AbstractTableComponent } from 'src/app/components/abstracttable/abstracttable';
-import { Models, Selectors } from 'src/app/store';
+import { Actions, Models, Selectors } from 'src/app/store';
+import { HapAppliance } from 'src/app/store/models';
 
 @Component({
   selector: 'app-programlist',
@@ -9,6 +10,7 @@ import { Models, Selectors } from 'src/app/store';
   styleUrls: ['./programlist.component.sass'],
 })
 export class ProgramlistComponent extends AbstractTableComponent {
+  confirmId = 'deleteProgram';
 
   constructor(public store: Store<Models.AppState>) {
     super(store);
@@ -20,5 +22,10 @@ export class ProgramlistComponent extends AbstractTableComponent {
     this.dataSourceSelector = Selectors.selectAllAppliances(Models.HapApplicanceType.Program);
     this.loadingSelector = Selectors.appliancesLoading;
     this.searchFields = ['nameInCCU', 'name'];
+  }
+
+
+  deleteProgram(applianceToDelete: HapAppliance) {
+    this.store.dispatch(Actions.DeleteHapApplianceFromApiAction({ applianceToDelete }));
   }
 }

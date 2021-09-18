@@ -35,9 +35,12 @@
       <ng-container cdkColumnDef="control">
         <th cdk-header-cell *cdkHeaderCellDef width="25%"></th>
         <td cdk-cell *cdkCellDef="let program">
-          <button type="button" class="btn btn-sm btn-success">{{'Edit' | localize}}</button>
+          <button type="button" class="btn btn-sm btn-success" routerLink='/appliance/{{program.address}}'>{{'Edit' |
+            localize}}</button>
           &nbsp;
-          <button type="button" class="btn btn-sm btn-danger">{{'Delete' | localize}}</button>
+          <button type="button" class="btn btn-sm btn-danger" (click)="selectObject(program)" data-toggle="modal"
+            attr.data-target="#{{confirmId}}">{{'Delete' |
+            localize}}</button>
         </td>
       </ng-container>
 
@@ -51,3 +54,7 @@
       localize}}</button>
   </div>
 </div>
+
+<app-confirmation [dialogId]="confirmId" img="./assets/img/delete.svg" (confirm)="deleteProgram(selectedObject)">
+  {{'Are you sure you want to remove %s from HomeKit?' |
+  localize : [selectedObject ? selectedObject.name:'']}}</app-confirmation>

@@ -58,7 +58,11 @@ export class EditApplianceComponent implements OnInit, OnDestroy {
         this.router.navigate(['/devices']);
         break;
       case HapApplicanceType.Variable:
-        this.router.navigate(['variables']);
+        this.router.navigate(['/variables']);
+        break;
+      case HapApplicanceType.Program:
+        this.router.navigate(['/programs']);
+        break;
     }
   }
 
