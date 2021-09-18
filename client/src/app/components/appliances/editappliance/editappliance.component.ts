@@ -3,7 +3,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import { Actions, Models, Selectors } from 'src/app/store';
 import { HapAppliance, HapApplicanceType } from 'src/app/store/models';
-import { AppliancePropertiesComponent, validationResult } from '../applianceproperties/applianceproperties.component';
+import { ValidationResult } from 'src/app/validators/validationResult';
+import { AppliancePropertiesComponent } from '../applianceproperties/applianceproperties.component';
 
 
 @Component({
@@ -17,7 +18,7 @@ export class EditApplianceComponent implements OnInit, OnDestroy {
   saveApplianceState = false;
   title = 'Edit';
   saving = false;
-  validationResult: validationResult;
+  validationResult: ValidationResult;
 
   @ViewChild(AppliancePropertiesComponent) properties: AppliancePropertiesComponent;
 

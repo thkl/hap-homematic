@@ -40,6 +40,7 @@ import { PaginationComponent } from './components/util/pagination/pagination.com
 import { CCUVariablelistComponent } from './components/ccuobjects/ccuvariablelist/ccuvariablelist.component';
 import { ConfirmationDialogComponent } from './components/util/confirmation/confirmation.component';
 import { CCUProgramlistComponent } from './components/ccuobjects/ccuprogramlist/ccuprogramlist.component';
+import { SettingsinputComponent } from './components/util/settingsinput/settingsinput.component';
 
 
 @NgModule({
@@ -63,7 +64,8 @@ import { CCUProgramlistComponent } from './components/ccuobjects/ccuprogramlist/
     PaginationComponent,
     CCUVariablelistComponent,
     ConfirmationDialogComponent,
-    CCUProgramlistComponent
+    CCUProgramlistComponent,
+    SettingsinputComponent
   ],
   imports: [
     HttpClientModule,

@@ -6,11 +6,9 @@ import { ApplicationService } from 'src/app/service/application.service';
 import { HapApplianceApiService } from 'src/app/service/hapappliance.service';
 import { Actions, Models, Selectors } from 'src/app/store';
 import { HapInstance } from 'src/app/store/models';
+import { ApplianceValidator } from 'src/app/validators/appliancesettings.validator';
+import { ValidationResult } from 'src/app/validators/validationResult';
 
-export interface validationResult {
-  message: string;
-  objectName?: string;
-}
 
 
 @Component({
@@ -21,7 +19,8 @@ export interface validationResult {
 export class AppliancePropertiesComponent implements OnDestroy {
 
   private _selectedAppliance: Models.HapAppliance;
-  private validationResult: validationResult;
+  private validationResult: ValidationResult;
+  public applianceValidator = new ApplianceValidator();
 
   @Input() set selectedAppliance(newAppliance: Models.HapAppliance) {
     if (newAppliance !== undefined) {
@@ -96,6 +95,10 @@ export class AppliancePropertiesComponent implements OnDestroy {
     }
   }
 
+  getID(propKey: any): string {
+    return `service_prop_${propKey}`;
+  }
+
   saveSetting(propKey: any, newSetting: any): void {
     if (this._selectedAppliance.settings.settings === undefined) {
       this._selectedAppliance.settings.settings = {};
@@ -113,32 +116,12 @@ export class AppliancePropertiesComponent implements OnDestroy {
   }
 
   validate(): boolean {
-    // Check if we have a name
-    this.validationResult = undefined;
-
-    if ((this._selectedAppliance.name === undefined) || (this._selectedAppliance.name.length === 0)) {
-      this.validationResult = { message: 'Appliance must have a name' };
-    }
-    if ((this._selectedAppliance.instanceID === undefined)) {
-      this.validationResult = { message: 'Appliance must have a Instance' };
-    }
-
-    // check the settings
-    const settingsKeys = Object.keys(this.selectedServiceClass.settings);
-    settingsKeys.forEach(key => {
-      const setting = this.selectedServiceClass.settings[key];
-      // check numbers
-      if (setting.type === 'number') {
-        if (isNaN(this.selectedAppliance.settings.settings[key])) {
-          this.validationResult = { message: '%s must be a number', objectName: setting.label }
-        }
-      }
-    })
-
-    return (this.validationResult === undefined);
+    this.validationResult = this.applianceValidator.validate(this.selectedAppliance,
+      this.selectedServiceClass);
+    return this.validationResult.isValid;
   }
 
-  getValidatenResult(): validationResult {
+  getValidatenResult(): ValidationResult {
     return this.validationResult;
   }
 

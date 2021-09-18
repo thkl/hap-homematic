@@ -1,0 +1,5 @@
+<input id="{{id}}" type="text" value="{{value}}" class="form-control form-control-lg"
+  [class.is-invalid]="validationError!==undefined" (change)="doChange($event)">
+<div class="invalid-feedback">
+  {{validationError}}
+</div>

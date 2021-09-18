@@ -58,24 +58,36 @@
     <app-newappliancewizzard-finish *ngIf="finishWizzard===true"></app-newappliancewizzard-finish>
   </div>
   <div class="card-footer" id="container_footer">
-    <button type="button" class="btn btn-success" (click)="previousStep()"
-      [attr.disabled]="canDoPrevious?null:'disabled'"><span
-        class="cil-chevron-circle-left-alt btn-icon mr-2"></span>{{'Previous' |
-      localize}}</button>
-    &nbsp;
-    <button type="button" class="btn btn-success" (click)="nextStep()" [attr.disabled]="canDoNext?null:'disabled'"><span
-        class="cil-chevron-circle-right-alt btn-icon mr-2"></span>{{'Next' |
-      localize}}</button>
-    &nbsp;
-    <button type="button" class="btn btn-info" (click)="finish()"
-      [attr.disabled]="((canDoNext===false) && (wizzardStep>0))?null:'disabled'"><span
-        class="cil-check btn-icon mr-2"></span>{{'Finish' |
-      localize}}</button>
-    &nbsp;
-    <button type="button" class="btn btn-primary" (click)="dismissAddNew()"><span
-        class="cil-x btn-icon mr-2"></span>{{'Dismiss' |
-      localize}}</button>
-    &nbsp;
-    <span *ngIf="validationResult!==undefined">{{validationResult.message| localize :
-      [validationResult.objectName]}}</span>
+    <div class="row">
+      <div class="col-4">
+        <div class="btn-group" role="group">
+          <button type="button" class="btn btn-success" (click)="previousStep()"
+            [attr.disabled]="canDoPrevious?null:'disabled'"><span
+              class="cil-chevron-circle-left-alt btn-icon mr-2"></span>{{'Previous' |
+            localize}}</button>
+
+          <button type="button" class="btn btn-success" (click)="nextStep()"
+            [attr.disabled]="canDoNext?null:'disabled'"><span
+              class="cil-chevron-circle-right-alt btn-icon mr-2"></span>{{'Next' |
+            localize}}</button>
+
+          <button type="button" class="btn btn-info" (click)="finish()"
+            [attr.disabled]="((canDoNext===false) && (wizzardStep>0))?null:'disabled'"><span
+              class="cil-check btn-icon mr-2"></span>{{'Finish' |
+            localize}}</button>
+
+          <button type="button" class="btn btn-primary" (click)="dismissAddNew()"><span
+              class="cil-x btn-icon mr-2"></span>{{'Dismiss' |
+            localize}}</button>
+        </div>
+      </div>
+      <div class="col-8">
+        <ul *ngIf="(validationResult!==undefined) && (validationResult.isValid===false)">
+          <li *ngFor="let validationMessage of validationResult.messages">
+            {{validationMessage.message| localize :
+            [validationMessage.objectName]}}</li>
+        </ul>
+      </div>
+    </div>
+
   </div>

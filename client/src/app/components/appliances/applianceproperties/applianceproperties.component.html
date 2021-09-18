@@ -44,10 +44,11 @@
                 (selectedChanged)="saveSetting(prop.key,$event)" id="service_prop_{{prop.key}}">
                 {{prop.value['default']}}</dropdownmenu>
 
-              <input id="service_prop_{{prop.key}}"
+              <settingsinput [id]="getID(prop.key)"
                 *ngIf="prop.value['type'] === 'number' || prop.value['type'] === 'text'" type="text"
-                [value]="getSettings(prop.key,prop.value['default'])" class="form-control form-control-lg"
-                (change)="saveSetting(prop.key,$event.target['value'])">
+                [value]="getSettings(prop.key,prop.value['default'])"
+                (change)="saveSetting(prop.key,$event.target['value'])" [validator]="applianceValidator">
+              </settingsinput>
 
               <div class="form-check" *ngIf="prop.value['type'] === 'checkbox'">
                 <input class="form-check-input position-static" type="checkbox" id="blankCheckbox" value="true"

@@ -5,7 +5,8 @@ import { take } from 'rxjs/operators';
 import { Actions, Models, Selectors } from 'src/app/store';
 import { HapAppliance } from 'src/app/store/models';
 import { CCUChannel, CCUProgram, CCUVariable } from 'src/app/store/models/CCUObjects.model';
-import { AppliancePropertiesComponent, validationResult } from '../../applianceproperties/applianceproperties.component';
+import { ValidationResult } from 'src/app/validators/validationResult';
+import { AppliancePropertiesComponent } from '../../applianceproperties/applianceproperties.component';
 
 @Component({
   selector: 'app-wizzardframe',
@@ -24,7 +25,7 @@ export class NewApplianceWizzardFrameComponent implements OnInit, OnDestroy {
   public preselectedChannels: string[];
   public wizzardFor: Models.HapApplicanceType;
   private saving = false;
-  public validationResult: validationResult;
+  public validationResult: ValidationResult;
 
   @ViewChild(AppliancePropertiesComponent) properties: AppliancePropertiesComponent;
 

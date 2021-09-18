@@ -23,8 +23,13 @@
             class="cil-x btn-icon mr-2"></span>{{'Dismiss' |
           localize}}</button>
       </div>
-      <div class="col-10" *ngIf="validationResult!==undefined">{{validationResult.message| localize :
-        [validationResult.objectName]}}</div>
+      <div class="col-10">
+        <ul *ngIf="(validationResult!==undefined) && (validationResult.isValid===false)">
+          <li *ngFor="let validationMessage of validationResult.messages">
+            {{validationMessage.message| localize :
+            [validationMessage.objectName]}}</li>
+        </ul>
+      </div>
     </div>
   </div>
 </div>
