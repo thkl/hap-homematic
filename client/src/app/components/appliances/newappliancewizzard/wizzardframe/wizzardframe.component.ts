@@ -1,11 +1,11 @@
 import { Component, EventEmitter, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { select, Selector, Store } from '@ngrx/store';
+import { select, Store } from '@ngrx/store';
 import { take } from 'rxjs/operators';
 import { Actions, Models, Selectors } from 'src/app/store';
-import { HapAppliance, HapApplicanceType } from 'src/app/store/models';
+import { HapAppliance } from 'src/app/store/models';
 import { CCUChannel, CCUProgram, CCUVariable } from 'src/app/store/models/CCUObjects.model';
-import { AppliancePropertiesComponent } from '../../applianceproperties/applianceproperties.component';
+import { AppliancePropertiesComponent, validationResult } from '../../applianceproperties/applianceproperties.component';
 
 @Component({
   selector: 'app-wizzardframe',
@@ -24,7 +24,7 @@ export class NewApplianceWizzardFrameComponent implements OnInit, OnDestroy {
   public preselectedChannels: string[];
   public wizzardFor: Models.HapApplicanceType;
   private saving = false;
-  public errorMessage: string;
+  public validationResult: validationResult;
 
   @ViewChild(AppliancePropertiesComponent) properties: AppliancePropertiesComponent;
 
@@ -248,7 +248,7 @@ export class NewApplianceWizzardFrameComponent implements OnInit, OnDestroy {
         }
       })
     } else {
-      this.errorMessage = this.properties.getErrorMessage();
+      this.validationResult = this.properties.getValidatenResult();
     }
   }
 

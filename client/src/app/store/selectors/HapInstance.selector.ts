@@ -32,4 +32,3 @@ export const selectInstancesById = (id: string) => createSelector(
   selectHapInstanceState,
   (state: HapInstanceState) => ((state !== undefined) && (state.list !== undefined)) ? state.list.filter(item => (item.id === id))[0] : undefined
 );
-

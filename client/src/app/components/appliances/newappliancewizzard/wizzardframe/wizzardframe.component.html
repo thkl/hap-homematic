@@ -76,5 +76,6 @@
         class="cil-x btn-icon mr-2"></span>{{'Dismiss' |
       localize}}</button>
     &nbsp;
-    <span *ngIf="errorMessage!==undefined">{{errorMessage | localize}}</span>
+    <span *ngIf="validationResult!==undefined">{{validationResult.message| localize :
+      [validationResult.objectName]}}</span>
   </div>
