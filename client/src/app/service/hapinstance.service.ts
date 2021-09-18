@@ -15,14 +15,14 @@ export class HapinstanceService {
 
 
   loadHapInstances() {
-    return this.http.get<HapInstance[]>(`${this.api}/bridges`);
+    return this.http.get<HapInstance[]>(`${this.api}/instances`);
   }
 
   saveHapInstance(instance: HapInstance[]) {
-    return this.http.patch<HapInstanceSavingResult>(`${this.api}/bridges`, instance);
+    return this.http.patch<HapInstanceSavingResult>(`${this.api}/instances`, instance);
   }
 
   deleteHapInstance(instance: HapInstance) {
-    return this.http.delete<HapInstanceDeletingResult>(`${this.api}/bridges/${instance.id}`);
+    return this.http.delete<HapInstanceDeletingResult>(`${this.api}/instances/${instance.id}`);
   }
 }
