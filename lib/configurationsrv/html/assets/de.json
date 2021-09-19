@@ -34,6 +34,7 @@
   "saving": "speichere ...",
   "No data": "Keine Daten",
   "already exists": "existiert schon",
+  "%s must be a number": "%s muss eine Zahl sein",
   "Previous": "Zurück",
   "Are you sure you want to remove %s from HomeKit?": "Sicher, das %s aus HomeKit entfernt werden soll.",
   "Are you sure you want to remove %s? All your devices will be reassigned to the default Instance.": "Sicher das %s entfernt werden soll? Alle Geräte werden der default Instanz zugeordnet",

@@ -1,6 +1,7 @@
+/* eslint-disable @typescript-eslint/adjacent-overload-signatures */
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { filter, map, switchMap } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 
 
 @Component({
@@ -42,8 +43,6 @@ export class DropdownmenuComponent implements OnInit {
   @Output() selectedChanged = new EventEmitter();
 
   public selectedLabel: string;
-
-  constructor() { }
 
   ngOnInit(): void {
     this._select(this.selected);
