@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { LocalizationService } from 'src/app/service/localization.service';
 import { SettingsValidator } from 'src/app/validators/validator';
 

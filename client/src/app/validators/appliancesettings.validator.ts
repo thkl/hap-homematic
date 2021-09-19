@@ -26,7 +26,7 @@ export class ApplianceValidator extends SettingsValidator {
       const setting = selectedService.settings[key];
       // check numbers
       if (setting.type === 'number') {
-        if (isNaN(appliance.settings.settings[key])) {
+        if ((appliance.settings.settings[key] !== undefined) && (isNaN(appliance.settings.settings[key]))) {
           const id = `service_prop_${key}`;
           this.result.messages.push({ id, message: '%s must be a number', objectName: setting.label });
           this.result.resultChanged.emit(id);

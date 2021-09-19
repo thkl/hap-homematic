@@ -20,7 +20,7 @@ export interface HapAppliance {
   settings: any;
   isPublished: boolean;
   nameInCCU: string;
-  instanceNames: string;
+  instances: any;
   applianceType: HapApplicanceType;
 }
 

@@ -142,7 +142,7 @@ export class NewApplianceWizzardFrameComponent implements OnInit, OnDestroy {
           serviceClass: null,
           settings: { settings: {} }, // this is weird but here we are
           nameInCCU: name,
-          instanceNames: '',
+          instances: {},
           isPublished: false,
           address: address,
           applianceType: this.wizzardFor
@@ -184,7 +184,8 @@ export class NewApplianceWizzardFrameComponent implements OnInit, OnDestroy {
   }
 
   saveApplianceLocaly(): boolean {
-    if ((this.selectedAppliance) && (this.properties.validate() === true)) {
+
+    if ((this.selectedAppliance) && (this.properties) && (this.properties.validate() === true)) {
       this.properties.save();
       return true;
     }

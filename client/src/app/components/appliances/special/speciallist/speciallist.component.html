@@ -4,7 +4,7 @@
     <h2>{{'Special Appliances' | localize}}</h2>
   </div>
   <div class="card-body" id="container">
-    <div class="input-group mb-2" *ngIf="hasSearchOption() === true" else dummyInput>
+    <div class="input-group input-group-sm mb-2" *ngIf="hasSearchOption() === true" else dummyInput>
       <div class="input-group-prepend">
         <div class="input-group-text">{{'Search' | localize}}</div>
       </div>
@@ -28,7 +28,7 @@
         <th cdk-header-cell *cdkHeaderCellDef mat-sort-header="instanceNames" disableClear>{{'HAP Instance' | localize}}
         </th>
         <td cdk-cell *cdkCellDef="let device"><span
-            *ngFor="let instance of device.instanceNames | keyvalue">{{instance.value}} </span></td>
+            *ngFor="let instance of device.instances | keyvalue">{{instance.value}} </span></td>
       </ng-container>
 
       <ng-container cdkColumnDef="control">

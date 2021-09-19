@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/adjacent-overload-signatures */
-import { AfterViewInit, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { LocalizationService } from 'src/app/service/localization.service';

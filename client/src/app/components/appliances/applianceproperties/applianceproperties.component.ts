@@ -1,4 +1,5 @@
 
+import { KeyValue } from '@angular/common';
 import { Component, Input, OnDestroy } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable, of } from 'rxjs';
@@ -75,9 +76,15 @@ export class AppliancePropertiesComponent implements OnDestroy {
             const channel = this.applicationService.channelWithAddress(this._selectedAppliance.address);
             if (channel !== undefined) {
               const ccuRoom = this.applicationService.roomForChannel(channel);
+              let instanceID = list[0].id;
               if (ccuRoom) {
                 const roomifiedInstance = list.filter(instance => instance.roomId === ccuRoom.id)[0];
-                this._selectedAppliance.instanceID = roomifiedInstance ? roomifiedInstance.id : list[0].id;
+                if (roomifiedInstance) {
+                  instanceID = roomifiedInstance.id
+                }
+              }
+              if (Object.keys(this._selectedAppliance.instances).length === 0) {
+                this._selectedAppliance.instances[instanceID] = { name: '', remove: false }
               }
             }
           }
@@ -129,5 +136,13 @@ export class AppliancePropertiesComponent implements OnDestroy {
     if (this.selectedAppliance) {
       this.store.dispatch(Actions.SaveHapApplianceAction({ applianceToSave: this._selectedAppliance }));
     }
+  }
+
+  addNewInstance(): void {
+
+  }
+
+  removeInstance(instId: any): void {
+    delete this.selectedAppliance.instances[instId];
   }
 }

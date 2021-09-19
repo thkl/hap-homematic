@@ -67,16 +67,28 @@
 
       </ng-container>
 
-      <div class="row">
+      <div class="row" *ngFor="let instance of selectedAppliance.instances | keyvalue">
         <div class="col-6">
           <div class="form-group">
             <label for="appliance_service">{{'Instance' | localize}}</label>
-            <dropdownmenu [dataSource]="instanceList" [keyLabel]="'displayName'" [keyId]="'id'"
-              [selected]="selectedAppliance.instanceID" (selectedChanged)="selectInstance($event)">{{'Please
-              choose a HAP instance' | localize}}</dropdownmenu>
+            <div class="form-group-multi">
+              <dropdownmenu [dataSource]="instanceList" [keyLabel]="'displayName'" [keyId]="'id'"
+                [selected]="instance.key" (selectedChanged)="selectInstance($event)">
+                {{'Please choose a HAP instance' | localize}}</dropdownmenu>
+              <button id="remove_{{instance.key}}" type="button" [disabled]="instance.value['remove']===false"
+                [class.disabled]="instance.value['remove']===false" class="btn btn-sm btn-outline-dark"
+                (click)="removeInstance(instance.key)">
+                X</button>
+            </div>
           </div>
         </div>
+      </div>
 
+      <div class="row">
+        <div class="col-6">
+          <button type="button" class="btn btn-sm btn-secondary"><span class="cil-plus btn-icon mr-2"></span>
+            {{'Add new Instance' | localize}}</button>
+        </div>
       </div>
     </div>
   </div>

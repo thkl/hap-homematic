@@ -4,7 +4,7 @@
     <h2>{{'Programs' | localize}}</h2>
   </div>
   <div class="card-body" id="container">
-    <div class="input-group mb-2">
+    <div class="input-group input-group-sm mb-2">
       <div class="input-group-prepend">
         <div class="input-group-text">{{'Search' | localize}}</div>
       </div>
@@ -30,7 +30,7 @@
           | localize}}
         </th>
         <td cdk-cell *cdkCellDef="let program"><span
-            *ngFor="let instance of program.instanceNames | keyvalue">{{instance.value}} </span></td>
+            *ngFor="let instance of program.instances | keyvalue">{{instance.value}} </span></td>
       </ng-container>
 
       <ng-container cdkColumnDef="control">
