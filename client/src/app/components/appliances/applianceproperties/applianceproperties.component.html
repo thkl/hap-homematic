@@ -41,21 +41,21 @@
               <label for="service_prop_{{prop.key}}">{{prop.value['label'] | localize}}</label>
 
               <dropdownmenu *ngIf="prop.value['type'] === 'option'" [listSource]="prop.value['array']"
-                [selected]="getSettings(prop.key,prop.value['default'])"
+                [selected]="currentSettings[prop.key] || prop.value['default']"
                 (selectedChanged)="saveSetting(prop.key,$event)" id="service_prop_{{prop.key}}"
                 [validator]="applianceValidator">
                 {{prop.value['default']}}</dropdownmenu>
 
-              <settingsinput [id]="getID(prop.key)" ngDefaultControl
+              <settingsinput id="service_prop_{{prop.key}}" ngDefaultControl
                 *ngIf="prop.value['type'] === 'number' || prop.value['type'] === 'text'" type="text"
-                [ngModel]="getSettings(prop.key,prop.value['default'])" (ngModelChange)="saveSetting(prop.key,$event)"
-                [validator]="applianceValidator">
+                [ngModel]="currentSettings[prop.key] || prop.value['default']"
+                (ngModelChange)="saveSetting(prop.key,$event)" [validator]="applianceValidator">
               </settingsinput>
 
               <div class="form-check" *ngIf="prop.value['type'] === 'checkbox'">
                 <input class="form-check-input position-static" type="checkbox" id="blankCheckbox" value="true"
-                  [checked]="getSettings(prop.key,prop.value['default']) === 'true'" aria-label="..."
-                  (change)="saveSetting(prop.key,$event.target['value'])">
+                  [checked]="(currentSettings[prop.key] || prop.value['default']) === true" aria-label="..."
+                  (change)="saveSetting(prop.key,$event.target['checked'])">
               </div>
 
             </div>

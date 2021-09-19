@@ -29,7 +29,8 @@ export class AppliancePropertiesComponent implements OnDestroy {
       if (this._selectedAppliance.settings === undefined) {
         this._selectedAppliance.settings = {};
       }
-
+      // Copy the settings to a local variable for easier access
+      this.currentSettings = this._selectedAppliance.settings.settings;
       this.loadServices();
     }
   }
@@ -41,6 +42,7 @@ export class AppliancePropertiesComponent implements OnDestroy {
   serviceList: Observable<Models.HapApplianceService[]>;
   selectedServiceClass: Models.HapApplianceService;
   instanceList: Observable<Models.HapInstance[]>;
+  currentSettings: { [key: string]: any }; // this is a copy for easier access in the template
 
   constructor(
     private apiService: HapApplianceApiService,
@@ -92,25 +94,13 @@ export class AppliancePropertiesComponent implements OnDestroy {
     }
   }
 
-  getSettings(propKey: any, defaultData: any): any {
-    const settings = this._selectedAppliance.settings.settings; // this is a little weird
-    if (settings !== undefined) {
-      return settings[propKey] || defaultData;
-    } else {
-      return defaultData;
-    }
-  }
-
-
-  getID(propKey: any): string {
-    return `service_prop_${propKey}`;
-  }
-
   saveSetting(propKey: any, newSetting: any): void {
     if (this._selectedAppliance.settings.settings === undefined) {
       this._selectedAppliance.settings.settings = {};
     }
     this._selectedAppliance.settings.settings[propKey] = newSetting;
+    // Copy the settings again to the local variable
+    this.currentSettings = this._selectedAppliance.settings.settings;
   }
 
   selectClazz(newClazz: any): void {

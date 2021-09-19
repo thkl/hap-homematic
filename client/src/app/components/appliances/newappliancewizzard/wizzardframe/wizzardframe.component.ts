@@ -108,7 +108,7 @@ export class NewApplianceWizzardFrameComponent implements OnInit, OnDestroy {
           serviceClass: null,
           settings: { settings: {} }, // this is weird but here we are
           nameInCCU: name,
-          instances: {},
+          instances: [],
           isPublished: false,
           address: address,
           applianceType: this.wizzardFor
