@@ -83,8 +83,8 @@ export class AppliancePropertiesComponent implements OnDestroy {
                   instanceID = roomifiedInstance.id
                 }
               }
-              if (Object.keys(this._selectedAppliance.instances).length === 0) {
-                this._selectedAppliance.instances[instanceID] = { name: '', remove: false }
+              if (this._selectedAppliance.instances.length === 0) {
+                this._selectedAppliance.instances.push({ id: instanceID, name: '', remove: false })
               }
             }
           }
@@ -118,8 +118,9 @@ export class AppliancePropertiesComponent implements OnDestroy {
     this.selectedAppliance.serviceClass = newClazz.serviceClazz;
   }
 
-  selectInstance(newInstance: HapInstance): void {
-    this.selectedAppliance.instanceID = newInstance.id;
+  selectInstance(index: number, newInstance: HapInstance): void {
+    this.selectedAppliance.instances[index] = { id: newInstance.id };
+    this.updateInstanceList();
   }
 
   validate(): boolean {
@@ -138,11 +139,28 @@ export class AppliancePropertiesComponent implements OnDestroy {
     }
   }
 
-  addNewInstance(): void {
-
+  updateInstanceList(): void {
+    let idx = 0;
+    this.selectedAppliance.instances.forEach(inst => {
+      if (idx === 0) {
+        inst.remove = false
+        this.selectedAppliance.instanceID = inst.id;
+      } else {
+        inst.remove = true;
+      }
+      idx = idx + 1;
+    });
   }
 
-  removeInstance(instId: any): void {
-    delete this.selectedAppliance.instances[instId];
+  addNewInstance(): void {
+    this.selectedAppliance.instances.push({ id: 0 })
+    this.updateInstanceList();
+  }
+
+  removeInstance(index: number, instId: any): void {
+    const idxInstance = this.selectedAppliance.instances[index]
+    if ((idxInstance) && (idxInstance.id === instId)) {
+      this.selectedAppliance.instances.splice(index, 1);
+    }
   }
 }
