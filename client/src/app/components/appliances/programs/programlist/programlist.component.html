@@ -29,7 +29,8 @@
         <th cdk-header-cell *cdkHeaderCellDef mat-sort-header="instanceNames" disableClear width="35%">{{'HAP Instance'
           | localize}}
         </th>
-        <td cdk-cell *cdkCellDef="let program"> {{program.instanceNames}} </td>
+        <td cdk-cell *cdkCellDef="let program"><span
+            *ngFor="let instance of program.instanceNames | keyvalue">{{instance.value}} </span></td>
       </ng-container>
 
       <ng-container cdkColumnDef="control">

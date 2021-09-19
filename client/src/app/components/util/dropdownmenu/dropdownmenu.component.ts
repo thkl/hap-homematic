@@ -1,7 +1,9 @@
 /* eslint-disable @typescript-eslint/adjacent-overload-signatures */
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { LocalizationService } from 'src/app/service/localization.service';
+import { SettingsValidator } from 'src/app/validators/validator';
 
 
 @Component({
@@ -11,8 +13,10 @@ import { map } from 'rxjs/operators';
 })
 export class DropdownmenuComponent implements OnInit {
 
+
   private _dataSource: Observable<any[]>;
   private _selected: any;
+  public validationError: string;
 
   @Input() set dataSource(newDs: Observable<any[]>) {
     this._dataSource = newDs;
@@ -43,6 +47,22 @@ export class DropdownmenuComponent implements OnInit {
   @Output() selectedChanged = new EventEmitter();
 
   public selectedLabel: string;
+
+  @Input() set validator(newValidator: SettingsValidator) {
+    newValidator.result.resultChanged.subscribe(whatChanged => {
+      if (whatChanged === this.id) {
+        const message = (newValidator.getMessage(this.id));
+        if (message) {
+          this.validationError = this.localizationService.l18n(message.message, [message.objectName]);
+        }
+      }
+    })
+  }
+
+  constructor(private localizationService: LocalizationService) {
+
+  }
+
 
   ngOnInit(): void {
     this._select(this.selected);

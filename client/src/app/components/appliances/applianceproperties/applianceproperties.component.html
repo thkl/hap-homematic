@@ -9,8 +9,9 @@
         <div class="col-6">
           <div class="form-group">
             <label for="appliance_name">{{'Homekit Device name' | localize}}</label>
-            <input id="appliance_name" type="text" #searchInput [(ngModel)]="selectedAppliance.name"
-              class="form-control form-control-lg" />
+            <settingsinput id="appliance_name" name="appliance_name" ngDefaultControl
+              [(ngModel)]="selectedAppliance.name" [validator]="applianceValidator">
+            </settingsinput>
           </div>
         </div>
         <div class="col-6 propertyDescription">
@@ -23,7 +24,7 @@
             <label for="appliance_service">{{'Service' | localize}}</label>
             <dropdownmenu [dataSource]="serviceList" [keyLabel]="'serviceClazz'" [keyId]="'serviceClazz'"
               [selected]="selectedServiceClass ? selectedServiceClass.serviceClazz :''"
-              (selectedChanged)="selectClazz($event)" id="appliance_service">
+              (selectedChanged)="selectClazz($event)" id="appliance_service" [validator]="applianceValidator">
               {{'Select the service you want to use for this channel' | localize}}</dropdownmenu>
           </div>
         </div>
@@ -41,13 +42,14 @@
 
               <dropdownmenu *ngIf="prop.value['type'] === 'option'" [listSource]="prop.value['array']"
                 [selected]="getSettings(prop.key,prop.value['default'])"
-                (selectedChanged)="saveSetting(prop.key,$event)" id="service_prop_{{prop.key}}">
+                (selectedChanged)="saveSetting(prop.key,$event)" id="service_prop_{{prop.key}}"
+                [validator]="applianceValidator">
                 {{prop.value['default']}}</dropdownmenu>
 
-              <settingsinput [id]="getID(prop.key)"
+              <settingsinput [id]="getID(prop.key)" ngDefaultControl
                 *ngIf="prop.value['type'] === 'number' || prop.value['type'] === 'text'" type="text"
-                [value]="getSettings(prop.key,prop.value['default'])"
-                (change)="saveSetting(prop.key,$event.target['value'])" [validator]="applianceValidator">
+                [ngModel]="getSettings(prop.key,prop.value['default'])" (ngModelChange)="saveSetting(prop.key,$event)"
+                [validator]="applianceValidator">
               </settingsinput>
 
               <div class="form-check" *ngIf="prop.value['type'] === 'checkbox'">

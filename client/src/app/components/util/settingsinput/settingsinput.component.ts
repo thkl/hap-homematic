@@ -1,30 +1,24 @@
 import { AfterViewInit, Component, EventEmitter, Input, Output } from '@angular/core';
 import { LocalizationService } from 'src/app/service/localization.service';
-import { ApplianceValidator } from 'src/app/validators/appliancesettings.validator';
+import { SettingsValidator } from 'src/app/validators/validator';
 
 @Component({
   selector: 'settingsinput',
   templateUrl: './settingsinput.component.html',
   styleUrls: ['./settingsinput.component.sass']
 })
-export class SettingsinputComponent implements AfterViewInit {
+export class SettingsinputComponent {
 
 
-  @Input() value: string;
+  @Input() ngModel: string;
+  @Output() ngModelChange: EventEmitter<any> = new EventEmitter();
+
   @Input() id: string;
-  @Input() validator: ApplianceValidator;
 
-  public validationError: string;
-  @Output() change: EventEmitter<any> = new EventEmitter();
-
-  constructor(private localizationService: LocalizationService) {
-
-  }
-
-  ngAfterViewInit(): void {
-    this.validator.result.resultChanged.subscribe(whatChanged => {
+  @Input() set validator(newValidator: SettingsValidator) {
+    newValidator.result.resultChanged.subscribe(whatChanged => {
       if (whatChanged === this.id) {
-        const message = (this.validator.getMessage(this.id));
+        const message = (newValidator.getMessage(this.id));
         if (message) {
           this.validationError = this.localizationService.l18n(message.message, [message.objectName]);
         }
@@ -32,9 +26,14 @@ export class SettingsinputComponent implements AfterViewInit {
     })
   }
 
+  public validationError: string;
 
+
+  constructor(private localizationService: LocalizationService) {
+
+  }
 
   doChange($event): void {
-    this.change.emit($event);
+    this.ngModelChange.emit($event.target.value);
   }
 }

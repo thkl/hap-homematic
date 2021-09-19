@@ -1,4 +1,4 @@
-<div class="dropdown">
+<div class="dropdown" [class.is-invalid]="validationError!==undefined">
   <button class="btn btn-sm btn-secondary dropdown-toggle" type="button" id="{{id}}button" data-toggle="dropdown"
     aria-expanded="false">
     <span *ngIf="selectedLabel">{{selectedLabel}}</span>
@@ -7,5 +7,8 @@
   <div class="dropdown-menu" attr.aria-labelledby="{{id}}button">
     <a class="dropdown-item" *ngFor="let item of dataSource | async" (click)="_select(itemData(item,keyId))">
       {{itemData(item,keyLabel)}}</a>
+  </div>
+  <div class="invalid-feedback">
+    {{validationError}}
   </div>
 </div>
