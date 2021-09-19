@@ -1,11 +1,11 @@
 
-import { KeyValue } from '@angular/common';
 import { Component, Input, OnDestroy } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable, of } from 'rxjs';
+import { take } from 'rxjs/operators';
 import { ApplicationService } from 'src/app/service/application.service';
 import { HapApplianceApiService } from 'src/app/service/hapappliance.service';
-import { Actions, Models, Selectors } from 'src/app/store';
+import { Actions, Models, Selectors, SelectUtility } from 'src/app/store';
 import { HapInstance } from 'src/app/store/models';
 import { ApplianceValidator } from 'src/app/validators/appliancesettings.validator';
 import { ValidationResult } from 'src/app/validators/validationResult';
@@ -102,6 +102,7 @@ export class AppliancePropertiesComponent implements OnDestroy {
     }
   }
 
+
   getID(propKey: any): string {
     return `service_prop_${propKey}`;
   }
@@ -135,6 +136,8 @@ export class AppliancePropertiesComponent implements OnDestroy {
 
   save(): void {
     if (this.selectedAppliance) {
+      // Update InstanceList in settings
+      this._selectedAppliance.settings.instance = this._selectedAppliance.instances; //
       this.store.dispatch(Actions.SaveHapApplianceAction({ applianceToSave: this._selectedAppliance }));
     }
   }
@@ -148,6 +151,10 @@ export class AppliancePropertiesComponent implements OnDestroy {
       } else {
         inst.remove = true;
       }
+      // Get the HAPInstance Object by Selected ID
+      const instData = SelectUtility.getInstance(this.store, Selectors.selectInstancesById(inst.id))
+      // save the name
+      inst.name = instData.displayName;
       idx = idx + 1;
     });
   }
