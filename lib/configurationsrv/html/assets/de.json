@@ -18,6 +18,7 @@
   "Name": "Name",
   "Service": "Service",
   "Instance": "Instanz",
+  "%s. Instance": "%s. Instanz",
   "Edit instance %s": "Instanz %s bearbeiten",
   "Edit Instance": "Instanz bearbeiten",
   "Add new Instance": "Neue Instanz hinzufügen",
