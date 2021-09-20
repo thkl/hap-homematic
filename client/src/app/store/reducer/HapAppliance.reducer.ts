@@ -1,6 +1,5 @@
 import { Action, createReducer, on } from '@ngrx/store';
 import * as HapApplianceActionTypes from '../actions/HapAppliance.action';
-import { HapApplianceService } from '../models';
 import { HapAppliance } from '../models/HapAppliance.model';
 
 export interface HapApplianceState {
@@ -62,6 +61,7 @@ const applianceLoadingReducer = createReducer(
   on(HapApplianceActionTypes.SaveHapApplianceToApiAction, (state) => ({
     ...state,
     saving: true,
+    loading: true,
   })),
 
   on(HapApplianceActionTypes.SaveHapApplianceActionSuccess,
@@ -69,6 +69,7 @@ const applianceLoadingReducer = createReducer(
       return {
         ...state,
         saving: false,
+        loading: false,
         list: updateApplianceList(state, payload.appliances)
       }
     }

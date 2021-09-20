@@ -11,6 +11,9 @@ import { AppState } from './store/models/app-state.model';
 })
 export class AppComponent implements OnInit {
   title = 'HAP-Homematic';
+  ccuLoading = false;
+  hapLoading = false;
+
   public todayDate: Date = new Date();
   public phraseLoaded: boolean;
   constructor(
@@ -22,6 +25,18 @@ export class AppComponent implements OnInit {
     this.store.pipe(select(Selectors.localizationLoaded)).subscribe((phl) => {
       this.phraseLoaded = phl;
     })
+
     this.store.dispatch({ type: Actions.LocalizationActionTypes.LOAD });
+    //prevent Error: ExpressionChangedAfterItHasBeenCheckedError:
+    setTimeout(() => {
+      this.store.select(Selectors.ccuDevicesLoading).subscribe(ld => {
+        this.ccuLoading = ld;
+      });
+      this.store.select(Selectors.appliancesLoading).subscribe(ld => {
+        this.hapLoading = ld;
+      });
+    }, 500);
   }
+
+
 }

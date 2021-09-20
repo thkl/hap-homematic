@@ -28,15 +28,15 @@ export class AbstractTableComponent implements OnInit {
   public pageChanged: EventEmitter<number> = new EventEmitter();
 
   private sortChanged: Subject<any> = new Subject();
-  private sortDir: string = 'asc';
-  private sortField: string = 'name';
+  private sortDir = 'asc';
+  private sortField = 'name';
   private initialized = false;
 
   public loading: boolean;
   private subscription: Subscription = new Subscription();
-  public noData: boolean = false;
+  public noData = false;
 
-  public searchText: string = '';
+  public searchText = '';
 
   @ViewChild('searchInput') input: ElementRef;
   @ViewChild(PaginationComponent) paginator: PaginationComponent;

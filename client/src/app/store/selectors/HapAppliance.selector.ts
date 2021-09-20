@@ -1,5 +1,4 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { filter } from 'rxjs/operators';
 import { HapAppliance, HapApplicanceType } from '../models/HapAppliance.model';
 import { HapApplianceState } from '../reducer/HapAppliance.reducer';
 

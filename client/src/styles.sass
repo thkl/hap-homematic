@@ -1,1 +1,44 @@
 /* You can add global styles to this file, and also import other style files */
+
+:root
+  --progress-duration: 5.8s
+  --progress-height: 5px
+  --progress-color: rgb(35,163,255)
+  --progress-color-ending: rgba(35,163,255,0.2)
+  --progress-shadow: 0 0 3px 2px rgba(0,148,255,0.23)
+
+.progress-css
+  position: fixed
+  top: 0
+  left: 0
+  height: var(--progress-height)
+  width: 100%
+  background-color: transparent
+  z-index: 99999
+  box-shadow: none
+  animation: progress-load var(--progress-duration)
+  -webkit-animation: progress-load var(--progress-duration)
+  animation-timing-function: ease-in-out
+
+@keyframes progress-load
+  0%
+    background-color: var(--progress-color)
+    box-shadow: var(--progress-shadow)
+    width: 0%
+
+  20%
+    background-color: var(--progress-color)
+    width: 20%
+
+  25%
+    background-color: var(--progress-color)
+    width: 28%
+
+  90%
+    background-color: var(--progress-color)
+    width: 85%
+
+  100%
+    width: 100%
+    background-color: var(--progress-color-ending)
+    box-shadow: none
