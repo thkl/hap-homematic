@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { Actions, Models, Selectors } from 'src/app/store';
 import { HapAppliance } from 'src/app/store/models';
@@ -8,12 +8,16 @@ import { HapAppliance } from 'src/app/store/models';
   templateUrl: './finish.component.html',
   styleUrls: ['./finish.component.sass']
 })
-export class NewApplianceWizzardFinishComponent implements OnInit {
+export class NewApplianceWizzardFinishComponent implements OnInit, AfterViewInit {
 
   public list: HapAppliance[];
   public saving = false;
 
   constructor(public store: Store<Models.AppState>) { }
+
+  ngAfterViewInit(): void {
+
+  }
 
   ngOnInit(): void {
     this.store.pipe(select(Selectors.selectAllTemporaryAppliances(Models.HapApplicanceType.All))).subscribe(applList => {

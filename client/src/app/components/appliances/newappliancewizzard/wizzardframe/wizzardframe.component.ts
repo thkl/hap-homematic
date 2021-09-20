@@ -1,8 +1,10 @@
 import { Component, EventEmitter, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
-import { Actions, Models, Selectors, SelectUtility } from 'src/app/store';
+import { take } from 'rxjs/operators';
+import { Actions, Models, Selectors } from 'src/app/store';
 import { HapAppliance } from 'src/app/store/models';
+import { CCUChannel, CCUProgram, CCUVariable } from 'src/app/store/models/CCUObjects.model';
 import { ValidationResult } from 'src/app/validators/validationResult';
 import { AppliancePropertiesComponent } from '../../applianceproperties/applianceproperties.component';
 
@@ -70,6 +72,38 @@ export class NewApplianceWizzardFrameComponent implements OnInit, OnDestroy {
     });
   }
 
+  getVariable(selector: any): CCUVariable {
+    let variable: CCUVariable;
+    this.store.select(selector).pipe(take(1)).subscribe(
+      s => variable = s
+    );
+    return variable;
+  }
+
+
+  getProgram(selector: any): CCUProgram {
+    let program: CCUProgram;
+    this.store.select(selector).pipe(take(1)).subscribe(
+      s => program = s
+    );
+    return program;
+  }
+
+  getChannel(selector: any): CCUChannel {
+    let channel: CCUChannel;
+    this.store.select(selector).pipe(take(1)).subscribe(
+      s => channel = s
+    );
+    return channel;
+  }
+
+  getAppliance(selector: any): HapAppliance {
+    let appliance: HapAppliance;
+    this.store.select(selector).pipe(take(1)).subscribe(
+      s => appliance = s
+    );
+    return appliance;
+  }
 
   addChannelToWizzard(channelAddress: string): void {
     let ccuObject: any;
@@ -78,19 +112,19 @@ export class NewApplianceWizzardFrameComponent implements OnInit, OnDestroy {
     let address: string;
     switch (this.wizzardFor) {
       case Models.HapApplicanceType.Device:
-        ccuObject = SelectUtility.getChannel(this.store, Selectors.selectChannelByAddress(channelAddress));
+        ccuObject = this.getChannel(Selectors.selectChannelByAddress(channelAddress));
         address = ccuObject.address;
         serial = ccuObject.address.split(':')[0];
         channel = ccuObject.address.split(':')[1];
         break;
       case Models.HapApplicanceType.Variable:
-        ccuObject = SelectUtility.getVariable(this.store, Selectors.selectVariableByName(channelAddress));
+        ccuObject = this.getVariable(Selectors.selectVariableByName(channelAddress));
         address = `${channelAddress}:0`;
         serial = channelAddress;
         channel = "0";
         break;
       case Models.HapApplicanceType.Program:
-        ccuObject = SelectUtility.getProgram(this.store, Selectors.selectProgramByName(channelAddress));
+        ccuObject = this.getProgram(Selectors.selectProgramByName(channelAddress));
         address = `${channelAddress}:0`;
         serial = channelAddress;
         channel = "0";
@@ -99,7 +133,7 @@ export class NewApplianceWizzardFrameComponent implements OnInit, OnDestroy {
     }
     if (ccuObject) {
       const name = ccuObject.name;
-      let usedAppliance = SelectUtility.getAppliance(this.store, Selectors.selectTemporaryApplianceByAddress(channelAddress));
+      let usedAppliance = this.getAppliance(Selectors.selectTemporaryApplianceByAddress(channelAddress));
       if (usedAppliance === undefined) {
         usedAppliance = ({
           name,
@@ -108,7 +142,7 @@ export class NewApplianceWizzardFrameComponent implements OnInit, OnDestroy {
           serviceClass: null,
           settings: { settings: {} }, // this is weird but here we are
           nameInCCU: name,
-          instances: [],
+          instances: {},
           isPublished: false,
           address: address,
           applianceType: this.wizzardFor
@@ -120,7 +154,7 @@ export class NewApplianceWizzardFrameComponent implements OnInit, OnDestroy {
   }
 
   removeChannelFromWizzard(channelAddress: string): void {
-    const usedAppliance = SelectUtility.getAppliance(this.store, Selectors.selectTemporaryApplianceByAddress(channelAddress));
+    const usedAppliance = this.getAppliance(Selectors.selectTemporaryApplianceByAddress(channelAddress));
     if (usedAppliance !== undefined) {
       // dispatch a delete list will be updated by the store selector
       this.store.dispatch({ type: Actions.HapApplianceActionTypes.DELETE_TMP_APPLIANCE, payload: usedAppliance });
@@ -199,7 +233,10 @@ export class NewApplianceWizzardFrameComponent implements OnInit, OnDestroy {
   }
 
   openPrefrences(channelAddress: string): void {
-    this.selectedAppliance = SelectUtility.getAppliance(this.store, Selectors.selectTemporaryApplianceByAddress(channelAddress));
+    this.store.pipe(select(Selectors.selectTemporaryApplianceByAddress(channelAddress))).subscribe(usedAppliance => {
+      // set it as current appliance to edit
+      this.selectedAppliance = usedAppliance;
+    });
   }
 
   finish(): void {

@@ -32,8 +32,8 @@
       <ng-container cdkColumnDef="instanceID">
         <th cdk-header-cell *cdkHeaderCellDef mat-sort-header="instanceNames" disableClear>{{'HAP Instance' | localize}}
         </th>
-        <td cdk-cell *cdkCellDef="let variable"><span *ngFor="let instance of variable.instances">{{instance.name}}
-          </span></td>
+        <td cdk-cell *cdkCellDef="let variable"><span
+            *ngFor="let instance of variable.instances | keyvalue">{{instance.value}} </span></td>
       </ng-container>
 
       <ng-container cdkColumnDef="control">

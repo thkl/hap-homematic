@@ -41,21 +41,21 @@
               <label for="service_prop_{{prop.key}}">{{prop.value['label'] | localize}}</label>
 
               <dropdownmenu *ngIf="prop.value['type'] === 'option'" [listSource]="prop.value['array']"
-                [selected]="currentSettings[prop.key] || prop.value['default']"
+                [selected]="getSettings(prop.key,prop.value['default'])"
                 (selectedChanged)="saveSetting(prop.key,$event)" id="service_prop_{{prop.key}}"
                 [validator]="applianceValidator">
                 {{prop.value['default']}}</dropdownmenu>
 
-              <settingsinput id="service_prop_{{prop.key}}" ngDefaultControl
+              <settingsinput [id]="getID(prop.key)" ngDefaultControl
                 *ngIf="prop.value['type'] === 'number' || prop.value['type'] === 'text'" type="text"
-                [ngModel]="currentSettings[prop.key] || prop.value['default']"
-                (ngModelChange)="saveSetting(prop.key,$event)" [validator]="applianceValidator">
+                [ngModel]="getSettings(prop.key,prop.value['default'])" (ngModelChange)="saveSetting(prop.key,$event)"
+                [validator]="applianceValidator">
               </settingsinput>
 
               <div class="form-check" *ngIf="prop.value['type'] === 'checkbox'">
                 <input class="form-check-input position-static" type="checkbox" id="blankCheckbox" value="true"
-                  [checked]="(currentSettings[prop.key] || prop.value['default']) === true" aria-label="..."
-                  (change)="saveSetting(prop.key,$event.target['checked'])">
+                  [checked]="getSettings(prop.key,prop.value['default']) === 'true'" aria-label="..."
+                  (change)="saveSetting(prop.key,$event.target['value'])">
               </div>
 
             </div>
@@ -67,17 +67,17 @@
 
       </ng-container>
 
-      <div class="row" *ngFor="let instance of selectedAppliance.instances;let i = index">
+      <div class="row" *ngFor="let instance of selectedAppliance.instances | keyvalue">
         <div class="col-6">
           <div class="form-group">
-            <label for="appliance_service">{{'%s. Instance' | localize : [i+1]}}</label>
+            <label for="appliance_service">{{'Instance' | localize}}</label>
             <div class="form-group-multi">
               <dropdownmenu [dataSource]="instanceList" [keyLabel]="'displayName'" [keyId]="'id'"
-                [selected]="instance.id" (selectedChanged)="selectInstance(i,$event)">
+                [selected]="instance.key" (selectedChanged)="selectInstance($event)">
                 {{'Please choose a HAP instance' | localize}}</dropdownmenu>
-              <button id="remove_{{instance.id}}" type="button" [disabled]="instance.remove === false"
-                [class.disabled]="instance.remove === false" class="btn btn-sm btn-outline-dark"
-                (click)="removeInstance(i,instance.id)">
+              <button id="remove_{{instance.key}}" type="button" [disabled]="instance.value['remove']===false"
+                [class.disabled]="instance.value['remove']===false" class="btn btn-sm btn-outline-dark"
+                (click)="removeInstance(instance.key)">
                 X</button>
             </div>
           </div>
@@ -86,8 +86,7 @@
 
       <div class="row">
         <div class="col-6">
-          <button type="button" (click)="addNewInstance()" class="btn btn-sm btn-secondary"><span
-              class="cil-plus btn-icon mr-2"></span>
+          <button type="button" class="btn btn-sm btn-secondary"><span class="cil-plus btn-icon mr-2"></span>
             {{'Add new Instance' | localize}}</button>
         </div>
       </div>

@@ -61,22 +61,22 @@
     <div class="row">
       <div class="col-4">
         <div class="btn-group" role="group">
-          <button type="button" class="btn btn-sm btn-success" (click)="previousStep()"
+          <button type="button" class="btn btn-success" (click)="previousStep()"
             [attr.disabled]="canDoPrevious?null:'disabled'"><span
               class="cil-chevron-circle-left-alt btn-icon mr-2"></span>{{'Previous' |
             localize}}</button>
 
-          <button type="button" class="btn btn-sm btn-success" (click)="nextStep()"
+          <button type="button" class="btn btn-success" (click)="nextStep()"
             [attr.disabled]="canDoNext?null:'disabled'"><span
               class="cil-chevron-circle-right-alt btn-icon mr-2"></span>{{'Next' |
             localize}}</button>
 
-          <button type="button" class="btn btn-sm btn-info" (click)="finish()"
+          <button type="button" class="btn btn-info" (click)="finish()"
             [attr.disabled]="((canDoNext===false) && (wizzardStep>0))?null:'disabled'"><span
               class="cil-check btn-icon mr-2"></span>{{'Finish' |
             localize}}</button>
 
-          <button type="button" class="btn btn-sm btn-primary" (click)="dismissAddNew()"><span
+          <button type="button" class="btn btn-primary" (click)="dismissAddNew()"><span
               class="cil-x btn-icon mr-2"></span>{{'Dismiss' |
             localize}}</button>
         </div>

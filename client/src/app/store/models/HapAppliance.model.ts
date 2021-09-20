@@ -1,3 +1,5 @@
+import { HapApplianceService } from ".";
+
 export enum HapApplicanceType {
   Device = 'HapDevice',
   Variable = 'HapVariable',

@@ -1,10 +1,11 @@
 
+import { KeyValue } from '@angular/common';
 import { Component, Input, OnDestroy } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable, of } from 'rxjs';
 import { ApplicationService } from 'src/app/service/application.service';
 import { HapApplianceApiService } from 'src/app/service/hapappliance.service';
-import { Actions, Models, Selectors, SelectUtility } from 'src/app/store';
+import { Actions, Models, Selectors } from 'src/app/store';
 import { HapInstance } from 'src/app/store/models';
 import { ApplianceValidator } from 'src/app/validators/appliancesettings.validator';
 import { ValidationResult } from 'src/app/validators/validationResult';
@@ -29,8 +30,7 @@ export class AppliancePropertiesComponent implements OnDestroy {
       if (this._selectedAppliance.settings === undefined) {
         this._selectedAppliance.settings = {};
       }
-      // Copy the settings to a local variable for easier access
-      this.currentSettings = this._selectedAppliance.settings.settings;
+
       this.loadServices();
     }
   }
@@ -42,7 +42,6 @@ export class AppliancePropertiesComponent implements OnDestroy {
   serviceList: Observable<Models.HapApplianceService[]>;
   selectedServiceClass: Models.HapApplianceService;
   instanceList: Observable<Models.HapInstance[]>;
-  currentSettings: { [key: string]: any }; // this is a copy for easier access in the template
 
   constructor(
     private apiService: HapApplianceApiService,
@@ -84,8 +83,8 @@ export class AppliancePropertiesComponent implements OnDestroy {
                   instanceID = roomifiedInstance.id
                 }
               }
-              if (this._selectedAppliance.instances.length === 0) {
-                this._selectedAppliance.instances.push({ id: instanceID, name: '', remove: false })
+              if (Object.keys(this._selectedAppliance.instances).length === 0) {
+                this._selectedAppliance.instances[instanceID] = { name: '', remove: false }
               }
             }
           }
@@ -94,13 +93,24 @@ export class AppliancePropertiesComponent implements OnDestroy {
     }
   }
 
+  getSettings(propKey: any, defaultData: any): any {
+    const settings = this._selectedAppliance.settings.settings; // this is a little weird
+    if (settings !== undefined) {
+      return settings[propKey] || defaultData;
+    } else {
+      return defaultData;
+    }
+  }
+
+  getID(propKey: any): string {
+    return `service_prop_${propKey}`;
+  }
+
   saveSetting(propKey: any, newSetting: any): void {
     if (this._selectedAppliance.settings.settings === undefined) {
       this._selectedAppliance.settings.settings = {};
     }
     this._selectedAppliance.settings.settings[propKey] = newSetting;
-    // Copy the settings again to the local variable
-    this.currentSettings = this._selectedAppliance.settings.settings;
   }
 
   selectClazz(newClazz: any): void {
@@ -108,9 +118,8 @@ export class AppliancePropertiesComponent implements OnDestroy {
     this.selectedAppliance.serviceClass = newClazz.serviceClazz;
   }
 
-  selectInstance(index: number, newInstance: HapInstance): void {
-    this.selectedAppliance.instances[index] = { id: newInstance.id };
-    this.updateInstanceList();
+  selectInstance(newInstance: HapInstance): void {
+    this.selectedAppliance.instanceID = newInstance.id;
   }
 
   validate(): boolean {
@@ -125,38 +134,15 @@ export class AppliancePropertiesComponent implements OnDestroy {
 
   save(): void {
     if (this.selectedAppliance) {
-      // Update InstanceList in settings
-      this._selectedAppliance.settings.instance = this._selectedAppliance.instances; //
       this.store.dispatch(Actions.SaveHapApplianceAction({ applianceToSave: this._selectedAppliance }));
     }
   }
 
-  updateInstanceList(): void {
-    let idx = 0;
-    this.selectedAppliance.instances.forEach(inst => {
-      if (idx === 0) {
-        inst.remove = false
-        this.selectedAppliance.instanceID = inst.id;
-      } else {
-        inst.remove = true;
-      }
-      // Get the HAPInstance Object by Selected ID
-      const instData = SelectUtility.getInstance(this.store, Selectors.selectInstancesById(inst.id))
-      // save the name
-      inst.name = instData.displayName;
-      idx = idx + 1;
-    });
-  }
-
   addNewInstance(): void {
-    this.selectedAppliance.instances.push({ id: 0 })
-    this.updateInstanceList();
+
   }
 
-  removeInstance(index: number, instId: any): void {
-    const idxInstance = this.selectedAppliance.instances[index]
-    if ((idxInstance) && (idxInstance.id === instId)) {
-      this.selectedAppliance.instances.splice(index, 1);
-    }
+  removeInstance(instId: any): void {
+    delete this.selectedAppliance.instances[instId];
   }
 }

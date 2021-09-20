@@ -50,11 +50,11 @@ export class LocalizationService {
     if (parameter !== undefined) {
 
       if (parameter.length > 0) {
-        let i = 0
-        let output = msg
+        var i = 0
+        var output = msg
         if ((typeof msg) === 'string') {
           output = msg.replace(/%s/g, (match, idx) => {
-            const subst = parameter.slice(i, ++i)
+            var subst = parameter.slice(i, ++i)
             return subst.toString()
           })
         }
