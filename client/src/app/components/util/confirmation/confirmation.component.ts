@@ -1,12 +1,12 @@
 
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-confirmation',
   templateUrl: './confirmation.component.html',
   styleUrls: ['./confirmation.component.sass']
 })
-export class ConfirmationDialogComponent implements OnInit {
+export class ConfirmationDialogComponent {
 
   @Input() selectedObject: any;
   @Input() title: string;
@@ -16,11 +16,6 @@ export class ConfirmationDialogComponent implements OnInit {
   @Input() img: string;
 
   @Output() confirm: EventEmitter<any> = new EventEmitter();
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
 
   doConfirm(): void {
     this.confirm.emit();

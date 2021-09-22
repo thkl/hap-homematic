@@ -47,10 +47,26 @@
                 {{prop.value['default']}}</dropdownmenu>
 
               <settingsinput id="service_prop_{{prop.key}}" ngDefaultControl
-                *ngIf="prop.value['type'] === 'number' || prop.value['type'] === 'text'" type="text"
-                [ngModel]="currentSettings[prop.key] || prop.value['default']"
+                *ngIf="prop.value['selector']===undefined && (prop.value['type'] === 'number' || prop.value['type'] === 'text')"
+                type="text" [ngModel]="currentSettings[prop.key] || prop.value['default']"
                 (ngModelChange)="saveSetting(prop.key,$event)" [validator]="applianceValidator">
               </settingsinput>
+
+              <datapointselector id="service_prop_{{prop.key}}" ngDefaultControl
+                *ngIf="prop.value['selector']==='channel' && (prop.value['type']==='text' || prop.value['type']==='text_control_array')"
+                type=" text"
+                [channelTypes]="(prop.value.options !== undefined) ? prop.value.options.filterChannels : []"
+                [selectorMode]="1" [ngModel]="currentSettings[prop.key] || prop.value['default']"
+                [singleSelection]="prop.value['type']!=='text_control_array'"
+                (ngModelChange)="saveSetting(prop.key,$event)" [validator]="applianceValidator">
+              </datapointselector>
+
+              <datapointselector id="service_prop_{{prop.key}}" ngDefaultControl
+                *ngIf="prop.value['selector']==='datapoint' && prop.value['type']==='text'" type=" text"
+                [channelTypes]="(prop.value.options !== undefined) ? prop.value.options.filterChannels : []"
+                [selectorMode]="2" [ngModel]="currentSettings[prop.key] || prop.value['default']"
+                (ngModelChange)="saveSetting(prop.key,$event)" [validator]="applianceValidator">
+              </datapointselector>
 
               <div class="form-check" *ngIf="prop.value['type'] === 'checkbox'">
                 <input class="form-check-input position-static" type="checkbox" id="blankCheckbox" value="true"

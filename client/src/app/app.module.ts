@@ -41,6 +41,7 @@ import { CCUVariablelistComponent } from './components/ccuobjects/ccuvariablelis
 import { ConfirmationDialogComponent } from './components/util/confirmation/confirmation.component';
 import { CCUProgramlistComponent } from './components/ccuobjects/ccuprogramlist/ccuprogramlist.component';
 import { SettingsinputComponent } from './components/util/settingsinput/settingsinput.component';
+import { DatapointselectorComponent } from './components/util/datapointselector/datapointselector.component';
 
 
 @NgModule({
@@ -65,7 +66,8 @@ import { SettingsinputComponent } from './components/util/settingsinput/settings
     CCUVariablelistComponent,
     ConfirmationDialogComponent,
     CCUProgramlistComponent,
-    SettingsinputComponent
+    SettingsinputComponent,
+    DatapointselectorComponent
   ],
   imports: [
     HttpClientModule,

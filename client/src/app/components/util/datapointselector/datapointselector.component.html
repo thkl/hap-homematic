@@ -1,0 +1,88 @@
+<div class="input-group input-group-sm mb-3">
+  <input id="{{id}}" type="text" value="{{ngModel}}" class="form-control form-control-lg"
+    [class.is-invalid]="validationError!==undefined" (change)="doChange($event)">
+  <div class="input-group-append">
+    <button class="btn btn-outline-secondary" type="button" id="{{id}}_select_button" data-toggle="modal"
+      attr.data-target="#selectorPopup{{id}}">Browse</button>
+  </div>
+  <div class="invalid-feedback">
+    {{validationError}}
+  </div>
+</div>
+
+<div *ngIf="singleSelection===false">
+  <button type="button" class="btn btn-sm btn-secondary">{{'Add new channel' | localize}}</button>
+</div>
+
+
+<div class="modal" id="selectorPopup{{id}}" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" *ngIf="currentSelectorStep === 0">{{'Select a device' | localize}}</h5>
+        <h5 class="modal-title" *ngIf="currentSelectorStep === 1">{{'Select a channel' | localize}}</h5>
+        <h5 class="modal-title" *ngIf="currentSelectorStep === 2">{{'Select a datapoint' | localize}}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+        <table *ngIf="currentSelectorStep < 2" cdk-table [dataSource]="dataSource"
+          class="table table-responsive-sm table-striped table-sm" matSort (matSortChange)="sortData($event)">
+
+          <ng-container cdkColumnDef="name">
+            <th cdk-header-cell *cdkHeaderCellDef mat-sort-header="name" disableClear>{{'Name' | localize}}</th>
+            <td cdk-cell *cdkCellDef="let row">{{row.name}}</td>
+          </ng-container>
+
+          <ng-container cdkColumnDef="id">
+            <th cdk-header-cell *cdkHeaderCellDef>{{'Address' | localize}}</th>
+            <td cdk-cell *cdkCellDef="let row">{{row.address}}</td>
+          </ng-container>
+
+          <ng-container cdkColumnDef="select">
+            <th cdk-header-cell *cdkHeaderCellDef></th>
+            <td cdk-cell *cdkCellDef="let row"><button type="button" (click)="selectDeviceOrChannel(row)"
+                class="btn btn-sm btn-info">{{'Select' |
+                localize}}</button></td>
+          </ng-container>
+
+          <tr cdk-header-row *cdkHeaderRowDef="['id','name','select']"></tr>
+          <tr cdk-row *cdkRowDef="let row; columns: ['id','name','select'];"></tr>
+        </table>
+
+        <table *ngIf="currentSelectorStep === 2" cdk-table [dataSource]="dataSource"
+          class="table table-responsive-sm table-striped table-sm" matSort (matSortChange)="sortData($event)">
+
+          <ng-container cdkColumnDef="name">
+            <th cdk-header-cell *cdkHeaderCellDef mat-sort-header="name" disableClear>{{'Name' | localize}}</th>
+            <td cdk-cell *cdkCellDef="let row">{{row}}</td>
+          </ng-container>
+
+          <ng-container cdkColumnDef="select">
+            <th cdk-header-cell *cdkHeaderCellDef></th>
+            <td cdk-cell *cdkCellDef="let row"><button type="button" (click)="selectDatapoint(row)"
+                class="btn btn-sm btn-info">{{'Select' |
+                localize}}</button></td>
+          </ng-container>
+
+          <tr cdk-header-row *cdkHeaderRowDef="['name','select']"></tr>
+          <tr cdk-row *cdkRowDef="let row; columns: ['name','select'];"></tr>
+        </table>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" [attr.disabled]="(currentSelectorStep > 0)?null:'disabled'"
+          (click)="goBack()">{{'Back'
+          |
+          localize}}</button>
+
+        &nbsp;
+
+        <button type="button" #closeModal class="btn btn-secondary" data-dismiss="modal" (click)="reset()">{{'Dismiss' |
+          localize}}</button>
+      </div>
+    </div>
+  </div>
+</div>

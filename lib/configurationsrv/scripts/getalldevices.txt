@@ -1,0 +1,29 @@
+  !devices
+        string sDeviceId;string sChannelId;string sDpId;boolean df = true;
+        Write('{"devices":[');
+            foreach(sDeviceId, root.Devices().EnumIDs()){
+                object oDevice = dom.GetObject(sDeviceId);
+                if(oDevice){
+                    if(df) {df = false;} else { Write(',');}
+                    Write('{');
+                    Write('"name": "' # oDevice.Name().UriEncode() # '",');
+                    Write('"device": "' # oDevice.Address() # '",');
+                    Write('"type": "' # oDevice.HssType() # '",');
+                    Write('"channels": [');
+                    boolean bcf = true;
+                    foreach(sChannelId, oDevice.Channels().EnumIDs()) {
+                        object oChannel = dom.GetObject(sChannelId);
+                        if (oChannel) {
+                            if(bcf) {bcf = false;} else {Write(',');} 
+                            Write('{');
+                            Write('"id": ' # sChannelId # ',');
+                            Write('"name": "' # oChannel.Name().UriEncode() # '",');
+                            Write('"address": "' # oChannel.Address() # '",');
+                            Write('"type": "' # oChannel.HssType() # '"');
+                            Write('}');
+                        }
+                    }
+                Write(']}');
+            }
+        }
+        Write(']}');

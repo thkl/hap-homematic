@@ -45,3 +45,8 @@ export interface CCUProgram {
 export interface CCUProgramLoadingResult {
   programs: CCUProgram[];
 }
+
+
+export interface CCUChannelDatapointResult {
+  datapoints: string[];
+}

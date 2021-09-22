@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { SystemConfig } from '../store/models/SystemConfig.model';
 import { ApplicationService } from './application.service';
-import { CCUDeviceLoadingResult, CCUProgramLoadingResult, CCURoom, CCURoomLoadingResult, CCUVariableLoadingResult } from '../store/models';
+import { CCUChannelDatapointResult, CCUDeviceLoadingResult, CCUProgramLoadingResult, CCURoom, CCURoomLoadingResult, CCUVariableLoadingResult } from '../store/models';
 
 @Injectable({
   providedIn: 'root'
@@ -35,5 +35,14 @@ export class SystemconfigService {
 
   loadCompatibleCCUPrograms() {
     return this.http.get<CCUProgramLoadingResult>(`${this.api}/ccuprograms`);
+  }
+
+  loadDevicesByChannelTypes(channelTypes: string[]) {
+    const typeList = channelTypes.join(',');
+    return this.http.get<CCUDeviceLoadingResult>(`${this.api}/ccuchannels/${typeList}`);
+  }
+
+  loadChannelDatapoints(channelId: string) {
+    return this.http.get<CCUChannelDatapointResult>(`${this.api}/ccudatapoints/${channelId}`)
   }
 }

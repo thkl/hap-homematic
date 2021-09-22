@@ -60,7 +60,7 @@ export class CCUProgramlistComponent implements OnInit {
   }
 
   sortData(event): void {
-
+    console.log(event);
   }
 
 }

@@ -13,15 +13,24 @@ export class AppComponent implements OnInit {
   title = 'HAP-Homematic';
   ccuLoading = false;
   hapLoading = false;
+  errorMessage: string = undefined;
 
   public todayDate: Date = new Date();
   public phraseLoaded: boolean;
   constructor(
     private store: Store<AppState>,
     private localizationService: LocalizationService
-  ) { }
+  ) {
+    this.store.pipe(select(Selectors.localizationLoadingError)).subscribe(error => {
+      this.errorMessage = ((error !== undefined) ? error.message : undefined);
+      console.log(this.errorMessage);
+    })
+  }
 
   ngOnInit(): void {
+
+
+
     this.store.pipe(select(Selectors.localizationLoaded)).subscribe((phl) => {
       this.phraseLoaded = phl;
     })

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { SystemconfigService } from 'src/app/service/systemconfig.service';
 import { Models, Actions } from 'src/app/store';
 
 @Component({
@@ -9,7 +10,10 @@ import { Models, Actions } from 'src/app/store';
 })
 export class ShellComponent implements OnInit {
 
-  constructor(private store: Store<Models.AppState>) { }
+  constructor(
+    private store: Store<Models.AppState>,
+
+  ) { }
 
   ngOnInit(): void {
     this.store.dispatch(Actions.LoadHapInstanceAction());

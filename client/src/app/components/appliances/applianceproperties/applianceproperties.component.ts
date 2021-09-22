@@ -43,6 +43,7 @@ export class AppliancePropertiesComponent implements OnDestroy {
   selectedServiceClass: Models.HapApplianceService;
   instanceList: Observable<Models.HapInstance[]>;
   currentSettings: { [key: string]: any }; // this is a copy for easier access in the template
+  dpselectorFilterChannels: string[];
 
   constructor(
     private apiService: HapApplianceApiService,

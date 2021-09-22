@@ -53,21 +53,31 @@ export class NewApplianceWizzardFrameComponent implements OnInit, OnDestroy {
           case 'program':
             this.wizzardFor = Models.HapApplicanceType.Program;
             break;
+          case 'special':
+            this.wizzardFor = Models.HapApplicanceType.Special;
+            this.addChannelToWizzard('new:special');
+            this.wizzardStep = 1;
+            this.canDoNext = false;
+            this.openPrefrences('new:special');
+            break;
           default:
             break;
         }
       }
     })
 
-    this.store.pipe(select(Selectors.selectAllTemporaryAppliances(Models.HapApplicanceType.All))).subscribe(applList => {
-      this.channelAdressList = [];
-      applList.forEach(tmpHapAppliance => {
-        if (tmpHapAppliance !== undefined) {
-          this.channelAdressList.push(tmpHapAppliance.address);
-        }
-      })
-      this.canDoNext = (this.channelAdressList.length > 0);
-    });
+    //Special devices do not have a Device/var/or proram selector
+    if (this.wizzardFor !== Models.HapApplicanceType.Special) {
+      this.store.pipe(select(Selectors.selectAllTemporaryAppliances(Models.HapApplicanceType.All))).subscribe(applList => {
+        this.channelAdressList = [];
+        applList.forEach(tmpHapAppliance => {
+          if (tmpHapAppliance !== undefined) {
+            this.channelAdressList.push(tmpHapAppliance.address);
+          }
+        })
+        this.canDoNext = (this.channelAdressList.length > 0);
+      });
+    }
   }
 
 
@@ -95,7 +105,10 @@ export class NewApplianceWizzardFrameComponent implements OnInit, OnDestroy {
         serial = channelAddress;
         channel = "0";
         break;
-
+      case Models.HapApplicanceType.Special:
+        ccuObject = { name: 'New Special Object' };
+        address = channelAddress;
+        break;
     }
     if (ccuObject) {
       const name = ccuObject.name;
@@ -145,6 +158,9 @@ export class NewApplianceWizzardFrameComponent implements OnInit, OnDestroy {
         break;
       case Models.HapApplicanceType.Program:
         this.router.navigate(['/programs']);
+        break;
+      case Models.HapApplicanceType.Special:
+        this.router.navigate(['/special']);
         break;
     }
   }
