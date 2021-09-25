@@ -1,6 +1,7 @@
 
 import { Component, Input, OnDestroy } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { NGXLogger } from 'ngx-logger';
 import { Observable, of } from 'rxjs';
 import { ApplicationService } from 'src/app/service/application.service';
 import { HapApplianceApiService } from 'src/app/service/hapappliance.service';
@@ -48,7 +49,8 @@ export class AppliancePropertiesComponent implements OnDestroy {
   constructor(
     private apiService: HapApplianceApiService,
     public store: Store<Models.AppState>,
-    private applicationService: ApplicationService
+    private applicationService: ApplicationService,
+    private logger: NGXLogger
   ) { }
 
   ngOnDestroy(): void {
@@ -58,7 +60,11 @@ export class AppliancePropertiesComponent implements OnDestroy {
 
   loadServices(): void {
     if (this.selectedAppliance !== undefined) {
+      this.logger.debug(`Loading Services for ${this.selectedAppliance.applianceType}`);
+
       this.apiService.loadServiceData(this.selectedAppliance.address, this.selectedAppliance.applianceType).subscribe(serviceResponse => {
+
+        this.logger.debug(`Loading Services done for ${this.selectedAppliance.applianceType}`, serviceResponse.service);
         this.serviceList = of(serviceResponse.service);
 
         if (this.selectedAppliance.serviceClass) {
@@ -69,7 +75,6 @@ export class AppliancePropertiesComponent implements OnDestroy {
       })
 
       this.instanceList = this.store.select(Selectors.selectAllInstances)
-
 
       this.instanceList.subscribe(list => {
         if (list.length > 0) {
@@ -96,6 +101,7 @@ export class AppliancePropertiesComponent implements OnDestroy {
   }
 
   saveSetting(propKey: any, newSetting: any): void {
+    this.logger.debug(`Saving settings ${propKey}`, newSetting);
     if (this._selectedAppliance.settings.settings === undefined) {
       this._selectedAppliance.settings.settings = {};
     }
@@ -105,6 +111,7 @@ export class AppliancePropertiesComponent implements OnDestroy {
   }
 
   selectClazz(newClazz: any): void {
+    this.logger.debug(`New serviceclass selected for ${this.selectedAppliance.address}`, newClazz);
     this.selectedServiceClass = newClazz;
     this.selectedAppliance.serviceClass = newClazz.serviceClazz;
   }
@@ -115,8 +122,12 @@ export class AppliancePropertiesComponent implements OnDestroy {
   }
 
   validate(): boolean {
+
     this.validationResult = this.applianceValidator.validate(this.selectedAppliance,
       this.selectedServiceClass);
+
+    this.logger.debug(`Settings validation is done ${this.validationResult.isValid}`, [this.validationResult, this.selectedAppliance, this.selectedServiceClass]);
+
     return this.validationResult.isValid;
   }
 
@@ -127,6 +138,7 @@ export class AppliancePropertiesComponent implements OnDestroy {
   save(): void {
     if (this.selectedAppliance) {
       // Update InstanceList in settings
+      this.logger.debug(`Save appliance to api`, this._selectedAppliance);
       this._selectedAppliance.settings.instance = this._selectedAppliance.instances; //
       this.store.dispatch(Actions.SaveHapApplianceAction({ applianceToSave: this._selectedAppliance }));
     }

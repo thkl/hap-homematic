@@ -38,7 +38,7 @@ export class HapApplianceEffects {
     this.actions$.pipe(
       ofType(HapApplianceActionTypes.SAVE_APPLIANCE_TO_API),
       switchMap((action) =>
-        this.hapApplianceService.saveHapAppliance(action['payload']).pipe(
+        this.hapApplianceService.saveHapAppliances(action['payload']).pipe(
           map((data: any) => {
             return {
               type: HapApplianceActionTypes.SAVE_APPLIANCE_SUCCESS,

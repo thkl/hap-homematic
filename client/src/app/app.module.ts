@@ -43,6 +43,11 @@ import { CCUProgramlistComponent } from './components/ccuobjects/ccuprogramlist/
 import { SettingsinputComponent } from './components/util/settingsinput/settingsinput.component';
 import { DatapointselectorComponent } from './components/util/datapointselector/datapointselector.component';
 
+import { LoggerModule } from "ngx-logger";
+import { environment } from 'src/environments/environment';
+import { LogViewerComponent } from './components/system/logviewer/logviewer.component';
+import { CrashlogsComponent } from './components/system/crashlogs/crashlogs.component';
+import { DebugComponent } from './components/system/debug/debug.component';
 
 @NgModule({
   declarations: [
@@ -67,7 +72,10 @@ import { DatapointselectorComponent } from './components/util/datapointselector/
     ConfirmationDialogComponent,
     CCUProgramlistComponent,
     SettingsinputComponent,
-    DatapointselectorComponent
+    DatapointselectorComponent,
+    LogViewerComponent,
+    CrashlogsComponent,
+    DebugComponent
   ],
   imports: [
     HttpClientModule,
@@ -84,7 +92,11 @@ import { DatapointselectorComponent } from './components/util/datapointselector/
     NoopAnimationsModule,
     HeaderModule,
     QrCodeModule,
+    LoggerModule.forRoot({
+      level: environment.logLevel
+    })
   ],
+
   providers: [LocalizationResolver, ApplicanceListResolver],
   bootstrap: [AppComponent],
 })

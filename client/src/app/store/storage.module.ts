@@ -12,6 +12,8 @@ import * as ccuDeviceLoadingReducer from './reducer/CCUDevice.reducer';
 import * as ccuVariableLoadingReducer from './reducer/CCUVariables.reducer';
 import * as ccuProgramLoadingReducer from './reducer/CCUProgram.reducer';
 
+import * as systemLoggingReducer from './reducer/SystemLogging.reducer';
+
 import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../../environments/environment';
@@ -21,6 +23,7 @@ import { HapApplianceEffects } from './effects/HapAppliance.effect';
 import { HapInstanceEffects } from './effects/HapInstance.effect';
 import { LocalizationEffects } from './effects/Localization.effect';
 import { CCUObjectEffects } from './effects/CCUObjects.effect';
+import { SystemLoggingDataEffects } from './effects/SystemLogging.effects';
 
 @NgModule({
   declarations: [],
@@ -35,7 +38,8 @@ import { CCUObjectEffects } from './effects/CCUObjects.effect';
       ccuRooms: roomLoadingReducer.reducer,
       ccuDevices: ccuDeviceLoadingReducer.reducer,
       ccuVariables: ccuVariableLoadingReducer.reducer,
-      ccuPrograms: ccuProgramLoadingReducer.reducer
+      ccuPrograms: ccuProgramLoadingReducer.reducer,
+      systemloggingState: systemLoggingReducer.reducer
     }),
 
     EffectsModule.forRoot([
@@ -43,7 +47,8 @@ import { CCUObjectEffects } from './effects/CCUObjects.effect';
       HapInstanceEffects,
       HapApplianceEffects,
       LocalizationEffects,
-      CCUObjectEffects
+      CCUObjectEffects,
+      SystemLoggingDataEffects
     ]),
     StoreDevtoolsModule.instrument({
       maxAge: 25,

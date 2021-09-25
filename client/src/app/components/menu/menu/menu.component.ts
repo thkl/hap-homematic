@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Data, NavigationEnd, NavigationError, NavigationStart, Params, Router } from '@angular/router';
-import { combineLatest, Observable, Subscription } from 'rxjs';
+import { Component } from '@angular/core';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { NGXLogger, NgxLoggerLevel } from 'ngx-logger';
 
 
 @Component({
@@ -8,12 +8,15 @@ import { combineLatest, Observable, Subscription } from 'rxjs';
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.sass']
 })
-export class MenuComponent implements OnInit {
+export class MenuComponent {
 
   public currentRouteUrl: string;
   public currentSubMenu: string;
 
-  constructor(private route: ActivatedRoute, private router: Router) {
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router
+  ) {
     this.router.events.subscribe((event) => {
 
       if (event instanceof NavigationEnd) {
@@ -23,8 +26,6 @@ export class MenuComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {
-  }
 
   toggleSubMenu(menu: string): void {
 
@@ -34,4 +35,5 @@ export class MenuComponent implements OnInit {
       this.currentSubMenu = menu;
     }
   }
+
 }

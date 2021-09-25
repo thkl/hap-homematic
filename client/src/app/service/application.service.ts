@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { take } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
-import { Actions, Models, Selectors } from '../store';
-import { CCUChannel, CCUDevice, CCURoom } from '../store/models';
+import { Models, Selectors } from '../store';
+import { CCUChannel, CCURoom } from '../store/models';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +11,7 @@ import { CCUChannel, CCUDevice, CCURoom } from '../store/models';
 export class ApplicationService {
 
   public api: string = environment.api;
-  public language: string = 'de';
+  public language = 'de';
   private _roomList: CCURoom[];
 
   constructor(private store: Store<Models.AppState>) {
@@ -25,7 +25,7 @@ export class ApplicationService {
 
   roomForChannel(channel: CCUChannel): CCURoom {
     if (this._roomList) {
-      let rs = this._roomList.filter(room => {
+      const rs = this._roomList.filter(room => {
         return (room.channels.indexOf(channel.id) !== -1)
       })
       return rs.length > 0 ? rs[0] : undefined

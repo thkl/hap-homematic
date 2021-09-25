@@ -11,6 +11,9 @@ import { InstancedetailComponent } from './components/instances/instancedetail/i
 import { ApplicanceListResolver } from './service/appliance.resolver';
 import { EditApplianceComponent } from './components/appliances/editappliance/editappliance.component';
 import { NewApplianceWizzardFrameComponent } from './components/appliances/newappliancewizzard/wizzardframe/wizzardframe.component';
+import { DebugComponent } from './components/system/debug/debug.component';
+import { LogViewerComponent } from './components/system/logviewer/logviewer.component';
+import { CrashlogsComponent } from './components/system/crashlogs/crashlogs.component';
 
 const routes: Routes = [
   {
@@ -80,6 +83,21 @@ const routes: Routes = [
       {
         path: 'instances/new', component: InstancedetailComponent,
         data: { breadcrumb: 'New Instance' }
+      },
+      {
+        path: 'debug', component: DebugComponent,
+        data: { breadcrumb: 'Debugging' },
+        children: [
+          {
+            path: '', component: LogViewerComponent
+          },
+          {
+            path: 'logging', component: LogViewerComponent
+          },
+          {
+            path: 'crash', component: CrashlogsComponent
+          }
+        ]
       }
     ],
   },

@@ -1,17 +1,18 @@
-<div class="input-group input-group-sm mb-3">
-  <input id="{{id}}" type="text" value="{{ngModel}}" class="form-control form-control-lg"
+<div class="input-group input-group-sm mb-3" *ngFor="let ngM of _ngModelArray | keyvalue">
+  <input id="{{id}}{{ngM.key}}" type="text" value="{{ngM.value}}" class="form-control form-control-lg"
     [class.is-invalid]="validationError!==undefined" (change)="doChange($event)">
   <div class="input-group-append">
-    <button class="btn btn-outline-secondary" type="button" id="{{id}}_select_button" data-toggle="modal"
-      attr.data-target="#selectorPopup{{id}}">Browse</button>
+    <button class="btn btn-outline-secondary" type="button" id="{{id}}_select_button" (click)="setIndex(ngM.key)"
+      data-toggle="modal" attr.data-target="#selectorPopup{{id}}">Browse</button>
   </div>
   <div class="invalid-feedback">
     {{validationError}}
   </div>
 </div>
 
-<div *ngIf="singleSelection===false">
-  <button type="button" class="btn btn-sm btn-secondary">{{'Add new channel' | localize}}</button>
+<div *ngIf="selectionType !== 0">
+  <button type="button" class="btn btn-sm btn-secondary" (click)="addElement()">{{'Add new channel' |
+    localize}}</button>
 </div>
 
 

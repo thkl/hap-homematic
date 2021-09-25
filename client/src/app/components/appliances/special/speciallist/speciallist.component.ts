@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AbstractTableComponent } from 'src/app/components/abstracttable/abstracttable';
 import { Models, Selectors } from 'src/app/store';
+import { HapAppliance } from 'src/app/store/models';
 
 @Component({
   selector: 'app-speciallist',
@@ -23,6 +24,5 @@ export class SpeciallistComponent extends AbstractTableComponent {
     this.dataSourceSelector = Selectors.selectAllAppliances(Models.HapApplicanceType.Special);
     this.loadingSelector = Selectors.appliancesLoading;
   }
-
 
 }

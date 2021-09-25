@@ -1,0 +1,16 @@
+<div class="card">
+  <div class="card-header">
+    <h2>{{'Log' | localize}}</h2>
+  </div>
+  <div class="card-body" id="container">
+    <textarea>{{logContent | async}}</textarea>
+  </div>
+  <div class="card-footer">
+    <button type="button" class="btn btn-sm btn-primary" (click)="refresh()">{{'Refresh' | localize}}</button>
+    &nbsp;
+    <button type="button" class="btn btn-sm btn-primary" (click)="enableDebug()">{{'Enable Debug' | localize}}</button>
+    &nbsp;
+    <button type="button" class="btn btn-sm btn-primary">{{'Download log' | localize}}</button>
+
+  </div>
+</div>

@@ -57,7 +57,6 @@
                 type=" text"
                 [channelTypes]="(prop.value.options !== undefined) ? prop.value.options.filterChannels : []"
                 [selectorMode]="1" [ngModel]="currentSettings[prop.key] || prop.value['default']"
-                [singleSelection]="prop.value['type']!=='text_control_array'"
                 (ngModelChange)="saveSetting(prop.key,$event)" [validator]="applianceValidator">
               </datapointselector>
 

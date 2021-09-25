@@ -7,3 +7,4 @@ export * from './CCUDevice.selector';
 export * from './CCUVariable.selector';
 export * from './HapTemporaryAppliance.selector';
 export * from './CCUProgram.selector';
+export * from './SystemLogging.selector';
