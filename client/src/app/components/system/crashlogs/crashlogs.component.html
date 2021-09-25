@@ -1,28 +1,33 @@
-<div class="card">
-  <div class="card-header">
-    <h2>Crashlogs</h2>
-  </div>
-  <div class="card-body">
-    <div class="row">
-      <div class="col-3">
-        <header class="c-header c-header-light px-3">
-          <h5>Crashtime</h5>
-        </header>
-        <table class="table">
-          <tbody>
-            <tr *ngFor="let crash of crashList | async" class="timestamp" (click)="selectTimestamp(crash)">
-              <td>{{crash | date : 'dd.MM.YYYY hh:mm:ss'}}</td>
-              <td class="deleteCol"><button type="button" class="btn btn-outline-dark btn-sm"
-                  (click)="deleteCrash(crash)"><span class="cil-trash btn-icon"></span></button></td>
-            </tr>
-          </tbody>
-        </table>
+<div class="card-body">
+  <div class="row flexRow">
+    <div class="col-md-3 col-sm-12">
+      <div class="row">
+        <div class="col-12">
+          <img src="./assets/img/bug.svg" alt="">
+        </div>
       </div>
-      <div class="col-9 crashdetail">
-        <header class="c-header c-header-light px-3">
-          <h5>Detail</h5>
-        </header>
-        <textarea>{{currentCrash | async}}</textarea>
+      <div class="row">
+        <div class="col-12">
+          <header class="c-header c-header-light px-3">
+            <h5>Crashtime</h5>
+          </header>
+          <table class="table">
+            <tbody>
+              <tr *ngFor="let crash of crashList | async" class="timestamp" (click)="selectTimestamp(crash)">
+                <td>{{crash | date : 'dd.MM.YYYY hh:mm:ss'}}</td>
+                <td class="deleteCol"><button type="button" class="btn btn-outline-dark btn-sm"
+                    (click)="deleteCrash(crash)"><span class="cil-trash btn-icon"></span></button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
+    <div class="col-md-9 col-sm-12 crashdetail">
+      <header class="c-header c-header-light px-3">
+        <h5>Detail</h5>
+      </header>
+      <textarea>{{currentCrash | async}}</textarea>
+    </div>
   </div>
+</div>

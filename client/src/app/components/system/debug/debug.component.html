@@ -1,15 +1,19 @@
-<nav class="navbar navbar-expand-lg navbar-light">
-  <a class="navbar-brand" href="#">
-    <h4>Debugging</h4>
-  </a>
-  <ul class="nav nav-pills">
-    <li class="nav-item">
-      <a class="nav-link" [class.active]="activeComponent==='LogViewerComponent'"
-        routerLink="/debug/logging">Logging</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" [class.active]="activeComponent==='CrashlogsComponent'" routerLink="/debug/crash">Crashes</a>
-    </li>
-  </ul>
-</nav>
-<router-outlet></router-outlet>
+<div class="card">
+  <div class="card-header">
+    <h2>Debugging</h2>
+  </div>
+  <div class="card-body">
+    <nav class="nav-tabs-boxed">
+      <ul class="nav nav-tabs">
+        <li class="nav-item">
+          <a class="nav-link" [class.active]="activeComponent==='LogViewerComponent'"
+            routerLink="/debug/logging">Logging</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [class.active]="activeComponent==='CrashlogsComponent'"
+            routerLink="/debug/crash">Crashes</a>
+        </li>
+      </ul>
+    </nav>
+    <router-outlet></router-outlet>
+  </div>
