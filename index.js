@@ -94,19 +94,30 @@ process.on('uncaughtException', (err) => {
   process.exit(1) // mandatory (as per the Node docs)
 })
 
+log.info('---- launching ----')
+log.info('Welcome to HAP Homematic. Use your HomeMatic devices in HomeKit')
+log.info('(c) 2021 by @thkl - https://github.com/thkl/hap-homematic')
+log.info('setup logging system')
+
 try {
   if ((logPath) && (fs.existsSync(logPath)) && (fs.accessSync(logPath, fs.constants.W_OK))) {
+    log.info('Checking LogPath %s is writable ok', logPath)
     log.setLogFile(path.join(logPath, 'hap-homematic.log'))
   } else
 
     if (fs.existsSync('/var/log') && (fs.accessSync('/var/log', fs.constants.W_OK))) {
+      log.info('/var/log is writable', logPath)
       log.setLogFile(path.join('/var/log', 'hap-homematic.log'))
     } else {
       let tmpDir = fs.realpathSync(os.tmpdir())
+      log.info('using tmp to log %s', tmpDir)
       log.setLogFile(path.join(tmpDir, 'hap-homematic.log'))
     }
 } catch (e) {
-  log.warn('cannot set persistent file for logger')
+  log.warn('cannot set persistent file for logger %s', e.message)
+  let tmpDir = fs.realpathSync(os.tmpdir())
+  log.info('using tmp to log %s', tmpDir)
+  log.setLogFile(path.join(tmpDir, 'hap-homematic.log'))
 }
 // check if there is a .hapdebug in /tmp and switch on the debug mode then
 let fdebug = path.join(fs.realpathSync(os.tmpdir()), '.hapdebug')
@@ -115,9 +126,6 @@ if (fs.existsSync(fdebug)) {
   fs.unlinkSync(fdebug) // remove the flag
 }
 
-log.info('---- launching ----')
-log.info('Welcome to HAP Homematic. Use your HomeMatic devices in HomeKit')
-log.info('(c) 2021 by @thkl - https://github.com/thkl/hap-homematic')
 log.info('Logging into %s', log.getLogFile())
 var server
 
