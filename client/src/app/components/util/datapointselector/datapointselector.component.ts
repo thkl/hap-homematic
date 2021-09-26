@@ -54,6 +54,17 @@ export class DatapointselectorComponent implements OnInit {
 
   @Output() ngModelChange: EventEmitter<any> = new EventEmitter();
 
+  @Input() set selectorType(newType: string) {
+    switch (newType) {
+      case "text_control_array":
+        this.selectionType = DataType.typeObject;
+        break;
+      case "text":
+        this.selectionType = DataType.typeString;
+        break;
+    }
+  }
+
   @Input() id: string;
 
   @Input() set validator(newValidator: SettingsValidator) {
@@ -211,7 +222,10 @@ export class DatapointselectorComponent implements OnInit {
       case DataType.typeObject:
         {
           const ids = Object.keys(this._ngModelArray);
-          const lastID = parseInt(ids[ids.length - 1]);
+          let lastID = parseInt(ids[ids.length - 1]);
+          if (isNaN(lastID)) {
+            lastID = 0;
+          }
           this._ngModelArray[lastID + 1] = '';
         }
     }

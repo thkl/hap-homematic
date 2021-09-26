@@ -4,7 +4,8 @@
 <div class="card-footer">
   <button type="button" class="btn btn-sm btn-primary" (click)="refresh()">{{'Refresh' | localize}}</button>
   &nbsp;
-  <button type="button" class="btn btn-sm btn-primary" (click)="enableDebug()">{{'Enable Debug' | localize}}</button>
+  <button type="button" class="btn btn-sm btn-primary" (click)="toggleDebug()">{{(isDebugging) ?'Disable Debug': 'Enable
+    Debug' | localize}}</button>
   &nbsp;
   <button type="button" class="btn btn-sm btn-primary">{{'Download log' | localize}}</button>
 

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
 import { Actions, Models, Selectors } from 'src/app/store';
 
 @Component({

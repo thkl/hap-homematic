@@ -13,6 +13,7 @@ export class ApplicationService {
   public api: string = environment.api;
   public language = 'de';
   private _roomList: CCURoom[];
+  private _systemState: Models.SystemConfig = {};
 
   constructor(private store: Store<Models.AppState>) {
     console.log('Booting');
@@ -21,6 +22,17 @@ export class ApplicationService {
       this._roomList = roomList;
     })
 
+
+    this.store.pipe(select(Selectors.configData)).subscribe((newConfig) => {
+      if (newConfig) {
+        this._systemState = newConfig;
+      }
+    })
+
+  }
+
+  getSystemState(): Models.SystemConfig {
+    return this._systemState;
   }
 
   roomForChannel(channel: CCUChannel): CCURoom {

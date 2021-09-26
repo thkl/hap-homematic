@@ -68,7 +68,7 @@ const routes: Routes = [
       },
       {
         path: 'special/new', component: NewApplianceWizzardFrameComponent,
-        data: { breadcrumb: 'Add new Special' },
+        data: { breadcrumb: 'Add new Special device' },
       },
       {
         path: 'instances', component: InstancelistComponent,

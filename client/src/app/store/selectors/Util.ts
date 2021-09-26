@@ -40,3 +40,4 @@ export const getAppliance = (store: Store, selector: any): HapAppliance => {
   );
   return appliance;
 }
+

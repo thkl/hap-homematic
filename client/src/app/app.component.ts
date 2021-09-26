@@ -26,25 +26,25 @@ export class AppComponent implements OnInit {
   ) {
     this.store.pipe(select(Selectors.localizationLoadingError)).subscribe(error => {
       this.errorMessage = ((error !== undefined) ? error.message : undefined);
-      this.logger.debug(`API Error: ${this.errorMessage}`);
+      this.logger.debug(`AppComponent::API Error: ${this.errorMessage}`);
     })
   }
 
   ngOnInit(): void {
 
     this.logger.registerMonitor(new ConsoleLoggerMonitor());
-    this.logger.debug('Booting');
+    this.logger.debug('AppComponent::Booting');
     this.store.pipe(select(Selectors.localizationLoaded)).subscribe((phl) => {
-      this.logger.debug(`Localization Phrases loaded (${phl})`)
+      this.logger.debug(`AppComponent::Localization Phrases loaded (${phl})`)
       this.phraseLoaded = phl;
     })
 
-    this.logger.debug('Loading localization')
+    this.logger.debug('AppComponent::Loading localization')
     this.store.dispatch({ type: Actions.LocalizationActionTypes.LOAD });
 
     //prevent Error: ExpressionChangedAfterItHasBeenCheckedError:
     setTimeout(() => {
-      this.logger.debug('Subscribing to Loading Events')
+      this.logger.debug('AppComponent::Subscribing to Loading Events')
 
       this.store.select(Selectors.ccuDevicesLoading).subscribe(ld => {
         this.ccuLoading = ld;

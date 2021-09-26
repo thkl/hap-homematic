@@ -8,18 +8,18 @@ import { SystemConfigActionTypes } from '../actions/SystemConfig.action';
 @Injectable()
 export class SystemConfigEffects {
 
-    loadSystemConfig$ = createEffect(() => this.actions$.pipe(
-        ofType(SystemConfigActionTypes.LOAD_CONFIG),
-        mergeMap(() => this.systemconfigService.loadSystemConfiguration()
-            .pipe(
-                map(data => ({ type: SystemConfigActionTypes.LOAD_CONFIG_SUCCESS, payload: data })),
-                catchError(error => of({ type: SystemConfigActionTypes.LOAD_CONFIG_FAILED, payload: error }))
-            ))
-    )
-    );
+  loadSystemConfig$ = createEffect(() => this.actions$.pipe(
+    ofType(SystemConfigActionTypes.LOAD_CONFIG),
+    mergeMap(() => this.systemconfigService.loadSystemConfiguration()
+      .pipe(
+        map(data => ({ type: SystemConfigActionTypes.LOAD_CONFIG_SUCCESS, systemConfig: data })),
+        catchError(error => of({ type: SystemConfigActionTypes.LOAD_CONFIG_FAILED, payload: error }))
+      ))
+  )
+  );
 
-    constructor(
-        private actions$: Actions,
-        private systemconfigService: SystemconfigService
-    ) { }
+  constructor(
+    private actions$: Actions,
+    private systemconfigService: SystemconfigService
+  ) { }
 }

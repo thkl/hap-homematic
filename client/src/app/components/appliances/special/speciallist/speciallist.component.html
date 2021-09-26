@@ -37,7 +37,8 @@
           <button type="button" class="btn btn-sm btn-success" routerLink='/appliance/{{device.address}}'>{{'Edit' |
             localize}}</button>
           &nbsp;
-          <button type="button" class="btn btn-sm btn-danger" (click)="selectObject(device)">{{'Delete' |
+          <button type="button" class="btn btn-sm btn-danger" (click)="selectObject(device)" data-toggle="modal"
+            attr.data-target="#{{confirmId}}">{{'Delete' |
             localize}}</button>
         </td>
       </ng-container>
@@ -60,3 +61,9 @@
 <ng-template #dummyInput>
   <input type="text" #searchInput style="display:none;">
 </ng-template>
+
+
+
+<app-confirmation [dialogId]="confirmId" img="./assets/img/delete.svg" (confirm)="deleteSpecial(selectedObject)">
+  {{'Are you sure you want to remove %s from HomeKit?' |
+  localize : [selectedObject ? selectedObject.name:'']}}</app-confirmation>

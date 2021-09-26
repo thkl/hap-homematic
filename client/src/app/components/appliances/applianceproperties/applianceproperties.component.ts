@@ -22,6 +22,7 @@ export class AppliancePropertiesComponent implements OnDestroy {
   private _selectedAppliance: Models.HapAppliance;
   private validationResult: ValidationResult;
   public applianceValidator = new ApplianceValidator();
+  public isDirty = true;
 
   @Input() set selectedAppliance(newAppliance: Models.HapAppliance) {
     if (newAppliance !== undefined) {
@@ -55,7 +56,9 @@ export class AppliancePropertiesComponent implements OnDestroy {
 
   ngOnDestroy(): void {
     // save on exit
-    this.save();
+    if (this.isDirty === true) {
+      this.save();
+    }
   }
 
   loadServices(): void {
@@ -79,20 +82,24 @@ export class AppliancePropertiesComponent implements OnDestroy {
       this.instanceList.subscribe(list => {
         if (list.length > 0) {
           if (this._selectedAppliance.instanceID === undefined) {
-            this._selectedAppliance.instanceID = list[0].id;
+            let instanceID = list[0].id;
+            // Set the default Instance
+            this._selectedAppliance.instanceID = instanceID;
+
             const channel = this.applicationService.channelWithAddress(this._selectedAppliance.address);
             if (channel !== undefined) {
               const ccuRoom = this.applicationService.roomForChannel(channel);
-              let instanceID = list[0].id;
+
               if (ccuRoom) {
                 const roomifiedInstance = list.filter(instance => instance.roomId === ccuRoom.id)[0];
                 if (roomifiedInstance) {
                   instanceID = roomifiedInstance.id
                 }
               }
-              if (this._selectedAppliance.instances.length === 0) {
-                this._selectedAppliance.instances.push({ id: instanceID, name: '', remove: false })
-              }
+
+            }
+            if (this._selectedAppliance.instances.length === 0) {
+              this._selectedAppliance.instances.push({ id: instanceID, name: '', remove: false })
             }
           }
         }
@@ -108,17 +115,20 @@ export class AppliancePropertiesComponent implements OnDestroy {
     this._selectedAppliance.settings.settings[propKey] = newSetting;
     // Copy the settings again to the local variable
     this.currentSettings = this._selectedAppliance.settings.settings;
+    this.isDirty = true;
   }
 
   selectClazz(newClazz: any): void {
     this.logger.debug(`New serviceclass selected for ${this.selectedAppliance.address}`, newClazz);
     this.selectedServiceClass = newClazz;
     this.selectedAppliance.serviceClass = newClazz.serviceClazz;
+    this.isDirty = true;
   }
 
   selectInstance(index: number, newInstance: HapInstance): void {
     this.selectedAppliance.instances[index] = { id: newInstance.id };
     this.updateInstanceList();
+    this.isDirty = true;
   }
 
   validate(): boolean {
@@ -141,6 +151,7 @@ export class AppliancePropertiesComponent implements OnDestroy {
       this.logger.debug(`Save appliance to api`, this._selectedAppliance);
       this._selectedAppliance.settings.instance = this._selectedAppliance.instances; //
       this.store.dispatch(Actions.SaveHapApplianceAction({ applianceToSave: this._selectedAppliance }));
+      this.isDirty = false;
     }
   }
 
@@ -156,14 +167,19 @@ export class AppliancePropertiesComponent implements OnDestroy {
       // Get the HAPInstance Object by Selected ID
       const instData = SelectUtility.getInstance(this.store, Selectors.selectInstancesById(inst.id))
       // save the name
-      inst.name = instData.displayName;
-      idx = idx + 1;
+      if (instData !== undefined) {
+        inst.name = instData.displayName;
+        idx = idx + 1;
+      } else {
+        this.logger.error(`AppliancePropertiesComponent::updateInstanceList Instance with ID ${inst.id} not found`);
+      }
     });
   }
 
   addNewInstance(): void {
     this.selectedAppliance.instances.push({ id: 0 })
     this.updateInstanceList();
+    this.isDirty = true;
   }
 
   removeInstance(index: number, instId: any): void {
@@ -171,5 +187,6 @@ export class AppliancePropertiesComponent implements OnDestroy {
     if ((idxInstance) && (idxInstance.id === instId)) {
       this.selectedAppliance.instances.splice(index, 1);
     }
+    this.isDirty = true;
   }
 }

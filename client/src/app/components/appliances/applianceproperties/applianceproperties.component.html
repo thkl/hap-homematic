@@ -57,14 +57,16 @@
                 type=" text"
                 [channelTypes]="(prop.value.options !== undefined) ? prop.value.options.filterChannels : []"
                 [selectorMode]="1" [ngModel]="currentSettings[prop.key] || prop.value['default']"
-                (ngModelChange)="saveSetting(prop.key,$event)" [validator]="applianceValidator">
+                [selectorType]="prop.value['type']" (ngModelChange)="saveSetting(prop.key,$event)"
+                [validator]="applianceValidator">
               </datapointselector>
 
               <datapointselector id="service_prop_{{prop.key}}" ngDefaultControl
                 *ngIf="prop.value['selector']==='datapoint' && prop.value['type']==='text'" type=" text"
                 [channelTypes]="(prop.value.options !== undefined) ? prop.value.options.filterChannels : []"
                 [selectorMode]="2" [ngModel]="currentSettings[prop.key] || prop.value['default']"
-                (ngModelChange)="saveSetting(prop.key,$event)" [validator]="applianceValidator">
+                [selectorType]="prop.value['type']" (ngModelChange)="saveSetting(prop.key,$event)"
+                [validator]="applianceValidator">
               </datapointselector>
 
               <div class="form-check" *ngIf="prop.value['type'] === 'checkbox'">
