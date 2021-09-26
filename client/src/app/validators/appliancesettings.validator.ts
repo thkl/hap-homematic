@@ -42,6 +42,8 @@ export class ApplianceValidator extends SettingsValidator {
           this.result.resultChanged.emit(id);
         }
       }
+
+      //
     });
 
     this.result.isValid = (this.result.messages.length === 0);

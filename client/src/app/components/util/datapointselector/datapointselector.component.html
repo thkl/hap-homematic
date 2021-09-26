@@ -4,6 +4,10 @@
   <div class="input-group-append">
     <button class="btn btn-outline-secondary" type="button" id="{{id}}_select_button" (click)="setIndex(ngM.key)"
       data-toggle="modal" attr.data-target="#selectorPopup{{id}}">Browse</button>
+
+    <button class="btn btn-outline-secondary" type="button" id="{{id}}_delete_button"
+      (click)="removeItem(ngM.key)"><span class="cil-trash btn-icon"></span></button>
+
   </div>
   <div class="invalid-feedback">
     {{validationError}}

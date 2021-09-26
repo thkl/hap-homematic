@@ -94,8 +94,7 @@
                 {{'Please choose a HAP instance' | localize}}</dropdownmenu>
               <button id="remove_{{instance.id}}" type="button" [disabled]="instance.remove === false"
                 [class.disabled]="instance.remove === false" class="btn btn-sm btn-outline-dark"
-                (click)="removeInstance(i,instance.id)">
-                X</button>
+                (click)="removeInstance(i,instance.id)"><span class="cil-trash btn-icon"></span></button>
             </div>
           </div>
         </div>

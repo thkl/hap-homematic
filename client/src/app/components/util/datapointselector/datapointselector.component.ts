@@ -28,9 +28,9 @@ export class DatapointselectorComponent implements OnInit {
 
 
   @Input() set ngModel(newModel: any) {
-    this.logger.debug('set ngModel', newModel)
+    this.logger.debug('DatapointselectorComponent::set ngModel', newModel)
     if (Array.isArray(newModel)) {
-      this.logger.debug('ngModel is a Array -> indexit')
+      this.logger.debug('DatapointselectorComponent::ngModel is a Array -> indexit')
       let index = 0;
       newModel.forEach(nm => {
         this._ngModelArray[index] = nm;
@@ -39,11 +39,11 @@ export class DatapointselectorComponent implements OnInit {
       this._ngModelArray = newModel;
       this.selectionType = DataType.typeArray;
     } else if (typeof newModel === 'string') {
-      this.logger.debug('ngModel is a string')
+      this.logger.debug('DatapointselectorComponent::ngModel is a string')
       this._ngModelArray[0] = newModel
       this.selectionType = DataType.typeString;
     } else if (typeof newModel === 'object') {
-      this.logger.debug('ngModel is an object')
+      this.logger.debug('DatapointselectorComponent::ngModel is an object')
       this._ngModelArray = newModel;
       this.selectionType = DataType.typeObject;
     }
@@ -107,12 +107,18 @@ export class DatapointselectorComponent implements OnInit {
   }
 
   setIndex(newIndex: string) {
-    this.logger.debug(`set SelectedIndex to ${newIndex}`)
+    this.logger.debug(`DatapointselectorComponent::SelectedIndex (${newIndex})`)
     this.currentSelectedIndex = newIndex;
   }
 
+  removeItem(index: string) {
+    this.logger.debug(`DatapointselectorComponent::removeItem (${index})`)
+    delete this._ngModelArray[index];
+    this.ngModelChange.emit(this._ngModelArray);
+  }
+
   reset() {
-    this.logger.debug('reset datapointselector');
+    this.logger.debug('DatapointselectorComponent::reset');
 
     this.selectedDevice = undefined;
     this.currentSelectorStep = 0;
@@ -182,14 +188,14 @@ export class DatapointselectorComponent implements OnInit {
   selectDatapoint(datapointName: string): void {
     switch (this.selectionType) {
       case DataType.typeString:
-        this.logger.debug(`selectDatapoint ${datapointName} (set for string)`)
+        this.logger.debug(`DatapointselectorComponent::selectDatapoint ${datapointName} (set for string)`)
         this.ngModelChange.emit(datapointName);
         break;
       case DataType.typeArray:
         this.ngModelChange.emit(this._ngModelArray[0]);
         break;
       case DataType.typeObject:
-        this.logger.debug(`selectDatapoint ${datapointName} (set for ${this.currentSelectedIndex} Object)`, this._ngModelArray)
+        this.logger.debug(`DatapointselectorComponent::selectDatapoint ${datapointName} (set for ${this.currentSelectedIndex} Object)`, this._ngModelArray)
         this._ngModelArray[this.currentSelectedIndex] = datapointName;
         this.ngModelChange.emit(this._ngModelArray);
         break;
@@ -200,7 +206,7 @@ export class DatapointselectorComponent implements OnInit {
   selectChannel(channel: string): void {
     switch (this.selectionType) {
       case DataType.typeString:
-        this.logger.debug(`selectChannel ${channel} (set for string)`)
+        this.logger.debug(`DatapointselectorComponent::selectChannel ${channel} (set for string)`)
         this.ngModelChange.emit(channel);
         break;
       case DataType.typeArray:
@@ -208,7 +214,7 @@ export class DatapointselectorComponent implements OnInit {
         this.ngModelChange.emit(this._ngModelArray[0]);
         break;
       case DataType.typeObject:
-        this.logger.debug(`selectChannel ${channel} (set for ${this.currentSelectedIndex} Object)`, this._ngModelArray)
+        this.logger.debug(`DatapointselectorComponent::selectChannel ${channel} (set for ${this.currentSelectedIndex} Object)`, this._ngModelArray)
         this._ngModelArray[this.currentSelectedIndex] = channel;
         this.ngModelChange.emit(this._ngModelArray);
         break;
@@ -217,7 +223,7 @@ export class DatapointselectorComponent implements OnInit {
   }
 
   addElement() {
-    this.logger.debug(`addElement for selectionType ${this.selectionType}`)
+    this.logger.debug(`DatapointselectorComponent::addElement for selectionType ${this.selectionType}`)
     switch (this.selectionType) {
       case DataType.typeObject:
         {
@@ -229,6 +235,7 @@ export class DatapointselectorComponent implements OnInit {
           this._ngModelArray[lastID + 1] = '';
         }
     }
+    this.ngModelChange.emit(this._ngModelArray);
   }
 
   sortData($event): void {

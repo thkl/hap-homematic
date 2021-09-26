@@ -131,6 +131,25 @@ export class AppliancePropertiesComponent implements OnDestroy {
     this.isDirty = true;
   }
 
+  cleanUp(): void {
+    // Cleanup the settings
+    const settings = this._selectedAppliance.settings;
+    // remove empty items in text_control_array - this is a mess ...
+    console.log(settings);
+    const serviceClassSettings = this.selectedServiceClass.settings
+    Object.keys(serviceClassSettings).forEach(settingsKey => {
+      const setTemplate = serviceClassSettings[settingsKey];
+      if (setTemplate.type === 'text_control_array') {
+        const aSetting = settings.settings[settingsKey];
+        Object.keys(aSetting).forEach(objKey => {
+          if (aSetting[objKey] === '') {
+            delete aSetting[objKey];
+          }
+        })
+      }
+    })
+  }
+
   validate(): boolean {
 
     this.validationResult = this.applianceValidator.validate(this.selectedAppliance,
@@ -150,6 +169,7 @@ export class AppliancePropertiesComponent implements OnDestroy {
       // Update InstanceList in settings
       this.logger.debug(`Save appliance to api`, this._selectedAppliance);
       this._selectedAppliance.settings.instance = this._selectedAppliance.instances; //
+      this.cleanUp();
       this.store.dispatch(Actions.SaveHapApplianceAction({ applianceToSave: this._selectedAppliance }));
       this.isDirty = false;
     }
