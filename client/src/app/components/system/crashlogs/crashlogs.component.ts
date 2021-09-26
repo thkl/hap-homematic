@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { NGXLogger } from 'ngx-logger';
 import { Observable } from 'rxjs';
-import { SystemconfigService } from 'src/app/service/systemconfig.service';
 import { Actions, Models, Selectors } from 'src/app/store';
 
 @Component({
@@ -14,6 +13,7 @@ export class CrashlogsComponent implements OnInit {
 
   crashList: Observable<string[]>;
   currentCrash: Observable<string>;
+  numberOfCrashes: Observable<number>;
 
   constructor(
     public store: Store<Models.AppState>,
@@ -23,6 +23,7 @@ export class CrashlogsComponent implements OnInit {
   ngOnInit(): void {
     this.crashList = this.store.pipe(select(Selectors.crashList));
     this.currentCrash = this.store.pipe(select(Selectors.crashDetail));
+    this.numberOfCrashes = this.store.pipe(select(Selectors.numberOfCrashes));
     this.refresh()
   }
 

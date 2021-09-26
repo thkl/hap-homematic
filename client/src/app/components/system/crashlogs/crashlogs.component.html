@@ -6,7 +6,7 @@
           <img src="./assets/img/bug.svg" alt="">
         </div>
       </div>
-      <div class="row">
+      <div class="row" *ngIf="(numberOfCrashes | async)>0 else noCrashes">
         <div class="col-12">
           <header class="c-header c-header-light px-3">
             <h5>Crashtime</h5>
@@ -22,8 +22,9 @@
           </table>
         </div>
       </div>
+
     </div>
-    <div class="col-md-9 col-sm-12 crashdetail">
+    <div class="col-md-9 col-sm-12 crashdetail" *ngIf="(numberOfCrashes | async)>0">
       <header class="c-header c-header-light px-3">
         <h5>Detail</h5>
       </header>
@@ -31,3 +32,8 @@
     </div>
   </div>
 </div>
+
+
+<ng-template #noCrashes>
+  No crashes \o/
+</ng-template>

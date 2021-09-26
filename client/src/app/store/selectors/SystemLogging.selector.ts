@@ -29,3 +29,8 @@ export const crashDetail = createSelector(
   (state: SystemLoggingState): string => state.crashDetail
 );
 
+export const numberOfCrashes = createSelector(
+  selectSystemLoggingState,
+  (state: SystemLoggingState): number => state.crashes.length || 0
+);
+
