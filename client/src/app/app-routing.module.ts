@@ -14,6 +14,8 @@ import { NewApplianceWizzardFrameComponent } from './components/appliances/newap
 import { DebugComponent } from './components/system/debug/debug.component';
 import { LogViewerComponent } from './components/system/logviewer/logviewer.component';
 import { CrashlogsComponent } from './components/system/crashlogs/crashlogs.component';
+import { RestartComponent } from './components/system/restart/restart.component';
+import { SettingsComponent } from './components/system/settings/settings.component';
 
 const routes: Routes = [
   {
@@ -98,6 +100,14 @@ const routes: Routes = [
             path: 'crash', component: CrashlogsComponent
           }
         ]
+      },
+      {
+        path: 'settings', component: SettingsComponent,
+        data: { breadcrumb: 'Settings' }
+      },
+      {
+        path: 'restart', component: RestartComponent,
+        data: { breadcrumb: 'Restart' },
       }
     ],
   },

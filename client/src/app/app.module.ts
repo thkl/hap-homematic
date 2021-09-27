@@ -48,6 +48,8 @@ import { environment } from 'src/environments/environment';
 import { LogViewerComponent } from './components/system/logviewer/logviewer.component';
 import { CrashlogsComponent } from './components/system/crashlogs/crashlogs.component';
 import { DebugComponent } from './components/system/debug/debug.component';
+import { RestartComponent } from './components/system/restart/restart.component';
+import { SettingsComponent } from './components/system/settings/settings.component';
 
 @NgModule({
   declarations: [
@@ -75,7 +77,9 @@ import { DebugComponent } from './components/system/debug/debug.component';
     DatapointselectorComponent,
     LogViewerComponent,
     CrashlogsComponent,
-    DebugComponent
+    DebugComponent,
+    RestartComponent,
+    SettingsComponent
   ],
   imports: [
     HttpClientModule,

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { select, Store } from '@ngrx/store';
+import { combineLatest, Observable } from 'rxjs';
 import { take } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { Models, Selectors } from '../store';
@@ -14,6 +15,7 @@ export class ApplicationService {
   public language = 'de';
   private _roomList: CCURoom[];
   private _systemState: Models.SystemConfig = {};
+  public globalLoadingIndicator: Observable<boolean[]>;
 
   constructor(private store: Store<Models.AppState>) {
     console.log('Booting');
@@ -28,6 +30,19 @@ export class ApplicationService {
         this._systemState = newConfig;
       }
     })
+
+
+    this.globalLoadingIndicator = combineLatest([
+      this.store.select(Selectors.instancesLoading),
+      this.store.select(Selectors.logdataIsLoading),
+      this.store.select(Selectors.roomsLoading),
+      this.store.select(Selectors.configIsLoading),
+      this.store.select(Selectors.localizationIsLoading),
+      this.store.select(Selectors.appliancesLoading),
+      this.store.select(Selectors.ccuDevicesLoading),
+      this.store.select(Selectors.ccuProgramsLoading),
+      this.store.select(Selectors.ccuVariablesLoading)]
+    )
 
   }
 
@@ -53,4 +68,9 @@ export class ApplicationService {
     );
     return channel;
   }
+
+  getApiURL():string {
+    return this.api;
+  }
+
 }

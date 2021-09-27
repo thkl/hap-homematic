@@ -16,6 +16,7 @@ export class LogViewerComponent implements OnInit {
 
   constructor(
     public store: Store<Models.AppState>,
+    private applicationService: ApplicationService,
     private logger: NGXLogger
   ) {
 
@@ -45,5 +46,10 @@ export class LogViewerComponent implements OnInit {
   toggleDebug(): void {
     this.logger.debug(`LogViewerComponent::toggleDebug`);
     this.store.dispatch(Actions.SwitchDebugAction({ enable: !this.isDebugging }));
+  }
+
+  downloadLog(): void {
+    this.logger.debug(`LogViewerComponent::downloadLog`);
+    window.open(`${this.applicationService.getApiURL()}/log/download`);
   }
 }

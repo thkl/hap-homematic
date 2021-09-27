@@ -1,0 +1,29 @@
+<div class="card">
+  <div class="card-header">
+    <h2>{{'Restart HAP Service' | localize}}</h2>
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-3">
+        <img src="./assets/img/reboot.svg" alt="">
+      </div>
+      <div class="col-9">
+        <p>{{'Here you can restart the HAP Daemon.' | localize}}</p>
+        <p>{{'Restarting the daemon will empty all logs. So you may want to download them first.' | localize}}</p>
+        <div class="form-check form-check-inline">
+          <input [(ngModel)]="enableDebug" class="form-check-input" type="checkbox" id="debugOnRestart" value="enable">
+          <label class="form-check-label" for="debugOnRestart">{{'Enable debug at launch' | localize}}</label>
+        </div>
+
+        <div class="progress" *ngIf="isRestarting===true">
+          <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="100"
+            aria-valuemin="0" aria-valuemax="100" style="width: 100%"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-footer">
+    <button type="button" class="btn btn-sm btn-danger" (click)="doReboot()">{{'Restart Now' | localize}}</button>
+    &nbsp;
+    <button type="button" class="btn btn-sm btn-primary" (click)="downloadLog()">{{'Download log' | localize}}</button>
+  </div>

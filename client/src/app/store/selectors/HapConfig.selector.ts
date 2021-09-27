@@ -19,3 +19,4 @@ export const configLoadingError = createSelector(
   selectHapConfigState,
   (state: ConfigState): Error => state.error
 );
+

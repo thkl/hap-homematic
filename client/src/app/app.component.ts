@@ -3,8 +3,9 @@ import { select, Store } from '@ngrx/store';
 import { LocalizationService } from './service/localization.service';
 import { Actions, Selectors } from './store';
 import { AppState } from './store/models/app-state.model';
-import { NGXLogger, NgxLoggerLevel } from "ngx-logger";
+import { NGXLogger } from "ngx-logger";
 import { ConsoleLoggerMonitor } from './service/logger.service';
+import { ApplicationService } from './service/application.service';
 
 @Component({
   selector: 'app-root',
@@ -13,8 +14,7 @@ import { ConsoleLoggerMonitor } from './service/logger.service';
 })
 export class AppComponent implements OnInit {
   title = 'HAP-Homematic';
-  ccuLoading = false;
-  hapLoading = false;
+  public isLoading: boolean;
   errorMessage: string = undefined;
 
   public todayDate: Date = new Date();
@@ -22,6 +22,7 @@ export class AppComponent implements OnInit {
   constructor(
     private store: Store<AppState>,
     private localizationService: LocalizationService,
+    private applicationService: ApplicationService,
     private logger: NGXLogger
   ) {
     this.store.pipe(select(Selectors.localizationLoadingError)).subscribe(error => {
@@ -42,17 +43,11 @@ export class AppComponent implements OnInit {
     this.logger.debug('AppComponent::Loading localization')
     this.store.dispatch({ type: Actions.LocalizationActionTypes.LOAD });
 
-    //prevent Error: ExpressionChangedAfterItHasBeenCheckedError:
-    setTimeout(() => {
-      this.logger.debug('AppComponent::Subscribing to Loading Events')
-
-      this.store.select(Selectors.ccuDevicesLoading).subscribe(ld => {
-        this.ccuLoading = ld;
-      });
-      this.store.select(Selectors.appliancesLoading).subscribe(ld => {
-        this.hapLoading = ld;
-      });
-    }, 500);
+    this.applicationService.globalLoadingIndicator.subscribe(isLoadingArray => {
+      setTimeout(() => {
+        this.isLoading = isLoadingArray.some(element => element === true);
+      }, 10)
+    })
   }
 
 

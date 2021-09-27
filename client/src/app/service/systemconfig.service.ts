@@ -82,4 +82,8 @@ export class SystemconfigService {
     return this.http.delete<[string]>(`${this.api}/crashes/${id}`);
   }
 
+  doReboot(enableDebug: boolean) {
+    return this.http.get(`${this.api}/restart/${enableDebug}`);
+  }
+
 }
