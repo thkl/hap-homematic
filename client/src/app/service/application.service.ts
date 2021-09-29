@@ -5,6 +5,8 @@ import { take } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { Models, Selectors } from '../store';
 import { CCUChannel, CCURoom, HapAppliance } from '../store/models';
+import { DataService } from './data.service';
+import { SocketService } from './socket.service';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +19,11 @@ export class ApplicationService {
   private _systemState: Models.SystemConfig = {};
   public globalLoadingIndicator: Observable<boolean[]>;
 
-  constructor(private store: Store<Models.AppState>) {
+
+  constructor(
+    private store: Store<Models.AppState>,
+    private dataService: DataService
+  ) {
     console.log('Booting');
 
     this.store.pipe(select(Selectors.selectAllRooms)).subscribe(roomList => {
