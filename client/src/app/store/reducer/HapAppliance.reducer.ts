@@ -42,10 +42,10 @@ const applianceLoadingReducer = createReducer(
 
   on(
     HapApplianceActionTypes.LoadHapAppliancesSuccessAction,
-    (state, { payload }) => ({
+    (state, { loadingResult }) => ({
       ...state,
-      list: payload.appliances,
-      varTrigger: payload.varTrigger,
+      list: loadingResult.appliances,
+      varTrigger: loadingResult.varTrigger,
       loading: false,
     })
   ),
@@ -64,13 +64,13 @@ const applianceLoadingReducer = createReducer(
     loading: true,
   })),
 
-  on(HapApplianceActionTypes.SaveHapApplianceActionSuccess,
-    (state, { payload }) => {
+  on(HapApplianceActionTypes.SaveHapApplianceToApiActionSuccess,
+    (state, { result }) => {
       return {
         ...state,
         saving: false,
         loading: false,
-        list: updateApplianceList(state, payload.appliances)
+        list: updateApplianceList(state, result.appliances)
       }
     }
   ),

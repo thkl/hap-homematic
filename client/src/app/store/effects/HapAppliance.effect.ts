@@ -5,7 +5,7 @@ import { of, pipe } from 'rxjs';
 import { map, mergeMap, catchError, switchMap } from 'rxjs/operators';
 import { HapApplianceApiService } from 'src/app/service/hapappliance.service';
 import { Models, Selectors } from '..';
-import { HapApplianceActionTypes } from '../actions';
+import { HapApplianceActionTypes, LoadHapAppliancesSuccessAction, SaveHapApplianceToApiActionSuccess, SaveHapApplianceToApiFailureAction } from '../actions';
 import { HapAppliance } from '../models';
 
 
@@ -17,10 +17,7 @@ export class HapApplianceEffects {
       mergeMap(() =>
         this.hapApplianceService.loadHapAppliances().pipe(
           map((data: any) => {
-            return {
-              type: HapApplianceActionTypes.LOAD_APPLIANCES_SUCCESS,
-              payload: data,
-            };
+            return LoadHapAppliancesSuccessAction({ loadingResult: data });
           }),
           catchError((error) =>
             of({
@@ -40,16 +37,10 @@ export class HapApplianceEffects {
       switchMap((action) =>
         this.hapApplianceService.saveHapAppliances(action['payload']).pipe(
           map((data: any) => {
-            return {
-              type: HapApplianceActionTypes.SAVE_APPLIANCE_SUCCESS,
-              payload: data,
-            };
+            return SaveHapApplianceToApiActionSuccess({ result: data });
           }),
           catchError((error) =>
-            of({
-              type: HapApplianceActionTypes.SAVE_APPLIANCE_FAILED,
-              payload: error,
-            })
+            of(SaveHapApplianceToApiFailureAction({ error: error }))
           )
         )
       )

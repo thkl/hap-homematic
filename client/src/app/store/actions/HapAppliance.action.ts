@@ -7,8 +7,8 @@ export enum HapApplianceActionTypes {
   LOAD_APPLIANCES_FAILED = '[HAP Appliance] Load List Failed',
   SAVE_APPLIANCE = '[HAP Appliance] Save Appliance',
   SAVE_APPLIANCE_TO_API = '[HAP Appliance] Save Appliance To Api',
-  SAVE_APPLIANCE_SUCCESS = '[HAP Appliance] Save Appliance Success',
-  SAVE_APPLIANCE_FAILED = '[HAP Appliance] Save Appliance Failed',
+  SAVE_APPLIANCE_TO_API_SUCCESS = '[HAP Appliance] Save Appliance Success',
+  SAVE_APPLIANCE_TO_API_FAILED = '[HAP Appliance] Save Appliance Failed',
 
   ADD_APPLIANCE = '[HAP Appliance] Add Appliance',
   EDIT_APPLIANCE = '[HAP Appliance] Edit Appliance',
@@ -28,7 +28,7 @@ export const LoadHapAppliancesAction = createAction(
 );
 export const LoadHapAppliancesSuccessAction = createAction(
   HapApplianceActionTypes.LOAD_APPLIANCES_SUCCESS,
-  props<{ payload: HapApplianceLoadResult }>()
+  props<{ loadingResult: HapApplianceLoadResult }>()
 );
 export const LoadHapAppliancesFailureAction = createAction(
   HapApplianceActionTypes.LOAD_APPLIANCES_FAILED,
@@ -74,14 +74,14 @@ export const SaveHapApplianceToApiAction = createAction(
   props<{ payload: HapAppliance[] }>()
 );
 
-export const SaveHapApplianceActionSuccess = createAction(
-  HapApplianceActionTypes.SAVE_APPLIANCE_SUCCESS,
-  props<{ payload: HapApplianceSaveResult }>()
+export const SaveHapApplianceToApiActionSuccess = createAction(
+  HapApplianceActionTypes.SAVE_APPLIANCE_TO_API_SUCCESS,
+  props<{ result: HapApplianceSaveResult }>()
 );
 
-export const SaveHapApplianceailureAction = createAction(
-  HapApplianceActionTypes.SAVE_APPLIANCE_FAILED,
-  props<{ payload: Error }>()
+export const SaveHapApplianceToApiFailureAction = createAction(
+  HapApplianceActionTypes.SAVE_APPLIANCE_TO_API_FAILED,
+  props<{ error: Error }>()
 );
 
 //this will add a appliance to the temp state
