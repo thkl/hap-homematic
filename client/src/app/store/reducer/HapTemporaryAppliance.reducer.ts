@@ -38,10 +38,10 @@ const applianceLoadingReducer = createReducer(
   ),
 
   on(HapApplianceActionTypes.AddHapApplianceAction,
-    (state, { payload }) => {
+    (state, { appliance }) => {
       const newList = [...state.list]; //making a new array
-      if ((payload !== undefined) && (payload !== null)) {
-        newList.push(payload);
+      if ((appliance !== undefined) && (appliance !== null)) {
+        newList.push(appliance);
       }
       return {
         ...state,

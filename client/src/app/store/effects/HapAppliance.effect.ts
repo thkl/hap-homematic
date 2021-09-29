@@ -5,7 +5,7 @@ import { of, pipe } from 'rxjs';
 import { map, mergeMap, catchError, switchMap } from 'rxjs/operators';
 import { HapApplianceApiService } from 'src/app/service/hapappliance.service';
 import { Models, Selectors } from '..';
-import { HapApplianceActionTypes, LoadHapAppliancesSuccessAction, SaveHapApplianceToApiActionSuccess, SaveHapApplianceToApiFailureAction } from '../actions';
+import * as HapActions from '../actions';
 import { HapAppliance } from '../models';
 
 
@@ -13,17 +13,14 @@ import { HapAppliance } from '../models';
 export class HapApplianceEffects {
   loadHapAppliances$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(HapApplianceActionTypes.LOAD_APPLIANCES),
+      ofType(HapActions.HapApplianceActionTypes.LOAD_APPLIANCES),
       mergeMap(() =>
         this.hapApplianceService.loadHapAppliances().pipe(
           map((data: any) => {
-            return LoadHapAppliancesSuccessAction({ loadingResult: data });
+            return HapActions.LoadHapAppliancesSuccessAction({ loadingResult: data });
           }),
           catchError((error) =>
-            of({
-              type: HapApplianceActionTypes.LOAD_APPLIANCES_FAILED,
-              payload: error,
-            })
+            of(HapActions.LoadHapAppliancesFailureAction({ error: error }))
           )
         )
       )
@@ -33,14 +30,14 @@ export class HapApplianceEffects {
 
   saveHapAppliance$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(HapApplianceActionTypes.SAVE_APPLIANCE_TO_API),
+      ofType(HapActions.HapApplianceActionTypes.SAVE_APPLIANCE_TO_API),
       switchMap((action) =>
         this.hapApplianceService.saveHapAppliances(action['payload']).pipe(
           map((data: any) => {
-            return SaveHapApplianceToApiActionSuccess({ result: data });
+            return HapActions.SaveHapApplianceToApiActionSuccess({ result: data });
           }),
           catchError((error) =>
-            of(SaveHapApplianceToApiFailureAction({ error: error }))
+            of(HapActions.SaveHapApplianceToApiFailureAction({ error: error }))
           )
         )
       )
@@ -49,16 +46,12 @@ export class HapApplianceEffects {
 
   editHapAppliance$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(HapApplianceActionTypes.EDIT_APPLIANCE),
+      ofType(HapActions.HapApplianceActionTypes.EDIT_APPLIANCE),
       switchMap((action) =>
         this.store.select(Selectors.selectApplianceByAddress(action['payload'])).pipe(
-          map((appl: HapAppliance) => {
-            return {
-              type: HapApplianceActionTypes.ADD_APPLIANCE,
-              payload: appl,
-            }
-          }
-          )
+          map((appliance: HapAppliance) => {
+            return HapActions.AddHapApplianceAction({ appliance: appliance })
+          })
         )
       )
     )
@@ -66,20 +59,14 @@ export class HapApplianceEffects {
 
   deleteHapAppliance$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(HapApplianceActionTypes.DELETE_APPLIANCE_FROM_API),
+      ofType(HapActions.HapApplianceActionTypes.DELETE_APPLIANCE_FROM_API),
       switchMap((action) =>
         this.hapApplianceService.deleteHapAppliance(action['applianceToDelete']).pipe(
           map((data: any) => {
-            return {
-              type: HapApplianceActionTypes.DELETE_APPLIANCE_FROM_API_SUCCESS,
-              payload: data,
-            };
+            return HapActions.DeleteHapApplianceFromApiActionSuccess({ result: data })
           }),
           catchError((error) =>
-            of({
-              type: HapApplianceActionTypes.DELETE_APPLIANCE_FROM_API_FAILED,
-              payload: error,
-            })
+            of(HapActions.DeleteHapApplianceFromApiFailureAction({ error: error }))
           )
         )
       )

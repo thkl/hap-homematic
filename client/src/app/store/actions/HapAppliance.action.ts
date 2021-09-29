@@ -32,7 +32,7 @@ export const LoadHapAppliancesSuccessAction = createAction(
 );
 export const LoadHapAppliancesFailureAction = createAction(
   HapApplianceActionTypes.LOAD_APPLIANCES_FAILED,
-  props<{ payload: Error }>()
+  props<{ error: Error }>()
 );
 
 
@@ -54,12 +54,12 @@ export const DeleteHapApplianceFromApiAction = createAction(
 
 export const DeleteHapApplianceFromApiActionSuccess = createAction(
   HapApplianceActionTypes.DELETE_APPLIANCE_FROM_API_SUCCESS,
-  props<{ payload: HapApplianceDeletingResult }>()
+  props<{ result: HapApplianceDeletingResult }>()
 );
 
 export const DeleteHapApplianceFromApiFailureAction = createAction(
   HapApplianceActionTypes.DELETE_APPLIANCE_FROM_API_FAILED,
-  props<{ payload: Error }>()
+  props<{ error: Error }>()
 );
 
 export const DeleteTemporaryHapApplianceAction = createAction(
@@ -87,7 +87,7 @@ export const SaveHapApplianceToApiFailureAction = createAction(
 //this will add a appliance to the temp state
 export const AddHapApplianceAction = createAction(
   HapApplianceActionTypes.ADD_APPLIANCE,
-  props<{ payload: HapAppliance }>()
+  props<{ appliance: HapAppliance }>()
 );
 
 //this will copy a appliance with the address x to the temp state
