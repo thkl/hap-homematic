@@ -38,7 +38,11 @@ export class DataService {
     if (message === 'serverdata') {
       if (payload.appliances) {
         const dta: HapApplianceLoadResult = { appliances: payload.appliances, varTrigger: payload.varTrigger };
-        this.store.dispatch(Actions.LoadHapAppliancesSuccessAction({ payload: dta }));
+        this.store.dispatch(Actions.LoadHapAppliancesSuccessAction({ loadingResult: dta }));
+      }
+
+      if (payload.bridges) {
+        this.store.dispatch(Actions.LoadHapInstanceSuccessAction({ payload: payload.bridges }));
       }
     }
   }
