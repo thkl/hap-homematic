@@ -1,3 +1,8 @@
+export interface HapInstanceCoreData {
+  roomId: number,
+  displayName: string
+}
+
 export interface HapInstance {
   id: string;
   user: string;
@@ -10,6 +15,8 @@ export interface HapInstance {
   ccuFirewall?: boolean;
   canDelete: boolean;
   iconPin?: string;
+  publishDevices?: boolean;
+  hasPublishedDevices?: boolean;
 }
 
 export interface HapInstanceSavingResult {

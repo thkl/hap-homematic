@@ -42,10 +42,22 @@ const getChannelByAddress = (list: CCUDevice[], address: string) => {
   return undefined;
 }
 
+export const selectAllChannels = createSelector(
+  selectCCUDeviceState,
+  (state: CCUDeviceState): CCUChannel[] => {
+    const result: CCUChannel[] = []
+    state.list.forEach(device => {
+      device.channels.forEach(channel => {
+        result.push(channel);
+      });
+    });
+    return result;
+  }
+);
+
 
 export const selectChannelByAddress = (address: string) => createSelector(
   selectCCUDeviceState,
   (state: CCUDeviceState): CCUChannel =>
     ((state !== undefined) && (state.list !== undefined)) ? getChannelByAddress(state.list, address) : undefined
 );
-

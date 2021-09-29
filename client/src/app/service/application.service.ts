@@ -4,7 +4,7 @@ import { combineLatest, Observable } from 'rxjs';
 import { take } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { Models, Selectors } from '../store';
-import { CCUChannel, CCURoom } from '../store/models';
+import { CCUChannel, CCURoom, HapAppliance } from '../store/models';
 
 @Injectable({
   providedIn: 'root'
@@ -50,6 +50,10 @@ export class ApplicationService {
     return this._systemState;
   }
 
+  roomByID(roomid: number): CCURoom {
+    return this._roomList.find(room => room.id === roomid);
+  }
+
   roomForChannel(channel: CCUChannel): CCURoom {
     if (this._roomList) {
       const rs = this._roomList.filter(room => {
@@ -69,7 +73,16 @@ export class ApplicationService {
     return channel;
   }
 
-  getApiURL():string {
+  selectTemporaryAppliances(): HapAppliance[] {
+    let result: HapAppliance[];
+    this.store.select(Selectors.selectAllTemporaryAppliances(Models.HapApplicanceType.All)).subscribe(
+      s => result = s
+    );
+    return result;
+  }
+
+
+  getApiURL(): string {
     return this.api;
   }
 

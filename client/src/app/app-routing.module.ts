@@ -16,6 +16,8 @@ import { LogViewerComponent } from './components/system/logviewer/logviewer.comp
 import { CrashlogsComponent } from './components/system/crashlogs/crashlogs.component';
 import { RestartComponent } from './components/system/restart/restart.component';
 import { SettingsComponent } from './components/system/settings/settings.component';
+import { ResetsystemComponent } from './components/system/resetsystem/resetsystem.component';
+import { WizzardComponent } from './components/welcome/wizzard/wizzard.component';
 
 const routes: Routes = [
   {
@@ -91,13 +93,20 @@ const routes: Routes = [
         data: { breadcrumb: 'Debugging' },
         children: [
           {
-            path: '', component: LogViewerComponent
+            path: '', component: LogViewerComponent,
+            data: { breadcrumb: 'Logging' }
           },
           {
-            path: 'logging', component: LogViewerComponent
+            path: 'logging', component: LogViewerComponent,
+            data: { breadcrumb: 'Logging' }
           },
           {
-            path: 'crash', component: CrashlogsComponent
+            path: 'crash', component: CrashlogsComponent,
+            data: { breadcrumb: 'Crashes' }
+          },
+          {
+            path: 'reset', component: ResetsystemComponent,
+            data: { breadcrumb: 'Reset All' }
           }
         ]
       },
@@ -108,6 +117,9 @@ const routes: Routes = [
       {
         path: 'restart', component: RestartComponent,
         data: { breadcrumb: 'Restart' },
+      },
+      {
+        path: 'welcome', component: WizzardComponent
       }
     ],
   },

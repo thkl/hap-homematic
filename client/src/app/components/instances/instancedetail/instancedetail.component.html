@@ -39,8 +39,10 @@
               <br />
               <div>
                 <div class="form-check">
-                  <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                  <label class="form-check-label" for="defaultCheck1">
+                  <input [attr.disabled]="(selectedInstance.hasPublishedDevices===true)?'disabled':null"
+                    class="form-check-input" type="checkbox" [(ngModel)]="selectedInstance.publishDevices"
+                    name="publishDevices" id="publishDevices">
+                  <label class="form-check-label" for="publishDevices">
                     {{'Include devices' | localize}}
                   </label>
                 </div>

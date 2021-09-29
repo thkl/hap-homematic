@@ -20,7 +20,6 @@ export class SystemstateComponent implements OnInit {
       }
     })
 
-    this.store.dispatch({ type: Actions.SystemConfigActionTypes.LOAD_CONFIG });
   }
 
 }

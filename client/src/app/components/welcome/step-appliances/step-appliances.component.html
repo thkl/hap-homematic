@@ -1,0 +1,32 @@
+<h4>{{roomName}} - {{_instance.displayName}}</h4>
+<p>{{'Please mark all channels from this room, you want to use in HomeKit.' | localize}}</p>
+
+<table cdk-table [dataSource]="dataSource" class="table table-responsive-sm table-striped table-sm">
+
+  <ng-container cdkColumnDef="active">
+    <th cdk-header-cell *cdkHeaderCellDef width="10%">{{"Add" | localize}}</th>
+    <td cdk-cell *cdkCellDef="let row"><input class="form-check-input table_check" type="checkbox" id="{{row.id}}_check"
+        [(ngModel)]="row.active" (ngModelChange)="select(row)"></td>
+  </ng-container>
+
+  <ng-container cdkColumnDef="channelName">
+    <th cdk-header-cell *cdkHeaderCellDef width="30%">{{'Channel/Type' | localize}}</th>
+    <td cdk-cell *cdkCellDef="let row">{{row.channel.name}} {{row.channel.type}}</td>
+  </ng-container>
+
+  <ng-container cdkColumnDef="applianceName" width="40%">
+    <th cdk-header-cell *cdkHeaderCellDef>{{"HomeKit name" | localize}}</th>
+    <td cdk-cell *cdkCellDef="let row">
+      <div class="input-group">
+        <input type="text"
+          id="{{row.id}}_applianceName"
+          [(ngModel)]="row.displayName">
+      </div>
+    </td>
+  </ng-container>
+
+  <tr cdk-header-row *cdkHeaderRowDef="['active','channelName','applianceName']"></tr>
+  <tr cdk-row *cdkRowDef="let row; columns: ['active','channelName','applianceName'];"></tr>
+</table>
+
+<p>{{'You may add other channels later via this WebUI' | localize}}</p>

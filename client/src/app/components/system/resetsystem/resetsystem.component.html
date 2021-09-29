@@ -1,0 +1,31 @@
+<div class="card">
+  <div class="card-header">
+    <h2>{{'Reset System' | localize}}</h2>
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-3">
+        <img src="./assets/img/delete.svg" alt="">
+      </div>
+      <div class="col-9">
+        <p>{{'This will reset the HAP Daemon.' | localize}}</p>
+        <p>
+          {{'A Reset will remove all your settings and invalidate all HomeKit instances so you can do a fresh clean
+          start.' | localize}}</p>
+        <div class="form-check form-check-inline">
+          <input [(ngModel)]="doReset" class="form-check-input" type="checkbox" id="doReset" value="enable">
+          <label class="form-check-label" for="doReset">
+            {{'I have understand that this will destroy the current configuration.' | localize}}</label>
+        </div>
+        <p *ngIf="isRestarting===true">{{'Restarting (this will take about 60 seconds)' |localize}}</p>
+        <div class="progress" *ngIf="isRestarting===true">
+          <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="100"
+            aria-valuemin="0" aria-valuemax="100" style="width: 100%"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-footer">
+    <button type="button" class="btn btn-sm btn-danger" [attr.disabled]="(doReset===true) ?null:'disabled'"
+      (click)="proceedReset()">{{'Reset Hap Homematic' | localize}}</button>
+  </div>

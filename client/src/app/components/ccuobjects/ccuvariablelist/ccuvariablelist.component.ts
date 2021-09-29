@@ -59,6 +59,6 @@ export class CCUVariablelistComponent implements OnInit {
   }
 
   sortData(event): void {
-
+    console.log(event);
   }
 }

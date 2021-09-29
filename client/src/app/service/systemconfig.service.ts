@@ -86,4 +86,8 @@ export class SystemconfigService {
     return this.http.get(`${this.api}/restart/${enableDebug}`);
   }
 
+  doReset() {
+    return this.http.post(`${this.api}/resetsystem`, {});
+  }
+
 }

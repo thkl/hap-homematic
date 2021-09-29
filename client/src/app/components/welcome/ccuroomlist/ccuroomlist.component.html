@@ -1,0 +1,33 @@
+<table cdk-table [dataSource]="dataSource" class="table table-responsive-sm table-striped table-sm" matSort
+  (matSortChange)="sortData($event)">
+
+  <ng-container cdkColumnDef="active">
+    <th cdk-header-cell *cdkHeaderCellDef width="10%">{{"Create HomeKit instance" | localize}}</th>
+    <td cdk-cell *cdkCellDef="let row"><input class="form-check-input table_check" type="checkbox" id="{{row.id}}_check"
+        [(ngModel)]="row.active" (ngModelChange)="select(row)"></td>
+  </ng-container>
+
+  <ng-container cdkColumnDef="name">
+    <th cdk-header-cell *cdkHeaderCellDef mat-sort-header="name" disableClear width="20%">{{'Name' | localize}}</th>
+    <td cdk-cell *cdkCellDef="let row"> {{row.name}} ({{row.numChannels}}) </td>
+  </ng-container>
+
+  <ng-container cdkColumnDef="bridgeName" width="40%">
+    <th cdk-header-cell *cdkHeaderCellDef>{{"Instance name" | localize}}</th>
+    <td cdk-cell *cdkCellDef="let row">
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text">HomeMatic_</span>
+        </div>
+        <input type="text"
+          id="{{row.id}}_instname"
+          [attr.disabled]="row.active?null:'disabled'"
+          [(ngModel)]="row.displayName"
+          (change)="instanceNameChange(row)">
+      </div>
+    </td>
+  </ng-container>
+
+  <tr cdk-header-row *cdkHeaderRowDef="['name','active','bridgeName']"></tr>
+  <tr cdk-row *cdkRowDef="let row; columns: ['name','active','bridgeName'];"></tr>
+</table>

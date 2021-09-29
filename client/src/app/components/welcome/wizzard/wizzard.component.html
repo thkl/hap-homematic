@@ -1,0 +1,104 @@
+<div class="card">
+  <div class="card-header">
+    <h3>{{'Welcome to HAP-HomeMatic' | localize}}</h3>
+  </div>
+  <div class="card-body">
+    <ng-container *ngIf="wizzardStep===0" id="containerWelcome">
+      <div class="row">
+        <div class="col-2">
+          <img src="./assets/img/wizzard.svg" alt="">
+        </div>
+        <div class="col-10">
+          <p>{{"With HAP-HomeMatic you are able to use your HomeMatic devices (or most of it) in HomeKit." | localize}}
+          </p>
+          <p>{{"Its time for the first setup." | localize}}</p>
+          <p>{{"In HomeKit your are able to group your devices by rooms. And to make that as easy as possible for you, its recomented to create a HAP Instance for every room first." | localize}}</p>
+        </div>
+      </div>
+    </ng-container>
+
+
+    <ng-container *ngIf="wizzardStep===1" id="containerRoomList">
+      <div class="row">
+        <div class="col-2">
+          <img src="./assets/img/wizzard.svg" alt="">
+        </div>
+        <div class="col-10">
+          <p>{{"So here are your rooms from your CCU. Please mark every room from which you want to use devices in HomeKit." | localize}}</p>
+          <app-ccuroomlist ngDefaultControl
+            [(instanceList)]="instanceListToCreate">
+          </app-ccuroomlist>
+          <p>{{"(Num o supported devices)" | localize}}</p>
+        </div>
+      </div>
+    </ng-container>
+
+    <ng-container *ngIf="wizzardStep===2" id="containerInstanceList">
+      <div class="row">
+        <div class="col-2">
+          <img src="./assets/img/wizzard.svg" alt="">
+        </div>
+        <div class="col-10">
+          <app-step-instances>
+
+          </app-step-instances>
+        </div>
+      </div>
+    </ng-container>
+
+    <ng-container *ngIf="wizzardStep>2" id="containerChannelList">
+      <div class="row">
+        <div class="col-2">
+          <img src="./assets/img/wizzard.svg" alt="">
+        </div>
+        <div class="col-10">
+          <app-step-appliances [instance]="selectedInstance">
+
+          </app-step-appliances>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <div class="progress" *ngIf="isSaving===true">
+            <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="100"
+              aria-valuemin="0" aria-valuemax="100" style="width: 100%"></div>
+          </div>
+
+        </div>
+      </div>
+
+    </ng-container>
+
+  </div>
+  <div class="card-footer" id="container_footer">
+    <div class="row">
+
+      <div class="col-12">
+        <div class="btn-group">
+          <button type="button"
+            class="btn btn-sm btn-success"
+            (click)="previousStep()"
+            [attr.disabled]="canDoPrevious?null:'disabled'">
+            <span class="cil-chevron-circle-left-alt btn-icon mr-2"></span>{{'Previous' | localize}}</button>
+
+          <button type="button"
+            class="btn btn-sm btn-success"
+            (click)="nextStep()"
+            [attr.disabled]="canDoNext?null:'disabled'">
+            <span class="cil-chevron-circle-right-alt btn-icon mr-2"></span>{{'Next' | localize}}</button>
+
+          <button type="button"
+            class="btn btn-sm btn-info"
+            (click)="finish()"
+            [attr.disabled]="canDoFinish?null:'disabled'">
+            <span class="cil-check btn-icon mr-2"></span>{{'Finish' | localize}}</button>
+
+          <button type="button"
+            class="btn btn-sm btn-primary"
+            (click)="cancelWizzard()">
+            <span class="cil-x btn-icon mr-2"></span>{{'Dismiss' | localize}}</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

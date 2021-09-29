@@ -127,7 +127,7 @@ export class NewApplianceWizzardFrameComponent implements OnInit, OnDestroy {
           applianceType: this.wizzardFor
         });
         // Save it to the store
-        this.store.dispatch({ type: Actions.HapApplianceActionTypes.ADD_APPLIANCE, payload: usedAppliance });
+        this.store.dispatch(Actions.SaveHapApplianceAction({ applianceToSave: usedAppliance }));
       }
     }
   }

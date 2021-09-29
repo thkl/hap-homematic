@@ -34,6 +34,9 @@ export class InstancedetailComponent implements OnInit {
             this.selectedInstance = JSON.parse(JSON.stringify(instance));
             if (this.selectedInstance) {
               this.iconPin = this.selectedInstance.pincode.replace(/-/g, '')
+              if (this.selectedInstance.hasPublishedDevices === true) {
+                this.selectedInstance.publishDevices = true;
+              }
             }
           }
         })

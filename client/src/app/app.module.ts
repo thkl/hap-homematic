@@ -50,6 +50,11 @@ import { CrashlogsComponent } from './components/system/crashlogs/crashlogs.comp
 import { DebugComponent } from './components/system/debug/debug.component';
 import { RestartComponent } from './components/system/restart/restart.component';
 import { SettingsComponent } from './components/system/settings/settings.component';
+import { ResetsystemComponent } from './components/system/resetsystem/resetsystem.component';
+import { WizzardComponent } from './components/welcome/wizzard/wizzard.component';
+import { StepInstancesComponent } from './components/welcome/step-instances/step-instances.component';
+import { CCURoomlistComponent } from './components/welcome/ccuroomlist/ccuroomlist.component';
+import { StepAppliancesComponent } from './components/welcome/step-appliances/step-appliances.component';
 
 @NgModule({
   declarations: [
@@ -79,7 +84,12 @@ import { SettingsComponent } from './components/system/settings/settings.compone
     CrashlogsComponent,
     DebugComponent,
     RestartComponent,
-    SettingsComponent
+    SettingsComponent,
+    ResetsystemComponent,
+    WizzardComponent,
+    StepInstancesComponent,
+    CCURoomlistComponent,
+    StepAppliancesComponent
   ],
   imports: [
     HttpClientModule,

@@ -1,0 +1,22 @@
+<p>{{'Great! Step 2: Here are the new bridges just created. Now its time to add them to HomeKit. Use the HomeKit App of your choice and add them one by one.' | localize}}</p>
+
+<table cdk-table [dataSource]="dataSource" class="table table-responsive-sm table-striped table-sm">
+
+  <ng-container cdkColumnDef="bridgeName">
+    <th cdk-header-cell *cdkHeaderCellDef>{{"Instance name" | localize}}</th>
+    <td cdk-cell *cdkCellDef="let row">{{row.displayName}}</td>
+  </ng-container>
+
+  <ng-container cdkColumnDef="pinCode">
+    <th cdk-header-cell *cdkHeaderCellDef>{{'PinCode' | localize}}</th>
+    <td cdk-cell *cdkCellDef="let row">{{row.pincode}}</td>
+  </ng-container>
+
+
+  <tr cdk-header-row *cdkHeaderRowDef="['bridgeName','pinCode']"></tr>
+  <tr cdk-row *cdkRowDef="let row; columns: ['bridgeName','pinCode'];"></tr>
+</table>
+
+<p>{{'During the setup in HomeKit you can assign a specific room to every bridge. All new devices added to a bridge will then automatically be assigned to this room.' | localize}}</p>
+<p>{{'If you are using Apples Home App please tap after adding the bridge on the house icon top left, choose Home Settings, tap on your home and there you are able to setup the rooms for the bridges. This is tricky, so its recomented to use eg Elgato Eve.' | localize}}</p>
+<p>{{'When you done with this, click on Next' | localize}}</p>

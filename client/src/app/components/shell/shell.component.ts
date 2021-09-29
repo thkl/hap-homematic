@@ -16,6 +16,7 @@ export class ShellComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.store.dispatch(Actions.LoadSystemConfigAction());
     this.store.dispatch(Actions.LoadHapInstanceAction());
     this.store.dispatch(Actions.LoadHapAppliancesAction());
     this.store.dispatch(Actions.LoadCCURoomsAction());

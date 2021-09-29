@@ -51,6 +51,28 @@ export class HapInstanceEffects {
     )
   );
 
+  createHapInstances$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(HapInstanceActionTypes.CREATE_INSTANCE_AT_API),
+      switchMap((action) =>
+        this.hapInstanceService.createHapInstance(action['payload']).pipe(
+          map((data: any) => {
+            return {
+              type: HapInstanceActionTypes.SAVE_INSTANCE_TO_API_SUCCESS,
+              payload: data,
+            };
+          }),
+          catchError((error) =>
+            of({
+              type: HapInstanceActionTypes.SAVE_INSTANCE_TO_API_FAILED,
+              payload: error,
+            })
+          )
+        )
+      )
+    )
+  );
+
   deleteHapInstance$ = createEffect(() =>
     this.actions$.pipe(
       ofType(HapInstanceActionTypes.DELETE_INSTANCE_FROM_API),

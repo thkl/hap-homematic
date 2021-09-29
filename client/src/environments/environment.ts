@@ -6,7 +6,7 @@ import { NgxLoggerLevel } from "ngx-logger";
 
 export const environment = {
   production: false,
-  api: 'http://localhost:9874/api',
+  api: `http://${window.location.hostname}:9874/api`,
   logLevel: NgxLoggerLevel.DEBUG
 };
 

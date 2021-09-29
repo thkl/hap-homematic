@@ -63,8 +63,8 @@
   </div>
   <div class="card-footer" id="container_footer">
     <div class="row">
-      <div class="col-4">
-        <div class="btn-group" role="group">
+      <div class="col-12">
+        <div class="btn-group">
           <button type="button" class="btn btn-sm btn-success" (click)="previousStep()"
             [attr.disabled]="canDoPrevious?null:'disabled'"><span
               class="cil-chevron-circle-left-alt btn-icon mr-2"></span>{{'Previous' |
@@ -85,8 +85,10 @@
             localize}}</button>
         </div>
       </div>
-      <div class="col-8">
-        <ul *ngIf="(validationResult!==undefined) && (validationResult.isValid===false)">
+    </div>
+    <div class="row" *ngIf="(validationResult!==undefined) && (validationResult.isValid===false)">
+      <div class="col-12">
+        <ul>
           <li *ngFor="let validationMessage of validationResult.messages">
             {{validationMessage.message| localize :
             [validationMessage.objectName]}}</li>
@@ -95,3 +97,4 @@
     </div>
 
   </div>
+</div>

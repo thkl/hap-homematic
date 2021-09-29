@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { HapInstance, HapInstanceDeletingResult, HapInstanceSavingResult } from '../store/models/HapInstance.model';
+import { HapInstance, HapInstanceCoreData, HapInstanceDeletingResult, HapInstanceSavingResult } from '../store/models/HapInstance.model';
 import { ApplicationService } from './application.service';
 
 @Injectable({
@@ -20,6 +20,10 @@ export class HapinstanceService {
 
   saveHapInstance(instance: HapInstance[]) {
     return this.http.patch<HapInstanceSavingResult>(`${this.api}/instances`, instance);
+  }
+
+  createHapInstance(instance: HapInstanceCoreData[]) {
+    return this.http.post<HapInstanceSavingResult>(`${this.api}/instances`, instance);
   }
 
   deleteHapInstance(instance: HapInstance) {

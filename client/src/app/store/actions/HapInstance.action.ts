@@ -1,11 +1,13 @@
-import { Action, createAction, props } from '@ngrx/store';
-import { HapInstance, HapInstanceDeletingResult, HapInstanceSavingResult } from '../models/HapInstance.model';
+import { createAction, props } from '@ngrx/store';
+import { HapInstance, HapInstanceCoreData, HapInstanceDeletingResult, HapInstanceSavingResult } from '../models/HapInstance.model';
 
 
 export enum HapInstanceActionTypes {
   LOAD_INSTANCES = '[HAP Instance] Load Instance',
   LOAD_INSTANCES_SUCCESS = '[HAP Instance] Load Instance Success',
   LOAD_INSTANCES_FAILED = '[HAP Instance] Load Instance Failed',
+
+  CREATE_INSTANCE_AT_API = '[HAP Instance] Create Instance',
 
   SAVE_INSTANCE_TO_API = '[HAP Instance] Save Instance',
   SAVE_INSTANCE_TO_API_SUCCESS = '[HAP Instance] Save Instance Success',
@@ -33,6 +35,12 @@ export const SaveHapInstanceToApiAction = createAction(
   HapInstanceActionTypes.SAVE_INSTANCE_TO_API,
   props<{ payload: HapInstance[] }>()
 );
+
+export const CreateHapInstanceAtApiAction = createAction(
+  HapInstanceActionTypes.CREATE_INSTANCE_AT_API,
+  props<{ payload: HapInstanceCoreData[] }>()
+);
+
 
 export const SaveHapInstanceToApiSuccessAction = createAction(
   HapInstanceActionTypes.SAVE_INSTANCE_TO_API_SUCCESS,
