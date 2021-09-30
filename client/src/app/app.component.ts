@@ -6,6 +6,7 @@ import { AppState } from './store/models/app-state.model';
 import { NGXLogger } from "ngx-logger";
 import { ConsoleLoggerMonitor } from './service/logger.service';
 import { ApplicationService } from './service/application.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -23,7 +24,8 @@ export class AppComponent implements OnInit {
     private store: Store<AppState>,
     private localizationService: LocalizationService,
     private applicationService: ApplicationService,
-    private logger: NGXLogger
+    private logger: NGXLogger,
+    private router: Router
   ) {
     this.store.pipe(select(Selectors.localizationLoadingError)).subscribe(error => {
       this.errorMessage = ((error !== undefined) ? error.message : undefined);
@@ -47,6 +49,12 @@ export class AppComponent implements OnInit {
       setTimeout(() => {
         this.isLoading = isLoadingArray.some(element => element === true);
       }, 10)
+    })
+
+    this.store.pipe(select(Selectors.configData)).subscribe(cfg => {
+      if ((cfg) && (cfg.isEmpty === true)) {
+        this.router.navigate(['/welcome']);
+      }
     })
   }
 

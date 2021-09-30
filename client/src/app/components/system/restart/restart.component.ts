@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import { NGXLogger } from 'ngx-logger';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 import { ApplicationService } from 'src/app/service/application.service';
 import { SystemconfigService } from 'src/app/service/systemconfig.service';
 import { Actions, Models, Selectors } from 'src/app/store';
@@ -15,6 +17,8 @@ export class RestartComponent implements OnInit {
 
   isRestarting = false;
   enableDebug: boolean;
+  private ngDestroyed$ = new Subject();
+
   constructor(
     private applicationService: ApplicationService,
     public store: Store<Models.AppState>,
@@ -25,13 +29,26 @@ export class RestartComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.store.pipe(select(Selectors.configLoadingError)).subscribe((error) => {
+    this.store.pipe(select(Selectors.configLoadingError)).pipe(takeUntil(this.ngDestroyed$)).subscribe((error) => {
       console.log(error);
       if (error !== undefined) {
         this.logger.debug(`RestartComponent::still rebooting`);
         setTimeout(() => { this.reloadConfig() }, 5000); // Try to reload the config 5seconds from now
       }
     });
+
+    this.store.pipe(select(Selectors.configData)).pipe(takeUntil(this.ngDestroyed$)).subscribe((cfg) => {
+      if (cfg !== undefined) {
+        this.logger.debug(`RestartComponent::rebooting completed`);
+        this.isRestarting = false;
+        this.router.navigate(['/']);
+      }
+    })
+  }
+
+
+  ngOnDestroy() {
+    this.ngDestroyed$.next();
   }
 
   downloadLog(): void {
@@ -41,13 +58,6 @@ export class RestartComponent implements OnInit {
 
   reloadConfig(): void {
     this.store.dispatch(Actions.LoadSystemConfigAction());
-    this.store.pipe(select(Selectors.configData)).subscribe((cfg) => {
-      if (cfg !== undefined) {
-        this.logger.debug(`RestartComponent::rebooting completed`);
-        this.isRestarting = false;
-        this.router.navigate(['/']);
-      }
-    })
   }
 
   doReboot(): void {

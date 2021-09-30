@@ -6,7 +6,9 @@ import { environment } from 'src/environments/environment';
 import { Models, Selectors } from '../store';
 import { CCUChannel, CCURoom, HapAppliance } from '../store/models';
 import { DataService } from './data.service';
-import { SocketService } from './socket.service';
+
+export const DEFAULTINSTANCE = 'b6589fc6-ab0d-4c82-8f12-099d1c2d40ab';
+
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +20,6 @@ export class ApplicationService {
   private _roomList: CCURoom[];
   private _systemState: Models.SystemConfig = {};
   public globalLoadingIndicator: Observable<boolean[]>;
-
 
   constructor(
     private store: Store<Models.AppState>,

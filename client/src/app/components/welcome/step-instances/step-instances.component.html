@@ -12,9 +12,15 @@
     <td cdk-cell *cdkCellDef="let row">{{row.pincode}}</td>
   </ng-container>
 
+  <ng-container cdkColumnDef="qr">
+    <th cdk-header-cell *cdkHeaderCellDef></th>
+    <td cdk-cell *cdkCellDef="let row">
+      <qr-code id="setupQR_{{row.displayName}}" *ngIf="row.setupURI" value="{{row.setupURI}}" size="100" errorCorrectionLevel="H"></qr-code>
+    </td>
+  </ng-container>
 
-  <tr cdk-header-row *cdkHeaderRowDef="['bridgeName','pinCode']"></tr>
-  <tr cdk-row *cdkRowDef="let row; columns: ['bridgeName','pinCode'];"></tr>
+  <tr cdk-header-row *cdkHeaderRowDef="['bridgeName','pinCode','qr']"></tr>
+  <tr cdk-row *cdkRowDef="let row; columns: ['bridgeName','pinCode','qr'];"></tr>
 </table>
 
 <p>{{'During the setup in HomeKit you can assign a specific room to every bridge. All new devices added to a bridge will then automatically be assigned to this room.' | localize}}</p>

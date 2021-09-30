@@ -13,7 +13,10 @@ export class DataService {
     private socketService: SocketService,
     public store: Store<Models.AppState>
   ) {
+    this.connect();
+  }
 
+  connect(): void {
     const subject = this.socketService.connect();
 
 
@@ -24,10 +27,11 @@ export class DataService {
         }
       },
       err => {
-        console.log(err)
+        console.log('Socket Error %s', err)
+        setTimeout(() => { this.connect() }, 10000);
       },
       () => {
-        console.log('complete')
+        console.log('Socket Closed')
       }
     );
 
@@ -40,10 +44,14 @@ export class DataService {
         const dta: HapApplianceLoadResult = { appliances: payload.appliances, varTrigger: payload.varTrigger };
         this.store.dispatch(Actions.LoadHapAppliancesSuccessAction({ loadingResult: dta }));
       }
+    }
 
-      if (payload.bridges) {
-        this.store.dispatch(Actions.LoadHapInstanceSuccessAction({ payload: payload.bridges }));
-      }
+    if (message === 'instances') {
+      this.store.dispatch(Actions.LoadHapInstanceSuccessAction({ payload }));
+    }
+
+    if (message === 'heartbeat') {
+      this.store.dispatch(Actions.LoadSystemConfigSuccessAction({ systemConfig: payload }));
     }
   }
 

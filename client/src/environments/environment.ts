@@ -8,7 +8,7 @@ export const environment = {
   production: false,
   api: `http://${window.location.hostname}:9874/api`,
   logLevel: NgxLoggerLevel.DEBUG,
-  wsEndpoint: `ws://${window.location.hostname}:9874/websockets/1/x/websocket`
+  wsEndpoint: `ws://${window.location.hostname}:9874/websockets`
 };
 
 /*

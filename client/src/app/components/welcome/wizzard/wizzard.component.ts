@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
-import { ApplicationService } from 'src/app/service/application.service';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
+import { ApplicationService, DEFAULTINSTANCE } from 'src/app/service/application.service';
 import { Actions, Models, Selectors } from 'src/app/store';
-import { HapAppliance, HapInstance, HapInstanceCoreData } from 'src/app/store/models';
-
-
+import { HapInstance, HapInstanceCoreData } from 'src/app/store/models';
 
 
 @Component({
@@ -13,7 +13,7 @@ import { HapAppliance, HapInstance, HapInstanceCoreData } from 'src/app/store/mo
   templateUrl: './wizzard.component.html',
   styleUrls: ['./wizzard.component.sass']
 })
-export class WizzardComponent implements OnInit {
+export class WizzardComponent implements OnInit, OnDestroy {
 
   wizzardStep: number;
   canDoPrevious: boolean;
@@ -24,6 +24,7 @@ export class WizzardComponent implements OnInit {
   instanceListToCreate: HapInstanceCoreData[] = [];
   selectedInstance: HapInstance;
   instanceList: HapInstance[];
+  private ngDestroyed$ = new Subject();
 
   constructor(
     public store: Store<Models.AppState>,
@@ -35,17 +36,22 @@ export class WizzardComponent implements OnInit {
     this.wizzardStep = 0;
     this.canDoNext = true;
 
-    this.store.pipe(select(Selectors.selectAppliancesCount(Models.HapApplicanceType.All))).subscribe((devcount) => {
+    this.store.pipe(select(Selectors.selectAppliancesCount(Models.HapApplicanceType.All))).pipe(takeUntil(this.ngDestroyed$)).subscribe((devcount) => {
       if (devcount > 0) {
         this.cancelWizzard();
       }
     });
 
-    this.store.pipe(select(Selectors.selectAllInstances)).subscribe(instanceList => {
-      this.instanceList = instanceList;
+    this.store.pipe(select(Selectors.selectAllInstances)).pipe(takeUntil(this.ngDestroyed$)).subscribe(instanceList => {
+      this.instanceList = instanceList.filter(instance => instance.id !== DEFAULTINSTANCE); // Do not touch the default
     })
 
   }
+
+  ngOnDestroy() {
+    this.ngDestroyed$.next();
+  }
+
 
   createInstances() {
     if (this.instanceListToCreate.length > 0) {
@@ -98,12 +104,20 @@ export class WizzardComponent implements OnInit {
     if (applList !== undefined) {
       const list = applList.filter(app => ((app !== null) && (app !== undefined)));
       setTimeout(() => {
-        this.store.dispatch({ type: Actions.HapApplianceActionTypes.SAVE_APPLIANCE_TO_API, payload: list });
-
-        setTimeout(() => { // wait 2 seconds
-          this.isSaving = false;
-          this.cancelWizzard();
-        }, 2000);
+        this.store.dispatch(Actions.SaveHapApplianceToApiAction({ payload: list }));
+        this.store.pipe(select(Selectors.appliancesSaving)).pipe(takeUntil(this.ngDestroyed$)).subscribe((saving => {
+          if (saving === false) {
+            this.isSaving = false;
+            const instancesToActivate = [];
+            this.instanceList.forEach(instance => {
+              if ((instance.hasPublishedDevices === undefined) || (instance.hasPublishedDevices === false)) {
+                instancesToActivate.push(instance.id);
+              }
+              this.store.dispatch(Actions.ActivateHapInstanceAtApiAction({ instances: instancesToActivate }));
+              this.cancelWizzard();
+            })
+          }
+        }))
       }, 500);
     }
 

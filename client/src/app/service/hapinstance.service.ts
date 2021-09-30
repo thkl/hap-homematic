@@ -29,4 +29,8 @@ export class HapinstanceService {
   deleteHapInstance(instance: HapInstance) {
     return this.http.delete<HapInstanceDeletingResult>(`${this.api}/instances/${instance.id}`);
   }
+
+  activateInstances(instancList: string[]) {
+    return this.http.patch<HapInstanceSavingResult>(`${this.api}/activate`, instancList);
+  }
 }

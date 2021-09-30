@@ -19,16 +19,12 @@ export class SocketService {
 
   public connect(): WebSocketSubject<any> {
     if (!this.socket$ || this.socket$.closed) {
+      const randomID = this.randomID();
+      const randomNum = this.randomBytes(1)[0];
       this.socket$ = webSocket({
-        url: WS_ENDPOINT,
+        url: `${WS_ENDPOINT}/${randomNum}/${randomID}/websocket`,
         deserializer: msg => {
-          // If for some reason you want the whole response from AWS (you'll have to parse .data yourself)
-          // return msg;
-
-          // try to parse message as json. If we can't, just return whatever it is (usually bare string)
-          try {
-
-
+          try { // this is a little weird
             const pmsg = msg.data.match(rgx);
             if ((pmsg) && (pmsg.length > 0)) {
               return JSON.parse(pmsg[1].replace(/\\"/g, '"'));
@@ -44,6 +40,27 @@ export class SocketService {
       this.logger.debug(`Connecting to ws endpoint ${WS_ENDPOINT}`);
     }
     return this.socket$;
+  }
+
+  private randomID(): string {
+    const lgn = 10;
+    const chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    const bytes = this.randomBytes(lgn);
+    let rid = ''
+
+    for (let i = 0; i < lgn; i++) {
+      const index = bytes[i] % 26;
+      rid += chars.charAt(index);
+    }
+    return rid;
+  }
+
+  private randomBytes(length: number) {
+    const bytes = new Array(length);
+    for (let i = 0; i < length; i++) {
+      bytes[i] = Math.floor(Math.random() * 256);
+    }
+    return bytes;
   }
 
   public dataUpdates$() {

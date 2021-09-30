@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { SystemconfigService } from 'src/app/service/systemconfig.service';
 import { Models, Actions } from 'src/app/store';
 
 @Component({

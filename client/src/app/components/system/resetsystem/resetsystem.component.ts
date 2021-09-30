@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import { NGXLogger } from 'ngx-logger';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 import { SystemconfigService } from 'src/app/service/systemconfig.service';
 import { Actions, Models, Selectors } from 'src/app/store';
 
@@ -10,10 +12,11 @@ import { Actions, Models, Selectors } from 'src/app/store';
   templateUrl: './resetsystem.component.html',
   styleUrls: ['./resetsystem.component.sass']
 })
-export class ResetsystemComponent implements OnInit {
+export class ResetsystemComponent implements OnInit, OnDestroy {
 
   doReset: boolean
   isRestarting: boolean;
+  private ngDestroyed$ = new Subject();
 
   constructor(
     private router: Router,
@@ -24,7 +27,7 @@ export class ResetsystemComponent implements OnInit {
 
   ngOnInit(): void {
     this.logger.debug(`ResetsystemComponent::init`);
-    this.store.pipe(select(Selectors.configLoadingError)).subscribe((error) => {
+    this.store.pipe(select(Selectors.configLoadingError)).pipe(takeUntil(this.ngDestroyed$)).subscribe((error) => {
       console.log(error);
       if (error !== undefined) {
         this.logger.debug(`ResetsystemComponent::still rebooting`);
@@ -33,9 +36,14 @@ export class ResetsystemComponent implements OnInit {
     });
   }
 
+  ngOnDestroy() {
+    this.ngDestroyed$.next();
+  }
+
+
   reloadConfig(): void {
     this.store.dispatch(Actions.LoadSystemConfigAction());
-    this.store.pipe(select(Selectors.configData)).subscribe((cfg) => {
+    this.store.pipe(select(Selectors.configData)).pipe(takeUntil(this.ngDestroyed$)).subscribe((cfg) => {
       if (cfg !== undefined) {
         this.logger.debug(`ResetsystemComponent::rebooting completed`);
         this.isRestarting = false;

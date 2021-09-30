@@ -1,6 +1,7 @@
 import { ArrayDataSource } from '@angular/cdk/collections';
 import { Component, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
+import { DEFAULTINSTANCE } from 'src/app/service/application.service';
 import { Models, Selectors } from 'src/app/store';
 import { HapInstance } from 'src/app/store/models';
 
@@ -26,7 +27,7 @@ export class StepInstancesComponent implements OnInit {
 
   ngOnInit(): void {
     this.store.pipe(select(Selectors.selectAllInstances)).subscribe(instanceList => {
-      this.dataSource = new ArrayDataSource(instanceList);
+      this.dataSource = new ArrayDataSource(instanceList.filter(instance => instance.id !== DEFAULTINSTANCE));
     })
   }
 

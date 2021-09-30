@@ -8,6 +8,9 @@ export enum HapInstanceActionTypes {
   LOAD_INSTANCES_FAILED = '[HAP Instance] Load Instance Failed',
 
   CREATE_INSTANCE_AT_API = '[HAP Instance] Create Instance',
+  ACTIVATE_INSTANCE_AT_API = '[HAP Instance] Activate Instance',
+  ACTIVATE_INSTANCE_AT_API_SUCCESS = '[HAP Instance] Activate Instance Success',
+  ACTIVATE_INSTANCE_AT_API_FAILED = '[HAP Instance] Activate Instance Failed',
 
   SAVE_INSTANCE_TO_API = '[HAP Instance] Save Instance',
   SAVE_INSTANCE_TO_API_SUCCESS = '[HAP Instance] Save Instance Success',
@@ -16,6 +19,8 @@ export enum HapInstanceActionTypes {
   DELETE_INSTANCE_FROM_API = '[HAP Instance] Delete Instance',
   DELETE_INSTANCE_FROM_API_SUCCESS = '[HAP Instance] Delete Instance Success',
   DELETE_INSTANCE_FROM_API_FAILED = '[HAP Instance] Delete Instance Failed',
+
+
 }
 
 export const LoadHapInstanceAction = createAction(
@@ -65,3 +70,17 @@ export const DeleteHapInstanceFromApiFailureAction = createAction(
   HapInstanceActionTypes.DELETE_INSTANCE_FROM_API_FAILED,
   props<{ payload: Error }>()
 );
+
+export const ActivateHapInstanceAtApiAction = createAction(
+  HapInstanceActionTypes.ACTIVATE_INSTANCE_AT_API,
+  props<{ instances: string[] }>()
+);
+
+export const ActivateHapInstanceAtApiSuccessAction = createAction(
+  HapInstanceActionTypes.ACTIVATE_INSTANCE_AT_API_SUCCESS,
+  props<{ result: string }>()
+);
+
+export const ActivateHapInstanceAtApiFailureAction = createAction(
+  HapInstanceActionTypes.ACTIVATE_INSTANCE_AT_API_FAILED,
+  props<{ error: Error }>());

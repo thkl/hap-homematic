@@ -15,7 +15,7 @@
         <div class="form-check form-check-inline">
           <input [(ngModel)]="doReset" class="form-check-input" type="checkbox" id="doReset" value="enable">
           <label class="form-check-label" for="doReset">
-            {{'I have understand that this will destroy the current configuration.' | localize}}</label>
+            {{'I have understood that this will destroy the current configuration.' | localize}}</label>
         </div>
         <p *ngIf="isRestarting===true">{{'Restarting (this will take about 60 seconds)' |localize}}</p>
         <div class="progress" *ngIf="isRestarting===true">
