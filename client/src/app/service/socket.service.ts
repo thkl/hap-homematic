@@ -12,17 +12,22 @@ export const WS_ENDPOINT = environment.wsEndpoint;
 })
 export class SocketService {
   private socket$: WebSocketSubject<any>;
-
+  private socketProtocol = 'ws:';
   constructor(
     private logger: NGXLogger
-  ) { }
+  ) {
+
+    if (window.location.protocol === 'https:') {
+      this.socketProtocol = 'wss:'
+    }
+  }
 
   public connect(): WebSocketSubject<any> {
     if (!this.socket$ || this.socket$.closed) {
       const randomID = this.randomID();
       const randomNum = this.randomBytes(1)[0];
       this.socket$ = webSocket({
-        url: `${WS_ENDPOINT}/${randomNum}/${randomID}/websocket`,
+        url: `${this.socketProtocol}${WS_ENDPOINT}/${randomNum}/${randomID}/websocket`,
         deserializer: msg => {
           try { // this is a little weird
             const pmsg = msg.data.match(rgx);

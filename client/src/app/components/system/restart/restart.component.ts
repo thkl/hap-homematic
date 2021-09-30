@@ -39,10 +39,10 @@ export class RestartComponent implements OnInit, OnDestroy {
         }
       });
 
-    this.store.pipe(select(Selectors.configData))
+    this.store.pipe(select(Selectors.configIsLoading))
       .pipe(takeUntil(this.ngDestroyed$))
-      .subscribe((cfg) => {
-        if (cfg !== undefined) {
+      .subscribe((isLoading) => {
+        if ((isLoading === false) && (this.isRestarting === true)) {
           this.logger.debug(`RestartComponent::rebooting completed`);
           this.isRestarting = false;
           this.router.navigate(['/']);
