@@ -2,7 +2,8 @@
 import { Component, Input, OnDestroy } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { NGXLogger } from 'ngx-logger';
-import { Observable, of } from 'rxjs';
+import { Observable, of, Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 import { ApplicationService } from 'src/app/service/application.service';
 import { HapApplianceApiService } from 'src/app/service/hapappliance.service';
 import { Actions, Models, Selectors, SelectUtility } from 'src/app/store';
@@ -23,6 +24,7 @@ export class AppliancePropertiesComponent implements OnDestroy {
   private validationResult: ValidationResult;
   public applianceValidator = new ApplianceValidator();
   public isDirty = true;
+  private ngDestroyed$ = new Subject();
 
   @Input() set selectedAppliance(newAppliance: Models.HapAppliance) {
     if (newAppliance !== undefined) {
@@ -59,6 +61,7 @@ export class AppliancePropertiesComponent implements OnDestroy {
     if (this.isDirty === true) {
       this.save();
     }
+    this.ngDestroyed$.next();
   }
 
   loadServices(): void {
@@ -79,7 +82,7 @@ export class AppliancePropertiesComponent implements OnDestroy {
 
       this.instanceList = this.store.select(Selectors.selectAllInstances)
 
-      this.instanceList.subscribe(list => {
+      this.instanceList.pipe(takeUntil(this.ngDestroyed$)).subscribe(list => {
         if (list.length > 0) {
           if (this._selectedAppliance.instanceID === undefined) {
             let instanceID = list[0].id;

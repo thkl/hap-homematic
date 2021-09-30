@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import { NGXLogger } from 'ngx-logger';
@@ -13,7 +13,7 @@ import { Actions, Models, Selectors } from 'src/app/store';
   templateUrl: './restart.component.html',
   styleUrls: ['./restart.component.sass']
 })
-export class RestartComponent implements OnInit {
+export class RestartComponent implements OnInit, OnDestroy {
 
   isRestarting = false;
   enableDebug: boolean;
@@ -29,21 +29,25 @@ export class RestartComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.store.pipe(select(Selectors.configLoadingError)).pipe(takeUntil(this.ngDestroyed$)).subscribe((error) => {
-      console.log(error);
-      if (error !== undefined) {
-        this.logger.debug(`RestartComponent::still rebooting`);
-        setTimeout(() => { this.reloadConfig() }, 5000); // Try to reload the config 5seconds from now
-      }
-    });
+    this.store.pipe(select(Selectors.configLoadingError))
+      .pipe(takeUntil(this.ngDestroyed$))
+      .subscribe((error) => {
+        console.log(error);
+        if (error !== undefined) {
+          this.logger.debug(`RestartComponent::still rebooting`);
+          setTimeout(() => { this.reloadConfig() }, 5000); // Try to reload the config 5seconds from now
+        }
+      });
 
-    this.store.pipe(select(Selectors.configData)).pipe(takeUntil(this.ngDestroyed$)).subscribe((cfg) => {
-      if (cfg !== undefined) {
-        this.logger.debug(`RestartComponent::rebooting completed`);
-        this.isRestarting = false;
-        this.router.navigate(['/']);
-      }
-    })
+    this.store.pipe(select(Selectors.configData))
+      .pipe(takeUntil(this.ngDestroyed$))
+      .subscribe((cfg) => {
+        if (cfg !== undefined) {
+          this.logger.debug(`RestartComponent::rebooting completed`);
+          this.isRestarting = false;
+          this.router.navigate(['/']);
+        }
+      })
   }
 
 

@@ -1,6 +1,8 @@
 import { ArrayDataSource } from '@angular/cdk/collections';
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { select, Store } from '@ngrx/store';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 import { Models, Selectors } from 'src/app/store';
 
 
@@ -20,13 +22,14 @@ const LIST_DATA: ListNode[] = [];
   templateUrl: './ccuprogramlist.component.html',
   styleUrls: ['./ccuprogramlist.component.sass']
 })
-export class CCUProgramlistComponent implements OnInit {
+export class CCUProgramlistComponent implements OnInit, OnDestroy {
 
   @Output() selectionChanged: EventEmitter<ListNode> = new EventEmitter();
   @Input() preselectedVariables: string[];
   dataSource = new ArrayDataSource(LIST_DATA);
   listData: ListNode[];
   searchText: string;
+  private ngDestroyed$ = new Subject();
 
   constructor(
     public store: Store<Models.AppState>
@@ -38,17 +41,25 @@ export class CCUProgramlistComponent implements OnInit {
       this.preselectedVariables = [];
     }
     // we have to do this once cause the store will change on every selection
-    this.store.select(Selectors.selectAllAppliances(Models.HapApplicanceType.Program)).subscribe(hapdevices => {
-      this.store.pipe(select(Selectors.selectAllCCUPrograms)).subscribe(ccuProgramList => {
-        this.listData = [];
-        ccuProgramList.forEach(program => {
-          const exists = (hapdevices.filter(device => `${device.address}` === `${program.name}:0`).length > 0);
-          const active = (this.preselectedVariables.indexOf(program.name) !== -1);
-          this.listData.push({ id: program.name, name: program.name, active, exists })
-        })
-        this.fillList();
+    this.store.select(Selectors.selectAllAppliances(Models.HapApplicanceType.Program))
+      .pipe(takeUntil(this.ngDestroyed$))
+      .subscribe(hapdevices => {
+        this.store.pipe(select(Selectors.selectAllCCUPrograms))
+          .pipe(takeUntil(this.ngDestroyed$))
+          .subscribe(ccuProgramList => {
+            this.listData = [];
+            ccuProgramList.forEach(program => {
+              const exists = (hapdevices.filter(device => `${device.address}` === `${program.name}:0`).length > 0);
+              const active = (this.preselectedVariables.indexOf(program.name) !== -1);
+              this.listData.push({ id: program.name, name: program.name, active, exists })
+            })
+            this.fillList();
+          })
       })
-    })
+  }
+
+  ngOnDestroy() {
+    this.ngDestroyed$.next();
   }
 
   select(node): void {

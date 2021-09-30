@@ -15,7 +15,7 @@ export interface MenuItem {
 export class BreadcrumbsComponent implements OnInit {
   public menuItems: MenuItem[];
   static readonly ROUTE_DATA_BREADCRUMB = 'breadcrumb';
-  constructor(private router: Router, private activatedRoute: ActivatedRoute) {}
+  constructor(private router: Router, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.router.events
@@ -28,7 +28,7 @@ export class BreadcrumbsComponent implements OnInit {
 
   private createBreadcrumbs(
     route: ActivatedRoute,
-    url: string = '#',
+    url = '#',
     breadcrumbs: MenuItem[] = []
   ): MenuItem[] {
     const children: ActivatedRoute[] = route.children;

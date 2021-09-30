@@ -1,6 +1,8 @@
 import { ArrayDataSource } from '@angular/cdk/collections';
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { select, Store } from '@ngrx/store';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 import { Models, Selectors } from 'src/app/store';
 
 
@@ -19,13 +21,14 @@ const LIST_DATA: ListNode[] = [];
   templateUrl: './ccuvariablelist.component.html',
   styleUrls: ['./ccuvariablelist.component.sass']
 })
-export class CCUVariablelistComponent implements OnInit {
+export class CCUVariablelistComponent implements OnInit, OnDestroy {
 
   @Output() selectionChanged: EventEmitter<ListNode> = new EventEmitter();
   @Input() preselectedVariables: string[];
   dataSource = new ArrayDataSource(LIST_DATA);
   listData: ListNode[];
   searchText: string;
+  private ngDestroyed$ = new Subject();
 
   constructor(
     public store: Store<Models.AppState>
@@ -37,17 +40,25 @@ export class CCUVariablelistComponent implements OnInit {
       this.preselectedVariables = [];
     }
     // we have to do this once cause the store will change on every selection
-    this.store.select(Selectors.selectAllAppliances(Models.HapApplicanceType.Variable)).subscribe(hapdevices => {
-      this.store.pipe(select(Selectors.selectAllCCUVariables)).subscribe(ccuvariableList => {
-        this.listData = [];
-        ccuvariableList.forEach(variable => {
-          const exists = (hapdevices.filter(device => `${device.address}` === `${variable.name}:0`).length > 0);
-          const active = (this.preselectedVariables.indexOf(variable.name) !== -1);
-          this.listData.push({ id: variable.name, name: variable.name, active, exists })
-        })
-        this.fillList();
+    this.store.select(Selectors.selectAllAppliances(Models.HapApplicanceType.Variable))
+      .pipe(takeUntil(this.ngDestroyed$))
+      .subscribe(hapdevices => {
+        this.store.pipe(select(Selectors.selectAllCCUVariables))
+          .pipe(takeUntil(this.ngDestroyed$))
+          .subscribe(ccuvariableList => {
+            this.listData = [];
+            ccuvariableList.forEach(variable => {
+              const exists = (hapdevices.filter(device => `${device.address}` === `${variable.name}:0`).length > 0);
+              const active = (this.preselectedVariables.indexOf(variable.name) !== -1);
+              this.listData.push({ id: variable.name, name: variable.name, active, exists })
+            })
+            this.fillList();
+          })
       })
-    })
+  }
+
+  ngOnDestroy() {
+    this.ngDestroyed$.next();
   }
 
   select(node): void {

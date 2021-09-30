@@ -1,6 +1,8 @@
 import { ArrayDataSource } from '@angular/cdk/collections';
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { select, Store } from '@ngrx/store';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 import { Models, Selectors } from 'src/app/store';
 import { HapInstanceCoreData } from 'src/app/store/models';
 
@@ -19,7 +21,7 @@ const LIST_DATA: ListNode[] = [];
   templateUrl: './ccuroomlist.component.html',
   styleUrls: ['./ccuroomlist.component.sass']
 })
-export class CCURoomlistComponent implements OnInit {
+export class CCURoomlistComponent implements OnInit, OnDestroy {
 
 
   @Output() instanceListChange: EventEmitter<any> = new EventEmitter();
@@ -27,6 +29,7 @@ export class CCURoomlistComponent implements OnInit {
 
   dataSource = new ArrayDataSource(LIST_DATA);
   listData: ListNode[];
+  private ngDestroyed$ = new Subject();
 
   constructor(
     public store: Store<Models.AppState>
@@ -38,15 +41,24 @@ export class CCURoomlistComponent implements OnInit {
       this.instanceList = [];
     }
 
-    this.store.pipe(select(Selectors.selectAllRooms)).subscribe(ccuRoomList => {
-      this.listData = [];
-      ccuRoomList.forEach(room => {
-        const active = this.instanceList.some(instance => instance.roomId === room.id)
-        this.listData.push({ id: room.id, name: room.name, active, numChannels: room.channels.length, displayName: room.name })
+    this.store.pipe(select(Selectors.selectAllRooms))
+      .pipe(takeUntil(this.ngDestroyed$))
+      .subscribe(ccuRoomList => {
+        this.listData = [];
+        ccuRoomList.forEach(room => {
+          const active = this.instanceList.some(instance => instance.roomId === room.id)
+          this.listData.push({ id: room.id, name: room.name, active, numChannels: room.channels.length, displayName: room.name })
+        })
+        this.fillList();
       })
-      this.fillList();
-    })
   }
+
+
+
+  ngOnDestroy() {
+    this.ngDestroyed$.next();
+  }
+
 
   fillList(): void {
     this.dataSource = new ArrayDataSource(this.listData);
