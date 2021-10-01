@@ -25,6 +25,11 @@ export class SystemconfigService {
     return this.http.get<SystemConfig>(`${this.api}/system`);
   }
 
+  saveConfig(newConfig: SystemConfig) {
+    this.logger.debug('SystemconfigService::saveConfig');
+    return this.http.patch<SystemConfig>(`${this.api}/system`, newConfig);
+  }
+
   loadRooms() {
     this.logger.debug('SystemconfigService::loadRooms');
     return this.http.get<CCURoomLoadingResult>(`${this.api}/ccurooms`);

@@ -23,8 +23,8 @@ const configLoadingReducer = createReducer(
   on(SystemConfigActionTypes.LoadSystemConfigSuccessAction, (state, { systemConfig }) => ({
     ...state, config: systemConfig, loading: false
   })),
-  on(SystemConfigActionTypes.LoadSystemConfigFailureAction, (state, { payload }) => ({
-    ...state, error: payload, loading: false
+  on(SystemConfigActionTypes.LoadSystemConfigFailureAction, (state, { error }) => ({
+    ...state, error: error, loading: false
   })),
 
 );

@@ -429,5 +429,6 @@
   "Add a door opener switch": "Füge einen Öffnen Schalter hinzu",
   "Watchdog Timeout (sec / 0 is off)": "Watchdog Timeout (in Sekunden / 0 = aus)",
   "Delay the arming": "Scharfschaltverzögerung",
-  "Delay the arming by X seconds. The Arming will be set x seconds after Homekit gets the command.": "Scharfschalten wird um x Sekunden verzögert. Die Variable wird erst nach der angegebenen Zeit (sek) gesetzt."
+  "Delay the arming by X seconds. The Arming will be set x seconds after Homekit gets the command.": "Scharfschalten wird um x Sekunden verzögert. Die Variable wird erst nach der angegebenen Zeit (sek) gesetzt.",
+  "If you have enabled https redirection for your CCU WEBUI HAP will also force HTTPS.": "Wenn Du in der CCU HTTPS Redirect aktiviert hast, wird das HAP UI automatisch auf HTTPs gestellt."
 }

@@ -18,6 +18,6 @@ export interface SystemConfig {
   enableMonitoring?: boolean,
   disableHistory?: boolean,
   forceCache?: boolean,
-  interfaceWatchdog?: boolean,
+  interfaceWatchdog?: number,
   isEmpty?: boolean
 }

@@ -1,4 +1,4 @@
-import { Action, createAction, props } from '@ngrx/store';
+import { createAction, props } from '@ngrx/store';
 import { SystemConfig } from '../models/SystemConfig.model';
 
 export enum SystemConfigActionTypes {
@@ -12,4 +12,8 @@ export enum SystemConfigActionTypes {
 
 export const LoadSystemConfigAction = createAction(SystemConfigActionTypes.LOAD_CONFIG);
 export const LoadSystemConfigSuccessAction = createAction(SystemConfigActionTypes.LOAD_CONFIG_SUCCESS, props<{ systemConfig: SystemConfig }>());
-export const LoadSystemConfigFailureAction = createAction(SystemConfigActionTypes.LOAD_CONFIG_FAILED, props<{ payload: Error }>());
+export const LoadSystemConfigFailureAction = createAction(SystemConfigActionTypes.LOAD_CONFIG_FAILED, props<{ error: Error }>());
+
+export const SaveSystemConfigAction = createAction(SystemConfigActionTypes.SAVE_CONFIG, props<{ systemconfig: SystemConfig }>());
+export const SaveSystemConfigSuccessAction = createAction(SystemConfigActionTypes.SAVE_CONFIG_SUCCESS, props<{ systemConfig: SystemConfig }>());
+export const SaveSystemConfigFailureAction = createAction(SystemConfigActionTypes.SAVE_CONFIG_FAILED, props<{ error: Error }>());

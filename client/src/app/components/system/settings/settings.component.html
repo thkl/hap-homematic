@@ -1,1 +1,64 @@
-<p>settings works!</p>
+<div class="card">
+  <div class="card-header">
+    <h2>{{'Settings' | localize}}</h2>
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-3">
+        <img src="./assets/img/preferences.svg" alt="">
+      </div>
+      <div class="col-9">
+        <form *ngIf="configData!==undefined">
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <input class="form-check-input" [(ngModel)]="configData.useAuth" name="useAuth" type="checkbox" id="useAuth">
+              <label class="form-check-label" for="useAuth">{{'Use CCU Authentication' |localize}}</label>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <input class="form-check-input" [(ngModel)]="configData.useTLS" name="useTLS" type="checkbox" id="useTLS">
+              <label class="form-check-label" for="useTLS">{{'Use HTTPS' |localize}}</label><br />
+            </div>
+            <div class="form-group col-md-6">
+              {{'If you have enabled https redirection for your CCU WEBUI HAP will also force HTTPS.' |localize}}
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <input class="form-check-input" [(ngModel)]="configData.enableMonitoring" name="enableMonitoring" type="checkbox" id="enableMonitoring">
+              <label class="form-check-label" for="enableMonitoring">{{'Enable Monitoring' |localize}}</label>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <input class="form-check-input" [(ngModel)]="configData.forceCache" name="forceCache" type="checkbox" id="forceCache">
+              <label class="form-check-label" for="forceCache">{{'Force Cache usage' |localize}}</label>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <input class="form-check-input" [(ngModel)]="configData.disableHistory" name="disableHistory" type="checkbox" id="disableHistory">
+              <label class="form-check-label" for="disableHistory">{{'Disable Eve History' |localize}}</label>
+            </div>
+            <div class="form-group col-md-6">
+              {{'This will disable the eve history. Due to the fact that Apples Home App is not able to show custom devices using this option will not generate custom devices.' |localize}}
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="interfaceWatchdog">{{'Watchdog Timeout (sec / 0 is off)' |localize}}</label>
+              <input type="text" [(ngModel)]="configData.interfaceWatchdog" name="interfaceWatchdog" class="form-control" id="interfaceWatchdog">
+            </div>
+            <div class="form-group col-md-6">
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="card-footer">
+    <button type="button" class="btn btn-sm btn-primary" (click)="saveSettings()">{{'Save' | localize}}</button>
+  </div>
+
+</div>
