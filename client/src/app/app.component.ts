@@ -6,9 +6,10 @@ import { AppState } from './store/models/app-state.model';
 import { NGXLogger } from "ngx-logger";
 import { ConsoleLoggerMonitor } from './service/logger.service';
 import { ApplicationService } from './service/application.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AbstractDataComponent } from './components/abstractdatacomponent/abstractdatacomponent.component';
 import { Subscription } from 'rxjs';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
@@ -28,19 +29,27 @@ export class AppComponent extends AbstractDataComponent implements OnInit {
     private localizationService: LocalizationService,
     private applicationService: ApplicationService,
     private logger: NGXLogger,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) {
     super();
+    this.logger.debug('AppComponent::Booting');
+
     this.store.pipe(select(Selectors.localizationLoadingError)).subscribe(error => {
       this.errorMessage = ((error !== undefined) ? error.message : undefined);
       this.logger.debug(`AppComponent::API Error: ${this.errorMessage}`);
     })
+
+
   }
 
   ngOnInit(): void {
-
+    const sid = this.getQueryVariable('sid');
+    if (sid) {
+      this.logger.debug('AppComponent::SID found');
+      this.applicationService.setToken(sid);
+    }
     this.logger.registerMonitor(new ConsoleLoggerMonitor());
-    this.logger.debug('AppComponent::Booting');
     this.addSubscription(
       this.store.pipe(select(Selectors.localizationLoaded)).subscribe((phl) => {
         this.logger.debug(`AppComponent::Localization Phrases loaded (${phl})`)
@@ -50,6 +59,8 @@ export class AppComponent extends AbstractDataComponent implements OnInit {
 
     this.logger.debug('AppComponent::Loading localization')
     this.store.dispatch({ type: Actions.LocalizationActionTypes.LOAD });
+    this.logger.debug('AppComponent::Loading Config')
+    this.store.dispatch(Actions.LoadSystemConfigAction());
 
     this.applicationService.globalLoadingIndicator.subscribe(isLoadingArray => {
       setTimeout(() => {
@@ -65,5 +76,15 @@ export class AppComponent extends AbstractDataComponent implements OnInit {
     });
   }
 
-
+  getQueryVariable(variable: string): string {
+    const query = window.location.search.substring(1);
+    const vars = query.split('&');
+    for (let i = 0; i < vars.length; i++) {
+      const pair = vars[i].split('=');
+      if (decodeURIComponent(pair[0]) == variable) {
+        return decodeURIComponent(pair[1]);
+      }
+    }
+    return undefined;
+  }
 }

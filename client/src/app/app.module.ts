@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -55,6 +55,9 @@ import { WizzardComponent } from './components/welcome/wizzard/wizzard.component
 import { StepInstancesComponent } from './components/welcome/step-instances/step-instances.component';
 import { CCURoomlistComponent } from './components/welcome/ccuroomlist/ccuroomlist.component';
 import { StepAppliancesComponent } from './components/welcome/step-appliances/step-appliances.component';
+import { LoginComponent } from './components/system/login/login.component';
+import { ErrorInterceptor } from './service/error.interceptor';
+import { ConfigResolver } from './service/config.resolver';
 
 @NgModule({
   declarations: [
@@ -89,7 +92,8 @@ import { StepAppliancesComponent } from './components/welcome/step-appliances/st
     WizzardComponent,
     StepInstancesComponent,
     CCURoomlistComponent,
-    StepAppliancesComponent
+    StepAppliancesComponent,
+    LoginComponent
   ],
   imports: [
     HttpClientModule,
@@ -111,7 +115,11 @@ import { StepAppliancesComponent } from './components/welcome/step-appliances/st
     })
   ],
 
-  providers: [LocalizationResolver, ApplicanceListResolver],
+  providers: [
+    LocalizationResolver,
+    ApplicanceListResolver,
+    ConfigResolver,
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }],
   bootstrap: [AppComponent],
 })
 export class AppModule { }

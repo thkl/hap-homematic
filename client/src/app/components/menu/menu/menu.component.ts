@@ -1,6 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
-import { NGXLogger, NgxLoggerLevel } from 'ngx-logger';
+import { select, Store } from '@ngrx/store';
+import { Models, Selectors } from 'src/app/store';
+import { AbstractDataComponent } from '../../abstractdatacomponent/abstractdatacomponent.component';
+
 
 
 @Component({
@@ -8,27 +11,37 @@ import { NGXLogger, NgxLoggerLevel } from 'ngx-logger';
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.sass']
 })
-export class MenuComponent {
+export class MenuComponent extends AbstractDataComponent implements OnInit {
 
   public currentRouteUrl: string;
   public currentSubMenu: string;
+  public isNew: boolean;
 
   constructor(
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private store: Store<Models.AppState>,
   ) {
+    super();
     this.router.events.subscribe((event) => {
-
       if (event instanceof NavigationEnd) {
         this.currentRouteUrl = event.url.split('/')[1];
       }
-
     });
+  }
+
+  ngOnInit(): void {
+    this.addSubscription(
+      this.store.pipe(select(Selectors.configData)).subscribe(cfg => {
+        if ((cfg !== undefined) && (cfg.version !== undefined)) {
+          this.isNew = (cfg.isEmpty !== undefined) ? cfg.isEmpty : true;
+        }
+      })
+    )
   }
 
 
   toggleSubMenu(menu: string): void {
-
     if (this.currentSubMenu === menu) {
       this.currentSubMenu = '';
     } else {

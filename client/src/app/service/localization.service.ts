@@ -31,7 +31,7 @@ export class LocalizationService {
 
   loadPhrases() {
     const lang = this.application.language;
-    return this.http.get<LocalizationPhrase>(`${this.api}/localizations/${lang}`);
+    return this.http.get<LocalizationPhrase>(`${this.api}/localizations/${lang}`, { headers: this.application.httpHeaders() });
   }
 
   phrasesLoaded(): boolean {

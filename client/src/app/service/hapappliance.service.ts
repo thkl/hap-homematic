@@ -20,21 +20,21 @@ export class HapApplianceApiService {
 
   loadHapAppliances() {
     this.logger.debug('loadHapAppliances');
-    return this.http.get<HapApplianceLoadResult>(`${this.api}/appliances`);
+    return this.http.get<HapApplianceLoadResult>(`${this.api}/appliances`, { headers: this.application.httpHeaders() });
   }
 
   loadServiceData(channelAddress: string, applianceType: string) {
     this.logger.debug(`loadServiceData channelAddress ${channelAddress} applianceType ${applianceType}`);
-    return this.http.get<HapApplianceServiceResponse>(`${this.api}/service/${applianceType}/${channelAddress}`);
+    return this.http.get<HapApplianceServiceResponse>(`${this.api}/service/${applianceType}/${channelAddress}`, { headers: this.application.httpHeaders() });
   }
 
   saveHapAppliances(appliances: HapAppliance[]) {
     this.logger.debug(`saveHapAppliances appliances`, appliances);
-    return this.http.patch<HapApplianceSaveResult>(`${this.api}/appliance`, appliances);
+    return this.http.patch<HapApplianceSaveResult>(`${this.api}/appliance`, appliances, { headers: this.application.httpHeaders() });
   }
 
   deleteHapAppliance(appliance: HapAppliance) {
     this.logger.debug(`deleteHapAppliance appliance ${appliance.address}`, appliance);
-    return this.http.delete<HapApplianceDeletingResult>(`${this.api}/appliance/${appliance.address}`);
+    return this.http.delete<HapApplianceDeletingResult>(`${this.api}/appliance/${appliance.address}`, { headers: this.application.httpHeaders() });
   }
 }

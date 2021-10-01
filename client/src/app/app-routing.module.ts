@@ -18,6 +18,9 @@ import { RestartComponent } from './components/system/restart/restart.component'
 import { SettingsComponent } from './components/system/settings/settings.component';
 import { ResetsystemComponent } from './components/system/resetsystem/resetsystem.component';
 import { WizzardComponent } from './components/welcome/wizzard/wizzard.component';
+import { LoginComponent } from './components/system/login/login.component';
+import { AuthGuard } from './service/route.guard';
+import { ConfigResolver } from './service/config.resolver';
 
 const routes: Routes = [
   {
@@ -25,101 +28,135 @@ const routes: Routes = [
     component: ShellComponent,
     resolve: { phrases: LocalizationResolver },
     children: [
-      { path: '', redirectTo: 'devices', pathMatch: 'full' },
+      {
+        path: '',
+        redirectTo: 'devices',
+        pathMatch: 'full'
+      },
 
       {
         path: 'devices', component: DeviceListComponent,
         data: { breadcrumb: 'Devices' },
+        canActivate: [AuthGuard],
       },
 
       {
         path: 'device/new', component: NewApplianceWizzardFrameComponent,
-        data: { breadcrumb: 'Add new device' }
+        data: { breadcrumb: 'Add new device' },
+        canActivate: [AuthGuard]
       },
 
       {
         path: 'appliance/:address', component: EditApplianceComponent,
         resolve: { loaded: ApplicanceListResolver },
         data: { breadcrumb: 'Edit appliance' },
+        canActivate: [AuthGuard]
       },
 
 
       {
         path: 'variables', component: VariablelistComponent,
         data: { breadcrumb: 'Variables' },
+        canActivate: [AuthGuard]
       },
 
-      { path: 'variables/:id', component: VariablelistComponent },
+      {
+        path: 'variables/:id', component: VariablelistComponent,
+        canActivate: [AuthGuard]
+      },
       {
         path: 'variable/new', component: NewApplianceWizzardFrameComponent,
-        data: { breadcrumb: 'Add new Variable' }
+        data: { breadcrumb: 'Add new Variable' },
+        canActivate: [AuthGuard]
       },
 
       {
         path: 'programs', component: ProgramlistComponent,
         data: { breadcrumb: 'Programs' },
+        canActivate: [AuthGuard]
       },
 
-      { path: 'programs/:id', component: ProgramlistComponent },
+      {
+        path: 'programs/:id', component: ProgramlistComponent,
+        canActivate: [AuthGuard]
+      },
       {
         path: 'program/new', component: NewApplianceWizzardFrameComponent,
         data: { breadcrumb: 'Add new Program' },
+        canActivate: [AuthGuard]
       },
 
       {
         path: 'special', component: SpeciallistComponent,
-        data: { breadcrumb: 'Special Appliances' }
+        data: { breadcrumb: 'Special Appliances' },
+        canActivate: [AuthGuard]
       },
       {
         path: 'special/new', component: NewApplianceWizzardFrameComponent,
         data: { breadcrumb: 'Add new Special device' },
+        canActivate: [AuthGuard]
       },
       {
         path: 'instances', component: InstancelistComponent,
-        data: { breadcrumb: 'Instances' }
+        data: { breadcrumb: 'Instances' },
+        canActivate: [AuthGuard]
       },
 
       {
         path: 'instances/detail/:id', component: InstancedetailComponent,
-        data: { breadcrumb: 'Edit Instance' }
+        data: { breadcrumb: 'Edit Instance' },
+        canActivate: [AuthGuard]
       },
 
       {
         path: 'instances/new', component: InstancedetailComponent,
-        data: { breadcrumb: 'New Instance' }
+        data: { breadcrumb: 'New Instance' },
+        canActivate: [AuthGuard]
       },
       {
         path: 'debug', component: DebugComponent,
         data: { breadcrumb: 'Debugging' },
+        canActivate: [AuthGuard],
         children: [
           {
             path: '', component: LogViewerComponent,
-            data: { breadcrumb: 'Logging' }
+            data: { breadcrumb: 'Logging' },
+            canActivate: [AuthGuard]
           },
           {
             path: 'logging', component: LogViewerComponent,
-            data: { breadcrumb: 'Logging' }
+            data: { breadcrumb: 'Logging' },
+            canActivate: [AuthGuard]
           },
           {
             path: 'crash', component: CrashlogsComponent,
-            data: { breadcrumb: 'Crashes' }
+            data: { breadcrumb: 'Crashes' },
+            canActivate: [AuthGuard]
           },
           {
             path: 'reset', component: ResetsystemComponent,
-            data: { breadcrumb: 'Reset All' }
+            data: { breadcrumb: 'Reset All' },
+            canActivate: [AuthGuard]
           }
         ]
       },
       {
         path: 'settings', component: SettingsComponent,
-        data: { breadcrumb: 'Settings' }
+        data: { breadcrumb: 'Settings' },
+        canActivate: [AuthGuard]
       },
       {
         path: 'restart', component: RestartComponent,
         data: { breadcrumb: 'Restart' },
+        canActivate: [AuthGuard]
       },
       {
-        path: 'welcome', component: WizzardComponent
+        path: 'welcome', component: WizzardComponent,
+        canActivate: [AuthGuard]
+      },
+      {
+        path: 'login', component: LoginComponent,
+        resolve: { config: ConfigResolver }
       }
     ],
   },
