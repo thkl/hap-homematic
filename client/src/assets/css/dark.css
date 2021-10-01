@@ -1,0 +1,80 @@
+/* We have to work on darkmode later
+
+@media (prefers-color-scheme: dark) {
+  .c-header {
+    background-image: initial;
+    background-color: rgb(17, 21, 23);
+    border-bottom-color: rgb(52, 65, 71);
+  }
+
+  body {
+    color: rgb(163, 182, 200);
+    background-color: rgb(27, 33, 36);
+  }
+
+  .c-app {
+    color: rgb(163, 182, 200);
+    background-color: rgb(27, 33, 36);
+  }
+
+  .c-subheader {
+    background-color: rgb(17, 21, 23);
+    border-bottom-color: rgb(52, 65, 71);
+    color: rgb(163, 182, 200);
+  }
+
+  .form-control {
+    color: rgb(154, 146, 132);
+    background-color: rgb(17, 21, 23);
+    border-top-color: rgb(52, 65, 71);
+    border-right-color: rgb(52, 65, 71);
+    border-bottom-color: rgb(52, 65, 71);
+    border-left-color: rgb(52, 65, 71);
+  }
+
+  .input-group-text {
+    color: rgb(154, 146, 132);
+    background-color: rgb(27, 33, 36);
+    border-top-color: rgb(52, 65, 71);
+    border-right-color: rgb(52, 65, 71);
+    border-bottom-color: rgb(52, 65, 71);
+    border-left-color: rgb(52, 65, 71);
+  }
+
+  .card {
+    background-color: rgb(17, 21, 23);
+    border-top-color: rgb(52, 65, 71);
+    border-right-color: rgb(52, 65, 71);
+    border-bottom-color: rgb(52, 65, 71);
+    border-left-color: rgb(52, 65, 71);
+  }
+
+  .card-header {
+    background-color: rgb(17, 21, 23);
+    border-top-color: rgb(52, 65, 71);
+    border-right-color: rgb(52, 65, 71);
+    border-bottom-color: rgb(52, 65, 71);
+    border-left-color: rgb(52, 65, 71);
+  }
+
+  .card-footer {
+    background-color: rgb(17, 21, 23);
+    border-top-color: rgb(52, 65, 71);
+    border-right-color: rgb(52, 65, 71);
+    border-bottom-color: rgb(52, 65, 71);
+    border-left-color: rgb(52, 65, 71);
+  }
+
+  .c-footer {
+    background-image: initial;
+    background-color: rgb(27, 33, 36);
+    border-top-color: rgb(52, 65, 71);
+    color: rgb(171, 163, 152);
+  }
+
+  .c-footer a {
+    color: rgb(171, 163, 152);
+  }
+}
+
+*/
