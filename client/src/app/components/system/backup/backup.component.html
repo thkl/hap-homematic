@@ -1,0 +1,49 @@
+<div class="card">
+  <div class="card-header">
+    <h2>{{'Backup' | localize}}</h2>
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-3">
+        <img src="./assets/img/backup.svg" alt="">
+      </div>
+      <div class="col-9">
+        <div class="row">
+          <div class="col-12">
+            <h4>Create Backup</h4>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-6">{{'The backup file contains all HAP instance and device settings' | localize}}</div>
+          <div class="col-6">
+            <button type="button" class="btn btn-sm btn-success" (click)="createBackup()">{{'Create Backup' | localize}}</button>
+          </div>
+        </div>
+
+        <div class="row space">
+          <div class="col-12">
+            <h4>Restore Backup</h4>
+          </div>
+        </div>
+        <div class="row ">
+          <div class="col-6">
+          </div>
+          <div class="col-6">
+            <input type="file" class="file-input" id="restoreFile" (change)="onFileSelected($event)" #fileUpload>
+            <div class="file-upload">
+              <button class="btn btn-sm btn-success"
+                (click)="fileUpload.click()">
+                <span class="cil-paperclip btn-icon mr-2"></span>
+                {{'Select' | localize}}
+              </button>
+
+              {{fileName || "No file selected yet." | localize}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-footer">
+
+  </div>

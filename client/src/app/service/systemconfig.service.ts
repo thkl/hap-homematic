@@ -92,7 +92,15 @@ export class SystemconfigService {
   }
 
   doReset() {
-    return this.http.post(`${this.api}/resetsystem`, { headers: this.application.httpHeaders() });
+    return this.http.post(`${this.api}/resetsystem`, {}, { headers: this.application.httpHeaders() });
   }
 
+  doRestore(fileData: any) {
+    return this.http.post(`${this.api}/restore`, fileData, { headers: this.application.httpHeaders('application/gzip') })
+  }
+
+  doBackup() {
+    this.logger.debug('SystemconfigService::getLogFile');
+    return this.http.get<Blob>(`${this.api}/backup`, { observe: 'response', responseType: 'blob' as 'json', headers: this.application.httpHeaders() });
+  }
 }

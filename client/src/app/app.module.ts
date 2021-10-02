@@ -58,6 +58,7 @@ import { StepAppliancesComponent } from './components/welcome/step-appliances/st
 import { LoginComponent } from './components/system/login/login.component';
 import { ErrorInterceptor } from './service/error.interceptor';
 import { ConfigResolver } from './service/config.resolver';
+import { BackupComponent } from './components/system/backup/backup.component';
 
 @NgModule({
   declarations: [
@@ -93,7 +94,8 @@ import { ConfigResolver } from './service/config.resolver';
     StepInstancesComponent,
     CCURoomlistComponent,
     StepAppliancesComponent,
-    LoginComponent
+    LoginComponent,
+    BackupComponent
   ],
   imports: [
     HttpClientModule,

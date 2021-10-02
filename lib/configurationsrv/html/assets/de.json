@@ -324,6 +324,8 @@
   "Backup file": "Datensicherungsdatei",
   "Backup/Restore": "Datensicherung / Zurückspielen",
   "Create Backup": "Datensicherung erzeugen",
+  "No file selected yet.": "Keine Datei ausgewählt",
+  "The backup file contains all HAP instance and device settings": "Die Backupdatei enthält alle Instanzen und Geräteeinstellungen",
   "Restore": "Datensicherung zurückspielen",
   "Value for stay": "Wert für Zuhause",
   "The value of your HomeMatic variable when it says you are at home. Set it to -1 if you do not want this state.": "Der Wert der HomeMatic Variable, wenn sie anzeigt, das Du Zuhause bist. Setze den Wert auf -1 wenn Du diesen Zustand nicht benötigst.",
@@ -430,5 +432,7 @@
   "Watchdog Timeout (sec / 0 is off)": "Watchdog Timeout (in Sekunden / 0 = aus)",
   "Delay the arming": "Scharfschaltverzögerung",
   "Delay the arming by X seconds. The Arming will be set x seconds after Homekit gets the command.": "Scharfschalten wird um x Sekunden verzögert. Die Variable wird erst nach der angegebenen Zeit (sek) gesetzt.",
-  "If you have enabled https redirection for your CCU WEBUI HAP will also force HTTPS.": "Wenn Du in der CCU HTTPS Redirect aktiviert hast, wird das HAP UI automatisch auf HTTPs gestellt."
+  "If you have enabled https redirection for your CCU WEBUI HAP will also force HTTPS.": "Wenn Du in der CCU HTTPS Redirect aktiviert hast, wird das HAP UI automatisch auf HTTPs gestellt.",
+  "Please login with your CCU Account": "Bitte melden Dich mit Deinem CCU Account an",
+  "You may also switch to your CCU UI, login and call this page thru the AddOns Page": "Du kannst Dich auch direkt auf der CCU anmelden und die HAP Einstellungen über die Erweiterungen aufrufen."
 }

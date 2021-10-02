@@ -110,15 +110,15 @@ export class ApplicationService {
     return this.api;
   }
 
-  httpHeaders(): HttpHeaders {
+  httpHeaders(contentType = 'application/json'): HttpHeaders {
     if (this.accountService.sid) {
       return new HttpHeaders({
-        'Content-Type': 'application/json',
+        'Content-Type': contentType,
         'Authorization': `${this.accountService.sid}`
       })
     } else {
       return new HttpHeaders({
-        'Content-Type': 'application/json'
+        'Content-Type': contentType
       })
     }
   }
@@ -126,6 +126,5 @@ export class ApplicationService {
   loginToCCU(username: string, password: string) {
     this.logger.debug(`loginToCCU`);
     return this.http.post<any>(`${this.api}/login`, { username, password }, { headers: this.httpHeaders() });
-
   }
 }

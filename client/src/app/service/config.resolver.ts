@@ -14,6 +14,10 @@ export class ConfigResolver implements Resolve<any> {
 
   }
 
+  /* the config resolver lets every route wait until config was loaded.
+  we will need this for authentication
+  */
+
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean> | boolean {
     if (this.applicationService.configLoaded === true) {
       return true;
