@@ -29,7 +29,7 @@
           <div class="col-6">
           </div>
           <div class="col-6">
-            <input type="file" class="file-input" id="restoreFile" (change)="onFileSelected($event)" #fileUpload>
+            <input type="file" class="file-input" accept=".gz" id="restoreFile" (change)="onSelectFile($event)" #fileUpload>
             <div class="file-upload">
               <button class="btn btn-sm btn-success"
                 (click)="fileUpload.click()">
@@ -38,7 +38,23 @@
               </button>
 
               {{fileName || "No file selected yet." | localize}}
+              <br />
+
             </div>
+          </div>
+        </div>
+        <div class="row space">
+          <div class="col-6">
+            <p *ngIf="isRestarting===true">{{'Restoring' | localize}}</p>
+            <div class="progress" *ngIf="isRestarting===true">
+              <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="100"
+                aria-valuemin="0" aria-valuemax="100" style="width: 100%"></div>
+            </div>
+          </div>
+          <div class="col-6">
+            <button class="btn btn-sm btn-success" (click)="restore()">
+              {{'Restore' | localize}}
+            </button>
           </div>
         </div>
       </div>

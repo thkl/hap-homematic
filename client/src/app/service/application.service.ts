@@ -111,16 +111,16 @@ export class ApplicationService {
   }
 
   httpHeaders(contentType = 'application/json'): HttpHeaders {
+    const headers = new HttpHeaders();
+
     if (this.accountService.sid) {
-      return new HttpHeaders({
-        'Content-Type': contentType,
-        'Authorization': `${this.accountService.sid}`
-      })
-    } else {
-      return new HttpHeaders({
-        'Content-Type': contentType
-      })
+      headers.append('Authorization', this.accountService.sid);
     }
+
+    if (contentType !== null) {
+      headers.append('Content-Type', contentType);
+    }
+    return headers;
   }
 
   loginToCCU(username: string, password: string) {

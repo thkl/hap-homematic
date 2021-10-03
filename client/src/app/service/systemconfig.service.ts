@@ -96,7 +96,8 @@ export class SystemconfigService {
   }
 
   doRestore(fileData: any) {
-    return this.http.post(`${this.api}/restore`, fileData, { headers: this.application.httpHeaders('application/gzip') })
+    console.log(fileData)
+    return this.http.post(`${this.api}/restore`, fileData, { headers: this.application.httpHeaders(null) })
   }
 
   doBackup() {

@@ -26,6 +26,7 @@
 		"hap-nodejs": "^0.5.7",
 		"homematic-xmlrpc": "1.0.2",
 		"moment": "2.29.0",
+		"multer": "^1.4.3",
 		"sockjs": "^0.3.20"
 	},
 	"husky": {
