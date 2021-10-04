@@ -1,5 +1,6 @@
 import { KeyValue } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { ApplicationService } from 'src/app/service/application.service';
 import { SystemconfigService } from 'src/app/service/systemconfig.service';
 import { ChangeLog } from 'src/app/store/models';
 
@@ -11,12 +12,15 @@ import { ChangeLog } from 'src/app/store/models';
 export class ChangelogComponent implements OnInit {
 
   changeLog: ChangeLog;
+  currentVersion: string;
 
   constructor(
-    private systemConfigService: SystemconfigService
+    private systemConfigService: SystemconfigService,
+    private applicationService: ApplicationService
   ) { }
 
   ngOnInit(): void {
+    this.currentVersion = this.applicationService.getSystemState().version;
     this.systemConfigService.getChangeLog().subscribe((changelog) => {
       this.changeLog = changelog;
     })

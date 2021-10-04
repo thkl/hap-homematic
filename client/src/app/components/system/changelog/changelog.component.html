@@ -8,7 +8,7 @@
         <img src="./assets/img/changelog.svg" alt="">
       </div>
       <div class="col-9 version" *ngIf="(changeLog !== undefined) && (changeLog.versions)">
-        <div class="row" *ngFor="let version of changeLog.versions | keyvalue:keyDescOrder">
+        <div class="row c-callout" *ngFor="let version of changeLog.versions | keyvalue:keyDescOrder" [class.c-callout-success]="version.key===currentVersion">
           <div class="col-2">
             <h4>{{version.key}}</h4>
           </div>
