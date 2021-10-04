@@ -21,3 +21,13 @@ export interface SystemConfig {
   interfaceWatchdog?: number,
   isEmpty?: boolean
 }
+
+export interface ChangeLogVersion {
+  descriptions: string[],
+  issues: string[]
+}
+
+export interface ChangeLog {
+  versions: { [key: string]: ChangeLogVersion },
+  latest: string
+}

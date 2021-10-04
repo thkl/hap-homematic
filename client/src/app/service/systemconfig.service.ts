@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { SystemConfig } from '../store/models/SystemConfig.model';
+import { ChangeLog, SystemConfig } from '../store/models/SystemConfig.model';
 import { ApplicationService } from './application.service';
-import { CCUChannelDatapointResult, CCUDeviceLoadingResult, CCUProgramLoadingResult, CCURoom, CCURoomLoadingResult, CCUVariableLoadingResult } from '../store/models';
+import { CCUChannelDatapointResult, CCUDeviceLoadingResult, CCUProgramLoadingResult, CCURoomLoadingResult, CCUVariableLoadingResult } from '../store/models';
 import { NGXLogger } from 'ngx-logger';
 
 @Injectable({
@@ -103,5 +103,10 @@ export class SystemconfigService {
   doBackup() {
     this.logger.debug('SystemconfigService::getLogFile');
     return this.http.get<Blob>(`${this.api}/backup`, { observe: 'response', responseType: 'blob' as 'json', headers: this.application.httpHeaders() });
+  }
+
+  getChangeLog() {
+    this.logger.debug('SystemconfigService::getChangeLog');
+    return this.http.get<ChangeLog>(`${this.api}/changelog`, { headers: this.application.httpHeaders() })
   }
 }

@@ -59,6 +59,7 @@ import { LoginComponent } from './components/system/login/login.component';
 import { ErrorInterceptor } from './service/error.interceptor';
 import { ConfigResolver } from './service/config.resolver';
 import { BackupComponent } from './components/system/backup/backup.component';
+import { ChangelogComponent } from './components/system/changelog/changelog.component';
 
 @NgModule({
   declarations: [
@@ -95,7 +96,8 @@ import { BackupComponent } from './components/system/backup/backup.component';
     CCURoomlistComponent,
     StepAppliancesComponent,
     LoginComponent,
-    BackupComponent
+    BackupComponent,
+    ChangelogComponent
   ],
   imports: [
     HttpClientModule,

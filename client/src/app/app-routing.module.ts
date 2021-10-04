@@ -22,6 +22,7 @@ import { LoginComponent } from './components/system/login/login.component';
 import { AuthGuard } from './service/route.guard';
 import { ConfigResolver } from './service/config.resolver';
 import { BackupComponent } from './components/system/backup/backup.component';
+import { ChangelogComponent } from './components/system/changelog/changelog.component';
 
 const routes: Routes = [
   {
@@ -174,6 +175,12 @@ const routes: Routes = [
       {
         path: 'backup', component: BackupComponent,
         data: { breadcrumb: 'Backup' },
+        canActivate: [AuthGuard],
+        resolve: { config: ConfigResolver }
+      },
+      {
+        path: 'changelog', component: ChangelogComponent,
+        data: { breadcrumb: 'Changelog' },
         canActivate: [AuthGuard],
         resolve: { config: ConfigResolver }
       },

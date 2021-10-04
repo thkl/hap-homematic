@@ -1,0 +1,25 @@
+<div class="card">
+  <div class="card-header">
+    <h2>{{'ChangeLog' | localize}}</h2>
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-3">
+        <img src="./assets/img/changelog.svg" alt="">
+      </div>
+      <div class="col-9 version" *ngIf="(changeLog !== undefined) && (changeLog.versions)">
+        <div class="row" *ngFor="let version of changeLog.versions | keyvalue:keyDescOrder">
+          <div class="col-2">
+            <h4>{{version.key}}</h4>
+          </div>
+          <div class="col10">
+            <ul *ngFor="let item of version.value.descriptions">
+              <li>{{item}}</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-footer">
+  </div>
