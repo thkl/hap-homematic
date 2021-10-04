@@ -1,33 +1,29 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
-import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
 import { Models, Selectors } from 'src/app/store';
+import { AbstractDataComponent } from '../../abstractdatacomponent/abstractdatacomponent.component';
 
 @Component({
   selector: 'app-header-systemstate',
   templateUrl: './systemstate.component.html',
   styleUrls: ['./systemstate.component.sass']
 })
-export class SystemstateComponent implements OnInit, OnDestroy {
+export class SystemstateComponent extends AbstractDataComponent implements OnInit {
 
   public systemState: Models.SystemConfig = {};
-  private ngDestroyed$ = new Subject();
 
-  constructor(private store: Store<Models.AppState>) { }
-
-  ngOnInit(): void {
-    this.store.pipe(select(Selectors.configData))
-      .pipe(takeUntil(this.ngDestroyed$))
-      .subscribe((newConfig) => {
-        if (newConfig) {
-          this.systemState = newConfig;
-        }
-      })
-
+  constructor(private store: Store<Models.AppState>) {
+    super();
   }
 
-  ngOnDestroy() {
-    this.ngDestroyed$.next();
+  ngOnInit(): void {
+    this.addSubscription(
+      this.store.pipe(select(Selectors.configData))
+        .subscribe((newConfig) => {
+          if (newConfig) {
+            this.systemState = newConfig;
+          }
+        })
+    );
   }
 }

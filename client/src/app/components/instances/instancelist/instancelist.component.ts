@@ -31,10 +31,11 @@ export class InstancelistComponent extends AbstractTableComponent {
     this.loadingSelector = Selectors.instanceLoadingError;
     this.searchFields = ['displayName', 'name'];
     this.dataSource = this.store.pipe(select(Selectors.selectAllInstances));
-    this.store.pipe(select(Selectors.selectAllRooms)).subscribe(roomList => {
-      this.roomList = roomList;
-    })
-
+    this.addSubscription(
+      this.store.pipe(select(Selectors.selectAllRooms)).subscribe(roomList => {
+        this.roomList = roomList;
+      })
+    );
   }
 
   roomNamefromInstance(instance: HapInstance): string {

@@ -5,6 +5,7 @@ import { fromEvent, merge, Observable, Subject, Subscription } from "rxjs";
 import { map, startWith, switchMap } from "rxjs/operators";
 import { filterObjects, sortObject } from "src/app/service/utility";
 import { Models } from "src/app/store";
+import { AbstractDataComponent } from "../abstractdatacomponent/abstractdatacomponent.component";
 import { PaginationComponent } from "../util/pagination/pagination.component";
 
 @Component({
@@ -12,7 +13,7 @@ import { PaginationComponent } from "../util/pagination/pagination.component";
   template: ' '
 })
 
-export class AbstractTableComponent implements OnInit {
+export class AbstractTableComponent extends AbstractDataComponent implements OnInit {
 
   private _displayedColumns: string[];
   private _dataSource: Observable<Models.HapAppliance[]>;
@@ -33,7 +34,6 @@ export class AbstractTableComponent implements OnInit {
   private initialized = false;
 
   public loading: boolean;
-  private subscription: Subscription = new Subscription();
   public noData = false;
 
   public searchText = '';
@@ -41,7 +41,9 @@ export class AbstractTableComponent implements OnInit {
   @ViewChild('searchInput') input: ElementRef;
   @ViewChild(PaginationComponent) paginator: PaginationComponent;
 
-  constructor(public store: Store<Models.AppState>) { }
+  constructor(public store: Store<Models.AppState>) {
+    super()
+  }
 
   ngOnInit(): void {
 
@@ -59,7 +61,7 @@ export class AbstractTableComponent implements OnInit {
 
     this._dataSource = this.store.pipe(select(this._dataSourceSelector));
 
-    this.subscription.add(
+    this.addSubscription(
       this.store.pipe(select(this._loadingSelector)).subscribe((loading) => {
         this.loading = loading;
       })
@@ -91,10 +93,6 @@ export class AbstractTableComponent implements OnInit {
 
   set searchFields(fld: string[]) {
     this._searchFields = fld;
-  }
-
-  public ngOnDestroy(): void {
-    this.subscription.unsubscribe();
   }
 
   ngAfterViewInit(): void {

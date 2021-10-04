@@ -1,15 +1,15 @@
 
 import { Component, Input, OnDestroy } from '@angular/core';
-import { Store } from '@ngrx/store';
+import { select, Store } from '@ngrx/store';
 import { NGXLogger } from 'ngx-logger';
-import { Observable, of, Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
 import { ApplicationService } from 'src/app/service/application.service';
 import { HapApplianceApiService } from 'src/app/service/hapappliance.service';
 import { Actions, Models, Selectors, SelectUtility } from 'src/app/store';
 import { HapInstance } from 'src/app/store/models';
 import { ApplianceValidator } from 'src/app/validators/appliancesettings.validator';
 import { ValidationResult } from 'src/app/validators/validationResult';
+import { AbstractDataComponent } from '../../abstractdatacomponent/abstractdatacomponent.component';
 
 
 
@@ -18,13 +18,12 @@ import { ValidationResult } from 'src/app/validators/validationResult';
   templateUrl: './applianceproperties.component.html',
   styleUrls: ['./applianceproperties.component.sass']
 })
-export class AppliancePropertiesComponent implements OnDestroy {
+export class AppliancePropertiesComponent extends AbstractDataComponent implements OnDestroy {
 
   private _selectedAppliance: Models.HapAppliance;
   private validationResult: ValidationResult;
   public applianceValidator = new ApplianceValidator();
   public isDirty = true;
-  private ngDestroyed$ = new Subject();
 
   @Input() set selectedAppliance(newAppliance: Models.HapAppliance) {
     if (newAppliance !== undefined) {
@@ -54,14 +53,16 @@ export class AppliancePropertiesComponent implements OnDestroy {
     public store: Store<Models.AppState>,
     private applicationService: ApplicationService,
     private logger: NGXLogger
-  ) { }
+  ) {
+    super()
+  }
 
   ngOnDestroy(): void {
     // save on exit
+    super.ngOnDestroy();
     if (this.isDirty === true) {
       this.save();
     }
-    this.ngDestroyed$.next();
   }
 
   loadServices(): void {
@@ -80,33 +81,30 @@ export class AppliancePropertiesComponent implements OnDestroy {
         }
       })
 
-      this.instanceList = this.store.select(Selectors.selectAllInstances)
+      const list = this.applicationService.selectAllInstances();
+      if (list.length > 0) {
+        if (this._selectedAppliance.instanceID === undefined) {
+          let instanceID = list[0].id;
+          // Set the default Instance
+          this._selectedAppliance.instanceID = instanceID;
 
-      this.instanceList.pipe(takeUntil(this.ngDestroyed$)).subscribe(list => {
-        if (list.length > 0) {
-          if (this._selectedAppliance.instanceID === undefined) {
-            let instanceID = list[0].id;
-            // Set the default Instance
-            this._selectedAppliance.instanceID = instanceID;
+          const channel = this.applicationService.channelWithAddress(this._selectedAppliance.address);
+          if (channel !== undefined) {
+            const ccuRoom = this.applicationService.roomForChannel(channel);
 
-            const channel = this.applicationService.channelWithAddress(this._selectedAppliance.address);
-            if (channel !== undefined) {
-              const ccuRoom = this.applicationService.roomForChannel(channel);
-
-              if (ccuRoom) {
-                const roomifiedInstance = list.filter(instance => instance.roomId === ccuRoom.id)[0];
-                if (roomifiedInstance) {
-                  instanceID = roomifiedInstance.id
-                }
+            if (ccuRoom) {
+              const roomifiedInstance = list.filter(instance => instance.roomId === ccuRoom.id)[0];
+              if (roomifiedInstance) {
+                instanceID = roomifiedInstance.id
               }
+            }
 
-            }
-            if (this._selectedAppliance.instances.length === 0) {
-              this._selectedAppliance.instances.push({ id: instanceID, name: '', remove: false })
-            }
+          }
+          if (this._selectedAppliance.instances.length === 0) {
+            this._selectedAppliance.instances.push({ id: instanceID, name: '', remove: false })
           }
         }
-      })
+      }
     }
   }
 

@@ -13,19 +13,19 @@
             <h4>Create Backup</h4>
           </div>
         </div>
-        <div class="row">
+        <div class="row space">
           <div class="col-6">{{'The backup file contains all HAP instance and device settings' | localize}}</div>
           <div class="col-6">
             <button type="button" class="btn btn-sm btn-success" (click)="createBackup()">{{'Create Backup' | localize}}</button>
           </div>
         </div>
 
-        <div class="row space">
+        <div class="row space odd">
           <div class="col-12">
             <h4>Restore Backup</h4>
           </div>
         </div>
-        <div class="row ">
+        <div class="row odd">
           <div class="col-6">
           </div>
           <div class="col-6">
@@ -43,7 +43,7 @@
             </div>
           </div>
         </div>
-        <div class="row space">
+        <div class="row space odd">
           <div class="col-6">
             <p *ngIf="isRestarting===true">{{'Restoring' | localize}}</p>
             <div class="progress" *ngIf="isRestarting===true">

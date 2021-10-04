@@ -6,7 +6,7 @@ import { combineLatest, Observable } from 'rxjs';
 import { take } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { Models, Selectors } from '../store';
-import { CCUChannel, CCURoom, HapAppliance } from '../store/models';
+import { CCUChannel, CCURoom, HapAppliance, HapInstance } from '../store/models';
 import { AccountService } from './account.service';
 import { DataService } from './data.service';
 
@@ -91,20 +91,31 @@ export class ApplicationService {
 
   channelWithAddress(address: string): CCUChannel {
     let channel: CCUChannel;
-    this.store.select(Selectors.selectChannelByAddress(address)).pipe(take(1)).subscribe(
+    const sb = this.store.select(Selectors.selectChannelByAddress(address)).pipe(take(1)).subscribe(
       s => channel = s
     );
+    sb.unsubscribe();
     return channel;
   }
 
   selectTemporaryAppliances(): HapAppliance[] {
     let result: HapAppliance[];
-    this.store.select(Selectors.selectAllTemporaryAppliances(Models.HapApplicanceType.All)).subscribe(
+    const sb = this.store.select(Selectors.selectAllTemporaryAppliances(Models.HapApplicanceType.All)).subscribe(
       s => result = s
     );
+    sb.unsubscribe();
     return result;
   }
 
+
+  selectAllInstances(): HapInstance[] {
+    let result: HapInstance[];
+    const sb = this.store.select(Selectors.selectAllInstances).subscribe(
+      s => result = s
+    );
+    sb.unsubscribe();
+    return result;
+  }
 
   getApiURL(): string {
     return this.api;

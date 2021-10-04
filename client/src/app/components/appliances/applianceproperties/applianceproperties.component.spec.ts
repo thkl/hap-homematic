@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AppliancepropertiesComponent } from './applianceproperties.component';
+import { AppliancePropertiesComponent } from './applianceproperties.component';
 
 describe('AppliancepropertiesComponent', () => {
-  let component: AppliancepropertiesComponent;
-  let fixture: ComponentFixture<AppliancepropertiesComponent>;
+  let component: AppliancePropertiesComponent;
+  let fixture: ComponentFixture<AppliancePropertiesComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AppliancepropertiesComponent ]
+      declarations: [AppliancePropertiesComponent]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AppliancepropertiesComponent);
+    fixture = TestBed.createComponent(AppliancePropertiesComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

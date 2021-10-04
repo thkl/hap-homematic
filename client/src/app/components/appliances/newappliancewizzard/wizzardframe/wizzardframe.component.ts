@@ -1,8 +1,8 @@
 import { Component, EventEmitter, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
-import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { AbstractDataComponent } from 'src/app/components/abstractdatacomponent/abstractdatacomponent.component';
 import { Actions, Models, Selectors, SelectUtility } from 'src/app/store';
 import { HapAppliance } from 'src/app/store/models';
 import { ValidationResult } from 'src/app/validators/validationResult';
@@ -13,7 +13,7 @@ import { AppliancePropertiesComponent } from '../../applianceproperties/applianc
   templateUrl: './wizzardframe.component.html',
   styleUrls: ['./wizzardframe.component.sass']
 })
-export class NewApplianceWizzardFrameComponent implements OnInit, OnDestroy {
+export class NewApplianceWizzardFrameComponent extends AbstractDataComponent implements OnInit, OnDestroy {
 
   private channelAdressList: string[] = [];
   public wizzardStep = 0;
@@ -26,7 +26,6 @@ export class NewApplianceWizzardFrameComponent implements OnInit, OnDestroy {
   public wizzardFor: Models.HapApplicanceType;
   private saving = false;
   public validationResult: ValidationResult;
-  private ngDestroyed$ = new Subject();
 
   @ViewChild(AppliancePropertiesComponent) properties: AppliancePropertiesComponent;
 
@@ -34,13 +33,13 @@ export class NewApplianceWizzardFrameComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     public store: Store<Models.AppState>,
     private router: Router) {
-
+    super();
   }
 
 
   ngOnDestroy(): void {
+    super.ngOnDestroy();
     this.store.dispatch({ type: Actions.HapApplianceActionTypes.CLEAN_APPLIANCE_STORE });
-    this.ngDestroyed$.next();
   }
 
 
@@ -72,18 +71,19 @@ export class NewApplianceWizzardFrameComponent implements OnInit, OnDestroy {
 
     //Special devices do not have a Device/var/or proram selector
     if (this.wizzardFor !== Models.HapApplicanceType.Special) {
-      this.store.pipe(select(
-        Selectors.selectAllTemporaryAppliances(Models.HapApplicanceType.All)))
-        .pipe(takeUntil(this.ngDestroyed$))
-        .subscribe(applList => {
-          this.channelAdressList = [];
-          applList.forEach(tmpHapAppliance => {
-            if (tmpHapAppliance !== undefined) {
-              this.channelAdressList.push(tmpHapAppliance.address);
-            }
+      this.addSubscription(
+        this.store.pipe(select(
+          Selectors.selectAllTemporaryAppliances(Models.HapApplicanceType.All)))
+          .subscribe(applList => {
+            this.channelAdressList = [];
+            applList.forEach(tmpHapAppliance => {
+              if (tmpHapAppliance !== undefined) {
+                this.channelAdressList.push(tmpHapAppliance.address);
+              }
+            })
+            this.canDoNext = (this.channelAdressList.length > 0);
           })
-          this.canDoNext = (this.channelAdressList.length > 0);
-        });
+      );
     }
   }
 
@@ -208,13 +208,14 @@ export class NewApplianceWizzardFrameComponent implements OnInit, OnDestroy {
       } else {
         //update tmp list
         this.preselectedChannels = [];
-        this.store.pipe(select(Selectors.selectAllTemporaryAppliances(Models.HapApplicanceType.Device)))
-          .pipe(takeUntil(this.ngDestroyed$))
-          .subscribe(list => {
-            list.forEach(appliance => {
-              this.preselectedChannels.push(appliance.address);
+        this.addSubscription(
+          this.store.pipe(select(Selectors.selectAllTemporaryAppliances(Models.HapApplicanceType.Device)))
+            .subscribe(list => {
+              list.forEach(appliance => {
+                this.preselectedChannels.push(appliance.address);
+              })
             })
-          })
+        );
       }
     } else {
       this.canDoNext = true;
@@ -230,15 +231,16 @@ export class NewApplianceWizzardFrameComponent implements OnInit, OnDestroy {
   finish(): void {
     if (this.saveApplianceLocaly() === true) {
       this.finishWizzard = true;
-      this.store.pipe(select(Selectors.appliancesSaving))
-        .pipe(takeUntil(this.ngDestroyed$))
-        .subscribe(isSaving => {
-          if ((this.saving === true) && (isSaving === false)) {
-            this.dismissAddNew();
-          } else {
-            this.saving = isSaving;
-          }
-        })
+      this.addSubscription(
+        this.store.pipe(select(Selectors.appliancesSaving))
+          .subscribe(isSaving => {
+            if ((this.saving === true) && (isSaving === false)) {
+              this.dismissAddNew();
+            } else {
+              this.saving = isSaving;
+            }
+          })
+      )
     } else {
       this.validationResult = this.properties.getValidatenResult();
     }
