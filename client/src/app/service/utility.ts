@@ -23,3 +23,16 @@ export const filterObjects = (item: any, filter: string, names: string[]) => {
   });
   return result;
 };
+
+
+export const isNewerVersion = (oldVer: string, newVer: string) => {
+  const oldParts = oldVer.split('.')
+  const newParts = newVer.split('.')
+  for (let i = 0; i < newParts.length; i++) {
+    const a = ~~newParts[i] // parse int
+    const b = ~~oldParts[i] // parse int
+    if (a > b) return true
+    if (a < b) return false
+  }
+  return false
+}

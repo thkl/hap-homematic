@@ -1,5 +1,5 @@
 
-import { Component, Input, OnDestroy } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { NGXLogger } from 'ngx-logger';
 import { Observable, of } from 'rxjs';
@@ -18,7 +18,7 @@ import { AbstractDataComponent } from '../../abstractdatacomponent/abstractdatac
   templateUrl: './applianceproperties.component.html',
   styleUrls: ['./applianceproperties.component.sass']
 })
-export class AppliancePropertiesComponent extends AbstractDataComponent implements OnDestroy {
+export class AppliancePropertiesComponent extends AbstractDataComponent implements OnInit, OnDestroy {
 
   private _selectedAppliance: Models.HapAppliance;
   private validationResult: ValidationResult;
@@ -55,6 +55,9 @@ export class AppliancePropertiesComponent extends AbstractDataComponent implemen
     private logger: NGXLogger
   ) {
     super()
+  }
+  ngOnInit(): void {
+    this.instanceList = this.store.pipe(select(Selectors.selectAllInstances));
   }
 
   ngOnDestroy(): void {

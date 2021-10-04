@@ -8,9 +8,14 @@
         <img src="./assets/img/changelog.svg" alt="">
       </div>
       <div class="col-9 version" *ngIf="(changeLog !== undefined) && (changeLog.versions)">
-        <div class="row c-callout" *ngFor="let version of changeLog.versions | keyvalue:keyDescOrder" [class.c-callout-success]="version.key===currentVersion">
+        <div class="row c-callout" *ngFor="let version of changeLog.versions | keyvalue:keyDescOrder"
+          [class.c-callout-success]="(version.key===changeLog.latest) && (currentVersion !== changeLog.latest)"
+
+          [class.c-callout-primary]="version.key===currentVersion">
           <div class="col-2">
             <h4>{{version.key}}</h4>
+            <small class="text-muted" *ngIf="version.key===currentVersion">
+              {{'You are using this version' | localize}}</small><br>
           </div>
           <div class="col10">
             <ul *ngFor="let item of version.value.descriptions">
@@ -22,4 +27,8 @@
     </div>
   </div>
   <div class="card-footer">
+    <span *ngIf="isNewerVersion(currentVersion,changeLog.latest)">
+      {{'There is a new version available. Do you want to update Hap-HomeMatic to %s ?' | localize : [changeLog.latest]}}
+      <button type="button" class="btn btn-primary" (click)="doUpdate()">Update</button>
+    </span>
   </div>
