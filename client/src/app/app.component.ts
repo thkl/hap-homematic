@@ -9,7 +9,6 @@ import { ApplicationService } from './service/application.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AbstractDataComponent } from './components/abstractdatacomponent/abstractdatacomponent.component';
 import { Subscription } from 'rxjs';
-import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
@@ -49,7 +48,9 @@ export class AppComponent extends AbstractDataComponent implements OnInit {
       this.logger.debug('AppComponent::SID found');
       this.applicationService.setToken(sid);
     }
+
     this.logger.registerMonitor(new ConsoleLoggerMonitor());
+
     this.addSubscription(
       this.store.pipe(select(Selectors.localizationLoaded)).subscribe((phl) => {
         this.logger.debug(`AppComponent::Localization Phrases loaded (${phl})`)
@@ -57,8 +58,11 @@ export class AppComponent extends AbstractDataComponent implements OnInit {
       })
     );
 
-    this.logger.debug('AppComponent::Loading localization')
-    this.store.dispatch({ type: Actions.LocalizationActionTypes.LOAD });
+    if (this.localizationService.phrasesLoaded() === false) {
+      this.logger.debug('AppComponent::Loading localization')
+      this.store.dispatch({ type: Actions.LocalizationActionTypes.LOAD });
+    }
+
     this.logger.debug('AppComponent::Loading Config')
     this.store.dispatch(Actions.LoadSystemConfigAction());
 

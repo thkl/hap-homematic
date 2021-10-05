@@ -23,6 +23,11 @@ export class LocalizationService {
     this.store.pipe(select(Selectors.localizationData)).subscribe((phrases) => {
       this.phrases = phrases;
     });
+
+    if (this.application.language === 'en') {
+      // fire a dummy result
+      this.store.dispatch(Actions.LoadPhrasesSuccessAction({ payload: { "dummy": "dummy" } }))
+    }
   }
 
   subscribeToPhraseLoadStatus() {
@@ -41,7 +46,9 @@ export class LocalizationService {
   l18n(msg: string, parameter?: any[]): string {
     if (this.phrases) {
       if ((this.phrases[msg] === undefined) && (msg !== undefined) && (msg !== '')) {
-        console.warn('No translation for ' + msg)
+        if (this.application.language !== 'en') {
+          console.warn('No translation for ' + msg)
+        }
       }
 
       msg = this.phrases[msg] || msg

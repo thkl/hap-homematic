@@ -34,6 +34,7 @@ const deviceLoadingReducer = createReducer(
       ...state,
       error: payload,
       loading: false,
+      data: { "dummy": "dummy" }
     })
   )
 );

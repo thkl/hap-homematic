@@ -19,7 +19,7 @@ export const DEFAULTINSTANCE = 'b6589fc6-ab0d-4c82-8f12-099d1c2d40ab';
 export class ApplicationService {
 
   public api: string = environment.api;
-  public language = 'de';
+  public language = 'en';
   private _roomList: CCURoom[];
   private _systemState: Models.SystemConfig = {};
   public configLoaded = false;
@@ -32,6 +32,11 @@ export class ApplicationService {
     private logger: NGXLogger,
     private http: HttpClient
   ) {
+
+    /*
+    const userLang = navigator.language;
+    this.language = userLang.split('-')[0];
+*/
     console.log('Booting');
     this.store.pipe(select(Selectors.selectAllRooms)).subscribe(roomList => {
       this._roomList = roomList;
