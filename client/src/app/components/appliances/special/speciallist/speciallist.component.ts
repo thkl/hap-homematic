@@ -20,7 +20,8 @@ export class SpeciallistComponent extends AbstractTableComponent {
       'name',
       'serviceClass',
       'instanceID',
-      'control',
+      'controlEdit',
+      'controlDelete'
     ];
 
     this.dataSourceSelector = Selectors.selectAllAppliances(Models.HapApplicanceType.Special);

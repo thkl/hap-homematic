@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
+import { MessageService } from 'src/app/service/message.service';
+import { SystemconfigService } from 'src/app/service/systemconfig.service';
 import { Models, Selectors } from 'src/app/store';
 import { AbstractDataComponent } from '../../abstractdatacomponent/abstractdatacomponent.component';
 
@@ -18,9 +20,10 @@ export class MenuComponent extends AbstractDataComponent implements OnInit {
   public isNew: boolean;
 
   constructor(
-    private route: ActivatedRoute,
     private router: Router,
     private store: Store<Models.AppState>,
+    private messageService: MessageService,
+    private systemconfigService: SystemconfigService
   ) {
     super();
     this.router.events.subscribe((event) => {
@@ -49,4 +52,9 @@ export class MenuComponent extends AbstractDataComponent implements OnInit {
     }
   }
 
+  updateCache() {
+    this.systemconfigService.doRefreshCache().subscribe(() => {
+      this.messageService.showMessage({ title: "Update", type: "info", message: "Cache updated ..." }, 5);
+    });
+  }
 }

@@ -13,23 +13,24 @@
 
   <div class="card-footer" id="container_footer">
     <div class="row">
-      <div class="col-1">
-        <button type="button" class="btn btn-sm btn-success" (click)="doSaveAppliance()"><span
-            class="cil-chevron-circle-right-alt btn-icon mr-2"></span>{{'Save' |
-          localize}}</button>
+      <div class="col-12">
+        <div class="btn-group">
+          <button type="button" class="btn btn-sm btn-success" (click)="doSaveAppliance()"><span
+              class="cil-chevron-circle-right-alt btn-icon mr-2"></span>{{'Save' |
+            localize}}</button>
+          <button type="button" class="btn btn-sm btn-primary" (click)="goBack()"><span
+              class="cil-x btn-icon mr-2"></span>{{'Dismiss' |
+            localize}}</button>
+        </div>
       </div>
-      <div class="col-1">
-        <button type="button" class="btn btn-sm btn-primary" (click)="goBack()"><span
-            class="cil-x btn-icon mr-2"></span>{{'Dismiss' |
-          localize}}</button>
-      </div>
-      <div class="col-10">
-        <ul *ngIf="(validationResult!==undefined) && (validationResult.isValid===false)">
-          <li *ngFor="let validationMessage of validationResult.messages">
-            {{validationMessage.message| localize :
-            [validationMessage.objectName]}}</li>
-        </ul>
+      <div class="row" *ngIf="(validationResult!==undefined) && (validationResult.isValid===false)">
+        <div class="col-12">
+          <ul>
+            <li *ngFor="let validationMessage of validationResult.messages">
+              {{validationMessage.message| localize :
+              [validationMessage.objectName]}}</li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>
-</div>

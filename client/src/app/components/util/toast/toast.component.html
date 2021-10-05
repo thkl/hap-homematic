@@ -1,0 +1,20 @@
+<div style="position: absolute; top: 0; right: 0;z-index: 2000;" *ngFor="let message of messageList">
+  <div class="toast fade {{message.type}}"
+
+    [class.hide]="message.isVisible===false"
+    [class.show]="message.isVisible===true"
+    id="toast"
+    role="alert"
+    aria-live="assertive"
+    aria-atomic="true">
+    <div class="toast-header">
+      <strong class="mr-auto">{{message.title}}</strong>
+      <button type="button" class="ml-2 mb-1 close info" data-dismiss="toast" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="toast-body" id="toastMessage">
+      {{message.message | localize}}
+    </div>
+  </div>
+</div>

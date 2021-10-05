@@ -88,15 +88,17 @@ export class SystemconfigService {
   }
 
   doReboot(enableDebug: boolean) {
+    this.logger.debug('SystemconfigService::doReboot', [enableDebug]);
     return this.http.get(`${this.api}/restart/${enableDebug}`, { headers: this.application.httpHeaders() });
   }
 
   doReset() {
+    this.logger.debug('SystemconfigService::doReset');
     return this.http.post(`${this.api}/resetsystem`, {}, { headers: this.application.httpHeaders() });
   }
 
   doRestore(fileData: any) {
-    console.log(fileData)
+    this.logger.debug('SystemconfigService::doRestore');
     return this.http.post(`${this.api}/restore`, fileData, { headers: this.application.httpHeaders(null) })
   }
 
@@ -108,5 +110,10 @@ export class SystemconfigService {
   getChangeLog() {
     this.logger.debug('SystemconfigService::getChangeLog');
     return this.http.get<ChangeLog>(`${this.api}/changelog`, { headers: this.application.httpHeaders() })
+  }
+
+  doRefreshCache() {
+    this.logger.debug('SystemconfigService::doRefreshCache');
+    return this.http.get<any>(`${this.api}/refreshcache`, { headers: this.application.httpHeaders() })
   }
 }

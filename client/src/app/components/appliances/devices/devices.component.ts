@@ -21,7 +21,8 @@ export class DeviceListComponent extends AbstractTableComponent {
       'name',
       'serviceClass',
       'instanceID',
-      'control',
+      'controlEdit',
+      'controlDelete'
     ];
 
     this.dataSourceSelector = Selectors.selectAllAppliances(Models.HapApplicanceType.Device);

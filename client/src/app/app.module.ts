@@ -22,7 +22,6 @@ import { LocalizationResolver } from './service/localization.resolver';
 import { ShellComponent } from './components/shell/shell.component';
 import { BreadcrumbsComponent } from './components/breadcrumbs/breadcrumbs.component';
 import { InstancelistComponent } from './components/instances/instancelist/instancelist.component';
-import { HeaderModule } from './components/header/header.module';
 import { DeviceListComponent } from './components/appliances/devices/devices.component';
 import { VariablelistComponent } from './components/appliances/variables/variablelist/variablelist.component';
 import { ProgramlistComponent } from './components/appliances/programs/programlist/programlist.component';
@@ -60,6 +59,11 @@ import { ErrorInterceptor } from './service/error.interceptor';
 import { ConfigResolver } from './service/config.resolver';
 import { BackupComponent } from './components/system/backup/backup.component';
 import { ChangelogComponent } from './components/system/changelog/changelog.component';
+import { AppliancelistHeaderComponent } from './components/header/header_appliancelist/header_appliancelist.component';
+import { HeaderComponent } from './components/header/header/header.component';
+import { SystemstateComponent } from './components/header/systemstate/systemstate.component';
+import { InstancelistHeaderComponent } from './components/header/instancelist/instancelist.component';
+import { ToastComponent } from './components/util/toast/toast.component';
 
 @NgModule({
   declarations: [
@@ -97,7 +101,12 @@ import { ChangelogComponent } from './components/system/changelog/changelog.comp
     StepAppliancesComponent,
     LoginComponent,
     BackupComponent,
-    ChangelogComponent
+    ChangelogComponent,
+    AppliancelistHeaderComponent,
+    HeaderComponent,
+    SystemstateComponent,
+    InstancelistHeaderComponent,
+    ToastComponent,
   ],
   imports: [
     HttpClientModule,
@@ -112,7 +121,6 @@ import { ChangelogComponent } from './components/system/changelog/changelog.comp
     StorageModule,
     PipeModule,
     NoopAnimationsModule,
-    HeaderModule,
     QrCodeModule,
     LoggerModule.forRoot({
       level: environment.logLevel

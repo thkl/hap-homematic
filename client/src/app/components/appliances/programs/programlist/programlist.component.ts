@@ -16,7 +16,8 @@ export class ProgramlistComponent extends AbstractTableComponent {
     super(store);
 
     this.displayedColumns = [
-      'nameInCCU', 'name', 'instanceID', 'control'
+      'nameInCCU', 'name', 'instanceID', 'controlEdit',
+      'controlDelete'
     ];
 
     this.dataSourceSelector = Selectors.selectAllAppliances(Models.HapApplicanceType.Program);

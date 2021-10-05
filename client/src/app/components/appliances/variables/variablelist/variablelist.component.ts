@@ -20,7 +20,8 @@ export class VariablelistComponent extends AbstractTableComponent {
       'name',
       'serviceClass',
       'instanceID',
-      'control',
+      'controlEdit',
+      'controlDelete'
     ];
 
     this.dataSourceSelector = Selectors.selectAllAppliances(Models.HapApplicanceType.Variable);

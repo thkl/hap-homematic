@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Actions, Models } from '../store';
-import { HapApplianceLoadResult } from '../store/models';
+import { CCUDeviceLoadingResult, HapApplianceLoadResult } from '../store/models';
 import { SocketService } from './socket.service';
 
 @Injectable({
@@ -43,6 +43,11 @@ export class DataService {
       if (payload.appliances) {
         const dta: HapApplianceLoadResult = { appliances: payload.appliances, varTrigger: payload.varTrigger };
         this.store.dispatch(Actions.LoadHapAppliancesSuccessAction({ loadingResult: dta }));
+      }
+
+      if (payload.ccuDevices) {
+        const dta: CCUDeviceLoadingResult = { devices: payload.ccuDevices };
+        this.store.dispatch(Actions.LoadCCUDevicesSuccessAction({ result: dta }));
       }
     }
 

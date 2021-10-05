@@ -1,15 +1,15 @@
 <div class="card text-white bg-gradient-info">
-    <div class="card-body card-body pb-0 d-flex justify-content-between align-items-start"
-        style="overflow-y:auto;max-height:200px;min-height: 200px;">
-        <ul *ngIf="hapInstanceCnt > 0; else noInstances">
-            <li>{{hapInstanceCnt | pluralize : "%s running HAP Instance" : "%s running HAP Instances"}}</li>
-            <li *ngFor="let instance of hapInstanceList">
-                {{instance.displayName}} ({{instance.pincode}})
-            </li>
-        </ul>
-    </div>
+  <div class="card-body card-body pb-0 d-flex justify-content-between align-items-start"
+    style="overflow-y:auto;max-height:200px;min-height: 200px;">
+    <ul *ngIf="hapInstanceCnt > 0; else noInstances">
+      <li>{{hapInstanceCnt | pluralize : "%s running HAP Instance" : "%s running HAP Instances"}}</li>
+      <li class="clickable" *ngFor="let instance of hapInstanceList" [routerLink]="['instances','detail',instance.id]">
+        {{instance.displayName}} ({{instance.pincode}})
+      </li>
+    </ul>
+  </div>
 </div>
 
 <ng-template #noInstances>
-    <p>{{'no instances' | localize}}</p>
+  <p>{{'no instances' | localize}}</p>
 </ng-template>
