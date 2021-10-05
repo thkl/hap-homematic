@@ -33,10 +33,10 @@ export class ApplicationService {
     private http: HttpClient
   ) {
 
-    /*
+
     const userLang = navigator.language;
     this.language = userLang.split('-')[0];
-*/
+
     console.log('Booting');
     this.store.pipe(select(Selectors.selectAllRooms)).subscribe(roomList => {
       this._roomList = roomList;
