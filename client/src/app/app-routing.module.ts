@@ -23,6 +23,7 @@ import { AuthGuard } from './service/route.guard';
 import { ConfigResolver } from './service/config.resolver';
 import { BackupComponent } from './components/system/backup/backup.component';
 import { ChangelogComponent } from './components/system/changelog/changelog.component';
+import { HelpComponent } from './components/system/help/help.component';
 
 const routes: Routes = [
   {
@@ -181,6 +182,12 @@ const routes: Routes = [
       {
         path: 'changelog', component: ChangelogComponent,
         data: { breadcrumb: 'Changelog' },
+        canActivate: [AuthGuard],
+        resolve: { config: ConfigResolver }
+      },
+      {
+        path: 'help', component: HelpComponent,
+        data: { breadcrumb: 'Help' },
         canActivate: [AuthGuard],
         resolve: { config: ConfigResolver }
       },

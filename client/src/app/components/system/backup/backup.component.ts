@@ -6,6 +6,7 @@ import { NGXLogger } from 'ngx-logger';
 import { SystemconfigService } from 'src/app/service/systemconfig.service';
 import { Actions, Models, Selectors } from 'src/app/store';
 import { AbstractDataComponent } from '../../abstractdatacomponent/abstractdatacomponent.component';
+import * as Util from 'src/app/service/utility';
 
 @Component({
   selector: 'app-backup',
@@ -78,22 +79,9 @@ export class BackupComponent extends AbstractDataComponent implements OnInit {
     }
   }
 
-  getFileName(response: HttpResponse<Blob>) {
-    let filename: string;
-    try {
-      const contentDisposition: string = response.headers.get('content-disposition');
-      const r = /(?:filename=")(.+)(?:;")/
-      filename = r.exec(contentDisposition)[1];
-    }
-    catch (e) {
-      filename = 'backup.tar.gz'
-    }
-    return filename
-  }
-
   createBackup() {
     this.systemconfigService.doBackup().subscribe((response: HttpResponse<Blob>) => {
-      const filename = this.getFileName(response)
+      const filename = Util.getFileName(response, 'backup.tar.gz');
       const binaryData = [];
       binaryData.push(response.body);
       const downloadLink = document.createElement('a');

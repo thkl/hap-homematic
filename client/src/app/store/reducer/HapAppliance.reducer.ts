@@ -7,6 +7,7 @@ export interface HapApplianceState {
   loading: boolean;
   saving: boolean;
   varTrigger: string;
+  createHelper: boolean;
   error?: Error;
 }
 export const initialState: HapApplianceState = {
@@ -14,6 +15,7 @@ export const initialState: HapApplianceState = {
   loading: false,
   saving: false,
   varTrigger: undefined,
+  createHelper: false,
   error: undefined,
 };
 
@@ -46,6 +48,7 @@ const applianceLoadingReducer = createReducer(
       ...state,
       list: loadingResult.appliances,
       varTrigger: loadingResult.varTrigger,
+      createHelper: (loadingResult.createHelper === true),
       loading: false,
     })
   ),
@@ -96,6 +99,16 @@ const applianceLoadingReducer = createReducer(
         loading: false,
         error: null,
         list: newList
+      }
+    }
+  ),
+  on(HapApplianceActionTypes.SaveVariableTriggerToApiActionSuccess,
+    (state, { result }) => {
+      return {
+        ...state,
+        saving: false,
+        varTrigger: result.dataPoint,
+        createHelper: result.createHelper
       }
     }
   )

@@ -73,6 +73,22 @@ export class HapApplianceEffects {
     )
   );
 
+  saveVariableTrigger$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(HapActions.HapApplianceActionTypes.SAVE_VARTRIGGER_TO_API),
+      switchMap((action) =>
+        this.hapApplianceService.saveVariableTrigger(action['datapoint'], action['createhelper']).pipe(
+          map((data: any) => {
+            return HapActions.SaveVariableTriggerToApiActionSuccess({ result: data });
+          }),
+          catchError((error) =>
+            of(HapActions.SaveVariableTriggerToApiFailureAction({ error: error }))
+          )
+        )
+      )
+    )
+  );
+
   constructor(
     private actions$: Actions,
     public store: Store<Models.AppState>,

@@ -25,6 +25,7 @@ export interface HapAppliance {
 export interface HapApplianceLoadResult {
   appliances: HapAppliance[];
   varTrigger: string;
+  createHelper: boolean;
 }
 
 export interface HapApplianceSaveResult {
@@ -34,4 +35,9 @@ export interface HapApplianceSaveResult {
 export interface HapApplianceDeletingResult {
   deleted: string;
   error: string;
+}
+
+export interface HapApplianceSaveTriggerResult {
+  dataPoint: string;
+  createHelper: boolean;
 }

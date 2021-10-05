@@ -41,7 +41,7 @@ export class DataService {
   handleMessage(message: string, payload: any): void {
     if (message === 'serverdata') {
       if (payload.appliances) {
-        const dta: HapApplianceLoadResult = { appliances: payload.appliances, varTrigger: payload.varTrigger };
+        const dta: HapApplianceLoadResult = { appliances: payload.appliances, varTrigger: payload.varTrigger, createHelper: payload.createHelper };
         this.store.dispatch(Actions.LoadHapAppliancesSuccessAction({ loadingResult: dta }));
       }
 

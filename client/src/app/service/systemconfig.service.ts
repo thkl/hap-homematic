@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ChangeLog, SystemConfig } from '../store/models/SystemConfig.model';
 import { ApplicationService } from './application.service';
-import { CCUChannelDatapointResult, CCUDeviceLoadingResult, CCUProgramLoadingResult, CCURoomLoadingResult, CCUVariableLoadingResult } from '../store/models';
+import { CCUChannelDatapointResult, CCUDeviceLoadingResult, CCUProgramLoadingResult, CCURoomLoadingResult, CCUVariableLoadingResult, CCUVirtualKeylistResult } from '../store/models';
 import { NGXLogger } from 'ngx-logger';
 
 @Injectable({
@@ -62,6 +62,11 @@ export class SystemconfigService {
     return this.http.get<CCUChannelDatapointResult>(`${this.api}/ccudatapoints/${channelId}`, { headers: this.application.httpHeaders() });
   }
 
+  loadVirtualKeys() {
+    this.logger.debug(`SystemconfigService::loadVirtualKeys`);
+    return this.http.get<CCUVirtualKeylistResult>(`${this.api}/ccuvirtualkeys`, { headers: this.application.httpHeaders() });
+  }
+
   getLogFile() {
     this.logger.debug('SystemconfigService::getLogFile');
     return this.http.get<string>(`${this.api}/log`, { responseType: 'text' as 'json', headers: this.application.httpHeaders() });
@@ -115,5 +120,10 @@ export class SystemconfigService {
   doRefreshCache() {
     this.logger.debug('SystemconfigService::doRefreshCache');
     return this.http.get<any>(`${this.api}/refreshcache`, { headers: this.application.httpHeaders() })
+  }
+
+  doGetSupportData(address: string) {
+    this.logger.debug('SystemconfigService::doGetSupportData');
+    return this.http.get<Blob>(`${this.api}/support/${address}`, { observe: 'response', responseType: 'blob' as 'json', headers: this.application.httpHeaders() });
   }
 }

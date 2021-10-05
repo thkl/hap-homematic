@@ -1,3 +1,5 @@
+import { HttpResponse } from "@angular/common/http";
+
 export const sortObject = (a: any, b: any, field: string, dir: string) => {
 
   if (a[field] < b[field]) {
@@ -35,4 +37,18 @@ export const isNewerVersion = (oldVer: string, newVer: string) => {
     if (a < b) return false
   }
   return false
+}
+
+
+export const getFileName = (response: HttpResponse<Blob>, defaultName: string) => {
+  let filename: string;
+  try {
+    const contentDisposition: string = response.headers.get('content-disposition');
+    const r = /(?:filename=")(.+)(?:;")/
+    filename = r.exec(contentDisposition)[1];
+  }
+  catch (e) {
+    filename = defaultName;
+  }
+  return filename
 }

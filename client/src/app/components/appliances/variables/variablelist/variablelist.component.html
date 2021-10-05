@@ -82,3 +82,30 @@
 <app-confirmation [dialogId]="confirmId" img="./assets/img/delete.svg" (confirm)="deleteVariable(selectedObject)">
   {{'Are you sure you want to remove %s from HomeKit?' |
   localize : [selectedObject ? selectedObject.name:'']}}</app-confirmation>
+
+
+<div class="card">
+  <div class="card-header">
+    <h4>{{'Event Trigger' | localize}}</h4>
+  </div>
+  <div class="card-body">
+    <p>{{'Unfortunately variables will not trigger a interface event when they are changed. So we have to to a little workaround to inform HAP when a variable will change its value.'|localize}}</p>
+    <p>{{'Please choosse a virtual KEY which will be triggered by a ccu program on every variable change'|localize}}</p>
+    <div class="form-group">
+      <label for="variableTrigger">Datapoint</label>
+      <select class="form-control" [(ngModel)]="currentTrigger" name="variableTrigger" id="variableTrigger">
+        <option *ngFor="let key of virtualKeys" value="{{key.dp}}">{{key.name}} - {{key.dp}}</option>
+      </select>
+    </div>
+    <p>{{'This has to be a KEY datapoint. All variables will be updated on an event at this KEY'|localize}}</p>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="checkbox" [(ngModel)]="createHelper" id="createHelper" name="createHelper" value="true">
+      <label class="form-check-label" for="createHelper">{{'Create/Update the CCU helper program.'|localize}}</label>
+    </div>
+  </div>
+  <div class="card-footer">
+    <button type="button" class="btn btn-primary" (click)="updateVariableTrigger()"><span
+        class="cil-save btn-icon mr-2"></span>{{'Save' |
+      localize}}</button>
+  </div>
+</div>

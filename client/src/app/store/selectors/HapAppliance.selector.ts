@@ -51,6 +51,17 @@ export const selectApplianceByAddress = (address: string) => createSelector(
   (state: HapApplianceState): HapAppliance => ((state !== undefined) && (state.list !== undefined)) ? state.list.filter(item => (item.address === address))[0] : undefined
 );
 
+export const selectVariableTrigger = createSelector(
+  selectHapApplianceState,
+  (state: HapApplianceState): string => ((state !== undefined) ? state.varTrigger : '')
+);
+
+export const selectCreateVariableHelper = createSelector(
+  selectHapApplianceState,
+  (state: HapApplianceState): boolean =>
+    ((state !== undefined) ? state.createHelper : false)
+);
+
 
 export const appliancesSaving = createSelector(
   selectHapApplianceState,

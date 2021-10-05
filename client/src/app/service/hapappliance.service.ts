@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { NGXLogger } from 'ngx-logger';
-import { HapAppliance, HapApplianceServiceResponse, HapApplianceLoadResult, HapApplianceSaveResult, HapApplianceDeletingResult } from '../store/models';
+import { HapAppliance, HapApplianceServiceResponse, HapApplianceLoadResult, HapApplianceSaveResult, HapApplianceDeletingResult, HapApplianceSaveTriggerResult } from '../store/models';
 import { ApplicationService } from './application.service';
 
 @Injectable({
@@ -36,5 +36,10 @@ export class HapApplianceApiService {
   deleteHapAppliance(appliance: HapAppliance) {
     this.logger.debug(`deleteHapAppliance appliance ${appliance.address}`, appliance);
     return this.http.delete<HapApplianceDeletingResult>(`${this.api}/appliance/${appliance.address}`, { headers: this.application.httpHeaders() });
+  }
+
+  saveVariableTrigger(datapoint: string, createhelper: boolean) {
+    this.logger.debug(`saveVariableTrigger`, [datapoint, createhelper]);
+    return this.http.patch<HapApplianceSaveTriggerResult>(`${this.api}/trigger`, { datapoint, trigger: createhelper }, { headers: this.application.httpHeaders() });
   }
 }

@@ -50,3 +50,16 @@ export interface CCUProgramLoadingResult {
 export interface CCUChannelDatapointResult {
   datapoints: string[];
 }
+
+export interface CCUVirtualKeyDevice {
+  id: number,
+  address: string;
+  name: string;
+  type: string;
+  ifName: string;
+  channels: CCUChannel[];
+}
+
+export interface CCUVirtualKeylistResult {
+  virtualkeys: CCUVirtualKeyDevice[];
+}

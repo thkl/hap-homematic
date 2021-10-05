@@ -8,6 +8,7 @@ export const initialState: HapApplianceState = {
   loading: false,
   saving: false,
   varTrigger: undefined,
+  createHelper: false,
   error: undefined,
 };
 

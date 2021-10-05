@@ -64,6 +64,7 @@ import { HeaderComponent } from './components/header/header/header.component';
 import { SystemstateComponent } from './components/header/systemstate/systemstate.component';
 import { InstancelistHeaderComponent } from './components/header/instancelist/instancelist.component';
 import { ToastComponent } from './components/util/toast/toast.component';
+import { HelpComponent } from './components/system/help/help.component';
 
 @NgModule({
   declarations: [
@@ -107,6 +108,7 @@ import { ToastComponent } from './components/util/toast/toast.component';
     SystemstateComponent,
     InstancelistHeaderComponent,
     ToastComponent,
+    HelpComponent,
   ],
   imports: [
     HttpClientModule,

@@ -1,0 +1,34 @@
+<div class="card">
+  <div class="card-header">
+    <h2>{{'Help' | localize}}</h2>
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-3">
+        <img src="./assets/img/help.svg" alt="">
+      </div>
+      <div class="col-9">
+        <p>{{'Documentation can be found at the ' | localize}}<a target="_blank" href="https://github.com/thkl/hap-homematic/wiki">wiki</a></p>
+        <p>{{'If you want to add a devices you own, which is currently not supported, u may help the developer here.' | localize}}</p>
+        <p>{{'Please enter the serial number of your device. HAP-HomeMatic will create an anonymous file with all necessary information to add this device.' | localize }}</p>
+        <div class="input-group input-group-sm mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="labelSerial">{{'Device serial'|localize}}</span>
+          </div>
+          <input type="text" class="form-control" name="address" [(ngModel)]="supportDeviceAddress" aria-label="Serial" aria-describedby="labelSerial">
+          <div class="input-group-append">
+            <button class="btn btn-primary" type="button" id="downloadSupportFile" (click)="createHelpFile()">{{'Download'|localize}}</button>
+          </div>
+        </div>
+
+        <p>{{'After that, please navigate to ' | localize}}<a target="_blank" href="https://github.com/thkl/hap-homematic/issues/new/choose">{{'Github Issues' | localize}}</a>{{', create an new issue and attach the downloaded file.' | localize}}</p>
+        <br />
+        <p>{{'For other issues, please open a request at ' | localize}}<a target="_blank" href="https://github.com/thkl/hap-homematic/issues/new/choose">{{'Github Issues' | localize}}</a>
+          {{'. Please make sure, '|localize}}<a href="https://github.com/thkl/hap-homematic/issues">{{'your problem was not reported previously'|localize}}</a>
+          {{' and is not '|localize}}<a href="https://github.com/thkl/hap-homematic/issues?q=is%3Aissue+is%3Aclosed">{{'already fixed.'|localize}}</a></p>
+      </div>
+    </div>
+  </div>
+  <div class="card-footer">
+
+  </div>

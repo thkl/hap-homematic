@@ -1,11 +1,13 @@
 import { createAction, props } from '@ngrx/store';
-import { HapAppliance, HapApplianceDeletingResult, HapApplianceLoadResult, HapApplianceSaveResult } from '../models/HapAppliance.model';
+import { HapAppliance, HapApplianceDeletingResult, HapApplianceLoadResult, HapApplianceSaveResult, HapApplianceSaveTriggerResult } from '../models/HapAppliance.model';
 
 export enum HapApplianceActionTypes {
   LOAD_APPLIANCES = '[HAP Appliance] Load List',
   LOAD_APPLIANCES_SUCCESS = '[HAP Appliance] Load List Success',
   LOAD_APPLIANCES_FAILED = '[HAP Appliance] Load List Failed',
+
   SAVE_APPLIANCE = '[HAP Appliance] Save Appliance',
+
   SAVE_APPLIANCE_TO_API = '[HAP Appliance] Save Appliance To Api',
   SAVE_APPLIANCE_TO_API_SUCCESS = '[HAP Appliance] Save Appliance Success',
   SAVE_APPLIANCE_TO_API_FAILED = '[HAP Appliance] Save Appliance Failed',
@@ -20,7 +22,12 @@ export enum HapApplianceActionTypes {
   DELETE_APPLIANCE_FROM_API_SUCCESS = '[HAP Appliance] Delete Appliance from API Success',
   DELETE_APPLIANCE_FROM_API_FAILED = '[HAP Appliance] Delete Appliance from API Failed',
 
-  CLEAN_APPLIANCE_STORE = '[HAP Appliance] Clean Store'
+  CLEAN_APPLIANCE_STORE = '[HAP Appliance] Clean Store',
+
+  SAVE_VARTRIGGER_TO_API = '[HAP Appliance] Save VarTrigger To Api',
+  SAVE_VARTRIGGER_TO_API_SUCCESS = '[HAP Appliance] Save VarTrigger Success',
+  SAVE_VARTRIGGER_TO_API_FAILED = '[HAP Appliance] Save VarTrigger Failed',
+
 }
 
 export const LoadHapAppliancesAction = createAction(
@@ -102,6 +109,19 @@ export const CleanHapApplianceStore = createAction(
 );
 
 
+export const SaveVariableTriggerToApiAction = createAction(
+  HapApplianceActionTypes.SAVE_VARTRIGGER_TO_API,
+  props<{ datapoint: string, createhelper: boolean }>()
+);
 
+export const SaveVariableTriggerToApiActionSuccess = createAction(
+  HapApplianceActionTypes.SAVE_VARTRIGGER_TO_API_SUCCESS,
+  props<{ result: HapApplianceSaveTriggerResult }>()
+);
+
+export const SaveVariableTriggerToApiFailureAction = createAction(
+  HapApplianceActionTypes.SAVE_VARTRIGGER_TO_API_FAILED,
+  props<{ error: Error }>()
+);
 
 
