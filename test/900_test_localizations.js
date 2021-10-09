@@ -6,7 +6,7 @@ describe('HAP-Homematic Localization Tests', () => {
   this.regEx = /.__\('([^,][^']*)/g
   this.regExIndex = /data-localize="(.*)"/g
 
-  let locFile = path.join(__dirname, '..', 'lib', 'configurationsrv', 'html', 'assets', 'de.json')
+  let locFile = path.join(__dirname, '..', 'lib', 'configurationsrv', 'localization', 'de.json')
   if (fs.existsSync(locFile)) {
     this.localizations = JSON.parse(fs.readFileSync(locFile))
     this.localizations[''] = ' ' // add a dummy

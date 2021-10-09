@@ -127,14 +127,14 @@ export class ApplicationService {
   }
 
   httpHeaders(contentType = 'application/json'): HttpHeaders {
-    const headers = new HttpHeaders();
+    let headers = new HttpHeaders();
 
     if (this.accountService.sid) {
-      headers.append('Authorization', this.accountService.sid);
+      headers = headers.append('Authorization', this.accountService.sid);
     }
 
     if (contentType !== null) {
-      headers.append('Content-Type', contentType);
+      headers = headers.append('Content-Type', contentType);
     }
     return headers;
   }

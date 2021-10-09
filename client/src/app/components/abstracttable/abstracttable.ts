@@ -62,9 +62,10 @@ export class AbstractTableComponent extends AbstractDataComponent implements OnI
     this._dataSource = this.store.pipe(select(this._dataSourceSelector));
 
     this.addSubscription(
-      this.store.pipe(select(this._loadingSelector)).subscribe((loading) => {
-        this.loading = loading;
-      })
+      this.store.pipe(select(this._loadingSelector)).
+        subscribe((loading) => {
+          this.loading = loading;
+        })
     );
   }
 
@@ -101,7 +102,6 @@ export class AbstractTableComponent extends AbstractDataComponent implements OnI
         console.log('search changed')
         this.paginator.reset();
         this.searchChanged.emit(0);
-
       });
     }
   }

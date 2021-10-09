@@ -9,6 +9,7 @@ import { ApplicationService } from './service/application.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AbstractDataComponent } from './components/abstractdatacomponent/abstractdatacomponent.component';
 import { Subscription } from 'rxjs';
+import * as Utility from './service/utility';
 
 @Component({
   selector: 'app-root',
@@ -43,7 +44,7 @@ export class AppComponent extends AbstractDataComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const sid = this.getQueryVariable('sid');
+    const sid = Utility.getQueryVariable('sid');
     if (sid) {
       this.logger.debug('AppComponent::SID found');
       this.applicationService.setToken(sid);
@@ -80,15 +81,5 @@ export class AppComponent extends AbstractDataComponent implements OnInit {
     });
   }
 
-  getQueryVariable(variable: string): string {
-    const query = window.location.search.substring(1);
-    const vars = query.split('&');
-    for (let i = 0; i < vars.length; i++) {
-      const pair = vars[i].split('=');
-      if (decodeURIComponent(pair[0]) == variable) {
-        return decodeURIComponent(pair[1]);
-      }
-    }
-    return undefined;
-  }
+
 }

@@ -52,3 +52,21 @@ export const getFileName = (response: HttpResponse<Blob>, defaultName: string) =
   }
   return filename
 }
+
+export const getQueryVariable = (variable: string): string => {
+  let query = decodeURIComponent(window.location.hash).substring(1);
+  const reggie = new RegExp(/(\?|\&)([a-zA-Z0-9]{1,})=(.[^\?\&]{1,})/g);
+  let match
+  while (null !== (match = reggie.exec(query))) {
+    if (match[2] === variable) {
+      return match[3];
+    }
+  }
+  query = decodeURIComponent(window.location.search);
+  while (null !== (match = reggie.exec(query))) {
+    if (match[2] === variable) {
+      return match[3];
+    }
+  }
+  return undefined;
+}

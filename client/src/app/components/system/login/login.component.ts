@@ -37,8 +37,10 @@
 
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { NGXLogger } from 'ngx-logger';
 import { AccountService } from 'src/app/service/account.service';
 import { ApplicationService } from 'src/app/service/application.service';
+import * as Utility from 'src/app/service/utility';
 
 @Component({
   selector: 'app-login',
@@ -54,12 +56,21 @@ export class LoginComponent implements OnInit {
     private application: ApplicationService,
     private router: Router,
     private route: ActivatedRoute,
-    private accountService: AccountService
+    private accountService: AccountService,
+    private logger: NGXLogger,
   ) {
 
   }
 
   ngOnInit(): void {
+
+    const sid = Utility.getQueryVariable('sid');
+    if (sid) {
+      this.logger.debug('AppComponent::SID found');
+      this.application.setToken(sid);
+    }
+
+
     const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/devices';
     if (this.accountService.needsAuthentication === false) {
       this.router.navigateByUrl(returnUrl);
@@ -75,4 +86,5 @@ export class LoginComponent implements OnInit {
       }
     })
   }
+
 }
