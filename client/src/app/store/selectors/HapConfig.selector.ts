@@ -20,8 +20,6 @@ export const configLoadingError = createSelector(
   (state: ConfigState): Error => state.error
 );
 
-
-
 export const configLoaded = createSelector(
   selectHapConfigState,
   (state: ConfigState): boolean => (Object.keys(state.config).length > 0)

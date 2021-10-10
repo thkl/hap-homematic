@@ -3,7 +3,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import { NGXLogger } from 'ngx-logger';
 import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
 import { Actions, Models, Selectors } from 'src/app/store';
 import { HapAppliance, HapApplicanceType } from 'src/app/store/models';
 import { ValidationResult } from 'src/app/validators/validationResult';

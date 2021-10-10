@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import { NGXLogger } from 'ngx-logger';
+import { ApplicationService } from 'src/app/service/application.service';
 import { Actions, Models, Selectors } from 'src/app/store';
 import { AbstractDataComponent } from '../../abstractdatacomponent/abstractdatacomponent.component';
 
@@ -18,7 +19,8 @@ export class SettingsComponent extends AbstractDataComponent implements OnInit {
   constructor(
     public store: Store<Models.AppState>,
     private logger: NGXLogger,
-    private router: Router
+    private router: Router,
+    private applicationService: ApplicationService
   ) {
     super()
   }
@@ -27,42 +29,27 @@ export class SettingsComponent extends AbstractDataComponent implements OnInit {
     this.addSubscription(
       this.store.pipe(select(Selectors.configData)).subscribe(configData => {
         if (configData !== undefined) {
-          this.configData = Object.assign({}, configData);
-          this.unsubscribeAll(); // We do want this just once
+          if (this.configData === undefined) { // We do want this just once cause every heartbeat sends new config data
+            this.configData = Object.assign({}, configData);
+          }
         }
       })
-    )
-
-    this.addSubscription(
-      this.store.pipe(select(Selectors.configLoadingError))
-        .subscribe((error) => {
-          console.log(error);
-          if (error !== undefined) {
-            this.logger.debug(`RestartComponent::still rebooting`);
-            setTimeout(() => { this.reloadConfig() }, 5000); // Try to reload the config 5seconds from now
-          }
-        })
     );
 
-    this.addSubscription(
-      this.store.pipe(select(Selectors.configIsLoading))
-        .subscribe((isLoading) => {
-          if ((isLoading === false) && (this.isRestarting === true)) {
-            this.logger.debug(`RestartComponent::rebooting completed`);
-            this.isRestarting = false;
-            this.router.navigate(['/']);
-          }
-        })
-    );
-  }
-
-  reloadConfig(): void {
-    this.isRestarting = true;
-    this.store.dispatch(Actions.LoadSystemConfigAction());
+    this.addSubscription(this.applicationService.restartIndicator().subscribe(() => {
+      this.logger.debug(`SettingsComponent::system was rebootet going back`);
+      this.isRestarting = false;
+      this.store.dispatch(Actions.LoadSystemConfigAction());
+      this.router.navigate(['/']);
+    }));
   }
 
   saveSettings(): void {
+    this.logger.debug(`SettingsComponent::save settings`);
     this.store.dispatch(Actions.SaveSystemConfigAction({ systemconfig: this.configData }));
+    this.isRestarting = true;
+
+
   }
 
 }

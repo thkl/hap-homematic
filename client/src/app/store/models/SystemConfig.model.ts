@@ -19,7 +19,8 @@ export interface SystemConfig {
   disableHistory?: boolean,
   forceCache?: boolean,
   interfaceWatchdog?: number,
-  isEmpty?: boolean
+  isEmpty?: boolean,
+  runtimeID?: string
 }
 
 export interface ChangeLogVersion {

@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { NGXLogger } from 'ngx-logger';
-import { combineLatest, Observable } from 'rxjs';
+import { combineLatest, Observable, Subject } from 'rxjs';
 import { take } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { Models, Selectors } from '../store';
@@ -24,6 +24,7 @@ export class ApplicationService {
   private _systemState: Models.SystemConfig = {};
   public configLoaded = false;
   public globalLoadingIndicator: Observable<boolean[]>;
+  private _restartIndicator = new Subject();
 
   constructor(
     private store: Store<Models.AppState>,
@@ -45,6 +46,12 @@ export class ApplicationService {
 
     this.store.pipe(select(Selectors.configData)).subscribe((newConfig) => {
       if ((newConfig !== undefined) && (Object.keys(newConfig).length > 0)) {
+
+        // Check if the runtimeID has changed
+        if ((this._systemState.runtimeID !== undefined) && (newConfig.runtimeID !== this._systemState.runtimeID)) {
+          this._restartIndicator.next();
+        }
+
         this._systemState = newConfig;
         this.configLoaded = true;
         if ((this._systemState) && (this._systemState.useAuth)) {
@@ -77,6 +84,10 @@ export class ApplicationService {
 
   getSystemState(): Models.SystemConfig {
     return this._systemState;
+  }
+
+  restartIndicator(): Subject<any> {
+    return this._restartIndicator;
   }
 
   roomByID(roomid: number): CCURoom {

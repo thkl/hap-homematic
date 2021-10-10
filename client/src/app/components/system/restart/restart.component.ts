@@ -29,27 +29,12 @@ export class RestartComponent extends AbstractDataComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.addSubscription(
-      this.store.pipe(select(Selectors.configLoadingError))
-        .subscribe((error) => {
-          console.log(error);
-          if (error !== undefined) {
-            this.logger.debug(`RestartComponent::still rebooting`);
-            setTimeout(() => { this.reloadConfig() }, 5000); // Try to reload the config 5seconds from now
-          }
-        })
-    );
-
-    this.addSubscription(
-      this.store.pipe(select(Selectors.configIsLoading))
-        .subscribe((isLoading) => {
-          if ((isLoading === false) && (this.isRestarting === true)) {
-            this.logger.debug(`RestartComponent::rebooting completed`);
-            this.isRestarting = false;
-            this.router.navigate(['/']);
-          }
-        })
-    );
+    // Subscribe to the global Restart Indicator
+    this.addSubscription(this.applicationService.restartIndicator().subscribe(() => {
+      this.isRestarting = false;
+      this.store.dispatch(Actions.LoadSystemConfigAction());
+      this.router.navigate(['/']);
+    }));
   }
 
 
@@ -58,25 +43,11 @@ export class RestartComponent extends AbstractDataComponent implements OnInit {
     window.open(`${this.applicationService.getApiURL()}/log/download`);
   }
 
-  reloadConfig(): void {
-    this.store.dispatch(Actions.LoadSystemConfigAction());
-  }
-
   doReboot(): void {
-
     this.logger.debug(`RestartComponent::doReboot`);
     this.configService.doReboot(this.enableDebug).subscribe(() => {
       this.logger.debug(`RestartComponent::doReboot initiated`);
       this.isRestarting = true;
-      setTimeout(() => {
-        this.reloadConfig();
-      }, 30000);
     })
-
   }
-
-
-
-
-
 }
