@@ -4,6 +4,7 @@ import { ChangeLog, SystemConfig } from '../store/models/SystemConfig.model';
 import { ApplicationService } from './application.service';
 import { CCUChannelDatapointResult, CCUDeviceLoadingResult, CCUProgramLoadingResult, CCURoomLoadingResult, CCUVariableLoadingResult, CCUVirtualKeylistResult } from '../store/models';
 import { NGXLogger } from 'ngx-logger';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -11,44 +12,31 @@ import { NGXLogger } from 'ngx-logger';
 export class SystemconfigService {
 
   api: string;
+  rooms$: Observable<CCURoomLoadingResult>;
+  configuration$: Observable<SystemConfig>;
+  compatibleDevices$: Observable<CCUDeviceLoadingResult>;
+  compatibleCCUVariables$: Observable<CCUVariableLoadingResult>;
+  compatibleCCUPrograms$: Observable<CCUProgramLoadingResult>;
+  compatibleCCUKeys$: Observable<CCUVirtualKeylistResult>;
 
   constructor(
     private http: HttpClient,
     private application: ApplicationService,
     private logger: NGXLogger) {
     this.api = application.api;
+
+    this.rooms$ = this.http.get<CCURoomLoadingResult>(`${this.api}/ccurooms`, { headers: this.application.httpHeaders() });
+    this.configuration$ = this.http.get<SystemConfig>(`${this.api}/system`, { headers: this.application.httpHeaders() });
+    this.compatibleDevices$ = this.http.get<CCUDeviceLoadingResult>(`${this.api}/ccudevices`, { headers: this.application.httpHeaders() });
+    this.compatibleCCUVariables$ = this.http.get<CCUVariableLoadingResult>(`${this.api}/ccuvariables`, { headers: this.application.httpHeaders() });
+    this.compatibleCCUPrograms$ = this.http.get<CCUProgramLoadingResult>(`${this.api}/ccuprograms`, { headers: this.application.httpHeaders() });
+    this.compatibleCCUKeys$ = this.http.get<CCUVirtualKeylistResult>(`${this.api}/ccuvirtualkeys`, { headers: this.application.httpHeaders() });
   }
 
-
-  loadSystemConfiguration() {
-    this.logger.debug('SystemconfigService::loadSystemConfiguration');
-    return this.http.get<SystemConfig>(`${this.api}/system`, { headers: this.application.httpHeaders() });
-  }
 
   saveConfig(newConfig: SystemConfig) {
     this.logger.debug('SystemconfigService::saveConfig');
     return this.http.patch<SystemConfig>(`${this.api}/system`, newConfig, { headers: this.application.httpHeaders() });
-  }
-
-  loadRooms() {
-    this.logger.debug('SystemconfigService::loadRooms');
-    return this.http.get<CCURoomLoadingResult>(`${this.api}/ccurooms`, { headers: this.application.httpHeaders() });
-  }
-
-  loadCompatibleCCUDevices() {
-    this.logger.debug('SystemconfigService::loadCompatibleCCUDevices');
-    return this.http.get<CCUDeviceLoadingResult>(`${this.api}/ccudevices`, { headers: this.application.httpHeaders() });
-  }
-
-
-  loadCompatibleCCUVariables() {
-    this.logger.debug('SystemconfigService::loadCompatibleCCUVariables');
-    return this.http.get<CCUVariableLoadingResult>(`${this.api}/ccuvariables`, { headers: this.application.httpHeaders() });
-  }
-
-  loadCompatibleCCUPrograms() {
-    this.logger.debug('SystemconfigService::loadCompatibleCCUPrograms');
-    return this.http.get<CCUProgramLoadingResult>(`${this.api}/ccuprograms`, { headers: this.application.httpHeaders() });
   }
 
   loadDevicesByChannelTypes(channelTypes: string[]) {
@@ -62,10 +50,7 @@ export class SystemconfigService {
     return this.http.get<CCUChannelDatapointResult>(`${this.api}/ccudatapoints/${channelId}`, { headers: this.application.httpHeaders() });
   }
 
-  loadVirtualKeys() {
-    this.logger.debug(`SystemconfigService::loadVirtualKeys`);
-    return this.http.get<CCUVirtualKeylistResult>(`${this.api}/ccuvirtualkeys`, { headers: this.application.httpHeaders() });
-  }
+
 
   getLogFile() {
     this.logger.debug('SystemconfigService::getLogFile');

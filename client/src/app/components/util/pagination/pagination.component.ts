@@ -1,16 +1,16 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-pagination',
   templateUrl: './pagination.component.html',
   styleUrls: ['./pagination.component.sass']
 })
-export class PaginationComponent implements OnInit {
+export class PaginationComponent {
 
   private _maxRecords: number;
   private _currentRecord: number;
   private _numRecords: number;
-  private _maxPages: number = 5;
+  private _maxPages = 5;
 
   @Output() pageChanged: EventEmitter<number> = new EventEmitter();
 
@@ -41,15 +41,9 @@ export class PaginationComponent implements OnInit {
     return this._numRecords;
   }
 
-  currentPage: number = 1;
-  currentStart: number = 1;
-  pages: number = 1;
-
-  constructor() { }
-
-  ngOnInit(): void {
-
-  }
+  currentPage = 1;
+  currentStart = 1;
+  pages = 1;
 
   nextDisabled(): boolean {
     if ((this.pages < this._maxPages) || ((this.currentStart + this._maxPages) > this.pages)) {
@@ -120,7 +114,7 @@ export class PaginationComponent implements OnInit {
 
   paginate(items: any[]): any[] {
     this.numRecords = items.length;
-    let result: any[] = [];
+    const result: any[] = [];
     const start = (this.currentPage - 1) * this._maxRecords;
     const end = start + this._maxRecords;
     let i: number;

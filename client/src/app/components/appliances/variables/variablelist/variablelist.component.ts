@@ -19,8 +19,7 @@ export class VariablelistComponent extends AbstractTableComponent implements OnI
 
   constructor(
     public store: Store<Models.AppState>,
-    private systemConfigService: SystemconfigService,
-    private applicationService: ApplicationService
+    private systemConfigService: SystemconfigService
   ) {
     super(store);
 
@@ -40,14 +39,16 @@ export class VariablelistComponent extends AbstractTableComponent implements OnI
 
   ngOnInit() {
     super.ngOnInit();
-    this.systemConfigService.loadVirtualKeys().subscribe((result) => {
-      this.virtualKeys = [];
-      result.virtualkeys.forEach(keyDevice => {
-        keyDevice.channels.forEach(channel => {
-          this.virtualKeys.push({ name: channel.name, dp: `${keyDevice.ifName}.${channel.address}.PRESS_SHORT` })
+    this.addSubscription(
+      this.systemConfigService.compatibleCCUKeys$.subscribe((result) => {
+        this.virtualKeys = [];
+        result.virtualkeys.forEach(keyDevice => {
+          keyDevice.channels.forEach(channel => {
+            this.virtualKeys.push({ name: channel.name, dp: `${keyDevice.ifName}.${channel.address}.PRESS_SHORT` })
+          })
         })
       })
-    });
+    );
 
     this.addSubscription(
       this.store.pipe(select(Selectors.selectVariableTrigger)).subscribe(trigger => {

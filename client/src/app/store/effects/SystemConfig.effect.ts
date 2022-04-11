@@ -10,7 +10,7 @@ export class SystemConfigEffects {
 
   loadSystemConfig$ = createEffect(() => this.actions$.pipe(
     ofType(HapActions.SystemConfigActionTypes.LOAD_CONFIG),
-    mergeMap(() => this.systemconfigService.loadSystemConfiguration()
+    mergeMap(() => this.systemconfigService.configuration$
       .pipe(
         map(data => { return HapActions.LoadSystemConfigSuccessAction({ systemConfig: data }) }),
         catchError(error => of(HapActions.LoadSystemConfigFailureAction({ error: error }))

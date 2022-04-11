@@ -16,22 +16,25 @@ mount | grep /usr/local 2>&1 >/dev/null
 if [ $? -eq 1 ]; then
   mount /usr/local
 fi
-
+# remove the index file if there is one so the postinstall will run again
+if [ -f ${ADDON_DIR}/node_modules/hap-homematic/index.js ]; then
+  rm ${ADDON_DIR}/node_modules/hap-homematic/index.js
+fi
 # create necessary directories
 mkdir -p ${ADDON_DIR}
 chmod 755 ${ADDON_DIR}
 mkdir -p ${RCD_DIR}
 chmod 755 ${RCD_DIR}
 
+# remove the old www stuff
+if [ -f ${ADDONWWW_DIR}/${ADDONNAME}/ ]; then
+  rm ${ADDONWWW_DIR}/${ADDONNAME}/*
+  rmdir ${ADDONWWW_DIR}/${ADDONNAME}
+fi
+
 # copy addon
 mkdir -p ${ADDONCFG_DIR}/etc
 mkdir -p ${CONFIG_DIR}/${ADDONNAME}
-
-#create the www stuff
-mkdir -p ${ADDONWWW_DIR}/${ADDONNAME}
-cp -af hap/etc/www/index.html ${ADDONWWW_DIR}/${ADDONNAME}
-cp -af hap/etc/www/update-check.cgi ${ADDONWWW_DIR}/${ADDONNAME}
-cp -af hap/etc/www/hap-homematic-logo.png ${ADDONWWW_DIR}/${ADDONNAME}
 
 # copy startup script
 cp -af rc.d/* ${RCD_DIR}

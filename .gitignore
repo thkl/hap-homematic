@@ -10,3 +10,5 @@ temp
 lib/services/HomeMaticSmartSpeakerAccessory.js
 lib/services/HomeMaticProgrammableSwitchAccessory.js
 conf.d
+testdeploycl.sh
+testdeployall.sh

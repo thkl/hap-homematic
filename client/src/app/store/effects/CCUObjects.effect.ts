@@ -11,7 +11,7 @@ export class CCUObjectEffects {
 
   loadCCUDevices$ = createEffect(() => this.actions$.pipe(
     ofType(CCUObjectsActionTypes.LOAD_CCU_DEVICES),
-    mergeMap(() => this.systemconfigService.loadCompatibleCCUDevices()
+    mergeMap(() => this.systemconfigService.compatibleDevices$
       .pipe(
         map((data: any) => LoadCCUDevicesSuccessAction({ result: data })),
         catchError(error => of(LoadCCUDevicesFailureAction({ error: error })))
@@ -22,7 +22,7 @@ export class CCUObjectEffects {
 
   loadRooms$ = createEffect(() => this.actions$.pipe(
     ofType(CCUObjectsActionTypes.LOAD_CCU_ROOMS),
-    mergeMap(() => this.systemconfigService.loadRooms()
+    mergeMap(() => this.systemconfigService.rooms$
       .pipe(
         map((data: any) => LoadCCURoomsSuccessAction({ result: data })),
         catchError(error => of(LoadCCURoomsFailureAction({ error: error })))
@@ -33,7 +33,7 @@ export class CCUObjectEffects {
 
   loadVariables$ = createEffect(() => this.actions$.pipe(
     ofType(CCUObjectsActionTypes.LOAD_CCU_VARIABLES),
-    mergeMap(() => this.systemconfigService.loadCompatibleCCUVariables()
+    mergeMap(() => this.systemconfigService.compatibleCCUVariables$
       .pipe(
         map((data: any) => LoadCCUVariablesSuccessAction({ result: data })),
         catchError(error => of(LoadCCUVariablesFailureAction({ error: error })))
@@ -43,7 +43,7 @@ export class CCUObjectEffects {
 
   loadPrograms$ = createEffect(() => this.actions$.pipe(
     ofType(CCUObjectsActionTypes.LOAD_CCU_PROGRAMS),
-    mergeMap(() => this.systemconfigService.loadCompatibleCCUPrograms()
+    mergeMap(() => this.systemconfigService.compatibleCCUPrograms$
       .pipe(
         map((data: any) => LoadCCUProgramsSuccessAction({ result: data })),
         catchError(error => of(LoadCCUProgramsFailureAction({ error: error })))
