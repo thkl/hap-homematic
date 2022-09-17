@@ -444,5 +444,6 @@
   "You may also switch to your CCU UI, login and call this page thru the AddOns Page": "Du kannst Dich auch direkt auf der CCU anmelden und die HAP Einstellungen über die Erweiterungen aufrufen.",
   "There is a new version available. Do you want to update Hap-HomeMatic to %s ?": "Es ist eine neue Version von HAP-HomeMatic verfügbar. Möchtest Du auf Version %s aktualisieren ?",
   "ChangeLog": "ChangeLog",
-  "You are using this version": "Du benutzt diese Version"
+  "You are using this version": "Du benutzt diese Version",
+  "This service provides a Passage Sensor in HomeKit": "Dies stellt einen Durchgangssensor zur Verfügung"
 }
