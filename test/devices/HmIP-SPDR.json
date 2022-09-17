@@ -1,0 +1,70 @@
+{
+  "devices": [
+    {
+      "id": 1000,
+      "intf": 0,
+      "intfName": "HmIP",
+      "name": "HmIP-SPDR",
+      "address": "4864520843ABCD",
+      "type": "HmIP-SPDR",
+      "channels": [
+        {
+          "id": 1001,
+          "name": "4864520843ABCD:0",
+          "intf": 0,
+          "address": "4864520843ABCD:0",
+          "type": "MAINTENANCE",
+          "access": 255
+        },
+        {
+          "id": 1002,
+          "name": "4864520843ABCD:1",
+          "intf": 0,
+          "address": "4864520843ABCD:1",
+          "type": "PASSAGE_DETECTOR",
+          "access": 255
+        },
+        {
+          "id": 1003,
+          "name": "4864520843ABCD:2",
+          "intf": 0,
+          "address": "4864520843ABCD:2",
+          "type": "PASSAGE_DETECTOR_DIRECTION_TRANSMITTER",
+          "access": 255
+        },
+        {
+          "id": 1004,
+          "name": "4864520843ABCD:3",
+          "intf": 0,
+          "address": "4864520843ABCD:3",
+          "type": "PASSAGE_DETECTOR_DIRECTION_TRANSMITTER",
+          "access": 255
+        },
+        {
+          "id": 1005,
+          "name": "4864520843ABCD:4",
+          "intf": 0,
+          "address": "4864520843ABCD:4",
+          "type": "PASSAGE_DETECTOR_COUNTER_TRANSMITTER",
+          "access": 255
+        },
+        {
+          "id": 1006,
+          "name": "4864520843ABCD:5",
+          "intf": 0,
+          "address": "4864520843ABCD:5",
+          "type": "ALARM_COND_SWITCH_TRANSMITTER",
+          "access": 255
+        }
+      ]
+    }
+  ],
+  "mappings": {
+    "4864520843ABCD:3": {
+      "Service": "HomeMaticPassageSensorAccessory"
+    }
+  },
+  "ccu": {
+    "4864520843ABCD:3": "HomeMaticPassageSensorAccessory"
+  }
+}
