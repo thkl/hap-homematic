@@ -21,7 +21,7 @@
 		"commander": "^5.1.0",
 		"fakegato-history": "^0.5.6",
 		"formidable": "^1.2.2",
-		"hap-nodejs": "^0.5.7",
+		"hap-nodejs": "0.11.1",
 		"homematic-xmlrpc": "1.0.2",
 		"sockjs": "^0.3.20",
 		"moment": "2.29.2"
