@@ -446,5 +446,10 @@
   "ChangeLog": "ChangeLog",
   "You are using this version": "Du benutzt diese Version",
   "Datapoint which contains the battery level":"Datenpunkt welcher das Battie Level enthält",
-  "This service provides a battery indicator based on a HomeMatic Device Datapoint":"dieser Service stellt einen Batterie Indikator zur Verfügung"
+  "This service provides a battery indicator based on a HomeMatic Device Datapoint":"dieser Service stellt einen Batterie Indikator zur Verfügung",
+  "Datapoint":"Datenpunk",
+  "Max Level Value":"maximales Level",
+  "Use Color Temp":"Farbtemperatur verwenden",
+  "This will enable the color temperature feature. Please check in your CCU if your device supports this.":
+    "Dies wird die Farbtemperatureinstellung verwenden. Bitte prüfe in der CCU, ob das Gerät dies unterstützt"
 }

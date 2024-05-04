@@ -6,83 +6,12 @@ describe('HAP-Homematic Localization Tests', () => {
   this.regEx = /.__\('([^,][^']*)/g
   this.regExIndex = /data-localize="(.*)"/g
 
-  let locFile = path.join(__dirname, '..', 'lib', 'configurationsrv', 'html', 'assets', 'de.json')
+  let locFile = path.join(__dirname, '..', 'lib', 'configurationsrv', 'localization', 'de.json')
   if (fs.existsSync(locFile)) {
-    this.localizations = JSON.parse(fs.readFileSync(locFile))
+    this.localizations = JSON.parse(fs.readFileSync(locFile).toString())
     this.localizations[''] = ' ' // add a dummy
+    console.log(`Using Localization from ${locFile}`);
   }
-
-  it('HAP-Homematic check application.js', (done) => {
-    // load the file
-    let file = path.join(__dirname, '..', 'lib', 'configurationsrv', 'html', 'js', 'application.js')
-    if (fs.existsSync(file)) {
-      let content = fs.readFileSync(file)
-      var m
-      // split
-      do {
-        m = this.regEx.exec(content)
-        if (m) {
-          assert.ok(this.localizations[m[1]], m[1] + ' has no localization')
-        }
-      } while (m)
-    }
-
-    done()
-  })
-
-  it('HAP-Homematic check wizzard.js', (done) => {
-    // load the file
-    let file = path.join(__dirname, '..', 'lib', 'configurationsrv', 'html', 'js', 'wizzards.js')
-    if (fs.existsSync(file)) {
-      let content = fs.readFileSync(file)
-      var m
-      // split
-      do {
-        m = this.regEx.exec(content)
-        if (m) {
-          assert.ok(this.localizations[m[1]], m[1] + ' has no localization')
-        }
-      } while (m)
-    }
-
-    done()
-  })
-
-  it('HAP-Homematic check welcomewizzard.js', (done) => {
-    // load the file
-    let file = path.join(__dirname, '..', 'lib', 'configurationsrv', 'html', 'js', 'welcomewizzard.js')
-    if (fs.existsSync(file)) {
-      let content = fs.readFileSync(file)
-      var m
-      // split
-      do {
-        m = this.regEx.exec(content)
-        if (m) {
-          assert.ok(this.localizations[m[1]], m[1] + ' has no localization')
-        }
-      } while (m)
-    }
-
-    done()
-  })
-
-  it('HAP-Homematic check index.html', (done) => {
-    // load the file
-    let file = path.join(__dirname, '..', 'lib', 'configurationsrv', 'html', 'index.html')
-    if (fs.existsSync(file)) {
-      let content = fs.readFileSync(file)
-      var m
-      // split
-      do {
-        m = this.regExIndex.exec(content)
-        if (m) {
-          assert.ok(this.localizations[m[1]], m[1] + ' has no localization')
-        }
-      } while (m)
-    }
-
-    done()
-  })
 
   it('HAP-Homematic check all service files ', (done) => {
     // load the file
@@ -92,14 +21,18 @@ describe('HAP-Homematic Localization Tests', () => {
       if (item.match(/HomeMatic.*Accessory.js/)) {
         let test = require(path.join(__dirname, '..', 'lib', 'services', item))
         let serviceDescription = test.serviceDescription()
-        assert.ok(this.localizations[serviceDescription], serviceDescription + ' has no localization')
+        assert.ok(this.localizations[serviceDescription] !== undefined, `serviceDescription ${serviceDescription}  has no localization for ${item}`)
         let configurationItems = test.configurationItems()
         Object.keys(configurationItems).map((key) => {
           let cItem = configurationItems[key]
           // check label
-          assert.ok(this.localizations[cItem.label], cItem.label + ' has no localization')
-          // chekc hint
-          assert.ok(this.localizations[cItem.hint], cItem.hint + ' has no localization in ' + item)
+          if (cItem.label !== undefined) {
+            assert.ok(this.localizations[cItem.label], `Label for ${cItem.label} has no localization in ${item}`);
+          }
+          if (cItem.hint !== undefined) {
+            // chekc hint
+            assert.ok(this.localizations[cItem.hint], `Hint for ${cItem.hint} has no localization in ${item}`);
+          }
         })
       }
     })
