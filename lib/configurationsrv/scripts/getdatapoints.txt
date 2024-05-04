@@ -1,0 +1,12 @@
+Write('{"datapoints":[');
+string sid;boolean dpf = true;
+var x = dom.GetObject(%channelID%);
+    if (x) {
+        foreach(sid, x.DPs().EnumUsedIDs()) {
+            if (dpf) {dpf=false;} else {Write(',');}
+            Write('"');
+            Write(dom.GetObject(sid).Name());
+            Write('"');
+        }
+    }
+Write(']}');

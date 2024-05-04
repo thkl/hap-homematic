@@ -8,3 +8,9 @@ tools
 temp
 lib/services/HomeMaticSmartSpeakerAccessory.js
 lib/services/HomeMaticProgrammableSwitchAccessory.js
+client
+dist
+node_modules.nosync
+test*.sh
+conf.d
+addon_installer/*

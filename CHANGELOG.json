@@ -1,0 +1,27 @@
+{
+    "versions": {
+        "0.0.63": {
+            "descriptions": [
+                "Just one BugFix (in some cases the ui will not get devices from core)"
+            ],
+            "issues": []
+        },
+        "0.0.62": {
+            "descriptions": [
+                "mostly bugfixes",
+                "added HmIP-BSL Lights",
+                "added variable based Light sensor"
+            ],
+            "issues": []
+        },
+        "0.0.61": {
+            "descriptions": [
+                "added HmIP-DLD",
+                "a backup file name will now contain the current date in the name",
+                "some bugfixes"
+            ],
+            "issues": []
+        }
+    },
+    "latest": "0.0.63"
+}

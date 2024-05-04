@@ -91,18 +91,30 @@ process.on('uncaughtException', (err) => {
 })
 
 try {
-  if ((logPath) && (fs.existsSync(logPath)) && (fs.accessSync(logPath, fs.constants.W_OK))) {
+  if ((logPath !== undefined) && (fs.existsSync(logPath)) && (fs.accessSync(logPath, fs.constants.W_OK))) {
+    log.info("Log into %s /hap-homematic.log", logPath);
     log.setLogFile(path.join(logPath, 'hap-homematic.log'))
   } else
 
     if (fs.existsSync('/var/log') && (fs.accessSync('/var/log', fs.constants.W_OK))) {
+      log.info("Log into /var/log/hap-homematic.log");
       log.setLogFile(path.join('/var/log', 'hap-homematic.log'))
     } else {
       let tmpDir = fs.realpathSync(os.tmpdir())
+      log.info("Log into %s/hap-homematic.log", tmpDir);
       log.setLogFile(path.join(tmpDir, 'hap-homematic.log'))
     }
 } catch (e) {
-  log.warn('cannot set persistent file for logger')
+  log.error(e);
+  log.warn('cannot set persistent file for logger trying temp');
+  try {
+    let tmpDir = fs.realpathSync(os.tmpdir())
+    log.info("Log into %s/hap-homematic.log", tmpDir);
+    log.setLogFile(path.join(tmpDir, 'hap-homematic.log'))
+  } catch (e) {
+    log.error(e);
+    log.warn('cannot set persistent file for logger into temp. givin up');
+  }
 }
 // check if there is a .hapdebug in /tmp and switch on the debug mode then
 let fdebug = path.join(fs.realpathSync(os.tmpdir()), '.hapdebug')
